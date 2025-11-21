@@ -1,0 +1,63 @@
+---
+// Ejemplo de uso del componente SectionTestimoniosMiradorDeLuz
+import Layout from "../layouts/Layout.astro";
+import SectionTestimoniosMiradorDeLuz from "../components/react/SectionTestimoniosMiradorDeLuz";
+
+// Datos de ejemplo personalizados
+const testimoniosPersonalizados = [
+  {
+    id: '1',
+    nombre: 'María González',
+    fecha: '15/11/2025',
+    comentario: 'Las cabañas son hermosas y muy cómodas. La vista a las montañas es espectacular. Volveremos sin duda!',
+    rating: 5,
+  },
+  {
+    id: '2',
+    nombre: 'Carlos Rodríguez',
+    fecha: '10/11/2025',
+    comentario: 'Excelente lugar para desconectar. Todo muy limpio y el personal súper atento. Altamente recomendable.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=15',
+  },
+  {
+    id: '3',
+    nombre: 'Laura & Pedro',
+    fecha: '5/11/2025',
+    comentario: 'Pasamos nuestra luna de miel aquí y fue perfecto. Romántico, tranquilo y con todas las comodidades.',
+    rating: 5,
+  },
+  {
+    id: '4',
+    nombre: 'Familia Martínez',
+    fecha: '1/11/2025',
+    comentario: 'Viajamos con nuestros 3 hijos y fue una experiencia maravillosa. Cabañas espaciosas y actividades para todos.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=28',
+  },
+];
+---
+
+<Layout
+  title="Testimonios - Mirador de Luz"
+  description="Lee las opiniones de nuestros huéspedes"
+>
+  <!-- Uso básico con valores por defecto -->
+  <!-- Auto-play cada 4 segundos, pausa en hover -->
+  <SectionTestimoniosMiradorDeLuz client:load />
+
+  <!-- Ejemplo con datos personalizados -->
+  <!--
+  <SectionTestimoniosMiradorDeLuz 
+    client:load
+    testimonios={testimoniosPersonalizados}
+    textoBoton="Compartí tu experiencia"
+    onClickBoton={() => {
+      console.log('Abrir formulario de opinión');
+      // Aquí puedes abrir un modal o redirigir
+      window.location.href = '/dejar-opinion';
+    }}
+  />
+  -->
+</Layout>
+

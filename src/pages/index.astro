@@ -1,74 +1,69 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/astro/Header.astro';
-import Footer from '../components/astro/Footer.astro';
-import Hero from '../components/astro/Hero.astro';
-import Features from '../components/astro/Features.astro';
-// import CabanaCard from '../components/astro/CabanaCard.astro';
-
-// TODO: Descomentar cuando la API Laravel esté lista
-// import { fetchApi } from '../utils/api';
-// import type { Cabana } from '../utils/types';
-
-// Fetch de cabañas desde la API (actualmente comentado hasta que Laravel esté listo)
-// const { data: cabanas } = await fetchApi<Cabana[]>('/api/cabanas');
+import Layout from "../layouts/Layout.astro";
+import NavbarMiradorDeLuz from "../components/react/NavbarMiradorDeLuz";
+import HeroMiradorDeLuz from "../components/react/HeroMiradorDeLuz";
+import SectionUbicacionMiradorDeLuz from "../components/react/SectionUbicacionMiradorDeLuz";
+import SectionHeroIntermedioMiradorDeLuz from "../components/react/SectionHeroIntermedioMiradorDeLuz";
+import SectionCabanasMiradorDeLuzV2 from "../components/react/SectionCabanasMiradorDeLuzV2";
+import SectionTestimoniosMiradorDeLuz from "../components/react/SectionTestimoniosMiradorDeLuz";
+import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
+import ScrollAnimations from "../components/react/ScrollAnimations";
 ---
 
 <Layout title="Mirador de Luz - Cabañas en Carlos Paz">
-  <Header />
-  
+  <!-- Navbar fijo que permanece visible durante el scroll -->
+  <NavbarMiradorDeLuz client:load transparente={true} />
+
+  <!-- Componente de animaciones GSAP -->
+  <ScrollAnimations client:load />
+
   <main>
-    <!-- Hero Section -->
-    <Hero />
-    
-    <!-- Cabañas Section -->
-    <section id="cabanas" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-4 text-gray-900">
-            Nuestras Cabañas
-          </h2>
-          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Descubre el lugar perfecto para tu escapada. Todas nuestras cabañas cuentan con las comodidades necesarias para una estadía inolvidable.
-          </p>
-        </div>
-        
-        <!-- Placeholder mientras conectamos con la API -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-12 text-center shadow-md">
-            <svg class="w-16 h-16 text-blue-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-            <p class="text-blue-700 font-semibold mb-2">Cabañas disponibles</p>
-            <p class="text-sm text-blue-600">
-              Conectando con API Laravel...
-            </p>
-          </div>
-        </div>
-        
-        <!-- TODO: Descomentar cuando la API esté lista -->
-        <!--
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {cabanas.map(cabana => (
-            <CabanaCard cabana={cabana} />
-          ))}
-        </div>
-        -->
-        
-        <div class="text-center mt-12">
-          <a 
-            href="/contacto" 
-            class="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl"
-          >
-            Consultar Disponibilidad
-          </a>
-        </div>
+    <!-- 1. Hero Principal -->
+    <div id="hero-section" style="position: relative;">
+      <HeroMiradorDeLuz client:load />
+      <div
+        class="hero-overlay"
+        style="position: absolute; inset: 0; background: black; opacity: 0.5; pointer-events: none; z-index: 5;"
+      >
       </div>
-    </section>
-    
-    <!-- Features Section -->
-    <Features />
+    </div>
+
+    <!-- 2. Ubicación Section -->
+    <div
+      id="ubicacion-section"
+      style="position: relative; z-index: 10; background: white;"
+    >
+      <SectionUbicacionMiradorDeLuz client:visible />
+    </div>
+
+    <!-- 3. Hero Intermedio con Video -->
+    <div id="hero-intermedio-section" style="position: relative; z-index: 9;">
+      <SectionHeroIntermedioMiradorDeLuz
+        client:visible
+        backgroundVideo="/videos/VideoCarlosPaz.mp4"
+        subheading="MIRADOR DE LUZ"
+        title="Experiencia única.\nEntre las montañas."
+        overlayOpacity="dark"
+        height="h-screen"
+      />
+    </div>
+
+    <!-- 4. Cabañas Section -->
+    <div
+      id="cabanas-section"
+      style="position: relative; z-index: 11; background: white;"
+    >
+      <div id="cabanas">
+        <SectionCabanasMiradorDeLuzV2 client:visible />
+      </div>
+    </div>
+
+    <!-- 5. Testimonios Section -->
+    <div id="testimonios">
+      <SectionTestimoniosMiradorDeLuz client:visible />
+    </div>
   </main>
-  
-  <Footer />
+
+  <!-- Footer -->
+  <FooterMiradorDeLuz client:load />
 </Layout>

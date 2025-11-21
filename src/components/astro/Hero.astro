@@ -2,22 +2,37 @@
 // Hero section para la landing page
 ---
 
-<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<section
+  class="relative h-screen flex items-center justify-center overflow-hidden"
+>
   <!-- Fondo con overlay -->
-  <div class="absolute inset-0 bg-gradient-to-b from-blue-900/50 to-black/60 z-10"></div>
-  
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-blue-900/50 to-black/60 z-10"
+  >
+  </div>
+
   <!-- Background placeholder (reemplazar con imagen real) -->
   <div class="absolute inset-0 bg-gray-900">
     <div class="w-full h-full flex items-center justify-center">
       <div class="text-center">
-        <svg class="w-32 h-32 text-gray-700 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <svg
+          class="w-32 h-32 text-gray-700 mx-auto mb-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          ></path>
         </svg>
         <p class="text-gray-600">Imagen Hero - Vista panorámica del lago</p>
       </div>
     </div>
   </div>
-  
+
   <!-- Contenido -->
   <div class="relative z-20 container mx-auto px-4">
     <div class="text-center text-white max-w-4xl mx-auto">
@@ -27,20 +42,24 @@
       <p class="text-xl md:text-2xl mb-8 text-gray-200 animate-fade-in-delay">
         Tu refugio en el corazón de Villa Carlos Paz
       </p>
-      <p class="text-lg md:text-xl mb-12 text-gray-300 max-w-2xl mx-auto animate-fade-in-delay-2">
-        Disfruta de vistas panorámicas al lago San Roque en cabañas totalmente equipadas, 
-        rodeadas de naturaleza y tranquilidad
+      <p
+        class="text-lg md:text-xl mb-12 text-gray-300 max-w-2xl mx-auto animate-fade-in-delay-2"
+      >
+        Disfruta de vistas panorámicas al lago San Roque en cabañas totalmente
+        equipadas, rodeadas de naturaleza y tranquilidad
       </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-3">
-        <a 
-          href="#cabanas" 
+
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-delay-3"
+      >
+        <a
+          href="#cabanas"
           class="inline-block bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
           Explorar Cabañas
         </a>
-        <a 
-          href="/contacto" 
+        <a
+          href="/contacto"
           class="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-gray-900 transition shadow-lg"
         >
           Contactar
@@ -48,12 +67,23 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+  <div
+    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce"
+  >
     <a href="#cabanas" aria-label="Scroll hacia abajo">
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      <svg
+        class="w-6 h-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>
     </a>
   </div>
@@ -70,21 +100,20 @@
       transform: translateY(0);
     }
   }
-  
+
   .animate-fade-in {
     animation: fade-in 1s ease-out;
   }
-  
+
   .animate-fade-in-delay {
     animation: fade-in 1s ease-out 0.2s both;
   }
-  
+
   .animate-fade-in-delay-2 {
     animation: fade-in 1s ease-out 0.4s both;
   }
-  
+
   .animate-fade-in-delay-3 {
     animation: fade-in 1s ease-out 0.6s both;
   }
 </style>
-

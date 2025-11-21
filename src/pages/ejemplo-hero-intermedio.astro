@@ -1,0 +1,54 @@
+---
+// Ejemplo de uso del componente SectionHeroIntermedioMiradorDeLuz
+import Layout from "../layouts/Layout.astro";
+import SectionHeroIntermedioMiradorDeLuz from "../components/react/SectionHeroIntermedioMiradorDeLuz";
+---
+
+<Layout
+  title="Hero Intermedio - Mirador de Luz"
+  description="Ejemplo del componente Hero Intermedio"
+>
+  <!-- Ejemplo 1: Uso básico con valores por defecto -->
+  <SectionHeroIntermedioMiradorDeLuz client:load />
+
+  <!-- Separador visual -->
+  <div class="h-20 bg-white"></div>
+
+  <!-- Ejemplo 2: Personalizado con overlay más oscuro -->
+  <SectionHeroIntermedioMiradorDeLuz
+    client:load
+    backgroundImage="https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1920"
+    subheading="MIRADOR DE LUZ"
+    title="Experiencia única.\nEntre las montañas."
+    overlayOpacity="dark"
+    height="h-[70vh]"
+  />
+
+  <!-- Separador visual -->
+  <div class="h-20 bg-white"></div>
+
+  <!-- Ejemplo 3: Con color de acento verde -->
+  <SectionHeroIntermedioMiradorDeLuz
+    client:load
+    backgroundImage="https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=1920"
+    subheading="DESCONECTÁ DE TODO"
+    title="Tu refugio natural.\nA minutos del centro."
+    overlayOpacity="medium"
+    accentColor="text-emerald-300"
+    height="h-[50vh]"
+  />
+
+  <!-- Ejemplo de contenido después -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">
+        Contenido de ejemplo
+      </h2>
+      <p class="text-center text-gray-600 max-w-2xl mx-auto">
+        Los hero intermedios son perfectos para separar secciones y mantener el
+        interés visual.
+      </p>
+    </div>
+  </section>
+</Layout>
+

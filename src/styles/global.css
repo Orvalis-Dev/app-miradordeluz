@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+/* Scroll suave para navegación con anclas */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Altura del navbar fijo */
+}
+
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 64px;
+  }
+}
