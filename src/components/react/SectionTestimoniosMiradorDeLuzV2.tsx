@@ -26,96 +26,102 @@ interface SectionTestimoniosMiradorDeLuzV2Props {
   onClickBoton?: () => void;
   autoPlayInterval?: number;
   pauseOnHover?: boolean;
+  /** URL para dejar una reseña en Google Maps */
+  googleReviewUrl?: string;
 }
 
+// Testimonios de fallback cuando no hay conexión con Google
+const DEFAULT_TESTIMONIOS: TestimonioExtendido[] = [
+  {
+    id: '1',
+    name: 'Horacio Di Paolo',
+    subtitle: 'Villa Carlos Paz, Córdoba',
+    text: 'Excelente lugar para descansar. Las cabañas son muy cómodas y la atención es increíble.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=12',
+  },
+  {
+    id: '2',
+    name: 'Fabri & Yuli',
+    subtitle: 'Buenos Aires, Argentina',
+    text: 'Reservamos una cabaña para nuestra escapada de fin de semana. Paisaje increíble y atención excelente. Volveremos pronto!',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=25',
+  },
+  {
+    id: '3',
+    name: 'Alejandro Pazos',
+    subtitle: 'Rosario, Santa Fe',
+    text: 'Hemos venido con un grupo de 30 amigos. Excelente todo. Muy recomendable para grupos grandes.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=33',
+  },
+  {
+    id: '4',
+    name: 'Alejandro Lezcano',
+    subtitle: 'Tafí del Valle, Tucumán',
+    text: 'Ya tengo mi lugar para quedarme cuando visite Tafí. Hotel increíble... Excelente Atención, Servicio y Habitaciones Confortables.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=68',
+  },
+  {
+    id: '5',
+    name: 'Patricia González',
+    subtitle: 'Córdoba Capital',
+    text: 'Fuimos en familia y las cabañas son súper cómodas. Ideal para desconectar. La vista es hermosa!',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=45',
+  },
+  {
+    id: '6',
+    name: 'Martín Silva',
+    subtitle: 'Mendoza, Argentina',
+    text: 'Excelente experiencia. Todo muy limpio y ordenado. El personal muy atento. Definitivamente volveremos.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=51',
+  },
+  {
+    id: '7',
+    name: 'Sofía Ramírez',
+    subtitle: 'San Luis, Argentina',
+    text: 'Un lugar mágico en medio de la naturaleza. Las cabañas tienen todo lo necesario. Perfectas para una escapada romántica.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=47',
+  },
+  {
+    id: '8',
+    name: 'Roberto Fernández',
+    subtitle: 'La Rioja, Argentina',
+    text: 'Instalaciones impecables y el entorno natural es espectacular. Ideal para quienes buscan tranquilidad y confort.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=58',
+  },
+  {
+    id: '9',
+    name: 'Carolina & Diego',
+    subtitle: 'Salta, Argentina',
+    text: 'Celebramos nuestro aniversario aquí y fue memorable. Atención personalizada y detalles que hacen la diferencia.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=36',
+  },
+  {
+    id: '10',
+    name: 'Lucas Morales',
+    subtitle: 'Catamarca, Argentina',
+    text: 'La mejor decisión para nuestras vacaciones. Precio justo, excelente ubicación y paisajes inolvidables.',
+    rating: 5,
+    avatarUrl: 'https://i.pravatar.cc/150?img=62',
+  },
+];
+
 const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props> = ({
-  testimonios = [
-    {
-      id: '1',
-      name: 'Horacio Di Paolo',
-      subtitle: 'Villa Carlos Paz, Córdoba',
-      text: 'Excelente lugar para descansar. Las cabañas son muy cómodas y la atención es increíble.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=12',
-    },
-    {
-      id: '2',
-      name: 'Fabri & Yuli',
-      subtitle: 'Buenos Aires, Argentina',
-      text: 'Reservamos una cabaña para nuestra escapada de fin de semana. Paisaje increíble y atención excelente. Volveremos pronto!',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=25',
-    },
-    {
-      id: '3',
-      name: 'Alejandro Pazos',
-      subtitle: 'Rosario, Santa Fe',
-      text: 'Hemos venido con un grupo de 30 amigos. Excelente todo. Muy recomendable para grupos grandes.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=33',
-    },
-    {
-      id: '4',
-      name: 'Alejandro Lezcano',
-      subtitle: 'Tafí del Valle, Tucumán',
-      text: 'Ya tengo mi lugar para quedarme cuando visite Tafí. Hotel increíble... Excelente Atención, Servicio y Habitaciones Confortables.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=68',
-    },
-    {
-      id: '5',
-      name: 'Patricia González',
-      subtitle: 'Córdoba Capital',
-      text: 'Fuimos en familia y las cabañas son súper cómodas. Ideal para desconectar. La vista es hermosa!',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=45',
-    },
-    {
-      id: '6',
-      name: 'Martín Silva',
-      subtitle: 'Mendoza, Argentina',
-      text: 'Excelente experiencia. Todo muy limpio y ordenado. El personal muy atento. Definitivamente volveremos.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=51',
-    },
-    {
-      id: '7',
-      name: 'Sofía Ramírez',
-      subtitle: 'San Luis, Argentina',
-      text: 'Un lugar mágico en medio de la naturaleza. Las cabañas tienen todo lo necesario. Perfectas para una escapada romántica.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=47',
-    },
-    {
-      id: '8',
-      name: 'Roberto Fernández',
-      subtitle: 'La Rioja, Argentina',
-      text: 'Instalaciones impecables y el entorno natural es espectacular. Ideal para quienes buscan tranquilidad y confort.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=58',
-    },
-    {
-      id: '9',
-      name: 'Carolina & Diego',
-      subtitle: 'Salta, Argentina',
-      text: 'Celebramos nuestro aniversario aquí y fue memorable. Atención personalizada y detalles que hacen la diferencia.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=36',
-    },
-    {
-      id: '10',
-      name: 'Lucas Morales',
-      subtitle: 'Catamarca, Argentina',
-      text: 'La mejor decisión para nuestras vacaciones. Precio justo, excelente ubicación y paisajes inolvidables.',
-      rating: 5,
-      avatarUrl: 'https://i.pravatar.cc/150?img=62',
-    },
-  ],
+  testimonios = DEFAULT_TESTIMONIOS,
   mostrarBoton = true,
   textoBoton = 'Dejanos tu Opinión',
   onClickBoton,
   autoPlayInterval = 1000,
   pauseOnHover = true,
+  googleReviewUrl,
 }) => {
   // Estados
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -156,6 +162,9 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
   const handleClickBoton = () => {
     if (onClickBoton) {
       onClickBoton();
+    } else if (googleReviewUrl) {
+      // Abrir Google Maps para dejar una reseña
+      window.open(googleReviewUrl, '_blank', 'noopener,noreferrer');
     } else {
       console.log('Abrir formulario de opinión');
     }
@@ -376,9 +385,18 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
           <div>
             <button
               onClick={handleClickBoton}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-[18px] border-2 border-[#0B1220] bg-[#0B1220] text-white font-semibold shadow transition-all duration-200 hover:brightness-95"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[18px] border-2 border-[#0B1220] bg-[#0B1220] text-white font-semibold shadow transition-all duration-200 hover:brightness-95"
+              aria-label={textoBoton}
             >
-              Dejanos tu Opinión
+              {googleReviewUrl && (
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                </svg>
+              )}
+              {textoBoton}
             </button>
           </div>
         </div>

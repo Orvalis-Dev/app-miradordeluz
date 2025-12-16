@@ -11,6 +11,56 @@ import SectionServiciosInstalacionesMiradorDeLuz from "../components/react/Secti
 import SectionTestimoniosMiradorDeLuzV2 from "../components/react/SectionTestimoniosMiradorDeLuzV2";
 import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
 import ScrollAnimations from "../components/react/ScrollAnimations";
+import { fetchGoogleReviews, fetchReviewsByPlaceName, type GoogleReview } from "../utils/googlePlaces";
+import { SITE_CONFIG } from "../constants/config";
+
+// Obtener reseñas de Google Places en build time
+let googleReviews: GoogleReview[] = [];
+const apiKey = import.meta.env.PRIVATE_GOOGLE_PLACES_API_KEY;
+const placeIdEnv = import.meta.env.PRIVATE_GOOGLE_PLACE_ID;
+
+if (apiKey) {
+  try {
+    if (placeIdEnv) {
+      // Si tenemos el Place ID configurado, usarlo directamente
+      googleReviews = await fetchGoogleReviews(apiKey, placeIdEnv, 5);
+      console.log(`[Google Places] Se obtuvieron ${googleReviews.length} reseñas usando Place ID configurado`);
+    } else {
+      // Si no tenemos el Place ID, buscarlo por nombre y coordenadas
+      const { placeName, coordinates } = SITE_CONFIG.googleMaps;
+      const result = await fetchReviewsByPlaceName(
+        apiKey,
+        placeName,
+        coordinates.lat,
+        coordinates.lng,
+        5
+      );
+      
+      if (result) {
+        googleReviews = result.reviews;
+        console.log(`[Google Places] Se obtuvieron ${googleReviews.length} reseñas buscando por nombre`);
+        console.log(`[Google Places] Place ID encontrado: ${result.placeId}`);
+      }
+    }
+  } catch (error) {
+    console.error('[Google Places] Error al obtener reseñas:', error);
+  }
+} else {
+  console.warn('[Google Places] API Key no configurada. Se usarán testimonios de fallback.');
+}
+
+// Transformar las reseñas al formato del componente de testimonios
+const testimoniosGoogle = googleReviews.map((review) => ({
+  id: review.id,
+  name: review.name,
+  subtitle: review.subtitle || 'Google Maps',
+  text: review.text,
+  rating: review.rating,
+  avatarUrl: review.avatarUrl,
+}));
+
+// URL para dejar una reseña
+const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
 ---
 
 <Layout title="Mirador de Luz - Cabañas en Carlos Paz">
@@ -70,9 +120,14 @@ import ScrollAnimations from "../components/react/ScrollAnimations";
       <SectionServiciosInstalacionesMiradorDeLuz client:visible />
     </div>
 
-    <!-- 6. Testimonios Section -->
+    <!-- 6. Testimonios Section - Integrado con Google Maps -->
     <div id="testimonios">
-      <SectionTestimoniosMiradorDeLuzV2 client:visible />
+      <SectionTestimoniosMiradorDeLuzV2 
+        client:visible 
+        testimonios={testimoniosGoogle.length > 0 ? testimoniosGoogle : undefined}
+        textoBoton="Dejanos tu Opinión en Google"
+        googleReviewUrl={googleReviewUrl}
+      />
     </div>
   </main>
 

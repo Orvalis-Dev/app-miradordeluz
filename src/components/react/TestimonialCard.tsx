@@ -48,7 +48,8 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
 
   // Función para obtener la inicial del nombre
-  const getInitial = (name: string): string => {
+  const getInitial = (name: string | undefined): string => {
+    if (!name || name.length === 0) return '?';
     return name.charAt(0).toUpperCase();
   };
 

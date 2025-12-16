@@ -1,42 +1,43 @@
 import type { FC, ReactNode } from 'react';
+import { FiWifi, FiCoffee, FiTruck, FiCheck, FiClock, FiEye, FiLayers, FiPlus, FiTv, FiWind, FiDivide, FiAlertCircle, FiBell, FiAlertTriangle, FiArrowRight } from "react-icons/fi";
+import { GiBarbecue, GiFlame, GiPineTree, GiBed, GiCooler } from "react-icons/gi";
+import { MdOutlinePool, MdGarage, MdEmergency, MdLightMode } from "react-icons/md";
+import { FaUtensils, FaFireExtinguisher, FaBed } from "react-icons/fa6";
+import { PiOvenDuotone, PiFanDuotone } from "react-icons/pi";
+import { TbAirConditioning } from "react-icons/tb";
 
 // Iconos SVG para amenities
+const WifiIcon: FC = () => (
+  <FiWifi className="w-6 h-6" aria-hidden />
+);
+
 const BedIcon: FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-  </svg>
+  <FaBed className="w-6 h-6" aria-hidden />
 );
 
 const FireIcon: FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-  </svg>
+  <FaFireExtinguisher className="w-6 h-6" aria-hidden />
 );
 
 const MountainIcon: FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21L12 3l9 18H3z" />
-  </svg>
+  <GiPineTree className="w-6 h-6" aria-hidden />
 );
 
 const TvIcon: FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-  </svg>
+  <FiTv className="w-6 h-6" aria-hidden />
 );
 
 const KitchenIcon: FC = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 12h18M3 18h18" />
-  </svg>
+  <FaUtensils className="w-6 h-6" aria-hidden />
 );
 
 const ArrowRightIcon: FC = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-  </svg>
+  <FiArrowRight className="w-6 h-6" aria-hidden />
 );
 
+const GarageIcon: FC = () => (
+  <MdGarage className="w-6 h-6" aria-hidden />
+);
 // Tipo de datos para amenities
 type Amenity = {
   icon: ReactNode;
@@ -57,6 +58,8 @@ type Cabana = {
 interface SectionCabanasMiradorDeLuzV3Props {
   cabanas?: Cabana[];
   onReservar?: (cabanaId: string) => void;
+  onVerFotos?: (cabanaId: string) => void;
+  // mantener compatibilidad por si se usa la prop antigua
   onVerDetalles?: (cabanaId: string) => void;
 }
 
@@ -64,53 +67,53 @@ interface SectionCabanasMiradorDeLuzV3Props {
 const cabanasDefault: Cabana[] = [
   {
     id: '1',
-    nombre: 'Cabaña Mirador',
+    nombre: 'Cabaña Nº1',
     etiqueta: 'HASTA 4 PERSONAS',
-    descripcion: 'La cabaña más amplia del complejo. Cuenta con vista panorámica a las montañas, dos dormitorios y todas las comodidades para una experiencia distinta en plena naturaleza.',
+    descripcion: 'Cabaña de facil acceso y hermosa vista a las sierras. Entrada plana y sin escaleras; Living con cama marinera; cocina amplia con comedor; dormitorio matrimonial y/o individual; baño completo y comodo.',
     amenities: [
-      { icon: <BedIcon />, label: 'Cama King Size' },
-      { icon: <TvIcon />, label: '2 Smart TV 43"' },
+      { icon: <BedIcon />, label: 'Cama Matrimonial' },
+      { icon: <TvIcon />, label: 'Smart TV 43"' },
       { icon: <MountainIcon />, label: 'Vista a montañas' },
-      { icon: <FireIcon />, label: 'Hogar a leña' },
+      { icon: <GarageIcon />, label: 'Cochera' },
     ],
     imagenUrl: 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1200',
   },
   {
     id: '2',
-    nombre: 'Cabaña Bosque',
-    etiqueta: 'TAMAÑO 70M²',
-    descripcion: 'Una de las cabañas más confortables del complejo. Cuenta con dos livings amplios para disfrutar de la estadía rodeado de naturaleza y tranquilidad absoluta.',
+    nombre: 'Cabaña Nº2',
+    etiqueta: 'HASTA 6 PERSONAS',
+    descripcion: 'Cabaña más confortable del complejo. Cuenta con 2 dormitorios matrimoniales y/o indiviudales; Living con sofa cama con marinera; cocina amplia con comedor; anta baño y baño completo.',
     amenities: [
-      { icon: <BedIcon />, label: 'Cama Queen Size' },
+      { icon: <BedIcon />, label: ' 2 Dormitorios' },
       { icon: <TvIcon />, label: 'Smart TV 43"' },
-      { icon: <FireIcon />, label: 'Hogar a leña' },
       { icon: <KitchenIcon />, label: 'Cocina equipada' },
+      { icon: <GarageIcon />, label: 'Cochera' },
     ],
     imagenUrl: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=1200',
   },
   {
     id: '3',
-    nombre: 'Cabaña Premium',
-    etiqueta: 'VISTA PANORÁMICA',
-    descripcion: 'Perfecta para familias que buscan comodidad. Tres dormitorios amplios, cocina completa y deck privado con parrilla para disfrutar al aire libre.',
+    nombre: 'Cabaña Nº3',
+    etiqueta: 'MONOAMBIENTE HASTA 4 PERSONAS',
+    descripcion: 'Cabaña de facil acceso y sin escalones. Cuenta con cama matrimonial y cama marinera; cocina amplica con comedor y baño comodo.',
     amenities: [
-      { icon: <BedIcon />, label: '3 Dormitorios' },
-      { icon: <TvIcon />, label: 'Smart TV 50"' },
-      { icon: <MountainIcon />, label: 'Deck privado' },
+      { icon: <BedIcon />, label: 'Cama Matrimonial' },
+      { icon: <TvIcon />, label: 'Smart TV 43"' },
       { icon: <KitchenIcon />, label: 'Cocina completa' },
+      { icon: <GarageIcon />, label: 'Cochera' },
     ],
     imagenUrl: 'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1200',
   },
   {
     id: '4',
-    nombre: 'Cabaña Familiar',
+    nombre: 'Cabaña Nº4',
     etiqueta: 'HASTA 6 PERSONAS',
-    descripcion: 'Ideal para escapadas en familia. Dos dormitorios amplios, living comedor espacioso y fogón exterior para disfrutar de las noches estrelladas.',
+    descripcion: 'Cabaña más confortable del complejo. Cuenta con 2 dormitorios matrimoniales y/o indiviudales; Living con sofa cama con marinera; cocina amplia con comedor; anta baño y baño completo.',
     amenities: [
       { icon: <BedIcon />, label: '2 Dormitorios' },
-      { icon: <FireIcon />, label: 'Fogón exterior' },
-      { icon: <MountainIcon />, label: 'Vista panorámica' },
-      { icon: <KitchenIcon />, label: 'Cocina equipada' },
+      { icon: <TvIcon />, label: 'Smart TV 43"' },
+      { icon: <KitchenIcon />, label: 'Cocina completa' },
+      { icon: <GarageIcon />, label: 'Cochera' },
     ],
     imagenUrl: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200',
   },
@@ -119,6 +122,7 @@ const cabanasDefault: Cabana[] = [
 const SectionCabanasMiradorDeLuzV3: FC<SectionCabanasMiradorDeLuzV3Props> = ({
   cabanas = cabanasDefault,
   onReservar,
+  onVerFotos,
   onVerDetalles,
 }) => {
   const handleReservar = (cabanaId: string) => {
@@ -128,12 +132,15 @@ const SectionCabanasMiradorDeLuzV3: FC<SectionCabanasMiradorDeLuzV3Props> = ({
       window.location.href = `/reservas?cabana=${cabanaId}`;
     }
   };
-
-  const handleVerDetalles = (cabanaId: string) => {
-    if (onVerDetalles) {
+  const handleVerFotos = (cabanaId: string) => {
+    // Priorizar prop nueva `onVerFotos`, luego compatibilidad con `onVerDetalles`,
+    // y por último redirigir a la galería con filtro por cabana (query param).
+    if (onVerFotos) {
+      onVerFotos(cabanaId);
+    } else if (onVerDetalles) {
       onVerDetalles(cabanaId);
     } else {
-      window.location.href = `/cabanas/${cabanaId}`;
+      window.location.href = `/galeria?cabana=${encodeURIComponent(cabanaId)}`;
     }
   };
 
@@ -225,12 +232,12 @@ const SectionCabanasMiradorDeLuzV3: FC<SectionCabanasMiradorDeLuzV3Props> = ({
                           </span>
                         </button>
 
-                        {/* Botón Ver más detalles */}
+                        {/* Botón Ver fotos */}
                         <button
-                          onClick={() => handleVerDetalles(cabana.id)}
+                          onClick={() => handleVerFotos(cabana.id)}
                           className="font-montserrat flex-1 inline-flex items-center justify-center gap-2 border-2 border-gray-600 text-gray-700 px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-100 transition-all"
                         >
-                          <span>Ver más detalles</span>
+                          <span>Ver fotos</span>
                         </button>
                       </div>
                     </div>

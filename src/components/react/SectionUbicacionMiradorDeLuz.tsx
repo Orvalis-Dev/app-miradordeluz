@@ -19,17 +19,22 @@ interface SectionUbicacionMiradorDeLuzProps {
 }
 
 const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
-  etiqueta = 'MIRADOR DE LUZ – VILLA SANTA CRUZ DEL LAGO, CORDOBA',
+  etiqueta = 'VILLA SANTA CRUZ DEL LAGO, CORDOBA.',
   titulo = 'Ubicado entre montañas y naturaleza, cerca de todo.',
   parrafos = [
     {
-      texto: 'Un complejo de cabañas elegante y moderno con una ubicación privilegiada dentro del valle de Tafí. Estamos a pasos de todo; senderos de montaña, lagos cristalinos, el pueblo histórico y los miradores más impresionantes de la región.',
-      destacados: ['ubicación privilegiada']
+      texto: `"Mirador de Luz" - complejo de cabañas! Atendido por sus propios dueños.
+
+Es un complejo nuevo y está listo para ser estrenado!!! Posee hermosa vista a las sierras y tiene todo lo necesario para una gran estadía.
+
+¿Necesitas disfrutar? Logralo en la ciudad de Villa Santa Cruz del Lago a sólo 5km del centro de Villa Carlos Paz, a cuadras del complejo Peko's, Wave Zone, Alfombra Magica, Complejo Nuevo Karting, fábrica de alfajores La Quinta y El Triángulo.
+
+Abierto todo el año, estamos seguros que vas poder disfrutar.
+
+Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
+      destacados: ['"Mirador de Luz" - complejo de cabañas!']
     },
-    {
-      texto: 'Contamos con todas las comodidades tanto si vienes por turismo o descanso: cabañas totalmente equipadas, desayuno artesanal, piscina climatizada, fogón, sala de estar, y espacios para reuniones y eventos familiares.',
-      destacados: ['todas las comodidades', 'cabañas totalmente equipadas']
-    },
+
   ],
   fraseDestacada = '¡Te esperamos para que vivas la experiencia Mirador de Luz!',
   imagenPrincipal = 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=800',
@@ -109,13 +114,20 @@ const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
               {titulo}
             </h2>
 
-            {/* Párrafos descriptivos */}
+            {/* Párrafos descriptivos: convertir doble salto de línea en párrafos separados */}
             <div className="space-y-5">
-              {parrafos.map((parrafo, index) => (
-                <p key={index} className={parrafoClass}>
-                  {highlightText(parrafo.texto, parrafo.destacados)}
-                </p>
-              ))}
+              {parrafos.map((parrafo, index) => {
+                const partes = parrafo.texto.split(/\n\s*\n/);
+                return (
+                  <div key={index} className="space-y-4">
+                    {partes.map((parte, idx) => (
+                      <p key={idx} className={parrafoClass}>
+                        {highlightText(parte, parrafo.destacados)}
+                      </p>
+                    ))}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Frase final destacada */}

@@ -1,160 +1,412 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/astro/Header.astro';
-import Footer from '../components/astro/Footer.astro';
-import { SITE_CONFIG } from '../constants/config';
+import Layout from "../layouts/Layout.astro";
+import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
+
+// Datos de contacto
+const contactInfo = {
+  whatsapp: "+54 9 3813 51 3513",
+  email: "miradordeluz2019@gmail.com",
+  phone: "+54 9 3813 51 3513",
+  address: "Villa Santa Cruz del Lago, Córdoba, Argentina",
+  whatsappLink: "https://wa.me/5493813513513",
+  mapsLink:
+    "https://www.google.com/maps/place/Mirador+de+Luz/@-31.3730543,-64.5250168,17z",
+  instagram: "https://instagram.com/miradordeluz",
+  facebook: "https://facebook.com/miradordeluz",
+};
+
+// Coordenadas para el embed de Google Maps
+const mapCoords = {
+  lat: -31.3730543,
+  lng: -64.5224419,
+};
 ---
 
-<Layout 
-  title="Contacto"
-  description="Contacta con Mirador de Luz. Estamos aquí para ayudarte a planificar tu estadía perfecta en Villa Carlos Paz."
+<Layout
+  title="Contacto - Mirador de Luz"
+  description="Contacta con Mirador de Luz. Estamos aquí para ayudarte a planificar tu estadía perfecta en Villa Santa Cruz del Lago, Córdoba."
 >
-  <Header />
-  
+  <!-- Navbar estático con fondo azul oscuro -->
+  <nav class="w-full bg-slate-900 px-4 md:px-8 lg:px-16 py-4">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <!-- Logo / Nombre -->
+      <a
+        href="/"
+        class="font-montserrat text-xl md:text-2xl font-bold text-white tracking-wide hover:text-amber-300 transition-colors"
+      >
+        🏔️ Mirador de Luz
+      </a>
+
+      <!-- Navigation -->
+      <div class="flex items-center gap-3 md:gap-4">
+        <!-- Botón Reservar -->
+        <a
+          href="/#cabanas"
+          class="font-montserrat bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white
+                 px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold uppercase tracking-wide text-xs md:text-sm
+                 transform hover:scale-105 transition-all shadow-lg"
+        >
+          Reservar
+        </a>
+
+        <!-- Iconos sociales (desktop) -->
+        <div class="hidden md:flex items-center gap-2">
+          <a
+            href={contactInfo.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20
+                   flex items-center justify-center text-white transition-all hover:scale-110"
+            aria-label="Instagram"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href={contactInfo.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20
+                   flex items-center justify-center text-white transition-all hover:scale-110"
+            aria-label="WhatsApp"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href={contactInfo.mapsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20
+                   flex items-center justify-center text-white transition-all hover:scale-110"
+            aria-label="Ubicación"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Menú Hamburguesa (mobile) -->
+        <a
+          href="/"
+          class="text-white hover:text-amber-300 transition-colors md:hidden"
+          aria-label="Ir al inicio"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
   <main>
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-20">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+    <!-- Hero Section con estilo del sitio -->
+    <section
+      class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-24 md:py-32 overflow-hidden"
+    >
+      <!-- Patrón de fondo decorativo -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute inset-0"
+          style="background-image: radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(217, 119, 6, 0.2) 0%, transparent 50%);"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <span
+          class="font-montserrat text-amber-400 text-sm uppercase tracking-[0.3em] font-medium mb-4 block"
+        >
+          Mirador de Luz
+        </span>
+        <h1
+          class="font-montserrat text-4xl md:text-6xl font-bold mb-6 tracking-tight"
+        >
           Contacto
         </h1>
-        <p class="text-xl text-blue-100 max-w-2xl mx-auto">
-          ¿Tienes alguna pregunta? Estamos aquí para ayudarte
+        <p
+          class="font-montserrat text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
+        >
+          ¿Tienes alguna pregunta? Estamos aquí para ayudarte a planificar tu
+          estadía perfecta
         </p>
       </div>
     </section>
-    
+
     <!-- Contact Information & Form -->
-    <section class="py-16 bg-white">
+    <section class="py-16 md:py-24 bg-stone-50">
       <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <!-- Contact Info -->
           <div>
-            <h2 class="text-3xl font-bold mb-6 text-gray-900">
+            <span
+              class="font-montserrat text-amber-600 text-sm uppercase tracking-[0.2em] font-semibold mb-3 block"
+            >
+              Información
+            </span>
+            <h2
+              class="font-montserrat text-3xl md:text-4xl font-bold mb-6 text-gray-900 tracking-tight"
+            >
               Información de Contacto
             </h2>
-            <p class="text-gray-600 mb-8">
-              Puedes comunicarte con nosotros a través de cualquiera de estos medios. 
-              Respondemos rápidamente para ayudarte con tu reserva.
+            <p class="font-montserrat text-gray-600 mb-10 leading-relaxed">
+              Puedes comunicarte con nosotros a través de cualquiera de estos
+              medios. Respondemos rápidamente para ayudarte con tu reserva.
             </p>
-            
+
             <div class="space-y-6">
               <!-- WhatsApp -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              <div
+                class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                >
+                  <svg
+                    class="w-7 h-7 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                    ></path>
                   </svg>
                 </div>
                 <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">WhatsApp</h3>
-                  <a 
-                    href={SITE_CONFIG.links.whatsapp}
+                  <h3
+                    class="font-montserrat font-bold text-gray-900 mb-1 text-lg"
+                  >
+                    WhatsApp
+                  </h3>
+                  <a
+                    href={contactInfo.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-blue-600 hover:text-blue-700"
+                    class="font-montserrat text-amber-600 hover:text-amber-700 font-medium transition-colors"
                   >
-                    {SITE_CONFIG.contact.phone}
+                    {contactInfo.whatsapp}
                   </a>
-                  <p class="text-sm text-gray-500 mt-1">Respuesta rápida</p>
-                </div>
-              </div>
-              
-              <!-- Email -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
-                  <a 
-                    href={`mailto:${SITE_CONFIG.contact.email}`}
-                    class="text-blue-600 hover:text-blue-700"
-                  >
-                    {SITE_CONFIG.contact.email}
-                  </a>
-                  <p class="text-sm text-gray-500 mt-1">Te respondemos en 24hs</p>
-                </div>
-              </div>
-              
-              <!-- Phone -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">Teléfono</h3>
-                  <a 
-                    href={`tel:${SITE_CONFIG.contact.phone.replace(/\s/g, '')}`}
-                    class="text-blue-600 hover:text-blue-700"
-                  >
-                    {SITE_CONFIG.contact.phone}
-                  </a>
-                  <p class="text-sm text-gray-500 mt-1">Lun - Dom: 9:00 - 21:00</p>
-                </div>
-              </div>
-              
-              <!-- Location -->
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-gray-900 mb-1">Ubicación</h3>
-                  <p class="text-gray-600">
-                    {SITE_CONFIG.contact.address}
+                  <p class="font-montserrat text-sm text-gray-500 mt-1">
+                    Respuesta rápida
                   </p>
-                  <p class="text-sm text-gray-500 mt-1">A 5 min del centro</p>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div
+                class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                >
+                  <svg
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3
+                    class="font-montserrat font-bold text-gray-900 mb-1 text-lg"
+                  >
+                    Email
+                  </h3>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    class="font-montserrat text-amber-600 hover:text-amber-700 font-medium transition-colors"
+                  >
+                    {contactInfo.email}
+                  </a>
+                  <p class="font-montserrat text-sm text-gray-500 mt-1">
+                    Te respondemos en 24hs
+                  </p>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div
+                class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="w-14 h-14 bg-gradient-to-br from-slate-500 to-slate-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                >
+                  <svg
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3
+                    class="font-montserrat font-bold text-gray-900 mb-1 text-lg"
+                  >
+                    Teléfono
+                  </h3>
+                  <a
+                    href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                    class="font-montserrat text-amber-600 hover:text-amber-700 font-medium transition-colors"
+                  >
+                    {contactInfo.phone}
+                  </a>
+                  <p class="font-montserrat text-sm text-gray-500 mt-1">
+                    Lun - Dom: 9:00 - 21:00
+                  </p>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div
+                class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div
+                  class="w-14 h-14 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                >
+                  <svg
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3
+                    class="font-montserrat font-bold text-gray-900 mb-1 text-lg"
+                  >
+                    Ubicación
+                  </h3>
+                  <a
+                    href={contactInfo.mapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-montserrat text-gray-700 hover:text-amber-600 font-medium transition-colors"
+                  >
+                    {contactInfo.address}
+                  </a>
+                  <p class="font-montserrat text-sm text-gray-500 mt-1">
+                    Villa Santa Cruz del Lago
+                  </p>
                 </div>
               </div>
             </div>
-            
+
             <!-- Social Links -->
-            <div class="mt-8 pt-8 border-t border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-4">Síguenos en</h3>
+            <div class="mt-10 pt-8 border-t border-gray-200">
+              <h3 class="font-montserrat font-bold text-gray-900 mb-5 text-lg">
+                Síguenos en
+              </h3>
               <div class="flex gap-4">
-                <a 
-                  href={SITE_CONFIG.links.facebook}
+                <a
+                  href={contactInfo.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-10 h-10 bg-gray-100 hover:bg-blue-600 hover:text-white rounded-lg flex items-center justify-center transition"
+                  class="w-12 h-12 bg-gray-100 hover:bg-gradient-to-br hover:from-blue-500 hover:to-blue-700 text-gray-600 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                   aria-label="Facebook"
                 >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                    ></path>
                   </svg>
                 </a>
-                <a 
-                  href={SITE_CONFIG.links.instagram}
+                <a
+                  href={contactInfo.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-10 h-10 bg-gray-100 hover:bg-pink-600 hover:text-white rounded-lg flex items-center justify-center transition"
+                  class="w-12 h-12 bg-gray-100 hover:bg-gradient-to-br hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 text-gray-600 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                   aria-label="Instagram"
                 >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                    ></path>
                   </svg>
                 </a>
               </div>
             </div>
           </div>
-          
+
           <!-- Contact Form -->
-          <div class="bg-gray-50 p-8 rounded-xl">
-            <h2 class="text-3xl font-bold mb-6 text-gray-900">
+          <div
+            class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100"
+          >
+            <span
+              class="font-montserrat text-amber-600 text-sm uppercase tracking-[0.2em] font-semibold mb-3 block"
+            >
+              Escríbenos
+            </span>
+            <h2
+              class="font-montserrat text-3xl md:text-4xl font-bold mb-8 text-gray-900 tracking-tight"
+            >
               Envíanos un Mensaje
             </h2>
-            
+
             <form class="space-y-6">
               <div>
-                <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  for="nombre"
+                  class="font-montserrat block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Nombre completo *
                 </label>
                 <input
@@ -162,13 +414,16 @@ import { SITE_CONFIG } from '../constants/config';
                   id="nombre"
                   name="nombre"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="font-montserrat w-full px-4 py-3.5 bg-stone-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all placeholder-gray-400"
                   placeholder="Juan Pérez"
                 />
               </div>
-              
+
               <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  for="email"
+                  class="font-montserrat block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Email *
                 </label>
                 <input
@@ -176,44 +431,55 @@ import { SITE_CONFIG } from '../constants/config';
                   id="email"
                   name="email"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="font-montserrat w-full px-4 py-3.5 bg-stone-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all placeholder-gray-400"
                   placeholder="juan@ejemplo.com"
                 />
               </div>
-              
+
               <div>
-                <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  for="telefono"
+                  class="font-montserrat block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Teléfono
                 </label>
                 <input
                   type="tel"
                   id="telefono"
                   name="telefono"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="font-montserrat w-full px-4 py-3.5 bg-stone-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all placeholder-gray-400"
                   placeholder="+54 9 351 123-4567"
                 />
               </div>
-              
+
               <div>
-                <label for="asunto" class="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  for="asunto"
+                  class="font-montserrat block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Asunto *
                 </label>
                 <select
                   id="asunto"
                   name="asunto"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="font-montserrat w-full px-4 py-3.5 bg-stone-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all text-gray-700"
                 >
                   <option value="">Selecciona un asunto</option>
                   <option value="consulta">Consulta general</option>
                   <option value="reserva">Información sobre reserva</option>
-                  <option value="disponibilidad">Consultar disponibilidad</option>
+                  <option value="disponibilidad"
+                    >Consultar disponibilidad</option
+                  >
                   <option value="otro">Otro</option>
                 </select>
               </div>
-              
+
               <div>
-                <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  for="mensaje"
+                  class="font-montserrat block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Mensaje *
                 </label>
                 <textarea
@@ -221,19 +487,18 @@ import { SITE_CONFIG } from '../constants/config';
                   name="mensaje"
                   rows="5"
                   required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  placeholder="Cuéntanos cómo podemos ayudarte..."
-                ></textarea>
+                  class="font-montserrat w-full px-4 py-3.5 bg-stone-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all resize-none placeholder-gray-400"
+                  placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
               </div>
-              
+
               <button
                 type="submit"
-                class="w-full bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl"
+                class="font-montserrat w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg uppercase tracking-wide transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] transform"
               >
                 Enviar Mensaje
               </button>
-              
-              <p class="text-sm text-gray-500 text-center">
+
+              <p class="font-montserrat text-sm text-gray-500 text-center">
                 * Campos obligatorios. Te responderemos a la brevedad.
               </p>
             </form>
@@ -241,29 +506,75 @@ import { SITE_CONFIG } from '../constants/config';
         </div>
       </div>
     </section>
-    
-    <!-- Map Section (Placeholder) -->
-    <section class="py-16 bg-gray-100">
+
+    <!-- Map Section con Google Maps integrado -->
+    <section class="py-16 md:py-24 bg-slate-900">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">
-          Nuestra Ubicación
-        </h2>
-        <div class="bg-gray-200 h-96 rounded-xl flex items-center justify-center">
-          <div class="text-center text-gray-500">
-            <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+        <div class="text-center mb-12">
+          <span
+            class="font-montserrat text-amber-400 text-sm uppercase tracking-[0.2em] font-semibold mb-3 block"
+          >
+            Encuéntranos
+          </span>
+          <h2
+            class="font-montserrat text-3xl md:text-4xl font-bold text-white tracking-tight"
+          >
+            Nuestra Ubicación
+          </h2>
+          <p class="font-montserrat text-gray-400 mt-4 max-w-xl mx-auto">
+            Villa Santa Cruz del Lago, Córdoba, Argentina
+          </p>
+        </div>
+
+        <!-- Google Maps Embed -->
+        <div
+          class="rounded-2xl overflow-hidden shadow-2xl border border-slate-700"
+        >
+          <iframe
+            src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.8!2d${mapCoords.lng}!3d${mapCoords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d65f0c8772fbd%3A0x4d7f1d8348462d0a!2sMirador%20de%20Luz!5e0!3m2!1ses!2sar!4v1702000000000!5m2!1ses!2sar`}
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Mirador de Luz en Google Maps"
+            class="w-full"></iframe>
+        </div>
+
+        <!-- CTA para abrir en Google Maps -->
+        <div class="text-center mt-8">
+          <a
+            href={contactInfo.mapsLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-montserrat inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-6 py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl hover:scale-105 transform"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
             </svg>
-            <p class="text-lg">Mapa de Google Maps</p>
-            <p class="text-sm">(Integración pendiente)</p>
-          </div>
+            Abrir en Google Maps
+          </a>
         </div>
       </div>
     </section>
   </main>
-  
-  <Footer />
+
+  <!-- Footer consistente con el resto del sitio -->
+  <FooterMiradorDeLuz client:load />
 </Layout>
-
-
-
-

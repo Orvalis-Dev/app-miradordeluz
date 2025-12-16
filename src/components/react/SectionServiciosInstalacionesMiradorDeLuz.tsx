@@ -253,7 +253,7 @@ const SectionServiciosInstalacionesMiradorDeLuz: FC<SectionServiciosInstalacione
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <section className="bg-stone-50 py-16 md:py-10">
+    <section className="bg-stone-50 py-20 md:py-10">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Encabezado de la sección */}
         <div className="text-center mb-12 md:mb-16">
@@ -280,11 +280,7 @@ const SectionServiciosInstalacionesMiradorDeLuz: FC<SectionServiciosInstalacione
         {/* Bloque de Servicios (selección con íconos y link a modal) */}
         <div className="mb-16 md:mb-20">
           {/* Título del bloque */}
-          <div className="mb-6">
-            <h3 className="font-montserrat text-[28px] md:text-[36px] font-bold text-[#1E1E1E] mb-2">
-              Servicios
-            </h3>
-          </div>
+      
 
           {/* Fila única de iconos representativos (sin wrap) — aumenté tamaño y separación pero sin romper a 2 líneas */}
           <div className="flex items-center justify-center gap-6 md:gap-8 py-6 flex-nowrap overflow-x-auto px-2">

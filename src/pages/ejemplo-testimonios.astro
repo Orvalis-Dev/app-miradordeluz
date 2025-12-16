@@ -6,34 +6,34 @@ import SectionTestimoniosMiradorDeLuzV2 from "../components/react/SectionTestimo
 // Datos de ejemplo personalizados
 const testimoniosPersonalizados = [
   {
-    id: '1',
-    nombre: 'María González',
-    fecha: '15/11/2025',
-    comentario: 'Las cabañas son hermosas y muy cómodas. La vista a las montañas es espectacular. Volveremos sin duda!',
+    id: "1",
+    name: "María González",
+    subtitle: "15/11/2025",
+    text: "Las cabañas son hermosas y muy cómodas. La vista a las montañas es espectacular. Volveremos sin duda!",
     rating: 5,
   },
   {
-    id: '2',
-    nombre: 'Carlos Rodríguez',
-    fecha: '10/11/2025',
-    comentario: 'Excelente lugar para desconectar. Todo muy limpio y el personal súper atento. Altamente recomendable.',
+    id: "2",
+    name: "Carlos Rodríguez",
+    subtitle: "10/11/2025",
+    text: "Excelente lugar para desconectar. Todo muy limpio y el personal súper atento. Altamente recomendable.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=15',
+    avatarUrl: "https://i.pravatar.cc/150?img=15",
   },
   {
-    id: '3',
-    nombre: 'Laura & Pedro',
-    fecha: '5/11/2025',
-    comentario: 'Pasamos nuestra luna de miel aquí y fue perfecto. Romántico, tranquilo y con todas las comodidades.',
+    id: "3",
+    name: "Laura & Pedro",
+    subtitle: "5/11/2025",
+    text: "Pasamos nuestra luna de miel aquí y fue perfecto. Romántico, tranquilo y con todas las comodidades.",
     rating: 5,
   },
   {
-    id: '4',
-    nombre: 'Familia Martínez',
-    fecha: '1/11/2025',
-    comentario: 'Viajamos con nuestros 3 hijos y fue una experiencia maravillosa. Cabañas espaciosas y actividades para todos.',
+    id: "4",
+    name: "Familia Martínez",
+    subtitle: "1/11/2025",
+    text: "Viajamos con nuestros 3 hijos y fue una experiencia maravillosa. Cabañas espaciosas y actividades para todos.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=28',
+    avatarUrl: "https://i.pravatar.cc/150?img=28",
   },
 ];
 ---
@@ -43,7 +43,9 @@ const testimoniosPersonalizados = [
   description="Lee las opiniones de nuestros huéspedes con animaciones espectaculares"
 >
   <!-- Sección de relleno para poder hacer scroll -->
-  <div class="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
+  <div
+    class="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center"
+  >
     <div class="text-center px-4">
       <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
         Testimonios con Animación
@@ -52,8 +54,17 @@ const testimoniosPersonalizados = [
         Hacé scroll para ver el efecto de expansión
       </p>
       <div class="animate-bounce">
-        <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        <svg
+          class="w-12 h-12 mx-auto text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
       </div>
     </div>
@@ -61,14 +72,16 @@ const testimoniosPersonalizados = [
 
   <!-- Componente con animación de expansión -->
   <!-- La sección empieza reducida y se expande al hacer scroll -->
-  <SectionTestimoniosMiradorDeLuzV2 
+  <SectionTestimoniosMiradorDeLuzV2
     client:visible
     testimonios={testimoniosPersonalizados}
     textoBoton="Compartí tu experiencia"
   />
 
   <!-- Sección de relleno después -->
-  <div class="min-h-screen bg-gradient-to-b from-stone-50 to-blue-50 flex items-center justify-center">
+  <div
+    class="min-h-screen bg-gradient-to-b from-stone-50 to-blue-50 flex items-center justify-center"
+  >
     <div class="text-center px-4">
       <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
         Fin de la Demostración
@@ -90,4 +103,3 @@ const testimoniosPersonalizados = [
     scrollbar-width: none;
   }
 </style>
-

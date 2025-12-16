@@ -120,7 +120,7 @@ const ScrollAnimations: FC = () => {
 
       // Fade out y blur del Hero Intermedio
       gsap.to(heroIntermedio, {
-        opacity: 0,
+        opacity: 0.1,
         filter: 'blur(8px)',
         scrollTrigger: {
           trigger: cabanas,

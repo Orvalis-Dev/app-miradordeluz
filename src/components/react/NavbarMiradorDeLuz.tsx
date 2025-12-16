@@ -323,7 +323,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             {/* Iconos sociales (desktop) */}
             <div className="hidden md:flex items-center gap-2">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/complejo_miradordeluz/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-9 h-9 rounded-full ${estiloActual.socialBg} 
@@ -334,7 +334,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
                 <InstagramIcon />
               </a>
               <a
-                href="https://wa.me/5493512345678"
+                href="https://wa.me/5493813513513"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-9 h-9 rounded-full ${estiloActual.socialBg} 
@@ -344,14 +344,17 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               >
                 <WhatsAppIcon />
               </a>
-              <button
+              <a
+                href="https://www.google.com/maps/place/Mirador+de+Luz/@-31.3730543,-64.5250168,17z/data=!4m6!3m5!1s0x942d65f0c8772fbd:0x4d7f1d8348462d0a!8m2!3d-31.3730589!4d-64.5224419!16s%2Fg%2F11y59brg9t?entry=ttu"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-9 h-9 rounded-full ${estiloActual.socialBg} 
                          flex items-center justify-center ${estiloActual.textColor} transition-all
                          hover:scale-110`}
-                aria-label="Ubicación"
+                aria-label="Ubicación en Google Maps"
               >
                 <LocationIcon />
-              </button>
+              </a>
             </div>
 
             {/* Menú Hamburguesa */}

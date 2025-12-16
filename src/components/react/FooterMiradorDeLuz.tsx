@@ -59,14 +59,14 @@ interface FooterMiradorDeLuzProps {
 
 const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
   logoTexto = 'Mirador de Luz',
-  direccion = 'Av. Hipólito Yrigoyen 111\nNueva Córdoba, Córdoba, Argentina',
-  telefono = '+54 3813513513',
+  direccion = 'Las Orquideas 893, X5152 \nVilla Santa Cruz del Lago, CórdobaArgentina',
+  telefono = '+54 3813 51 3513',
   email = 'miradordeluz2019@gmail.com',
   redesSociales = [
-    { nombre: 'instagram', url: 'https://instagram.com/miradordeluz' },
+    { nombre: 'instagram', url: 'https://www.instagram.com/complejo_miradordeluz/' },
     { nombre: 'linkedin', url: 'https://linkedin.com/company/miradordeluz' },
-    { nombre: 'whatsapp', url: 'https://wa.me/5493814486700' },
-    { nombre: 'ubicacion', url: 'https://maps.google.com' },
+    { nombre: 'whatsapp', url: 'https://wa.me/5493813513513' },
+    { nombre: 'ubicacion', url: 'https://www.google.com/maps/place/Mirador+de+Luz/@-31.3730543,-64.5250168,17z/data=!4m6!3m5!1s0x942d65f0c8772fbd:0x4d7f1d8348462d0a!8m2!3d-31.3730589!4d-64.5224419!16s%2Fg%2F11y59brg9t?entry=ttu' },
   ],
   linksNavegacion = [
     { texto: 'HOME', url: '/' },
@@ -80,7 +80,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
   mostrarFormularioSuscripcion = true,
   onSubscribe,
   mostrarScrollTop = true,
-  textoDerechos = `© ${new Date().getFullYear()} Mirador de Luz. Todos los derechos reservados.`,
+  textoDerechos = `© ${new Date().getFullYear()} Complejo Mirador de Luz. Todos los derechos reservados.`,
   logosPartners = [],
 }) => {
   // DEBUG: Verificar el array
