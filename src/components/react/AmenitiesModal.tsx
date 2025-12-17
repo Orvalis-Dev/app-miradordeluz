@@ -84,7 +84,7 @@ const AmenitiesModal: FC<AmenitiesModalProps> = ({ amenities, cabaName }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {allAmenities.map((amenidad, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-3 rounded-lg border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all">
-                    <div className="w-12 h-12 rounded-md bg-stone-100 flex items-center justify-center text-stone-700 flex-shrink-0">
+                    <div className="w-12 h-12 rounded-md bg-stone-100 flex items-center justify-center text-stone-700 shrink-0">
                       <AmenityIcon amenity={amenidad} class="w-6 h-6" />
                     </div>
                     <div className="flex-1">

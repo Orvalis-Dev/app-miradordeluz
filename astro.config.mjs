@@ -10,6 +10,10 @@ export default defineConfig({
 
   output: 'static',
   site: 'https://miradordeluz.com',
+
+  redirects: {
+    'https://www.miradordeluz.com/:path*': 'https://miradordeluz.com/:path*',
+  },
   
   build: {
     inlineStylesheets: 'auto'
