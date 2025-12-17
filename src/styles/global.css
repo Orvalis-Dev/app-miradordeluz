@@ -19,24 +19,6 @@ html {
   }
 }
 
-/* Estilos para ocultar el navbar cuando el hero intermedio está visible */
-body.hide-navbar nav,
-body.hide-navbar header {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-100%);
-  transition: all 0.5s ease-out;
-}
-
-/* Asegurar que el navbar vuelva a aparecer cuando salga del hero */
-body:not(.hide-navbar) nav,
-body:not(.hide-navbar) header {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-  transition: all 0.5s ease-out;
-}
-
 /* Estilos para ocultar el navbar globalmente (fuera del Hero Principal) */
 body.hide-navbar-global nav,
 body.hide-navbar-global header {

@@ -3,11 +3,6 @@ import type { FC } from 'react';
 
 // Puedes instalar: npm install react-icons
 // O usar estos placeholders SVG
-const CalendarIcon = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-  </svg>
-);
 
 const InstagramIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -59,7 +54,7 @@ const GuestsCounter: FC<GuestsCounterProps> = ({ label, count, onIncrement, onDe
         >
           −
         </button>
-        <span className="font-montserrat text-base font-medium text-gray-700 min-w-[2rem] text-center">
+        <span className="font-montserrat text-base font-medium text-gray-700 min-w-8 text-center">
           {count}
         </span>
         <button
@@ -98,10 +93,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
   titulo = 'MIRADOR DE LUZ',
   subtitulo = 'COMPLEJO DE CABAÑAS',
   descripcion = 'Descansá entre la naturaleza y la luz del amanecer',
-  imagenFondo = 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1920',
-  colorPrimario = 'emerald',
-  colorSecundario = 'amber',
-  colorAccent = 'orange',
+  imagenFondo = '/images/hero-principal.jpg',
   mostrarNavbar = false,
   onSearch,
 }) => {
@@ -138,7 +130,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
         style={{ backgroundImage: `url(${imagenFondo})` }}
       >
         {/* Overlay oscuro */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/35" />
       </div>
 
       {/* Contenido */}
@@ -165,7 +157,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                 </button>
 
                 {/* Botón Reservas */}
-                <button className="font-montserrat bg-gradient-to-r from-amber-500 to-orange-500 text-white 
+                <button className="font-montserrat bg-linear-to-r from-amber-500 to-orange-500 text-white 
                                  px-6 py-2.5 rounded-lg font-semibold uppercase tracking-wide
                                  hover:from-amber-600 hover:to-orange-600 
                                  transform hover:scale-105 transition-all shadow-lg">

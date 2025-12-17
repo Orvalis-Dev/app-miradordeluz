@@ -253,7 +253,7 @@ const SectionServiciosInstalacionesMiradorDeLuz: FC<SectionServiciosInstalacione
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <section className="bg-stone-50 py-20 md:py-10">
+    <section className="bg-stone-50 py-20 pt-0 md:py-10">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Encabezado de la sección */}
         <div className="text-center mb-12 md:mb-16">
@@ -285,7 +285,7 @@ const SectionServiciosInstalacionesMiradorDeLuz: FC<SectionServiciosInstalacione
           {/* Fila única de iconos representativos (sin wrap) — aumenté tamaño y separación pero sin romper a 2 líneas */}
           <div className="flex items-center justify-center gap-6 md:gap-8 py-6 flex-nowrap overflow-x-auto px-2">
             {servicios.slice(0, 6).map((servicio) => (
-              <div key={servicio.id} className="flex flex-col items-center gap-3 w-32 md:w-36 text-center flex-shrink-0">
+              <div key={servicio.id} className="flex flex-col items-center gap-3 w-32 md:w-36 text-center shrink-0">
                 <div
                   className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center ${getAccentColor(
                     servicio.colorAccent
@@ -293,7 +293,7 @@ const SectionServiciosInstalacionesMiradorDeLuz: FC<SectionServiciosInstalacione
                 >
                   {servicio.icon || <BedIcon />}
                 </div>
-                <div className="font-montserrat text-sm md:text-base font-medium text-[#1E1E1E] truncate whitespace-nowrap max-w-[8rem] md:max-w-[9rem]">
+                <div className="font-montserrat text-sm md:text-base font-medium text-[#1E1E1E] truncate whitespace-nowrap max-w-32 md:max-w-36">
                   {servicio.titulo}
                 </div>
               </div>
@@ -304,7 +304,7 @@ const SectionServiciosInstalacionesMiradorDeLuz: FC<SectionServiciosInstalacione
               type="button"
               onClick={() => setIsModalOpen(true)}
               aria-label="Mostrar todos"
-              className="flex flex-col items-center gap-3 w-32 md:w-36 text-center flex-shrink-0"
+              className="flex flex-col items-center gap-3 w-32 md:w-36 text-center shrink-0"
             >
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-stone-100 text-stone-700">
                 <PlusIcon />

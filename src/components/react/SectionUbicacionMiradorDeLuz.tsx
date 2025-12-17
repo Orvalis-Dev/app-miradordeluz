@@ -81,7 +81,7 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
   };
 
   return (
-    <section id="ubicacion-section" className={`w-full ${fondoColor} relative overflow-hidden my-8`}>
+    <section id="ubicacion-section" className={`w-full min-h-screen ${fondoColor} relative overflow-hidden flex items-center`}>
       {/* Textura sutil de fondo (opcional) */}
       <div className="absolute inset-0 opacity-[0.02]"
         style={{
@@ -89,7 +89,7 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
         }}
       />
 
-      <div className="w-full px-2 md:px-6 lg:px-8 py-16 md:py-20 lg:py-24 relative z-10">
+      <div className="w-full px-2 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
 
           {/* Columna izquierda - Texto */}

@@ -30,6 +30,18 @@ const ScrollAnimations: FC = () => {
         return;
       }
 
+      // Respetar usuarios con reducción de movimiento
+      const prefersReducedMotion =
+        typeof window !== 'undefined' &&
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        gsap.set([ubicacion, cabanas], { clearProps: 'all' });
+        gsap.set(heroIntermedio, { opacity: 1, filter: 'none' });
+        return;
+      }
+
       // ============================================
       // 1. ANIMACIÓN: Hero → Ubicación (Overlay)
       // ============================================
@@ -57,18 +69,20 @@ const ScrollAnimations: FC = () => {
         ubicacion,
         {
           y: 100,
-          opacity: 0,
+          autoAlpha: 0,
         },
         {
           y: 0,
-          opacity: 1,
+          autoAlpha: 1,
           duration: 1,
           ease: 'power2.out',
+          immediateRender: false,
           scrollTrigger: {
             trigger: ubicacion,
             start: 'top bottom-=100',
             end: 'top center',
             scrub: true,
+            invalidateOnRefresh: true,
           },
         }
       );
@@ -77,17 +91,9 @@ const ScrollAnimations: FC = () => {
       // 2. ANIMACIÓN: Ubicación → Hero Intermedio (Video)
       // ============================================
 
-      // El Hero Intermedio ya ocupa 100vh desde el inicio (h-screen)
-      // No necesita animación de expansión
-
-      // Pin del Hero Intermedio cuando llega a la parte superior
-      ScrollTrigger.create({
-        trigger: heroIntermedio,
-        start: 'top top',
-        end: '+=50%',
-        pin: true,
-        pinSpacing: true,
-      });
+      // El Hero Intermedio se "ancla" durante la transición con Cabañas.
+      // Importante: NO usamos un pin corto (+=50%) porque se suelta en mitad
+      // de la entrada de Cabañas y genera un "arrastre" visual no deseado.
 
       // Controlar reproducción del video
       if (videoElement) {
@@ -118,35 +124,36 @@ const ScrollAnimations: FC = () => {
       // 3. ANIMACIÓN: Hero Intermedio → Cabañas (Reemplazo)
       // ============================================
 
-      // Fade out y blur del Hero Intermedio
-      gsap.to(heroIntermedio, {
-        opacity: 0.1,
-        filter: 'blur(8px)',
+      // Transición deseada:
+      // - Mientras Cabañas entra: el hero intermedio permanece fijo (pin) y solo cambia visualmente (blur/opacidad)
+      // - Luego, cuando Cabañas ocupa el viewport: el scroll vuelve a ser "normal" y el hero se va por scroll natural
+      const heroToCabanasTl = gsap.timeline({
         scrollTrigger: {
-          trigger: cabanas,
-          start: 'top bottom',
-          end: 'top center',
+          trigger: heroIntermedio,
+          start: 'top top',
+          endTrigger: cabanas,
+          end: 'top top',
           scrub: true,
+          pin: heroIntermedio,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
-      // Entrada de la sección Cabañas desde abajo
-      gsap.fromTo(
+      // Cabañas sube desde abajo como "capa" encima del hero anclado
+      heroToCabanasTl.fromTo(
         cabanas,
-        {
-          y: 40,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: cabanas,
-            start: 'top bottom',
-            end: 'top center',
-            scrub: true,
-          },
-        }
+        { y: 50, autoAlpha: 0 },
+        { y: -100, autoAlpha: 1, ease: 'none', immediateRender: false },
+        0
+      );
+
+      // Hero intermedio: solo efecto visual (sin mover su posición)
+      heroToCabanasTl.to(
+        heroIntermedio,
+        { opacity: 0.1, filter: 'blur(12px)', ease: 'none' },
+        0
       );
     };
 

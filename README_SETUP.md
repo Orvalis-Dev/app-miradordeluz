@@ -28,6 +28,7 @@ El servidor debería iniciar en: http://localhost:4321
 ### 2. Verificar que Funciona
 
 Abre http://localhost:4321 en tu navegador. Deberías ver:
+
 - Header con navegación
 - Hero section con título "Mirador de Luz"
 - Sección de cabañas (placeholder)
@@ -82,6 +83,7 @@ Cambia esto cuando tengas la API Laravel corriendo.
 ### Astro Config
 
 Ya configurado con:
+
 - Output: static (SSG)
 - Prefetch: hover strategy
 - React integration
@@ -101,21 +103,17 @@ touch src/components/react/CalendarioDisponibilidad.tsx
 Ejemplo de estructura:
 
 ```typescript
-import { useState } from 'react';
-import type { FC } from 'react';
+import { useState } from "react";
+import type { FC } from "react";
 
 interface Props {
   cabanaId: number;
 }
 
 const CalendarioDisponibilidad: FC<Props> = ({ cabanaId }) => {
-  const [fechaInicio, setFechaInicio] = useState('');
-  
-  return (
-    <div className="p-4">
-      {/* Tu componente */}
-    </div>
-  );
+  const [fechaInicio, setFechaInicio] = useState("");
+
+  return <div className="p-4">{/* Tu componente */}</div>;
 };
 
 export default CalendarioDisponibilidad;
@@ -128,9 +126,9 @@ export default CalendarioDisponibilidad;
 import CalendarioDisponibilidad from '../components/react/CalendarioDisponibilidad';
 ---
 
-<CalendarioDisponibilidad 
-  cabanaId={1} 
-  client:visible 
+<CalendarioDisponibilidad
+  cabanaId={1}
+  client:visible
 />
 ```
 
@@ -139,16 +137,16 @@ import CalendarioDisponibilidad from '../components/react/CalendarioDisponibilid
 Cuando el backend esté listo, usa el helper `fetchApi`:
 
 ```typescript
-import { fetchApi } from '../utils/api';
-import type { Cabana } from '../utils/types';
+import { fetchApi } from "../utils/api";
+import type { Cabana } from "../utils/types";
 
 // En componente Astro (build time)
-const { data: cabanas } = await fetchApi<Cabana[]>('/api/cabanas');
+const { data: cabanas } = await fetchApi<Cabana[]>("/api/cabanas");
 
 // En componente React (runtime)
 useEffect(() => {
   const fetchData = async () => {
-    const response = await fetchApi<Cabana[]>('/api/cabanas');
+    const response = await fetchApi<Cabana[]>("/api/cabanas");
     setCabanas(response.data);
   };
   fetchData();
@@ -178,6 +176,7 @@ npx astro telemetry disable # Deshabilitar telemetría
 ### Hot Module Replacement (HMR)
 
 Los cambios se reflejan automáticamente:
+
 - Componentes Astro: Refresh completo
 - Componentes React: HMR (sin perder estado)
 - Estilos Tailwind: Instantáneo
@@ -185,6 +184,7 @@ Los cambios se reflejan automáticamente:
 ### TypeScript
 
 El proyecto usa `strict` mode. Todos los componentes React deben:
+
 - Definir interfaces para Props
 - Tipar estados y funciones
 - Evitar `any`
@@ -192,6 +192,7 @@ El proyecto usa `strict` mode. Todos los componentes React deben:
 ### Tailwind CSS
 
 Clases utilitarias ya disponibles:
+
 - Mobile-first: `class="p-4 md:p-6 lg:p-8"`
 - Colors: `bg-blue-600`, `text-gray-900`
 - Layout: `container mx-auto`, `flex`, `grid`
@@ -200,10 +201,10 @@ Clases utilitarias ya disponibles:
 
 ```typescript
 // En componentes Astro (servidor/build)
-console.log('Build time:', data); // Aparece en terminal
+console.log("Build time:", data); // Aparece en terminal
 
 // En componentes React (cliente)
-console.log('Runtime:', data);    // Aparece en DevTools
+console.log("Runtime:", data); // Aparece en DevTools
 ```
 
 ## Verificación de Funcionamiento
@@ -221,17 +222,20 @@ console.log('Runtime:', data);    // Aparece en DevTools
 ### Si hay Problemas
 
 #### Puerto 4321 ocupado
+
 ```bash
 npm run dev -- --port 3000
 ```
 
 #### Error de TypeScript
+
 ```bash
 npx astro check
 # Corregir errores mostrados
 ```
 
 #### Error con Tailwind
+
 ```bash
 # Verificar que global.css existe
 cat src/styles/global.css
@@ -245,22 +249,43 @@ cat src/styles/global.css
 Cuando Laravel esté corriendo:
 
 1. Verifica que el backend responda:
+
 ```bash
 curl http://localhost:8000/api/health
 ```
 
 2. Actualiza `.env` si es necesario:
+
 ```env
 PUBLIC_API_URL=http://localhost:8000
 ```
 
 3. Prueba la conexión desde el frontend:
+
 ```typescript
 // En navegador console (DevTools)
-fetch('http://localhost:8000/api/health')
-  .then(r => r.json())
-  .then(console.log)
+fetch("http://localhost:8000/api/health")
+  .then((r) => r.json())
+  .then(console.log);
 ```
+
+## SEO y Optimización para Buscadores
+
+Antes de cada deploy a producción, revisa el checklist completo de SEO:
+
+📋 **[SEO_CHECKLIST.md](./SEO_CHECKLIST.md)**
+
+Este documento incluye:
+
+- Metadatos globales y por página
+- Datos estructurados (JSON-LD, LodgingBusiness, BreadcrumbList, FAQ)
+- Consistencia de datos locales (NAP)
+- Optimización de imágenes y performance
+- Accesibilidad web
+- Core Web Vitals (LCP, FID, CLS)
+- Medición y monitoreo en Google Search Console
+
+**Recomendación**: Ejecutar `npm run build` y luego `npx lighthouse` en la URL de preview antes de producción.
 
 ## Recursos
 
@@ -268,11 +293,14 @@ fetch('http://localhost:8000/api/health')
 - [React Docs](https://react.dev)
 - [Tailwind Docs](https://tailwindcss.com/docs)
 - [TypeScript Docs](https://www.typescriptlang.org/docs)
+- [Google Search Central](https://developers.google.com/search)
+- [Web.dev Performance](https://web.dev/performance)
 
 ## Ayuda
 
 Si encuentras problemas, consulta:
+
 1. `ESPECIFICACIONES.md` - Documentación detallada
 2. `../GUIA_DESARROLLO.md` - Guía de desarrollo completa
 3. `../.cursorrules/frontend-astro.mdrules` - Reglas del proyecto
-
+4. `SEO_CHECKLIST.md` - Checklist de SEO y optimización
