@@ -142,8 +142,8 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
 
           {/* Columna derecha - Imágenes superpuestas */}
           <div className="relative w-full lg:w-5/12 lg:pl-8 h-[500px] md:h-[600px] lg:h-[650px]">
-            {/* Imagen principal (fondo) */}
-            <div className="absolute top-0 right-0 w-[90%] h-[86%] lg:w-[92%] lg:h-[88%]">
+            {/* Imagen principal (fondo) - Centrada en móvil, a la derecha en desktop */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0 w-[90%] h-[86%] lg:w-[92%] lg:h-[88%]">
               <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
                 <img
                   src={imagenPrincipal}
@@ -153,8 +153,8 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
               </div>
             </div>
 
-            {/* Imagen secundaria (superpuesta) */}
-            <div className="absolute bottom-0 left-[-6%] w-[78%] h-[60%] lg:left-[-8%] lg:w-[70%] lg:h-[60%] z-20">
+            {/* Imagen secundaria (superpuesta) - Solo visible en desktop */}
+            <div className="hidden lg:block absolute bottom-0 left-[-6%] w-[78%] h-[60%] lg:left-[-8%] lg:w-[70%] lg:h-[60%] z-20">
               <div className="relative w-full h-full rounded-3xl overflow-hidden border-8 border-white shadow-2xl transform -rotate-1 hover:scale-105 hover:rotate-0 transition-transform duration-300">
                 <img
                   src={imagenSecundaria}
