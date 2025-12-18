@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
-import { FiWifi, FiCoffee, FiTruck, FiCheck, FiClock, FiEye, FiLayers, FiPlus, FiTv, FiWind, FiDivide, FiAlertCircle, FiBell, FiAlertTriangle, FiArrowRight } from "react-icons/fi";
-import { GiBarbecue, GiFlame, GiPineTree, GiBed, GiCooler } from "react-icons/gi";
+import { FiWifi, FiCoffee, FiClock, FiEye, FiLayers, FiPlus, FiTv, FiWind, FiDivide, FiBell, FiArrowRight } from "react-icons/fi";
+import { GiBarbecue, GiPineTree, GiBed, GiCooler } from "react-icons/gi";
 import { MdOutlinePool, MdGarage, MdEmergency, MdLightMode } from "react-icons/md";
 import { FaUtensils, FaFireExtinguisher, FaBed } from "react-icons/fa6";
 import { PiOvenDuotone, PiFanDuotone } from "react-icons/pi";
