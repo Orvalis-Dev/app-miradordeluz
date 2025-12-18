@@ -1,11 +1,21 @@
 import { useState, useEffect, useRef, type FC } from 'react';
 
+// Mapeo de opacidades - definido antes de la interfaz para usarlo en tipos
+const OVERLAY_CLASSES = {
+  light: 'bg-black/30',
+  medium: 'bg-black/50',
+  dark: 'bg-black/60',
+  darker: 'bg-black/70',
+} as const;
+
+type OverlayOpacityType = keyof typeof OVERLAY_CLASSES;
+
 interface SectionHeroIntermedioMiradorDeLuzV2Props {
   backgroundImage?: string;
   backgroundVideo?: string;
   subheading?: string;
   title?: string;
-  overlayOpacity?: 'light' | 'medium' | 'dark' | 'darker';
+  overlayOpacity?: OverlayOpacityType;
   accentColor?: string;
   hideNavbar?: boolean; // Nueva prop para controlar si se oculta el navbar
   maxHeight?: string; // Altura máxima cuando está expandido (ej: '75vh', '80vh', '100vh')
@@ -14,10 +24,10 @@ interface SectionHeroIntermedioMiradorDeLuzV2Props {
 const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV2Props> = ({
   backgroundImage = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920',
   backgroundVideo,
-  subheading = 'CERCA DE TODO',
-  title = 'Naturaleza & Confort.\nEn el Mirador de la Montaña.',
+  subheading = '',
+  title = '¡¡CERCA DE TODO!!',
   overlayOpacity = 'medium',
-  accentColor = 'text-amber-300',
+  accentColor = 'text-amber-100',
   hideNavbar = true,
   maxHeight = '100vh',
 }) => {
@@ -26,14 +36,6 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasPlayed, setHasPlayed] = useState(false);
-
-  // Mapear opacidad del overlay
-  const overlayClasses = {
-    light: 'bg-black/30',
-    medium: 'bg-black/50',
-    dark: 'bg-black/60',
-    darker: 'bg-black/70',
-  };
 
   // Intersection Observer para detectar cuando la sección está visible
   useEffect(() => {
@@ -155,8 +157,8 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
           <div
             className={`
               absolute inset-0 transition-opacity duration-1000
-              ${overlayClasses[overlayOpacity]}
-              ${isExpanded ? 'opacity-100' : 'opacity-80'}
+              ${OVERLAY_CLASSES[overlayOpacity]}
+              ${isExpanded ? 'opacity-100' : 'opacity-50'}
             `}
           />
         </div>
@@ -176,8 +178,8 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
           <div
             className={`
               absolute inset-0 transition-opacity duration-1000
-              ${overlayClasses[overlayOpacity]}
-              ${isExpanded ? 'opacity-100' : 'opacity-80'}
+              ${OVERLAY_CLASSES[overlayOpacity]}
+              ${isExpanded ? 'opacity-100' : 'opacity-50'}
             `}
           />
         </div>

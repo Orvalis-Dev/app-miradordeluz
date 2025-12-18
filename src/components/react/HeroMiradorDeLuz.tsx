@@ -253,13 +253,13 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
         </div>
       </div>
 
-      {/* Elemento de ubicación centrado al fondo del hero */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="inline-flex items-center gap-3 bg-transparent border border-white/20 text-white px-6 py-3 rounded-full shadow-lg backdrop-blur-sm">
+      {/* Elemento de ubicación centrado y en una sola línea en móvil */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
+        <div className="inline-flex items-center gap-3 bg-transparent border border-white/20 text-white px-6 py-3 rounded-full shadow-lg backdrop-blur-sm w-full max-w-md mx-4 md:max-w-none md:w-auto">
           <span className="w-5 h-5 text-amber-500" aria-hidden>
             <LocationIcon />
           </span>
-          <span className="font-montserrat font-semibold text-sm">
+          <span className="font-montserrat font-semibold text-sm truncate" style={{ minWidth: 0 }}>
             Villa Santa Cruz del Lago, Córdoba, Argentina
           </span>
         </div>
