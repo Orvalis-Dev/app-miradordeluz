@@ -1,42 +1,79 @@
 import { useEffect, type FC } from 'react';
 
 /**
- * Componente que controla la visibilidad del navbar basado en la sección visible
- * Oculta el navbar cuando el usuario sale del Hero Principal
+ * Controla la visibilidad global del navbar.
+ *
+ * Regla de negocio:
+ * - El navbar solo debe verse mientras el usuario está en el Hero principal.
+ * - En cuanto cualquier otra sección principal entra en el viewport
+ *   (Ubicación, Hero Intermedio, Cabañas, Servicios, Testimonios),
+ *   el navbar se oculta.
  */
 const NavbarVisibilityController: FC = () => {
   useEffect(() => {
-    // Obtener el Hero Principal
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
+    // Referencias a las secciones relevantes
     const heroSection = document.getElementById('hero-section');
+    const ubicacionSection = document.getElementById('ubicacion-section');
+    const heroIntermedioSection = document.getElementById('hero-intermedio-section');
+    const cabanasSection = document.getElementById('cabanas-section');
+    const serviciosSection = document.getElementById('servicios-instalaciones');
+    const testimoniosSection = document.getElementById('testimonios');
 
-    if (!heroSection) return;
+    if (!heroSection) {
+      return;
+    }
 
-    // Crear Intersection Observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // El hero está visible → mostrar navbar
-            document.body.classList.remove('hide-navbar-global');
-          } else {
-            // El hero NO está visible → ocultar navbar
-            document.body.classList.add('hide-navbar-global');
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Se activa cuando el 10% del hero es visible
-        rootMargin: '0px 0px 0px 0px',
+    const blockerSections = [
+      ubicacionSection,
+      heroIntermedioSection,
+      cabanasSection,
+      serviciosSection,
+      testimoniosSection,
+    ].filter(Boolean) as HTMLElement[];
+
+    const NAVBAR_HEIGHT = 80; // px aproximados de altura del navbar
+
+    const updateNavbarVisibility = () => {
+      const heroRect = heroSection.getBoundingClientRect();
+
+      // El hero sigue "en pantalla" (alguna parte es visible)
+      const heroVisible = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+
+      // ¿Alguna otra sección principal ya está entrando en el viewport?
+      const anyBlockerVisible = blockerSections.some((section) => {
+        const rect = section.getBoundingClientRect();
+        // Consideramos que la sección ya "tapa" al hero cuando su top
+        // alcanza la banda del navbar (NAVBAR_HEIGHT) y aún tiene parte visible.
+        return rect.top <= NAVBAR_HEIGHT && rect.bottom > 0;
+      });
+
+      // Regla:
+      // - Mostrar navbar solo si:
+      //   1) El hero está visible
+      //   2) Ninguna otra sección lo está tapando en la parte superior
+      if (heroVisible && !anyBlockerVisible) {
+        document.body.classList.remove('hide-navbar-global');
+      } else {
+        document.body.classList.add('hide-navbar-global');
       }
-    );
+    };
 
-    // Observar el hero
-    observer.observe(heroSection);
+    // Ejecutar una vez al montar
+    updateNavbarVisibility();
+
+    // Listeners de scroll y resize
+    window.addEventListener('scroll', updateNavbarVisibility, { passive: true });
+    window.addEventListener('resize', updateNavbarVisibility);
 
     // Cleanup
     return () => {
-      observer.disconnect();
       document.body.classList.remove('hide-navbar-global');
+      window.removeEventListener('scroll', updateNavbarVisibility);
+      window.removeEventListener('resize', updateNavbarVisibility);
     };
   }, []);
 
