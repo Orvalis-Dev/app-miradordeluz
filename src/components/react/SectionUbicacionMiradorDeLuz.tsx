@@ -7,6 +7,10 @@ interface SectionUbicacionMiradorDeLuzProps {
     texto: string;
     destacados?: string[];
   }[];
+  bulletPoints?: {
+    icon: string;
+    text: string;
+  }[];
   fraseDestacada?: string;
   imagenPrincipal?: string;
   fondoColor?: string;
@@ -22,25 +26,24 @@ const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
   titulo = "Ubicado entre montañas y naturaleza, cerca de todo.",
   parrafos = [
     {
-      texto: `"Mirador de Luz" - complejo de cabañas! Atendido por sus propios dueños.
+      texto: `"Mirador de Luz" es un complejo de cabañas atendido por sus propios dueños, diseñado para quienes buscan tranquilidad y confort en las sierras.
 
-Es un complejo nuevo y está listo para ser estrenado!!! Posee hermosa vista a las sierras y tiene todo lo necesario para una gran estadía.
-
-¿Necesitas disfrutar? Logralo en la ciudad de Villa Santa Cruz del Lago a sólo 5km del centro de Villa Carlos Paz, a cuadras del complejo Peko's, Wave Zone, Alfombra Magica, Complejo Nuevo Karting, fábrica de alfajores La Quinta y El Triángulo.
-
-Abierto todo el año, estamos seguros que vas poder disfrutar.
-
-Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
-      destacados: ['"Mirador de Luz" - complejo de cabañas!'],
+Disfrutá de la cercanía a los principales atractivos turísticos, en un entorno natural inmejorable y con atención personalizada.`,
+      destacados: ['"Mirador de Luz"'],
     },
+  ],
+  bulletPoints = [
+    { icon: "📍", text: "A 5 min de Villa Carlos Paz" },
+    { icon: "🆕", text: "Complejo a estrenar" },
+    { icon: "⛰️", text: "Vista a las sierras" },
   ],
   fraseDestacada = "¡Te esperamos para que vivas la experiencia Mirador de Luz!",
   imagenPrincipal = "/images/cabana-2/cabana-2-2.webp",
   fondoColor = "bg-gradient-to-br from-amber-50/30 via-orange-50/20 to-stone-50",
-  tituloClass = "font-montserrat text-[36px] md:text-[25px] lg:text-[36px] font-extrabold text-[#1E1E1E] leading-tight",
-  parrafoClass = "font-montserrat text-[12px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed",
-  fraseClass = "font-montserrat text-[18px] md:text-[20px] font-bold text-[#1E1E1E]",
-  etiquetaClass = "font-montserrat text-[8px] md:text-[14px] font-semibold text-[#A8936D] tracking-[0.2em] uppercase",
+  tituloClass = "font-montserrat text-[28px] md:text-[32px] lg:text-[42px] font-extrabold text-[#1E1E1E] leading-tight",
+  parrafoClass = "font-montserrat text-[16px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed",
+  fraseClass = "font-montserrat text-[18px] md:text-[22px] font-bold text-[#1E1E1E] italic",
+  etiquetaClass = "font-montserrat text-[10px] md:text-[14px] font-bold text-[#A8936D] tracking-[0.2em] uppercase",
 }) => {
   // Función para resaltar palabras específicas en el texto
   const highlightText = (texto: string, destacados: string[] = []) => {
@@ -93,34 +96,48 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
         }}
       />
 
-      <div className="w-full px-2 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-          {/* Columna izquierda - Texto */}
-          <div className="space-y-6 lg:pr-12 lg:w-7/12">
-            {/* Etiqueta superior */}
+      <div className="w-full px-4 md:px-10 lg:px-20 py-16 md:py-24 lg:py-32 relative z-10 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
+          {/* Título para Mobile (aparece arriba de la imagen) */}
+          <div className="w-full lg:hidden mb-4 space-y-4">
             <div className="inline-block">
               <span className={etiquetaClass}>{etiqueta}</span>
             </div>
+            <h2 className={tituloClass}>{titulo}</h2>
+          </div>
 
-            {/* Título principal */}
-            <h2
-              className={tituloClass}
-              style={{
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }}
-            >
-              {titulo}
-            </h2>
+          {/* Columna de Imagen (Orden 2 en Mobile, Orden 2 en Desktop) */}
+          <div className="relative w-full lg:w-5/12 lg:order-2 flex items-start group">
+            <div className="w-full rounded-[40px] aspect-[4/5] overflow-hidden shadow-2xl transform transition-transform duration-700 hover:scale-[1.02]">
+              <img
+                src={imagenPrincipal}
+                alt="Vista del complejo Mirador de Luz"
+                className="w-full h-full object-cover object-center"
+                style={{ minHeight: "300px", aspectRatio: "4/5" }}
+              />
+            </div>
 
-            {/* Párrafos descriptivos: convertir doble salto de línea en párrafos separados */}
-            <div className="space-y-5">
+            {/* Decoración sutil tras la imagen */}
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-200/20 rounded-full blur-2xl -z-10 animate-pulse" />
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-orange-100/30 rounded-full blur-3xl -z-10" />
+          </div>
+
+          {/* Columna de Texto (Orden 3 en Mobile, Orden 1 en Desktop) */}
+          <div className="lg:w-7/12 lg:order-1 flex flex-col space-y-8">
+            {/* Título para Desktop (oculto en mobile) */}
+            <div className="hidden lg:block space-y-6">
+              <div className="inline-block">
+                <span className={etiquetaClass}>{etiqueta}</span>
+              </div>
+              <h2 className={tituloClass}>{titulo}</h2>
+            </div>
+
+            {/* Párrafos descriptivos */}
+            <div className="space-y-6">
               {parrafos.map((parrafo, index) => {
                 const partes = parrafo.texto.split(/\n\s*\n/);
                 return (
-                  <div key={index} className="space-y-4">
+                  <div key={index} className="space-y-5">
                     {partes.map((parte, idx) => (
                       <p key={idx} className={parrafoClass}>
                         {highlightText(parte, parrafo.destacados)}
@@ -131,29 +148,35 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
               })}
             </div>
 
-            {/* Frase final destacada */}
-            {fraseDestacada && (
-              <div className="pt-4">
-                <p className={fraseClass}>{fraseDestacada}</p>
+            {/* Puntos clave (Bullet points) */}
+            {bulletPoints && bulletPoints.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 py-4">
+                {bulletPoints.map((point, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-4 bg-white/40 backdrop-blur-sm p-3 rounded-2xl border border-white/50 shadow-sm transition-all hover:bg-white/60"
+                  >
+                    <span className="text-2xl drop-shadow-sm">
+                      {point.icon}
+                    </span>
+                    <span className="font-montserrat text-[14px] md:text-[15px] font-bold text-[#333333]">
+                      {point.text}
+                    </span>
+                  </div>
+                ))}
               </div>
             )}
-          </div>
 
-          {/* Columna derecha - Imágenes superpuestas */}
-          <div className="relative w-full lg:w-5/12 lg:pl-8 flex items-start">
-            {/* Imagen principal (participa en el flujo para igualar altura con la columna izquierda) */}
-            <div className="w-full rounded-3xl aspect-[4/5] overflow-hidden shadow-2xl">
-              <img
-                src={imagenPrincipal}
-                alt="Vista del complejo Mirador de Luz"
-                className="w-full h-full object-cover object-center"
-                style={{ minHeight: "220px", aspectRatio: "4/5" }}
-              />
-            </div>
-
-            {/* Decoración adicional (opcional) */}
-            <div className="absolute top-[40%] right-[10%] w-32 h-32 bg-amber-400/10 rounded-full blur-3xl -z-10" />
-            <div className="absolute bottom-[20%] left-[5%] w-40 h-40 bg-emerald-400/10 rounded-full blur-3xl -z-10" />
+            {/* Frase final destacada */}
+            {fraseDestacada && (
+              <div className="pt-2">
+                <p
+                  className={`${fraseClass} border-l-4 border-amber-400 pl-6 py-2`}
+                >
+                  {fraseDestacada}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
