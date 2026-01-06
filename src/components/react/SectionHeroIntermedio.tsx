@@ -1,25 +1,25 @@
-import { useState, useEffect, useRef, type FC } from 'react';
+import { useState, useEffect, useRef, type FC } from "react";
 
-interface SectionHeroIntermedioMiradorDeLuzV2Props {
+interface SectionHeroIntermedioProps {
   backgroundImage?: string;
   backgroundVideo?: string;
   subheading?: string;
   title?: string;
-  overlayOpacity?: 'light' | 'medium' | 'dark' | 'darker';
+  overlayOpacity?: "light" | "medium" | "dark" | "darker";
   accentColor?: string;
   hideNavbar?: boolean; // Nueva prop para controlar si se oculta el navbar
   maxHeight?: string; // Altura máxima cuando está expandido (ej: '75vh', '80vh', '100vh')
 }
 
-const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV2Props> = ({
-  backgroundImage = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920',
+const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
+  backgroundImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920",
   backgroundVideo,
-  subheading = 'CERCA DE TODO',
-  title = 'Naturaleza & Confort.\nEn el Mirador de la Montaña.',
-  overlayOpacity = 'medium',
-  accentColor = 'text-amber-300',
+  subheading = "CERCA DE TODO",
+  title = "Naturaleza & Confort.\nEn el Mirador de la Montaña.",
+  overlayOpacity = "medium",
+  accentColor = "text-amber-300",
   hideNavbar = true,
-  maxHeight = '100vh',
+  maxHeight = "100vh",
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -29,10 +29,10 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
 
   // Mapear opacidad del overlay
   const overlayClasses = {
-    light: 'bg-black/30',
-    medium: 'bg-black/50',
-    dark: 'bg-black/60',
-    darker: 'bg-black/70',
+    light: "bg-black/30",
+    medium: "bg-black/50",
+    dark: "bg-black/60",
+    darker: "bg-black/70",
   };
 
   // Intersection Observer para detectar cuando la sección está visible
@@ -49,8 +49,8 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
 
             // Reproducir video cuando la sección esté visible
             if (videoRef.current) {
-              videoRef.current.play().catch(err => {
-                console.log('Error al reproducir video:', err);
+              videoRef.current.play().catch((err) => {
+                console.log("Error al reproducir video:", err);
               });
               setHasPlayed(true);
             }
@@ -75,7 +75,7 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
       },
       {
         threshold: 0.3, // Se activa cuando el 30% de la sección es visible
-        rootMargin: '0px',
+        rootMargin: "0px",
       }
     );
 
@@ -96,21 +96,21 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
 
     if (isInView) {
       // Agregar clase al body para ocultar navbar
-      document.body.classList.add('hide-navbar');
+      document.body.classList.add("hide-navbar");
     } else {
       // Remover clase del body
-      document.body.classList.remove('hide-navbar');
+      document.body.classList.remove("hide-navbar");
     }
 
     // Cleanup al desmontar el componente
     return () => {
-      document.body.classList.remove('hide-navbar');
+      document.body.classList.remove("hide-navbar");
     };
   }, [isInView, hideNavbar]);
 
   // Convertir saltos de línea en el título
   const renderTitle = () => {
-    const lines = title.split('\n');
+    const lines = title.split("\n");
     return lines.map((line, index) => (
       <span key={index} className="block">
         {line}
@@ -124,9 +124,10 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
       className={`
         relative overflow-hidden mx-auto
         transition-all duration-1000 ease-out
-        ${isExpanded
-          ? 'w-full rounded-none shadow-none'
-          : 'h-[60vh] w-[95%] md:w-[85%] lg:w-[60%] rounded-2xl shadow-2xl'
+        ${
+          isExpanded
+            ? "w-full rounded-none shadow-none"
+            : "h-[60vh] w-[95%] md:w-[85%] lg:w-[60%] rounded-2xl shadow-2xl"
         }
       `}
       style={{
@@ -143,7 +144,7 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
             className={`
               absolute inset-0 w-full h-full object-cover
               transition-all duration-1000 ease-out
-              ${isExpanded ? 'scale-100' : 'scale-110'}
+              ${isExpanded ? "scale-100" : "scale-110"}
             `}
             src={backgroundVideo}
             loop
@@ -156,7 +157,7 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
             className={`
               absolute inset-0 transition-opacity duration-1000
               ${overlayClasses[overlayOpacity]}
-              ${isExpanded ? 'opacity-100' : 'opacity-80'}
+              ${isExpanded ? "opacity-100" : "opacity-80"}
             `}
           />
         </div>
@@ -165,11 +166,11 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
           className={`
             absolute inset-0 bg-cover bg-center bg-no-repeat
             transition-all duration-1000 ease-out
-            ${isExpanded ? 'scale-100' : 'scale-110'}
+            ${isExpanded ? "scale-100" : "scale-110"}
           `}
           style={{
             backgroundImage: `url(${backgroundImage})`,
-            backgroundPosition: 'center center',
+            backgroundPosition: "center center",
           }}
         >
           {/* Overlay oscuro */}
@@ -177,7 +178,7 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
             className={`
               absolute inset-0 transition-opacity duration-1000
               ${overlayClasses[overlayOpacity]}
-              ${isExpanded ? 'opacity-100' : 'opacity-80'}
+              ${isExpanded ? "opacity-100" : "opacity-80"}
             `}
           />
         </div>
@@ -188,9 +189,10 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
         className={`
           absolute inset-0 flex flex-col items-center justify-center text-center px-4
           transition-all duration-1000 delay-200 ease-out
-          ${isExpanded
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-70 translate-y-4'
+          ${
+            isExpanded
+              ? "opacity-100 translate-y-0"
+              : "opacity-70 translate-y-4"
           }
         `}
       >
@@ -200,9 +202,10 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
             className={`
               mb-4 md:mb-6
               transition-all duration-1000 delay-300 ease-out
-              ${isExpanded
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 -translate-y-4'
+              ${
+                isExpanded
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-4"
               }
             `}
           >
@@ -219,9 +222,10 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
           className={`
             font-montserrat text-[36px] md:text-[48px] lg:text-[64px] font-bold text-white leading-tight max-w-4xl px-4
             transition-all duration-1000 delay-400 ease-out
-            ${isExpanded
-              ? 'opacity-100 translate-y-0 scale-100'
-              : 'opacity-0 translate-y-8 scale-95'
+            ${
+              isExpanded
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-8 scale-95"
             }
           `}
         >
@@ -232,5 +236,4 @@ const SectionHeroIntermedioMiradorDeLuzV2: FC<SectionHeroIntermedioMiradorDeLuzV
   );
 };
 
-export default SectionHeroIntermedioMiradorDeLuzV2;
-
+export default SectionHeroIntermedio;

@@ -1,36 +1,32 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import path from 'path';
+import { defineConfig } from "astro/config";
+import path from "path";
 
-import react from '@astrojs/react';
-import tailwindcss from '@tailwindcss/vite';
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
 
-  output: 'static',
-  site: 'https://miradordeluz.com',
+  output: "static",
+  site: "https://miradordeluz.com",
 
-  redirects: {
-    'https://www.miradordeluz.com/:path*': 'https://miradordeluz.com/:path*',
-  },
-  
   build: {
-    inlineStylesheets: 'auto'
+    inlineStylesheets: "auto",
   },
-  
+
   prefetch: {
-    defaultStrategy: 'hover',
-    prefetchAll: true
+    defaultStrategy: "hover",
+    prefetchAll: true,
   },
 
   vite: {
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve('./src')
-      }
-    }
-  }
+        "@": path.resolve("./src"),
+      },
+    },
+  },
 });

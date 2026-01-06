@@ -1,16 +1,36 @@
-import { useState, useRef, useEffect, type FC } from 'react';
-import TestimonialCard, { type Testimonial } from './TestimonialCard';
+import { useState, useRef, useEffect, type FC } from "react";
+import TestimonialCard, { type Testimonial } from "./TestimonialCard";
 
 // Iconos de flechas para navegación del carrusel
 const ChevronLeftIcon: FC = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
   </svg>
 );
 
 const ChevronRightIcon: FC = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
   </svg>
 );
 
@@ -19,7 +39,7 @@ export interface TestimonioExtendido extends Testimonial {
   id: string;
 }
 
-interface SectionTestimoniosMiradorDeLuzV2Props {
+interface SectionTestimoniosProps {
   testimonios?: TestimonioExtendido[];
   mostrarBoton?: boolean;
   textoBoton?: string;
@@ -33,91 +53,91 @@ interface SectionTestimoniosMiradorDeLuzV2Props {
 // Testimonios de fallback cuando no hay conexión con Google
 const DEFAULT_TESTIMONIOS: TestimonioExtendido[] = [
   {
-    id: '1',
-    name: 'Horacio Di Paolo',
-    subtitle: 'Villa Carlos Paz, Córdoba',
-    text: 'Excelente lugar para descansar. Las cabañas son muy cómodas y la atención es increíble.',
+    id: "1",
+    name: "Horacio Di Paolo",
+    subtitle: "Villa Carlos Paz, Córdoba",
+    text: "Excelente lugar para descansar. Las cabañas son muy cómodas y la atención es increíble.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=12',
+    avatarUrl: "https://i.pravatar.cc/150?img=12",
   },
   {
-    id: '2',
-    name: 'Fabri & Yuli',
-    subtitle: 'Buenos Aires, Argentina',
-    text: 'Reservamos una cabaña para nuestra escapada de fin de semana. Paisaje increíble y atención excelente. Volveremos pronto!',
+    id: "2",
+    name: "Fabri & Yuli",
+    subtitle: "Buenos Aires, Argentina",
+    text: "Reservamos una cabaña para nuestra escapada de fin de semana. Paisaje increíble y atención excelente. Volveremos pronto!",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=25',
+    avatarUrl: "https://i.pravatar.cc/150?img=25",
   },
   {
-    id: '3',
-    name: 'Alejandro Pazos',
-    subtitle: 'Rosario, Santa Fe',
-    text: 'Hemos venido con un grupo de 30 amigos. Excelente todo. Muy recomendable para grupos grandes.',
+    id: "3",
+    name: "Alejandro Pazos",
+    subtitle: "Rosario, Santa Fe",
+    text: "Hemos venido con un grupo de 30 amigos. Excelente todo. Muy recomendable para grupos grandes.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=33',
+    avatarUrl: "https://i.pravatar.cc/150?img=33",
   },
   {
-    id: '4',
-    name: 'Alejandro Lezcano',
-    subtitle: 'Tafí del Valle, Tucumán',
-    text: 'Ya tengo mi lugar para quedarme cuando visite Tafí. Hotel increíble... Excelente Atención, Servicio y Habitaciones Confortables.',
+    id: "4",
+    name: "Alejandro Lezcano",
+    subtitle: "Tafí del Valle, Tucumán",
+    text: "Ya tengo mi lugar para quedarme cuando visite Tafí. Hotel increíble... Excelente Atención, Servicio y Habitaciones Confortables.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=68',
+    avatarUrl: "https://i.pravatar.cc/150?img=68",
   },
   {
-    id: '5',
-    name: 'Patricia González',
-    subtitle: 'Córdoba Capital',
-    text: 'Fuimos en familia y las cabañas son súper cómodas. Ideal para desconectar. La vista es hermosa!',
+    id: "5",
+    name: "Patricia González",
+    subtitle: "Córdoba Capital",
+    text: "Fuimos en familia y las cabañas son súper cómodas. Ideal para desconectar. La vista es hermosa!",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=45',
+    avatarUrl: "https://i.pravatar.cc/150?img=45",
   },
   {
-    id: '6',
-    name: 'Martín Silva',
-    subtitle: 'Mendoza, Argentina',
-    text: 'Excelente experiencia. Todo muy limpio y ordenado. El personal muy atento. Definitivamente volveremos.',
+    id: "6",
+    name: "Martín Silva",
+    subtitle: "Mendoza, Argentina",
+    text: "Excelente experiencia. Todo muy limpio y ordenado. El personal muy atento. Definitivamente volveremos.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=51',
+    avatarUrl: "https://i.pravatar.cc/150?img=51",
   },
   {
-    id: '7',
-    name: 'Sofía Ramírez',
-    subtitle: 'San Luis, Argentina',
-    text: 'Un lugar mágico en medio de la naturaleza. Las cabañas tienen todo lo necesario. Perfectas para una escapada romántica.',
+    id: "7",
+    name: "Sofía Ramírez",
+    subtitle: "San Luis, Argentina",
+    text: "Un lugar mágico en medio de la naturaleza. Las cabañas tienen todo lo necesario. Perfectas para una escapada romántica.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=47',
+    avatarUrl: "https://i.pravatar.cc/150?img=47",
   },
   {
-    id: '8',
-    name: 'Roberto Fernández',
-    subtitle: 'La Rioja, Argentina',
-    text: 'Instalaciones impecables y el entorno natural es espectacular. Ideal para quienes buscan tranquilidad y confort.',
+    id: "8",
+    name: "Roberto Fernández",
+    subtitle: "La Rioja, Argentina",
+    text: "Instalaciones impecables y el entorno natural es espectacular. Ideal para quienes buscan tranquilidad y confort.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=58',
+    avatarUrl: "https://i.pravatar.cc/150?img=58",
   },
   {
-    id: '9',
-    name: 'Carolina & Diego',
-    subtitle: 'Salta, Argentina',
-    text: 'Celebramos nuestro aniversario aquí y fue memorable. Atención personalizada y detalles que hacen la diferencia.',
+    id: "9",
+    name: "Carolina & Diego",
+    subtitle: "Salta, Argentina",
+    text: "Celebramos nuestro aniversario aquí y fue memorable. Atención personalizada y detalles que hacen la diferencia.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=36',
+    avatarUrl: "https://i.pravatar.cc/150?img=36",
   },
   {
-    id: '10',
-    name: 'Lucas Morales',
-    subtitle: 'Catamarca, Argentina',
-    text: 'La mejor decisión para nuestras vacaciones. Precio justo, excelente ubicación y paisajes inolvidables.',
+    id: "10",
+    name: "Lucas Morales",
+    subtitle: "Catamarca, Argentina",
+    text: "La mejor decisión para nuestras vacaciones. Precio justo, excelente ubicación y paisajes inolvidables.",
     rating: 5,
-    avatarUrl: 'https://i.pravatar.cc/150?img=62',
+    avatarUrl: "https://i.pravatar.cc/150?img=62",
   },
 ];
 
-const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props> = ({
+const SectionTestimonios: FC<SectionTestimoniosProps> = ({
   testimonios = DEFAULT_TESTIMONIOS,
   mostrarBoton = true,
-  textoBoton = 'Dejanos tu Opinión',
+  textoBoton = "Dejanos tu Opinión",
   onClickBoton,
   autoPlayInterval = 1000,
   pauseOnHover = true,
@@ -139,9 +159,9 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
       onClickBoton();
     } else if (googleReviewUrl) {
       // Abrir Google Maps para dejar una reseña
-      window.open(googleReviewUrl, '_blank', 'noopener,noreferrer');
+      window.open(googleReviewUrl, "_blank", "noopener,noreferrer");
     } else {
-      console.log('Abrir formulario de opinión');
+      console.log("Abrir formulario de opinión");
     }
   };
 
@@ -202,7 +222,8 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
             Experiencias de Nuestros Huéspedes
           </h2>
           <p className="font-montserrat text-[14px] md:text-[16px] font-medium text-[#4A4A4A] leading-relaxed max-w-2xl mx-auto mb-6">
-            Descubrí lo que dicen quienes ya vivieron la experiencia en nuestras cabañas
+            Descubrí lo que dicen quienes ya vivieron la experiencia en nuestras
+            cabañas
           </p>
 
           <div className="flex items-center justify-center gap-6">
@@ -212,53 +233,70 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
             <div className="flex flex-col items-start">
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} className={`w-5 h-5 ${i < Math.round(averageRating) ? 'text-yellow-400' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
+                  <svg
+                    key={i}
+                    className={`w-5 h-5 ${
+                      i < Math.round(averageRating)
+                        ? "text-yellow-400"
+                        : "text-gray-200"
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
               </div>
-              <span className="text-sm text-[#6B6B6B] mt-1">{testimonios.length} opiniones</span>
+              <span className="text-sm text-[#6B6B6B] mt-1">
+                {testimonios.length} opiniones
+              </span>
             </div>
           </div>
         </div>
 
         {/* Carrusel de testimonios */}
-        <div className="relative mb-8" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div
+          className="relative mb-8"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {/* Botones de navegación - Desktop */}
-          <div className="hidden lg:block">
-
-          </div>
+          <div className="hidden lg:block"></div>
 
           {/* Contenedor del carrusel - Desktop */}
           {/* Desktop: mostrar 3 cards de la página actual */}
           <div className="hidden lg:grid grid-cols-4 gap-6">
-            {testimonios.slice(currentIndex, currentIndex + 4).map((testimonio) => (
-              <div key={testimonio.id}>
-                <TestimonialCard
-                  text={testimonio.text}
-                  name={testimonio.name}
-                  subtitle={testimonio.subtitle}
-                  avatarUrl={testimonio.avatarUrl}
-                  rating={testimonio.rating}
-                />
-              </div>
-            ))}
+            {testimonios
+              .slice(currentIndex, currentIndex + 4)
+              .map((testimonio) => (
+                <div key={testimonio.id}>
+                  <TestimonialCard
+                    text={testimonio.text}
+                    name={testimonio.name}
+                    subtitle={testimonio.subtitle}
+                    avatarUrl={testimonio.avatarUrl}
+                    rating={testimonio.rating}
+                  />
+                </div>
+              ))}
           </div>
 
           {/* Grid responsive para Tablet */}
           {/* Tablet: 2 por página (si hay) */}
           <div className="hidden md:grid lg:hidden md:grid-cols-2 gap-4 mb-8">
-            {testimonios.slice(currentIndex, currentIndex + 2).map((testimonio) => (
-              <div key={testimonio.id} className="flex justify-center">
-                <TestimonialCard
-                  text={testimonio.text}
-                  name={testimonio.name}
-                  subtitle={testimonio.subtitle}
-                  avatarUrl={testimonio.avatarUrl}
-                  rating={testimonio.rating}
-                />
-              </div>
-            ))}
+            {testimonios
+              .slice(currentIndex, currentIndex + 2)
+              .map((testimonio) => (
+                <div key={testimonio.id} className="flex justify-center">
+                  <TestimonialCard
+                    text={testimonio.text}
+                    name={testimonio.name}
+                    subtitle={testimonio.subtitle}
+                    avatarUrl={testimonio.avatarUrl}
+                    rating={testimonio.rating}
+                  />
+                </div>
+              ))}
           </div>
 
           {/* Mobile: Carrusel una card a la vez - Solo 5 testimonios */}
@@ -275,13 +313,17 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
                 />
               )}
             </div>
-            
+
             {/* Flechas de navegación Mobile sin paginación - Color Naranja */}
             <div className="flex items-center justify-center gap-6 mb-8">
               <button
                 onClick={handleMobilePrev}
                 disabled={isMobilePrevDisabled}
-                className={`flex items-center justify-center transition-all duration-200 ${isMobilePrevDisabled ? 'opacity-30 cursor-not-allowed' : 'text-orange-500 hover:scale-110'}`}
+                className={`flex items-center justify-center transition-all duration-200 ${
+                  isMobilePrevDisabled
+                    ? "opacity-30 cursor-not-allowed"
+                    : "text-orange-500 hover:scale-110"
+                }`}
                 aria-label="Anterior"
               >
                 <ChevronLeftIcon />
@@ -290,7 +332,11 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
               <button
                 onClick={handleMobileNext}
                 disabled={isMobileNextDisabled}
-                className={`flex items-center justify-center transition-all duration-200 ${isMobileNextDisabled ? 'opacity-30 cursor-not-allowed' : 'text-orange-500 hover:scale-110'}`}
+                className={`flex items-center justify-center transition-all duration-200 ${
+                  isMobileNextDisabled
+                    ? "opacity-30 cursor-not-allowed"
+                    : "text-orange-500 hover:scale-110"
+                }`}
                 aria-label="Siguiente"
               >
                 <ChevronRightIcon />
@@ -315,7 +361,11 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
             <button
               onClick={handlePrev}
               disabled={isPrevDisabled}
-              className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${isPrevDisabled ? 'opacity-30 cursor-not-allowed' : 'hover:shadow-md'}`}
+              className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
+                isPrevDisabled
+                  ? "opacity-30 cursor-not-allowed"
+                  : "hover:shadow-md"
+              }`}
               aria-label="Anterior"
             >
               <ChevronLeftIcon />
@@ -328,7 +378,11 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
             <button
               onClick={handleNext}
               disabled={isNextDisabled}
-              className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${isNextDisabled ? 'opacity-30 cursor-not-allowed' : 'hover:shadow-md'}`}
+              className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
+                isNextDisabled
+                  ? "opacity-30 cursor-not-allowed"
+                  : "hover:shadow-md"
+              }`}
               aria-label="Siguiente"
             >
               <ChevronRightIcon />
@@ -342,7 +396,11 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
               aria-label={textoBoton}
             >
               {googleReviewUrl && (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <svg
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
                   <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
@@ -377,4 +435,4 @@ const SectionTestimoniosMiradorDeLuzV2: FC<SectionTestimoniosMiradorDeLuzV2Props
   );
 };
 
-export default SectionTestimoniosMiradorDeLuzV2;
+export default SectionTestimonios;

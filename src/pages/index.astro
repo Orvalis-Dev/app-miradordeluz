@@ -5,10 +5,10 @@ import NavbarVisibilityController from "../components/react/NavbarVisibilityCont
 import UbicacionObserver from "../components/react/UbicacionObserver";
 import HeroMiradorDeLuz from "../components/react/HeroMiradorDeLuz";
 import SectionUbicacionMiradorDeLuz from "../components/react/SectionUbicacionMiradorDeLuz";
-import SectionHeroIntermedioMiradorDeLuzV2 from "../components/react/SectionHeroIntermedioMiradorDeLuzV2";
-import SectionCabanasMiradorDeLuzV3 from "../components/react/SectionCabanasMiradorDeLuzV3";
-import SectionServiciosInstalacionesMiradorDeLuz from "../components/react/SectionServiciosInstalacionesMiradorDeLuz";
-import SectionTestimoniosMiradorDeLuzV2 from "../components/react/SectionTestimoniosMiradorDeLuzV2";
+import SectionHeroIntermedio from "../components/react/SectionHeroIntermedio";
+import SectionCabanas from "../components/react/SectionCabanas";
+import SectionServicios from "../components/react/SectionServicios";
+import SectionTestimonios from "../components/react/SectionTestimonios";
 import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
 import ScrollAnimations from "../components/react/ScrollAnimations";
 import { fetchGoogleReviews, fetchReviewsByPlaceName, type GoogleReview } from "../utils/googlePlaces";
@@ -95,7 +95,7 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
 
     <!-- 3. Hero Intermedio con Video (60% → 100% con animación) -->
     <div id="hero-intermedio-section" style="position: relative; z-index: 9;">
-      <SectionHeroIntermedioMiradorDeLuzV2
+      <SectionHeroIntermedio
         client:visible
         backgroundVideo="/videos/VideoCarlosPaz.mp4"
         subheading="MIRADOR DE LUZ"
@@ -111,18 +111,18 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
       style="position: relative; z-index: 11; background: white;"
     >
       <div id="cabanas">
-        <SectionCabanasMiradorDeLuzV3 client:visible />
+        <SectionCabanas client:visible />
       </div>
     </div>
 
     <!-- 5. Servicios e Instalaciones Section -->
     <div id="servicios-instalaciones">
-      <SectionServiciosInstalacionesMiradorDeLuz client:visible />
+      <SectionServicios client:visible />
     </div>
 
     <!-- 6. Testimonios Section - Integrado con Google Maps -->
     <div id="testimonios">
-      <SectionTestimoniosMiradorDeLuzV2 
+      <SectionTestimonios 
         client:visible 
         testimonios={testimoniosGoogle.length > 0 ? testimoniosGoogle : undefined}
         textoBoton="Dejanos tu Opinión en Google"

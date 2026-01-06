@@ -1,70 +1,93 @@
+export type IconName =
+  | "wifi"
+  | "bed"
+  | "fire"
+  | "mountain"
+  | "tv"
+  | "kitchen"
+  | "parking";
+
+export type Amenity = {
+  label: string;
+  icon: IconName;
+};
+
 export type Cabana = {
   id: string;
   nombre: string;
-  slug?: string;
+  etiqueta: string;
   descripcion: string;
-  precio_base: number;
-  images: string[];
-  features?: string[];
+  amenities: Amenity[];
+  imagenUrl: string;
+  slug: string;
+  capacity?: number;
+  precio_base?: number;
+  images?: string[];
 };
 
 export const cabanas: Cabana[] = [
   {
-    id: '1',
-    nombre: 'Cabaña Escapada',
-    slug: 'cabana-escapada',
+    id: "1",
+    nombre: "Cabaña Nº1",
+    etiqueta: "HASTA 4 PERSONAS",
     descripcion:
-      'Confort esencial para una escapada relajante.\nHabitación cómoda con cama Queen.\nAire acondicionado, Wi‑Fi y TV.\nVista al jardín y acceso rápido a senderos.',
-    precio_base: 85000,
-    images: [
-      'https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1600',
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600',
-      'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1600',
+      "Cabaña de fácil acceso y hermosa vista a las sierras. Entrada plana y sin escaleras; Living con cama marinera; cocina amplia con comedor; dormitorio matrimonial y/o individual; baño completo y cómodo.",
+    amenities: [
+      { icon: "bed", label: "Cama Matrimonial" },
+      { icon: "tv", label: 'Smart TV 43"' },
+      { icon: "mountain", label: "Vista a montañas" },
+      { icon: "parking", label: "Cochera" },
     ],
-    features: ['Cama Queen', 'Aire acondicionado', 'Wi‑Fi', 'Vista al jardín'],
+    imagenUrl: "/images/cabana-1/cabana-1-portada-1.webp",
+    slug: "cabana-1",
+    capacity: 4,
   },
   {
-    id: '2',
-    nombre: 'Cabaña Panorama',
-    slug: 'cabana-panorama',
+    id: "2",
+    nombre: "Cabaña Nº2",
+    etiqueta: "HASTA 6 PERSONAS",
     descripcion:
-      'Diseño amplio y luminoso para parejas.\nCama King y living con chimenea.\nCocina equipada y deck privado.\nIdeal para fotos al atardecer.',
-    precio_base: 110000,
-    images: [
-      'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=1600',
-      'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1600',
-      'https://images.unsplash.com/photo-1505995399120-8a2f2b4f5f9d?w=1600',
+      "Cabaña más confortable del complejo. Cuenta con 2 dormitorios matrimoniales y/o individuales; Living con sofá cama con marinera; cocina amplia con comedor; ante baño y baño completo.",
+    amenities: [
+      { icon: "bed", label: "2 Dormitorios" },
+      { icon: "tv", label: 'Smart TV 43"' },
+      { icon: "kitchen", label: "Cocina equipada" },
+      { icon: "parking", label: "Cochera" },
     ],
-    features: ['Cama King', 'Chimenea', 'Cocina equipada', 'Deck privado'],
+    imagenUrl: "/images/cabana-2/cabana-2-1.webp",
+    slug: "cabana-2",
+    capacity: 6,
   },
   {
-    id: '3',
-    nombre: 'Cabaña Romántica',
-    slug: 'cabana-romantica',
+    id: "3",
+    nombre: "Cabaña Nº3",
+    etiqueta: "MONOAMBIENTE HASTA 4 PERSONAS",
     descripcion:
-      'Pequeña y acogedora, perfecta para escapadas románticas.\nJacuzzi opcional y kit romántico disponible.\nDesayuno incluido en la tarifa.',
-    precio_base: 98000,
-    images: [
-      'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1600',
-      'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1600',
+      "Cabaña de fácil acceso y sin escalones. Cuenta con cama matrimonial y cama marinera; cocina amplia con comedor y baño cómodo.",
+    amenities: [
+      { icon: "bed", label: "Cama Matrimonial" },
+      { icon: "tv", label: 'Smart TV 43"' },
+      { icon: "kitchen", label: "Cocina completa" },
+      { icon: "parking", label: "Cochera" },
     ],
-    features: ['Jacuzzi (opcional)', 'Desayuno incluido', 'Decoración romántica'],
+    imagenUrl: "/images/cabana-3/cabana-3-3.webp",
+    slug: "cabana-3",
+    capacity: 4,
   },
   {
-    id: '4',
-    nombre: 'Cabaña Familiar',
-    slug: 'cabana-familiar',
+    id: "4",
+    nombre: "Cabaña Nº4",
+    etiqueta: "HASTA 6 PERSONAS",
     descripcion:
-      'Amplia para familias, con dos dormitorios y living comedor.\nFogón exterior y cocina completa.\nEspacio para hasta 6 personas.',
-    precio_base: 135000,
-    images: [
-      'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1600',
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600',
+      "Cabaña más confortable del complejo. Cuenta con 2 dormitorios matrimoniales y/o individuales; Living con sofá cama con marinera; cocina amplia con comedor; ante baño y baño completo.",
+    amenities: [
+      { icon: "bed", label: "2 Dormitorios" },
+      { icon: "tv", label: 'Smart TV 43"' },
+      { icon: "kitchen", label: "Cocina completa" },
+      { icon: "parking", label: "Cochera" },
     ],
-    features: ['2 Dormitorios', 'Fogón exterior', 'Cocina completa'],
+    imagenUrl: "/images/exterior/exterior-42.webp",
+    slug: "cabana-4",
+    capacity: 6,
   },
 ];
-
-export const getCabanaById = (id: string) => cabanas.find((c) => c.id === id);
-
-
