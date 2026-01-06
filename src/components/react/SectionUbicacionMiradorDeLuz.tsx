@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from "react";
 
 interface SectionUbicacionMiradorDeLuzProps {
   etiqueta?: string;
@@ -18,8 +18,8 @@ interface SectionUbicacionMiradorDeLuzProps {
 }
 
 const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
-  etiqueta = 'VILLA SANTA CRUZ DEL LAGO, CORDOBA.',
-  titulo = 'Ubicado entre montañas y naturaleza, cerca de todo.',
+  etiqueta = "VILLA SANTA CRUZ DEL LAGO, CORDOBA.",
+  titulo = "Ubicado entre montañas y naturaleza, cerca de todo.",
   parrafos = [
     {
       texto: `"Mirador de Luz" - complejo de cabañas! Atendido por sus propios dueños.
@@ -31,17 +31,16 @@ Es un complejo nuevo y está listo para ser estrenado!!! Posee hermosa vista a l
 Abierto todo el año, estamos seguros que vas poder disfrutar.
 
 Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
-      destacados: ['"Mirador de Luz" - complejo de cabañas!']
+      destacados: ['"Mirador de Luz" - complejo de cabañas!'],
     },
-
   ],
-  fraseDestacada = '¡Te esperamos para que vivas la experiencia Mirador de Luz!',
-  imagenPrincipal = '../src/assets/images/cabana-2/cabaña-2-acceso.webp',
-  fondoColor = 'bg-gradient-to-br from-amber-50/30 via-orange-50/20 to-stone-50',
-  tituloClass = 'font-montserrat text-[36px] md:text-[25px] lg:text-[36px] font-extrabold text-[#1E1E1E] leading-tight',
-  parrafoClass = 'font-montserrat text-[12px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed',
-  fraseClass = 'font-montserrat text-[18px] md:text-[20px] font-bold text-[#1E1E1E]',
-  etiquetaClass = 'font-montserrat text-[8px] md:text-[14px] font-semibold text-[#A8936D] tracking-[0.2em] uppercase',
+  fraseDestacada = "¡Te esperamos para que vivas la experiencia Mirador de Luz!",
+  imagenPrincipal = "/images/cabana-2/cabana-2-2.webp",
+  fondoColor = "bg-gradient-to-br from-amber-50/30 via-orange-50/20 to-stone-50",
+  tituloClass = "font-montserrat text-[36px] md:text-[25px] lg:text-[36px] font-extrabold text-[#1E1E1E] leading-tight",
+  parrafoClass = "font-montserrat text-[12px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed",
+  fraseClass = "font-montserrat text-[18px] md:text-[20px] font-bold text-[#1E1E1E]",
+  etiquetaClass = "font-montserrat text-[8px] md:text-[14px] font-semibold text-[#A8936D] tracking-[0.2em] uppercase",
 }) => {
   // Función para resaltar palabras específicas en el texto
   const highlightText = (texto: string, destacados: string[] = []) => {
@@ -51,16 +50,19 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
 
     let partes: Array<string | ReactNode> = [texto];
 
-    destacados.forEach(destacado => {
+    destacados.forEach((destacado) => {
       const nuevasPartes: Array<string | ReactNode> = [];
-      partes.forEach(parte => {
-        if (typeof parte === 'string') {
-          const regex = new RegExp(`(${destacado})`, 'gi');
+      partes.forEach((parte) => {
+        if (typeof parte === "string") {
+          const regex = new RegExp(`(${destacado})`, "gi");
           const fragmentos = parte.split(regex);
           fragmentos.forEach((fragmento, idx) => {
             if (fragmento.toLowerCase() === destacado.toLowerCase()) {
               nuevasPartes.push(
-                <span key={`${fragmento}-${idx}`} className="font-semibold text-[#A8936D]">
+                <span
+                  key={`${fragmento}-${idx}`}
+                  className="font-semibold text-[#A8936D]"
+                >
                   {fragmento}
                 </span>
               );
@@ -79,34 +81,35 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
   };
 
   return (
-    <section id="ubicacion-section" className={`w-full min-h-screen ${fondoColor} relative overflow-hidden flex items-center`}>
+    <section
+      id="ubicacion-section"
+      className={`w-full min-h-screen ${fondoColor} relative overflow-hidden flex items-center`}
+    >
       {/* Textura sutil de fondo (opcional) */}
-      <div className="absolute inset-0 opacity-[0.02]"
+      <div
+        className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
 
       <div className="w-full px-2 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-
           {/* Columna izquierda - Texto */}
           <div className="space-y-6 lg:pr-12 lg:w-7/12">
             {/* Etiqueta superior */}
             <div className="inline-block">
-              <span className={etiquetaClass}>
-                {etiqueta}
-              </span>
+              <span className={etiquetaClass}>{etiqueta}</span>
             </div>
 
             {/* Título principal */}
             <h2
               className={tituloClass}
               style={{
-                display: '-webkit-box',
+                display: "-webkit-box",
                 WebkitLineClamp: 2,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
               }}
             >
               {titulo}
@@ -131,9 +134,7 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
             {/* Frase final destacada */}
             {fraseDestacada && (
               <div className="pt-4">
-                <p className={fraseClass}>
-                  {fraseDestacada}
-                </p>
+                <p className={fraseClass}>{fraseDestacada}</p>
               </div>
             )}
           </div>
@@ -146,7 +147,7 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
                 src={imagenPrincipal}
                 alt="Vista del complejo Mirador de Luz"
                 className="w-full h-full object-cover object-center"
-                style={{ minHeight: '220px', aspectRatio: '4/5' }}
+                style={{ minHeight: "220px", aspectRatio: "4/5" }}
               />
             </div>
 
@@ -154,7 +155,6 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
             <div className="absolute top-[40%] right-[10%] w-32 h-32 bg-amber-400/10 rounded-full blur-3xl -z-10" />
             <div className="absolute bottom-[20%] left-[5%] w-40 h-40 bg-emerald-400/10 rounded-full blur-3xl -z-10" />
           </div>
-
         </div>
       </div>
     </section>
@@ -162,4 +162,3 @@ Tenemos el alojamiento que vos necesitas en el mejor lugar.`,
 };
 
 export default SectionUbicacionMiradorDeLuz;
-

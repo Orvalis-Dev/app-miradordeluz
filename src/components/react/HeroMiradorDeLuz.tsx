@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { FC } from 'react';
+import { useState } from "react";
+import type { FC } from "react";
 
 // Puedes instalar: npm install react-icons
 // O usar estos placeholders SVG
@@ -17,15 +17,40 @@ const WhatsAppIcon = () => (
 );
 
 const LocationIcon = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+    />
   </svg>
 );
 
 const MenuIcon = () => (
-  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 6h16M4 12h16M4 18h16"
+    />
   </svg>
 );
 
@@ -38,10 +63,18 @@ interface GuestsCounterProps {
   min?: number;
 }
 
-const GuestsCounter: FC<GuestsCounterProps> = ({ label, count, onIncrement, onDecrement, min = 0 }) => {
+const GuestsCounter: FC<GuestsCounterProps> = ({
+  label,
+  count,
+  onIncrement,
+  onDecrement,
+  min = 0,
+}) => {
   return (
     <div className="flex flex-col gap-3 py-4 px-8">
-      <span className="font-montserrat text-sm text-gray-500 font-medium">{label}</span>
+      <span className="font-montserrat text-sm text-gray-500 font-medium">
+        {label}
+      </span>
       <div className="flex items-center gap-4">
         <button
           onClick={onDecrement}
@@ -90,18 +123,18 @@ interface HeroMiradorDeLuzProps {
 }
 
 const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
-  titulo = 'MIRADOR DE LUZ',
-  subtitulo = 'COMPLEJO DE CABAÑAS',
-  descripcion = 'Descansá entre la naturaleza y la luz del amanecer',
-  imagenFondo = '/images/hero-principal.jpg',
+  titulo = "MIRADOR DE LUZ",
+  subtitulo = "COMPLEJO DE CABAÑAS",
+  descripcion = "Descansá entre la naturaleza y la luz del amanecer",
+  imagenFondo = "/images/hero-principal.jpg",
   mostrarNavbar = false,
   onSearch,
 }) => {
   const [adultos, setAdultos] = useState(2);
   const [ninos, setNinos] = useState(0);
-  const [idioma, setIdioma] = useState('ESP');
-  const [fechaInicio, setFechaInicio] = useState('');
-  const [fechaFin, setFechaFin] = useState('');
+  const [idioma, setIdioma] = useState("ESP");
+  const [fechaInicio, setFechaInicio] = useState("");
+  const [fechaFin, setFechaFin] = useState("");
 
   const handleSearch = () => {
     const datos = {
@@ -111,7 +144,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
       ninos,
     };
 
-    console.log('Búsqueda de reserva:', datos);
+    console.log("Búsqueda de reserva:", datos);
 
     if (onSearch) {
       onSearch(datos);
@@ -119,7 +152,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
   };
 
   const toggleIdioma = () => {
-    setIdioma(idioma === 'ESP' ? 'ENG' : 'ESP');
+    setIdioma(idioma === "ESP" ? "ENG" : "ESP");
   };
 
   return (
@@ -129,8 +162,15 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${imagenFondo})` }}
       >
-        {/* Overlay oscuro */}
-        <div className="absolute inset-0 bg-black/35" />
+        {/* Overlay optimizado: Oscurece el centro para lectura pero libera los bordes para lucir la foto */}
+        <div className="absolute inset-0 bg-black/15" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 80%)",
+          }}
+        />
       </div>
 
       {/* Contenido */}
@@ -153,14 +193,16 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                   onClick={toggleIdioma}
                   className="font-montserrat text-white font-medium hover:text-amber-300 transition-colors"
                 >
-                  {idioma === 'ESP' ? 'ESP / ENG' : 'ENG / ESP'}
+                  {idioma === "ESP" ? "ESP / ENG" : "ENG / ESP"}
                 </button>
 
                 {/* Botón Reservas */}
-                <button className="font-montserrat bg-linear-to-r from-amber-500 to-orange-500 text-white 
+                <button
+                  className="font-montserrat bg-linear-to-r from-amber-500 to-orange-500 text-white 
                                  px-6 py-2.5 rounded-lg font-semibold uppercase tracking-wide
                                  hover:from-amber-600 hover:to-orange-600 
-                                 transform hover:scale-105 transition-all shadow-lg">
+                                 transform hover:scale-105 transition-all shadow-lg"
+                >
                   Reservas
                 </button>
 
@@ -208,10 +250,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
               </div>
 
               {/* Mobile: Solo hamburguesa */}
-              <button
-                className="lg:hidden text-white"
-                aria-label="Menú móvil"
-              >
+              <button className="lg:hidden text-white" aria-label="Menú móvil">
                 <MenuIcon />
               </button>
             </div>
@@ -223,19 +262,21 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
           {/* Texto central */}
           <div className="text-center mb-8 md:mb-12">
             {/* Subtítulo */}
-            <p className="font-montserrat text-[#A8936D] text-[14px] font-semibold tracking-[0.2em] uppercase mb-4">
+            <p className="font-montserrat text-[#A8936D] text-[14px] font-semibold tracking-[0.4em] uppercase mb-4 drop-shadow-sm">
               {subtitulo}
             </p>
 
             {/* Título principal */}
-            <h2 className="font-montserrat text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-white mb-4 md:mb-6
-                         drop-shadow-2xl leading-tight">
+            <h2
+              className="font-montserrat text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-white mb-4 md:mb-6
+                         drop-shadow-2xl leading-tight"
+            >
               {titulo}
             </h2>
 
             {/* Descripción (sin la frase "y la luz del amanecer") */}
             <p className="font-montserrat text-white/90 text-[18px] md:text-[20px] font-medium max-w-2xl mx-auto">
-              {descripcion.replace(' y la luz del amanecer', '')}
+              {descripcion.replace(" y la luz del amanecer", "")}
             </p>
           </div>
 
@@ -244,7 +285,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             <div className="flex justify-center mb-8">
               <a
                 href="#cabanas"
-                className="font-montserrat inline-flex items-center gap-3 bg-amber-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 hover:shadow-lg transition transform"
+                className="font-montserrat inline-flex items-center gap-3 bg-orange-500 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-600 hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300 transform uppercase tracking-wider border border-white/20"
               >
                 Conoce nuestras cabañas
               </a>
@@ -264,10 +305,8 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
           </span>
         </div>
       </div>
-
     </section>
   );
 };
 
 export default HeroMiradorDeLuz;
-
