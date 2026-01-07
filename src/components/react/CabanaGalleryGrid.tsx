@@ -23,8 +23,21 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mobileScrollIndex, setMobileScrollIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [direction, setDirection] = useState(0);
+
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // Manejar scroll en mobile para actualizar los puntos
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = e.currentTarget.scrollLeft;
+    const width = e.currentTarget.offsetWidth;
+    const newIndex = Math.round(scrollLeft / width);
+    if (newIndex !== mobileScrollIndex) {
+      setMobileScrollIndex(newIndex);
+    }
+  };
 
   // Bloquear scroll cuando el modal está abierto
   useEffect(() => {
@@ -108,42 +121,90 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
 
   return (
     <div className="w-full">
-      {/* Grid Uniforme (Opción A) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {images.slice(0, 6).map((img, idx) => (
-          <motion.div
+      {/* DESKTOP GALLERY (Airbnb Style) */}
+      <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-2 h-[450px] lg:h-[550px] rounded-2xl overflow-hidden relative">
+        {/* Main Image (Big) */}
+        <div
+          className="col-span-2 row-span-2 relative cursor-pointer group overflow-hidden"
+          onClick={() => openModal(0)}
+        >
+          <img
+            src={images[0]}
+            alt={`${cabanaName} 1`}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+        </div>
+
+        {/* Small Images */}
+        {images.slice(1, 5).map((img, idx) => (
+          <div
             key={idx}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg bg-gray-200 shadow-sm transition-all hover:shadow-xl"
-            onClick={() => openModal(idx)}
+            className="relative cursor-pointer group overflow-hidden"
+            onClick={() => openModal(idx + 1)}
           >
             <img
               src={img}
-              alt={`${cabanaName} - ${idx + 1}`}
+              alt={`${cabanaName} ${idx + 2}`}
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
             />
-            {/* Overlay al hacer hover */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <div className="bg-white/20 backdrop-blur-md rounded-full p-2 mb-2 scale-0 group-hover:scale-100 transition-transform duration-500">
-                <Maximize2 className="text-white" size={24} />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+
+            {/* "See More" Button on the last small image */}
+            {idx === 3 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openModal(0);
+                }}
+                className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md text-slate-900 px-4 py-2 rounded-lg font-bold text-sm shadow-lg border border-slate-200 flex items-center gap-2 hover:bg-white transition-all transform hover:scale-105 active:scale-95"
+              >
+                <Grid size={18} />
+                <span>Ver las {images.length} fotos</span>
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* MOBILE GALLERY (Carousel Snap) */}
+      <div className="md:hidden relative group">
+        <div
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide rounded-xl"
+          onScroll={handleScroll}
+        >
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="min-w-full snap-start aspect-[4/3] relative"
+              onClick={() => openModal(idx)}
+            >
+              <img
+                src={img}
+                alt={`${cabanaName} ${idx + 1}`}
+                className="w-full h-full object-cover"
+              />
+              {/* Counter inside image */}
+              <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold border border-white/10">
+                {idx + 1} / {images.length}
               </div>
             </div>
-            {/* Si es la última foto y hay más, mostramos contador */}
-            {idx === 5 && images.length > 6 && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                <div className="text-white text-center">
-                  <p className="text-3xl font-bold">+{images.length - 6}</p>
-                  <p className="text-sm font-semibold uppercase tracking-wider">
-                    Ver todas
-                  </p>
-                </div>
-              </div>
-            )}
-          </motion.div>
-        ))}
+          ))}
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none">
+          {images.slice(0, Math.min(images.length, 8)).map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === mobileScrollIndex
+                  ? "bg-white w-4 shadow-sm"
+                  : "bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Lightbox / Modal Contextual */}

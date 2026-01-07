@@ -1,5 +1,12 @@
-import React, { useState, type FormEvent } from "react";
-import { Send, AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import React, { useState, type FormEvent, useRef, useEffect } from "react";
+import {
+  Send,
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+  ChevronDown,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FormData {
   nombre: string;
@@ -27,6 +34,41 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  const options = [
+    { value: "consulta", label: "Consulta general" },
+    { value: "reserva", label: "Información sobre reserva" },
+    { value: "disponibilidad", label: "Consultar disponibilidad" },
+    { value: "otro", label: "Otro" },
+  ];
+
+  // Cerrar dropdown al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsSelectOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelectOption = (value: string) => {
+    setFormData((prev) => ({ ...prev, asunto: value }));
+    setIsSelectOpen(false);
+    if (errors.asunto) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors.asunto;
+        return newErrors;
+      });
+    }
+  };
 
   // Sanitización de strings (limpieza profunda)
   const sanitizeString = (str: string) => {
@@ -167,7 +209,7 @@ export default function ContactForm() {
         </p>
         <button
           onClick={() => setIsSuccess(false)}
-          className="font-montserrat bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-slate-800 transition-all"
+          className="font-montserrat bg-linear-to-r from-orange-500 to-amber-500 text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:from-orange-600 hover:to-amber-600 transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-1"
         >
           Enviar otro mensaje
         </button>
@@ -253,21 +295,67 @@ export default function ContactForm() {
           >
             Asunto
           </label>
-          <select
-            id="asunto"
-            name="asunto"
-            value={formData.asunto}
-            onChange={handleChange}
-            className={`font-montserrat w-full px-4 py-3 bg-gray-50/50 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none ${
-              errors.asunto ? "border-red-500" : "border-gray-200"
-            }`}
-          >
-            <option value="">Selecciona una opción</option>
-            <option value="consulta">Consulta general</option>
-            <option value="reserva">Información sobre reserva</option>
-            <option value="disponibilidad">Consultar disponibilidad</option>
-            <option value="otro">Otro</option>
-          </select>
+          <div className="relative" ref={selectRef}>
+            <button
+              type="button"
+              onClick={() => setIsSelectOpen(!isSelectOpen)}
+              className={`font-montserrat w-full px-4 py-3 bg-gray-50/50 border rounded-xl flex items-center justify-between transition-all outline-none text-left ${
+                errors.asunto ? "border-red-500" : "border-gray-200"
+              } ${
+                isSelectOpen
+                  ? "ring-2 ring-orange-500 border-transparent bg-white shadow-sm"
+                  : ""
+              }`}
+            >
+              <span
+                className={
+                  formData.asunto ? "text-slate-900" : "text-slate-400"
+                }
+              >
+                {formData.asunto
+                  ? options.find((o) => o.value === formData.asunto)?.label
+                  : "Selecciona una opción"}
+              </span>
+              <ChevronDown
+                size={18}
+                className={`text-slate-400 transition-transform duration-300 ${
+                  isSelectOpen ? "rotate-180 text-orange-500" : ""
+                }`}
+              />
+            </button>
+
+            <AnimatePresence>
+              {isSelectOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden backdrop-blur-sm"
+                >
+                  <div className="py-1">
+                    {options.map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => handleSelectOption(option.value)}
+                        className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors hover:bg-orange-50 flex items-center justify-between ${
+                          formData.asunto === option.value
+                            ? "text-orange-600 bg-orange-50/50"
+                            : "text-slate-700"
+                        }`}
+                      >
+                        {option.label}
+                        {formData.asunto === option.value && (
+                          <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           {errors.asunto && (
             <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
               <AlertCircle size={12} /> {errors.asunto}

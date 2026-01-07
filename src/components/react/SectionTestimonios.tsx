@@ -128,8 +128,35 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
   const [mobileIndex, setMobileIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
   const sectionRef = useRef<HTMLElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Manejar el número de items por página según el ancho de pantalla
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      // lg: 1024px, md: 768px (coincide con Tailwind)
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(4);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
+    };
+
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
+
+  // Asegurar que currentIndex sea válido al cambiar itemsPerPage
+  useEffect(() => {
+    setCurrentIndex((prev) => {
+      const page = Math.floor(prev / itemsPerPage);
+      return page * itemsPerPage;
+    });
+  }, [itemsPerPage]);
 
   // Limitar testimonios a 5 en mobile (DEFINIR PRIMERO)
   const testimoniosMobile = testimonios.slice(0, 5);
@@ -170,12 +197,14 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
 
   // Navegación del carrusel (Desktop/Tablet)
   const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 4));
+    setCurrentIndex((prev) => Math.max(0, prev - itemsPerPage));
   };
 
   const handleNext = () => {
-    const maxIndex = Math.max(0, testimonios.length - 4);
-    setCurrentIndex((prev) => Math.min(maxIndex, prev + 4));
+    const nextIndex = currentIndex + itemsPerPage;
+    if (nextIndex < testimonios.length) {
+      setCurrentIndex(nextIndex);
+    }
   };
 
   // Navegación Mobile (un item a la vez)
@@ -187,17 +216,15 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
     setMobileIndex((prev) => Math.min(maxMobileIndex, prev + 1));
   };
 
-  const isPrevDisabled = currentIndex === 0;
-  const isNextDisabled = currentIndex >= testimonios.length - 4;
+  // Cálculos de paginación
+  const totalPages = Math.max(1, Math.ceil(testimonios.length / itemsPerPage));
+  const currentPage = Math.floor(currentIndex / itemsPerPage) + 1;
+
+  const isPrevDisabled = currentPage === 1;
+  const isNextDisabled = currentPage === totalPages;
 
   const isMobilePrevDisabled = mobileIndex === 0;
   const isMobileNextDisabled = mobileIndex >= maxMobileIndex;
-
-  // Cambiar el cálculo de totalPages para 4 items por página
-  const totalPages = Math.max(1, Math.ceil(testimonios.length / 4));
-  const currentPage = Math.min(totalPages, Math.floor(currentIndex / 4) + 1);
-
-  // No auto-play: la navegación ahora es paginada (3 items por página)
 
   const handleMouseEnter = () => {
     if (pauseOnHover) setIsHovered(true);
@@ -270,7 +297,7 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
           {/* Desktop: mostrar 4 cards de la página actual */}
           <div className="hidden lg:grid grid-cols-4 gap-6 content-stretch transition-all duration-500">
             {testimonios
-              .slice(currentIndex, currentIndex + 4)
+              .slice(currentIndex, currentIndex + itemsPerPage)
               .map((testimonio) => (
                 <TestimonialCard
                   key={testimonio.id}
@@ -290,7 +317,7 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
           {/* Tablet: 2 por página (si hay) */}
           <div className="hidden md:grid lg:hidden md:grid-cols-2 gap-4 mb-8 content-stretch">
             {testimonios
-              .slice(currentIndex, currentIndex + 2)
+              .slice(currentIndex, currentIndex + itemsPerPage)
               .map((testimonio) => (
                 <TestimonialCard
                   key={testimonio.id}
@@ -389,9 +416,21 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
               <ChevronLeftIcon />
             </button>
 
-            <div className="text-base font-bold text-[#1E1E1E] bg-white px-6 py-3 rounded-full shadow-sm min-w-[100px] text-center">
-              <span className="text-orange-500">{currentPage}</span> /{" "}
-              {totalPages}
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i * itemsPerPage)}
+                  className={`w-10 h-10 rounded-full font-bold transition-all duration-200 ${
+                    currentPage === i + 1
+                      ? "bg-orange-500 text-white shadow-md shadow-orange-200"
+                      : "bg-white text-[#4A4A4A] hover:bg-orange-50"
+                  }`}
+                  aria-label={`Ir a la página ${i + 1}`}
+                >
+                  {i + 1}
+                </button>
+              ))}
             </div>
 
             <button
