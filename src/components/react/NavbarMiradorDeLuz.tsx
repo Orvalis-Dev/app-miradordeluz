@@ -318,34 +318,16 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 mx-4">
             <a
-              href="/"
-              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
-            >
-              Inicio
-            </a>
-            <a
               href="/#cabanas"
               className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
             >
               Cabañas
             </a>
             <a
-              href="/#servicios"
-              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
-            >
-              Servicios
-            </a>
-            <a
               href="/galeria"
               className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
             >
               Galería
-            </a>
-            <a
-              href="/#ubicacion"
-              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
-            >
-              Ubicación
             </a>
             <a
               href="/contacto"
@@ -361,53 +343,16 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             <a
               href="/#cabanas"
               className={`font-montserrat bg-gradient-to-r ${estiloActual.buttonGradient} text-white 
-                       px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold uppercase tracking-wide text-xs md:text-sm
+                       px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-xs md:text-sm
                        transform hover:scale-105 transition-all shadow-lg`}
             >
-              Reservar
+              RESERVAR
             </a>
-
-            {/* Iconos sociales (desktop) */}
-            <div className="hidden md:flex items-center gap-2">
-              <a
-                href="https://www.instagram.com/complejo_miradordeluz/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-9 h-9 rounded-full ${estiloActual.socialBg} 
-                         flex items-center justify-center ${estiloActual.textColor} transition-all
-                         hover:scale-110`}
-                aria-label="Instagram"
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                href="https://wa.me/5493813513513"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-9 h-9 rounded-full ${estiloActual.socialBg} 
-                         flex items-center justify-center ${estiloActual.textColor} transition-all
-                         hover:scale-110`}
-                aria-label="WhatsApp"
-              >
-                <WhatsAppIcon />
-              </a>
-              <a
-                href="https://www.google.com/maps/place/Mirador+de+Luz/@-31.3730543,-64.5250168,17z/data=!4m6!3m5!1s0x942d65f0c8772fbd:0x4d7f1d8348462d0a!8m2!3d-31.3730589!4d-64.5224419!16s%2Fg%2F11y59brg9t?entry=ttu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-9 h-9 rounded-full ${estiloActual.socialBg} 
-                         flex items-center justify-center ${estiloActual.textColor} transition-all
-                         hover:scale-110`}
-                aria-label="Ubicación en Google Maps"
-              >
-                <LocationIcon />
-              </a>
-            </div>
 
             {/* Menú Hamburguesa */}
             <button
               onClick={toggleMenu}
-              className={`lg:hidden ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+              className={`lg:hidden ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors p-2`}
               aria-label="Abrir menú"
             >
               <MenuIcon />
@@ -485,20 +430,11 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             <ul className="space-y-1">
               <li>
                 <a
-                  href="/"
-                  onClick={cerrarMenu}
-                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
-                >
-                  Inicio
-                </a>
-              </li>
-              <li>
-                <a
                   href="/#cabanas"
                   onClick={cerrarMenu}
                   className="font-montserrat py-4 text-lg font-bold text-gray-900 hover:text-orange-500 transition-colors flex items-center justify-between border-b border-gray-50 uppercase tracking-wider"
                 >
-                  Nuestras Cabañas
+                  CABAÑAS
                   <svg
                     className="w-5 h-5 text-gray-300"
                     fill="none"
@@ -516,38 +452,46 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               </li>
               <li>
                 <a
-                  href="/#servicios"
-                  onClick={cerrarMenu}
-                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
-                >
-                  Servicios
-                </a>
-              </li>
-              <li>
-                <a
                   href="/galeria"
                   onClick={cerrarMenu}
-                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
+                  className="font-montserrat py-4 text-lg font-bold text-gray-900 hover:text-orange-500 transition-colors flex items-center justify-between border-b border-gray-50 uppercase tracking-wider"
                 >
-                  Galería
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/#ubicacion"
-                  onClick={cerrarMenu}
-                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
-                >
-                  Ubicación
+                  GALERÍA
+                  <svg
+                    className="w-5 h-5 text-gray-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </a>
               </li>
               <li>
                 <a
                   href="/contacto"
                   onClick={cerrarMenu}
-                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
+                  className="font-montserrat py-4 text-lg font-bold text-gray-900 hover:text-orange-500 transition-colors flex items-center justify-between border-b border-gray-50 uppercase tracking-wider"
                 >
-                  Contacto
+                  CONTACTO
+                  <svg
+                    className="w-5 h-5 text-gray-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </a>
               </li>
             </ul>

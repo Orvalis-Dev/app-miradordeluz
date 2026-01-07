@@ -5,40 +5,92 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  noIndex?: boolean; // Opción para ocultar páginas que no quieras indexar (ej: gracias por su compra)
 }
 
 const { 
   title, 
-  description = 'Cabañas en Villa Carlos Paz con vista al lago San Roque. Disfruta de la naturaleza y el confort en nuestras cabañas totalmente equipadas.',
-  image = '/images/og-image.jpg'
+  // Descripción por defecto optimizada si no pasas una específica
+  description = 'Disfrutá de la paz en las sierras de Córdoba. Cabañas totalmente equipadas con piscina, wifi y vistas increíbles a solo 5 min de Carlos Paz.',
+  image = '/images/og-image-mirador.jpg', // Asegúrate de tener una buena foto de portada aquí
+  noIndex = false
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const fullTitle = title.includes('Mirador de Luz') ? title : `${title} | Mirador de Luz`;
+// Lógica mejorada: Si el título ya tiene la marca, no la repite.
+const siteName = 'Mirador de Luz';
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+
+// Datos reales extraídos de tus imágenes para el Schema (Google Maps data)
+const businessData = {
+  name: "Complejo de Cabañas Mirador de Luz",
+  address: "Las Orquideas 893, X5152 Villa Santa Cruz del Lago, Córdoba, Argentina",
+  phone: "+543813513513",
+  email: "miradordeluz2019@gmail.com",
+  image: new URL(image, Astro.site).toString(),
+  priceRange: "$$" 
+};
+
+// Schema.org JSON-LD para Hoteles/Alojamientos (CRUCIAL PARA SEO)
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": businessData.name,
+  "image": [businessData.image],
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Las Orquideas 893",
+    "addressLocality": "Villa Santa Cruz del Lago",
+    "addressRegion": "Córdoba",
+    "postalCode": "X5152",
+    "addressCountry": "AR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -31.3995, // APROXIMADO: Verifica esto en Google Maps con tu pin exacto
+    "longitude": -64.5020 // APROXIMADO: Verifica esto en Google Maps
+  },
+  "telephone": businessData.phone,
+  "email": businessData.email,
+  "url": Astro.site,
+  "starRating": {
+    "@type": "Rating",
+    "ratingValue": "5" // Basado en tus reviews de Google
+  },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Piscina", "value": "True" },
+    { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": "True" },
+    { "@type": "LocationFeatureSpecification", "name": "Estacionamiento", "value": "True" },
+    { "@type": "LocationFeatureSpecification", "name": "Vista a la montaña", "value": "True" }
+  ]
+});
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content={description} />
   <meta name="generator" content={Astro.generator} />
   
-  <!-- SEO -->
   <title>{fullTitle}</title>
+  <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
-  
-  <!-- Open Graph / Facebook -->
+  <meta name="theme-color" content="#FF8C00" /> {noIndex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow" />}
+
+  <meta name="geo.region" content="AR-X" />
+  <meta name="geo.placename" content="Villa Santa Cruz del Lago" />
+  <meta name="geo.position" content="-31.3995;-64.5020" /> <meta name="ICBM" content="-31.3995, -64.5020" />
+
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={new URL(image, Astro.site)} />
-  <meta property="og:site_name" content="Mirador de Luz" />
+  <meta property="og:site_name" content={siteName} />
   <meta property="og:locale" content="es_AR" />
   
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content={canonicalURL} />
   <meta name="twitter:title" content={fullTitle} />
@@ -48,12 +100,15 @@ const fullTitle = title.includes('Mirador de Luz') ? title : `${title} | Mirador
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   
-  <!-- Fonts (Google Fonts - Montserrat) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json" set:html={schema} />
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
 </head>
-<body class="min-h-screen flex flex-col bg-gray-50">
+<body class="min-h-screen flex flex-col bg-gray-50 text-gray-900 selection:bg-orange-500 selection:text-white">
   <slot />
 </body>
 </html>
