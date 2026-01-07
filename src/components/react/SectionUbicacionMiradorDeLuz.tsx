@@ -85,7 +85,7 @@ Disfrutá de la cercanía a los principales atractivos turísticos, en un entorn
 
   return (
     <section
-      id="ubicacion-section"
+      id="ubicacion"
       className={`w-full min-h-screen ${fondoColor} relative overflow-hidden flex items-center`}
     >
       {/* Textura sutil de fondo (opcional) */}

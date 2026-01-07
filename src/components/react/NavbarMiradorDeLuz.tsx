@@ -32,7 +32,7 @@ const estilosPorSeccion: Record<string, SeccionEstilo> = {
     buttonGradient:
       "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
   },
-  "ubicacion-section": {
+  ubicacion: {
     background: "bg-white/90 backdrop-blur-md shadow-md",
     textColor: "text-gray-800",
     hoverColor: "hover:text-amber-600",
@@ -119,7 +119,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
       // Detectar la sección más cercana al top del navbar
       const secciones = [
         "hero-section",
-        "ubicacion-section",
+        "ubicacion",
         "hero-intermedio-section",
         "cabanas-section",
         "testimonios",
@@ -321,13 +321,13 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               Inicio
             </a>
             <a
-              href="#cabanas"
+              href="/#cabanas"
               className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
             >
               Cabañas
             </a>
             <a
-              href="#servicios"
+              href="/#servicios"
               className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
             >
               Servicios
@@ -339,7 +339,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               Galería
             </a>
             <a
-              href="#ubicacion"
+              href="/#ubicacion"
               className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
             >
               Ubicación
@@ -487,7 +487,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               </li>
               <li>
                 <a
-                  href="#cabanas"
+                  href="/#cabanas"
                   onClick={cerrarMenu}
                   className="font-montserrat py-4 text-lg font-bold text-gray-900 hover:text-orange-500 transition-colors flex items-center justify-between border-b border-gray-50 uppercase tracking-wider"
                 >
@@ -509,7 +509,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               </li>
               <li>
                 <a
-                  href="#servicios"
+                  href="/#servicios"
                   onClick={cerrarMenu}
                   className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >
@@ -527,7 +527,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               </li>
               <li>
                 <a
-                  href="#ubicacion"
+                  href="/#ubicacion"
                   onClick={cerrarMenu}
                   className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >

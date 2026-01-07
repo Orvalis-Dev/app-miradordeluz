@@ -1,4 +1,4 @@
-import { useEffect, type FC } from 'react';
+import { useEffect, type FC } from "react";
 
 /**
  * Observador específico para la sección de ubicación.
@@ -7,22 +7,22 @@ import { useEffect, type FC } from 'react';
  */
 const UbicacionObserver: FC = () => {
   useEffect(() => {
-    const target = document.getElementById('ubicacion-section');
+    const target = document.getElementById("ubicacion");
     if (!target) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            document.body.classList.add('hide-navbar-global');
+            document.body.classList.add("hide-navbar-global");
           } else {
-            document.body.classList.remove('hide-navbar-global');
+            document.body.classList.remove("hide-navbar-global");
           }
         });
       },
       {
         threshold: 0.25,
-        rootMargin: '0px 0px -20% 0px',
+        rootMargin: "0px 0px -20% 0px",
       }
     );
 
@@ -30,7 +30,7 @@ const UbicacionObserver: FC = () => {
 
     return () => {
       observer.disconnect();
-      document.body.classList.remove('hide-navbar-global');
+      document.body.classList.remove("hide-navbar-global");
     };
   }, []);
 
@@ -38,12 +38,3 @@ const UbicacionObserver: FC = () => {
 };
 
 export default UbicacionObserver;
-
-
-
-
-
-
-
-
-

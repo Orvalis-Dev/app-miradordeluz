@@ -1,17 +1,18 @@
-import { useState, type FC, type FormEvent } from "react";
+import { type FC } from "react";
 import {
   IconInstagram as InstagramIcon,
-  IconLinkedin as LinkedInIcon,
+  IconFacebook as FacebookIcon,
   IconWhatsApp as WhatsAppIcon,
   IconMapPin as LocationIcon,
+  IconPhone as PhoneIcon,
+  IconMail as MailIcon,
   IconArrowUp as ArrowUpIcon,
+  IconMountain as LogoIcon,
 } from "./ui/Icons";
 
 // Tipos
-
-// Tipos
 interface RedSocial {
-  nombre: "instagram" | "linkedin" | "whatsapp" | "ubicacion";
+  nombre: "instagram" | "facebook" | "whatsapp" | "ubicacion";
   url: string;
 }
 
@@ -21,23 +22,16 @@ interface LinkNavegacion {
 }
 
 interface FooterMiradorDeLuzProps {
-  logoUrl?: string;
-  logoTexto?: string;
   direccion?: string;
   telefono?: string;
   email?: string;
   redesSociales?: RedSocial[];
   linksNavegacion?: LinkNavegacion[];
-  mostrarFormularioSuscripcion?: boolean;
-  onSubscribe?: (nombre: string, email: string) => void;
   mostrarScrollTop?: boolean;
-  textoDerechos?: string;
-  logosPartners?: Array<{ nombre: string; url?: string }>;
 }
 
 const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
-  logoTexto = "Mirador de Luz",
-  direccion = "Las Orquideas 893, X5152 \nVilla Santa Cruz del Lago, CórdobaArgentina",
+  direccion = "Las Orquideas 893, Villa Santa Cruz del Lago, Córdoba, Argentina",
   telefono = "+54 3813 51 3513",
   email = "miradordeluz2019@gmail.com",
   redesSociales = [
@@ -45,7 +39,10 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
       nombre: "instagram",
       url: "https://www.instagram.com/complejo_miradordeluz/",
     },
-    { nombre: "linkedin", url: "https://linkedin.com/company/miradordeluz" },
+    {
+      nombre: "facebook",
+      url: "https://facebook.com/miradordeluz",
+    },
     { nombre: "whatsapp", url: "https://wa.me/5493813513513" },
     {
       nombre: "ubicacion",
@@ -53,240 +50,149 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
     },
   ],
   linksNavegacion = [
-    { texto: "HOME", url: "/" },
-    { texto: "CABAÑAS", url: "/cabanas" },
-    { texto: "SERVICIOS", url: "/servicios" },
-    { texto: "GALERÍA", url: "/galeria" },
-    { texto: "TESTIMONIOS", url: "/testimonios" },
-    { texto: "UBICACIÓN", url: "/ubicacion" },
-    { texto: "CONTACTO", url: "/contacto" },
+    { texto: "Inicio", url: "/" },
+    { texto: "Cabañas", url: "/#cabanas" },
+    { texto: "Servicios", url: "/#servicios" },
+    { texto: "Galería", url: "/galeria" },
+    { texto: "Reservar", url: "/#cabanas" },
   ],
-  mostrarFormularioSuscripcion = true,
-  onSubscribe,
   mostrarScrollTop = true,
-  textoDerechos = `© ${new Date().getFullYear()} Complejo Mirador de Luz. Todos los derechos reservados.`,
-  logosPartners = [],
 }) => {
-  // DEBUG: Verificar el array
-  console.log("🔍 FooterMiradorDeLuz - linksNavegacion:", linksNavegacion);
-  console.log("🔍 linksNavegacion length:", linksNavegacion?.length);
-  console.log("🔍 Primer link:", linksNavegacion?.[0]);
-
-  const [nombre, setNombre] = useState("");
-  const [emailSuscripcion, setEmailSuscripcion] = useState("");
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (onSubscribe) {
-      onSubscribe(nombre, emailSuscripcion);
-    } else {
-      console.log("Suscripción:", { nombre, email: emailSuscripcion });
-    }
-    // Limpiar formulario
-    setNombre("");
-    setEmailSuscripcion("");
-  };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="w-full bg-gradient-to-b from-gray-800 to-gray-900 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16 text-center">
-        {/* Grid principal de 3 columnas - centrado */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 place-items-center">
-          {/* Columna 1: Logo + Política - centrada */}
-          <div className="space-y-6 text-center">
-            {/* Logo */}
-            <div className="flex justify-center">
-              <h2 className="font-montserrat text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight text-center">
-                {logoTexto}
-              </h2>
-            </div>
-
-            {/* Enlace a Política de Sustentabilidad */}
-            <div className="flex justify-center">
-              <a
-                href="/terminos-y-condiciones"
-                className="font-montserrat inline-block text-gray-300 hover:text-green-400 
-                       transition-colors duration-300 text-sm font-medium text-center"
-              >
-                Términos y Condiciones
-              </a>
-            </div>
+    <footer className="w-full bg-slate-900 text-white border-t border-white/5 font-montserrat">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+        {/* Contenido Centralizado */}
+        <div className="flex flex-col items-center text-center space-y-10">
+          {/* 1. Bloque de Marca (Logo + Slogan) */}
+          <div className="flex flex-col items-center space-y-4">
+            <a
+              href="/"
+              className="flex items-center gap-3 group transition-transform hover:scale-105"
+            >
+              <LogoIcon className="w-12 h-12 text-amber-500" />
+              <div className="flex flex-col items-start leading-none text-left">
+                <span className="text-3xl font-bold tracking-tight">
+                  Mirador <span className="text-amber-500">de Luz</span>
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.3em] text-gray-400 mt-1 font-semibold">
+                  Complejo de Cabañas
+                </span>
+              </div>
+            </a>
+            <p className="text-gray-400 text-sm font-medium tracking-wide italic">
+              "Tu refugio en las sierras de Córdoba."
+            </p>
           </div>
 
-          {/* Columna 2: Ubicación + Contacto + Redes - COMO EN LA IMAGEN */}
-          <div className="space-y-4">
-            {/* Título */}
-            <h3 className="font-montserrat text-xl font-semibold text-white mb-2">
-              Ubicación
-            </h3>
+          {/* 2. Redes Sociales */}
+          <div className="flex gap-6 items-center justify-center">
+            {redesSociales.map((red, idx) => {
+              const iconMap = {
+                instagram: InstagramIcon,
+                facebook: FacebookIcon,
+                whatsapp: WhatsAppIcon,
+                ubicacion: LocationIcon,
+              };
+              if (red.nombre === "ubicacion") return null;
+              const Icono = iconMap[red.nombre as keyof typeof iconMap];
 
-            {/* Dirección - alineada a la izquierda como en la imagen */}
-            <div className="font-montserrat text-gray-300 text-sm font-medium leading-relaxed space-y-1">
-              {direccion.split("\n").map((linea, idx) => (
-                <p key={idx}>{linea}</p>
-              ))}
-            </div>
-
-            {/* Teléfono - alineado a la izquierda */}
-            <div className="space-y-1">
-              <p className="font-montserrat text-xs text-gray-400 mb-1">
-                Teléfono
-              </p>
-              <a
-                href={`tel:${telefono.replace(/\s/g, "")}`}
-                className="font-montserrat block text-white font-medium hover:text-yellow-300 
-               transition-colors duration-300 text-sm"
-              >
-                {telefono}
-              </a>
-            </div>
-
-            {/* Email - alineado a la izquierda */}
-            <div className="space-y-1">
-              <p className="font-montserrat text-xs text-gray-400 mb-1">
-                Email
-              </p>
-              <a
-                href={`mailto:${email}`}
-                className="font-montserrat block text-white font-medium hover:text-yellow-300 
-               transition-colors duration-300 text-sm"
-              >
-                {email}
-              </a>
-            </div>
-
-            {/* Íconos de redes sociales - centrados abajo */}
-            <div className="flex justify-center gap-3 pt-4">
-              {redesSociales.map((red, idx) => {
-                const Icono =
-                  red.nombre === "instagram"
-                    ? InstagramIcon
-                    : red.nombre === "linkedin"
-                    ? LinkedInIcon
-                    : red.nombre === "whatsapp"
-                    ? WhatsAppIcon
-                    : red.nombre === "ubicacion"
-                    ? LocationIcon
-                    : null;
-
-                return (
-                  <a
-                    key={idx}
-                    href={red.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-yellow-300 transition-colors duration-300 p-2 rounded-md hover:bg-white/10"
-                    aria-label={`Ir a ${red.nombre}`}
-                  >
-                    {Icono && <Icono />}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Columna 3: Suscripción - centrada */}
-          {mostrarFormularioSuscripcion && (
-            <div className="space-y-4 text-center max-w-sm mx-auto">
-              <h3 className="font-montserrat text-xl font-semibold text-white mb-2 text-center">
-                Suscripción
-              </h3>
-
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-3 w-full max-w-xs mx-auto"
-              >
-                {/* Input Nombre */}
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
-                  required
-                  className="font-montserrat w-full px-4 py-2 bg-white text-gray-900 
-                           placeholder-gray-500 text-sm rounded font-medium text-center
-                           focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-
-                {/* Input Email */}
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={emailSuscripcion}
-                  onChange={(e) => setEmailSuscripcion(e.target.value)}
-                  required
-                  className="font-montserrat w-full px-4 py-2 bg-white text-gray-900 
-                           placeholder-gray-500 text-sm rounded font-medium text-center
-                           focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-
-                {/* Texto informativo */}
-                <p className="font-montserrat text-xs text-gray-300 leading-relaxed font-medium text-center">
-                  ¡Dejanos tus datos y recibí todas las promos en tu email!
-                </p>
-
-                {/* Botón */}
-                <button
-                  type="submit"
-                  className="font-montserrat w-full px-5 py-2 bg-amber-600 hover:bg-amber-700 
-                           text-white font-semibold rounded transition-colors 
-                           duration-300 text-sm text-center"
+              return Icono ? (
+                <a
+                  key={idx}
+                  href={red.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-full bg-white/5 hover:bg-amber-500 hover:text-white transition-all duration-300 border border-white/10 group shadow-lg"
+                  aria-label={`Ir a ${red.nombre}`}
                 >
-                  Registrarme
-                </button>
-              </form>
+                  <Icono className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                </a>
+              ) : null;
+            })}
+          </div>
+
+          {/* 3. Datos de Contacto (Condensados) */}
+          <div className="w-full max-w-4xl pt-2">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 md:divide-x md:divide-white/10 text-sm font-medium text-gray-300">
+              {/* Ubicación */}
+              <div className="flex items-center gap-2 md:px-6">
+                <LocationIcon className="w-4 h-4 text-amber-500 shrink-0" />
+                <span className="md:whitespace-nowrap">
+                  Las Orquideas 893, Villa Santa Cruz del Lago
+                </span>
+              </div>
+
+              {/* Teléfono */}
+              <div className="flex items-center gap-2 md:px-6">
+                <PhoneIcon className="w-4 h-4 text-amber-500 shrink-0" />
+                <a
+                  href={`tel:${telefono.replace(/\s/g, "")}`}
+                  className="hover:text-amber-500 transition-colors"
+                >
+                  {telefono}
+                </a>
+              </div>
+
+              {/* Email */}
+              <div className="flex items-center gap-2 md:px-6">
+                <MailIcon className="w-4 h-4 text-amber-500 shrink-0" />
+                <a
+                  href={`mailto:${email}`}
+                  className="hover:text-amber-500 transition-colors break-all"
+                >
+                  {email}
+                </a>
+              </div>
             </div>
-          )}
+          </div>
         </div>
 
-        {/* Franja inferior: Copyright - centrado */}
-        <div className="mt-12 pt-8 border-t border-white/10 text-center">
-          {/* Logos de partners */}
-          {logosPartners.length > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-60 mb-6">
-              {logosPartners.map((partner, idx) => (
-                <div
-                  key={idx}
-                  className="text-xs text-gray-400 hover:text-gray-300 
-                           transition-colors duration-300"
+        {/* Barra Inferior (Bottom Bar) */}
+        <div className="mt-12 pt-8 border-t border-white/5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
+            {/* Copyright + Dev */}
+            <div className="text-[11px] text-gray-500 font-medium text-center md:text-left tracking-wide">
+              © {new Date().getFullYear()} Mirador de Luz. Todos los derechos
+              reservados.{" "}
+              <span className="opacity-40 ml-1">
+                Desarrollado por{" "}
+                <a
+                  href="https://orvalis.com.ar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-amber-500 transition-colors underline underline-offset-2"
                 >
-                  {partner.url ? (
-                    <a
-                      href={partner.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {partner.nombre}
-                    </a>
-                  ) : (
-                    <span>{partner.nombre}</span>
-                  )}
-                </div>
-              ))}
+                  Orvalis
+                </a>
+                .
+              </span>
             </div>
-          )}
 
-          {/* Copyright */}
-          <p className="font-montserrat text-sm text-gray-500 text-center font-medium">
-            {textoDerechos}
-          </p>
+            {/* Legal Link */}
+            <a
+              href="/terminos-y-condiciones"
+              className="text-[11px] text-gray-400 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/10 tracking-widest uppercase px-2"
+            >
+              Términos y Condiciones
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Botón Scroll to Top - sin cambios */}
+      {/* Scroll Top Button */}
       {mostrarScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-14 h-14 bg-gray-700/80 hover:bg-gray-600 
-                   text-white rounded-full shadow-xl flex items-center justify-center
-                   transition-all duration-300 hover:scale-105 z-50 border border-gray-600"
+          className="fixed bottom-8 right-8 w-12 h-12 bg-amber-600 hover:bg-amber-500 
+                   text-white rounded-full shadow-2xl flex items-center justify-center
+                   transition-all duration-300 hover:scale-110 active:scale-95 z-50 group"
           aria-label="Volver arriba"
         >
-          <ArrowUpIcon />
+          <ArrowUpIcon className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
         </button>
       )}
     </footer>

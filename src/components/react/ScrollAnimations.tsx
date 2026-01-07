@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import type { FC } from 'react';
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { FC } from "react";
 
 // Registrar el plugin de ScrollTrigger
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
@@ -18,11 +18,13 @@ const ScrollAnimations: FC = () => {
 
     // Asegurar que el DOM esté listo
     const initAnimations = () => {
-      const hero = document.querySelector('#hero-section');
-      const ubicacion = document.querySelector('#ubicacion-section');
-      const heroIntermedio = document.querySelector('#hero-intermedio-section');
-      const cabanas = document.querySelector('#cabanas-section');
-      const videoElement = document.querySelector('#hero-intermedio-video') as HTMLVideoElement;
+      const hero = document.querySelector("#hero-section");
+      const ubicacion = document.querySelector("#ubicacion");
+      const heroIntermedio = document.querySelector("#hero-intermedio-section");
+      const cabanas = document.querySelector("#cabanas-section");
+      const videoElement = document.querySelector(
+        "#hero-intermedio-video"
+      ) as HTMLVideoElement;
 
       // Si no existen los elementos, esperar un poco más
       if (!hero || !ubicacion || !heroIntermedio || !cabanas) {
@@ -32,13 +34,13 @@ const ScrollAnimations: FC = () => {
 
       // Respetar usuarios con reducción de movimiento
       const prefersReducedMotion =
-        typeof window !== 'undefined' &&
-        typeof window.matchMedia === 'function' &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        typeof window !== "undefined" &&
+        typeof window.matchMedia === "function" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (prefersReducedMotion) {
-        gsap.set([ubicacion, cabanas], { clearProps: 'all' });
-        gsap.set(heroIntermedio, { opacity: 1, filter: 'none' });
+        gsap.set([ubicacion, cabanas], { clearProps: "all" });
+        gsap.set(heroIntermedio, { opacity: 1, filter: "none" });
         return;
       }
 
@@ -47,17 +49,17 @@ const ScrollAnimations: FC = () => {
       // ============================================
       ScrollTrigger.create({
         trigger: hero,
-        start: 'top top',
-        end: 'bottom top',
+        start: "top top",
+        end: "bottom top",
         pin: true,
         pinSpacing: false,
         scrub: true,
         onUpdate: (self) => {
           // Oscurecer el hero cuando se hace scroll
-          const overlay = hero.querySelector('.hero-overlay');
+          const overlay = hero.querySelector(".hero-overlay");
           if (overlay) {
             gsap.to(overlay, {
-              opacity: 0.3 + (self.progress * 0.4), // De 0.3 a 0.7
+              opacity: 0.3 + self.progress * 0.4, // De 0.3 a 0.7
               duration: 0,
             });
           }
@@ -75,12 +77,12 @@ const ScrollAnimations: FC = () => {
           y: 0,
           autoAlpha: 1,
           duration: 1,
-          ease: 'power2.out',
+          ease: "power2.out",
           immediateRender: false,
           scrollTrigger: {
             trigger: ubicacion,
-            start: 'top bottom-=100',
-            end: 'top center',
+            start: "top bottom-=100",
+            end: "top center",
             scrub: true,
             invalidateOnRefresh: true,
           },
@@ -99,19 +101,19 @@ const ScrollAnimations: FC = () => {
       if (videoElement) {
         ScrollTrigger.create({
           trigger: heroIntermedio,
-          start: 'top center',
-          end: 'bottom top',
+          start: "top center",
+          end: "bottom top",
           onEnter: () => {
-            videoElement.play().catch(err => {
-              console.log('Error al reproducir video:', err);
+            videoElement.play().catch((err) => {
+              console.log("Error al reproducir video:", err);
             });
           },
           onLeave: () => {
             videoElement.pause();
           },
           onEnterBack: () => {
-            videoElement.play().catch(err => {
-              console.log('Error al reproducir video:', err);
+            videoElement.play().catch((err) => {
+              console.log("Error al reproducir video:", err);
             });
           },
           onLeaveBack: () => {
@@ -130,9 +132,9 @@ const ScrollAnimations: FC = () => {
       const heroToCabanasTl = gsap.timeline({
         scrollTrigger: {
           trigger: heroIntermedio,
-          start: 'top top',
+          start: "top top",
           endTrigger: cabanas,
-          end: 'top top',
+          end: "top top",
           scrub: true,
           pin: heroIntermedio,
           pinSpacing: true,
@@ -145,25 +147,25 @@ const ScrollAnimations: FC = () => {
       heroToCabanasTl.fromTo(
         cabanas,
         { y: 50, autoAlpha: 0 },
-        { y: -100, autoAlpha: 1, ease: 'none', immediateRender: false },
+        { y: -100, autoAlpha: 1, ease: "none", immediateRender: false },
         0
       );
 
       // Hero intermedio: solo efecto visual (sin mover su posición)
       heroToCabanasTl.to(
         heroIntermedio,
-        { opacity: 0.1, filter: 'blur(12px)', ease: 'none' },
+        { opacity: 0.1, filter: "blur(12px)", ease: "none" },
         0
       );
     };
 
     // Iniciar animaciones
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Esperar a que el DOM esté completamente cargado
-      if (document.readyState === 'complete') {
+      if (document.readyState === "complete") {
         setTimeout(initAnimations, 100);
       } else {
-        window.addEventListener('load', () => {
+        window.addEventListener("load", () => {
           setTimeout(initAnimations, 100);
         });
       }
@@ -171,7 +173,7 @@ const ScrollAnimations: FC = () => {
 
     // Cleanup
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -179,4 +181,3 @@ const ScrollAnimations: FC = () => {
 };
 
 export default ScrollAnimations;
-

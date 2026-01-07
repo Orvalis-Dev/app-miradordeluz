@@ -15,6 +15,7 @@ import {
   X,
   Linkedin,
   ArrowUp,
+  Mail,
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { FC } from "react";
@@ -36,6 +37,7 @@ export const IconArrowRight = ArrowRight;
 export const IconArrowUp = ArrowUp;
 export const IconFire = Flame;
 export const IconClose = X;
+export const IconMail = Mail;
 
 // Custom WhatsApp Icon since Lucide doesn't have the brand logo usually (or maybe it does but safe to have a custom one matching the design)
 export const IconWhatsApp: FC<LucideProps> = (props) => (
