@@ -1,4 +1,6 @@
 import type { FC, ReactNode } from "react";
+import { IconMapPin, IconMountain } from "./ui/Icons";
+import { Sparkles } from "lucide-react";
 
 interface SectionUbicacionMiradorDeLuzProps {
   etiqueta?: string;
@@ -8,7 +10,7 @@ interface SectionUbicacionMiradorDeLuzProps {
     destacados?: string[];
   }[];
   bulletPoints?: {
-    icon: string;
+    icon: ReactNode;
     text: string;
   }[];
   fraseDestacada?: string;
@@ -22,23 +24,37 @@ interface SectionUbicacionMiradorDeLuzProps {
 }
 
 const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
-  etiqueta = "VILLA SANTA CRUZ DEL LAGO, CORDOBA.",
+  etiqueta = "VILLA SANTA CRUZ DEL LAGO, CÓRDOBA.",
   titulo = "Ubicado entre montañas y naturaleza, cerca de todo.",
   parrafos = [
     {
-      texto: `"Mirador de Luz" es un complejo de cabañas atendido por sus propios dueños, diseñado para quienes buscan tranquilidad y confort en las sierras.
+      texto: `"Mirador de Luz" es un complejo de cabañas atendido por sus propios dueños, diseñado para quienes buscan tranquilidad y confort con una espectacular vista a las sierras. 
 
-Disfrutá de la cercanía a los principales atractivos turísticos, en un entorno natural inmejorable y con atención personalizada.`,
-      destacados: ['"Mirador de Luz"'],
+Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos Paz, permitiéndote disfrutar de la paz de la montaña sin alejarte de la ciudad. Nuestro complejo está abierto todo el año, para que vivas una experiencia única en cualquier temporada.`,
+      destacados: [
+        '"Mirador de Luz"',
+        "vista a las sierras",
+        "5km del centro",
+        "abierto todo el año",
+      ],
     },
   ],
   bulletPoints = [
-    { icon: "📍", text: "A 5 min de Villa Carlos Paz" },
-    { icon: "🆕", text: "Complejo a estrenar" },
-    { icon: "⛰️", text: "Vista a las sierras" },
+    {
+      icon: <IconMapPin className="w-5 h-5 text-[#A8936D]" />,
+      text: "A 5 min de Villa Carlos Paz",
+    },
+    {
+      icon: <Sparkles className="w-5 h-5 text-[#A8936D]" />,
+      text: "Complejo a estrenar",
+    },
+    {
+      icon: <IconMountain className="w-5 h-5 text-[#A8936D]" />,
+      text: "Vista a las sierras",
+    },
   ],
   fraseDestacada = "¡Te esperamos para que vivas la experiencia Mirador de Luz!",
-  imagenPrincipal = "/images/cabana-2/cabana-2-2.webp",
+  imagenPrincipal = "/images/exterior/exterior-30.webp",
   fondoColor = "bg-gradient-to-br from-amber-50/30 via-orange-50/20 to-stone-50",
   tituloClass = "font-montserrat text-[28px] md:text-[32px] lg:text-[42px] font-extrabold text-[#1E1E1E] leading-tight",
   parrafoClass = "font-montserrat text-[16px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed",
@@ -111,7 +127,7 @@ Disfrutá de la cercanía a los principales atractivos turísticos, en un entorn
             <div className="w-full rounded-[40px] aspect-[4/5] overflow-hidden shadow-2xl transform transition-transform duration-700 hover:scale-[1.02]">
               <img
                 src={imagenPrincipal}
-                alt="Vista del complejo Mirador de Luz"
+                alt="Complejo de Cabañas Mirador de Luz en Villa Santa Cruz del Lago, Córdoba - Vista exterior y entorno natural"
                 className="w-full h-full object-cover object-center"
                 style={{ minHeight: "300px", aspectRatio: "4/5" }}
               />
@@ -154,12 +170,12 @@ Disfrutá de la cercanía a los principales atractivos turísticos, en un entorn
                 {bulletPoints.map((point, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-4 bg-white/40 backdrop-blur-sm p-3 rounded-2xl border border-white/50 shadow-sm transition-all hover:bg-white/60"
+                    className="flex items-center gap-4 bg-white/60 backdrop-blur-sm p-3 pr-5 rounded-2xl border border-white shadow-sm transition-all hover:bg-white hover:shadow-md group"
                   >
-                    <span className="text-2xl drop-shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                       {point.icon}
-                    </span>
-                    <span className="font-montserrat text-[14px] md:text-[15px] font-bold text-[#333333]">
+                    </div>
+                    <span className="font-montserrat text-[14px] md:text-[15px] font-bold text-[#1E1E1E]">
                       {point.text}
                     </span>
                   </div>

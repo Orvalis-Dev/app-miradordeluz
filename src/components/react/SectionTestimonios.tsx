@@ -331,14 +331,14 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
             </div>
 
             {/* Flechas de navegación Mobile sin paginación - Color Naranja */}
-            <div className="flex items-center justify-center gap-6 mb-4">
+            <div className="flex items-center justify-center gap-4 mb-4">
               <button
                 onClick={handleMobilePrev}
                 disabled={isMobilePrevDisabled}
-                className={`flex items-center justify-center transition-all duration-200 ${
+                className={`w-12 h-12 flex items-center justify-center transition-all duration-200 ${
                   isMobilePrevDisabled
                     ? "opacity-30 cursor-not-allowed"
-                    : "text-orange-500 hover:scale-110"
+                    : "text-orange-500 hover:scale-110 active:scale-90"
                 }`}
                 aria-label="Anterior"
               >
@@ -359,10 +359,10 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
               <button
                 onClick={handleMobileNext}
                 disabled={isMobileNextDisabled}
-                className={`flex items-center justify-center transition-all duration-200 ${
+                className={`w-12 h-12 flex items-center justify-center transition-all duration-200 ${
                   isMobileNextDisabled
                     ? "opacity-30 cursor-not-allowed"
-                    : "text-orange-500 hover:scale-110"
+                    : "text-orange-500 hover:scale-110 active:scale-90"
                 }`}
                 aria-label="Siguiente"
               >
@@ -379,17 +379,17 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
             <button
               onClick={handlePrev}
               disabled={isPrevDisabled}
-              className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
+              className={`w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
                 isPrevDisabled
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:shadow-md hover:text-orange-500"
+                  : "hover:shadow-md hover:text-orange-500 hover:scale-105 active:scale-95"
               }`}
               aria-label="Anterior"
             >
               <ChevronLeftIcon />
             </button>
 
-            <div className="text-sm font-semibold text-[#1E1E1E] bg-white px-4 py-2 rounded-full shadow-sm">
+            <div className="text-base font-bold text-[#1E1E1E] bg-white px-6 py-3 rounded-full shadow-sm min-w-[100px] text-center">
               <span className="text-orange-500">{currentPage}</span> /{" "}
               {totalPages}
             </div>
@@ -397,10 +397,10 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
             <button
               onClick={handleNext}
               disabled={isNextDisabled}
-              className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
+              className={`w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
                 isNextDisabled
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:shadow-md hover:text-orange-500"
+                  : "hover:shadow-md hover:text-orange-500 hover:scale-105 active:scale-95"
               }`}
               aria-label="Siguiente"
             >

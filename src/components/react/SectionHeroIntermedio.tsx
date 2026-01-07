@@ -29,10 +29,10 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
 
   // Mapear opacidad del overlay
   const overlayClasses = {
-    light: "bg-black/30",
-    medium: "bg-black/50",
-    dark: "bg-black/60",
-    darker: "bg-black/70",
+    light: "bg-black/20",
+    medium: "bg-black/25",
+    dark: "bg-black/30",
+    darker: "bg-black/40",
   };
 
   // Intersection Observer para detectar cuando la sección está visible
@@ -147,10 +147,12 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
               ${isExpanded ? "scale-100" : "scale-110"}
             `}
             src={backgroundVideo}
+            autoPlay
             loop
             muted
             playsInline
             preload="metadata"
+            aria-label="Video del complejo de cabañas y su entorno natural"
           />
           {/* Overlay oscuro */}
           <div
@@ -172,6 +174,8 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: "center center",
           }}
+          role="img"
+          aria-label="Paisaje de las sierras de Córdoba rodeando el complejo"
         >
           {/* Overlay oscuro */}
           <div
@@ -211,6 +215,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
           >
             <span
               className={`font-montserrat text-[14px] font-semibold ${accentColor} tracking-[0.2em] uppercase`}
+              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.7)" }}
             >
               {subheading}
             </span>
@@ -228,6 +233,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
                 : "opacity-0 translate-y-8 scale-95"
             }
           `}
+          style={{ textShadow: "0 2px 4px rgba(0,0,0,0.7)" }}
         >
           {renderTitle()}
         </h2>

@@ -164,7 +164,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
                   href="https://orvalis.com.ar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-amber-500 transition-colors underline underline-offset-2"
+                  className="text-white/80 no-underline hover:underline hover:text-white transition-all duration-300"
                 >
                   Orvalis
                 </a>

@@ -86,7 +86,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                   >
                     <img
                       src={cabana.imagenUrl}
-                      alt={cabana.nombre}
+                      alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />

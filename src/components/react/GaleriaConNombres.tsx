@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { cabanas, type GalleryImage } from '@/data/images';
+import { useState, useMemo } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { cabanas, type GalleryImage } from "@/data/images";
 
 interface ModalState {
   isOpen: boolean;
@@ -10,16 +10,20 @@ interface ModalState {
   images: GalleryImage[];
 }
 
-export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string }) {
+export function GaleriaConNombres({
+  cabanaid = 1,
+}: {
+  cabanaid?: number | string;
+}) {
   const [modal, setModal] = useState<ModalState>({
     isOpen: false,
     currentImageIndex: 0,
-    images: []
+    images: [],
   });
 
   // Obtener datos de la cabaña
   const cabana = useMemo(() => {
-    return cabanas.find(c => c.id === cabanaid);
+    return cabanas.find((c) => c.id === cabanaid);
   }, [cabanaid]);
 
   // Obtener imágenes desde el sistema de archivos dinámicamente
@@ -36,7 +40,7 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
       id: i + 1,
       url: `/images/cabana-${cabana.id}/cabana-${cabana.id}-${i + 1}.webp`,
       title: `Imagen ${i + 1}`,
-      filename: `cabana-${cabana.id}-${i + 1}.webp`
+      filename: `cabana-${cabana.id}-${i + 1}.webp`,
     }));
   }, [cabana]);
 
@@ -44,30 +48,35 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
     setModal({
       isOpen: true,
       currentImageIndex: index,
-      images: imageList
+      images: imageList,
     });
   };
 
   const closeModal = () => {
-    setModal(prev => ({ ...prev, isOpen: false }));
+    setModal((prev) => ({ ...prev, isOpen: false }));
   };
 
   const goToPrevious = () => {
-    setModal(prev => ({
+    setModal((prev) => ({
       ...prev,
-      currentImageIndex: (prev.currentImageIndex - 1 + prev.images.length) % prev.images.length
+      currentImageIndex:
+        (prev.currentImageIndex - 1 + prev.images.length) % prev.images.length,
     }));
   };
 
   const goToNext = () => {
-    setModal(prev => ({
+    setModal((prev) => ({
       ...prev,
-      currentImageIndex: (prev.currentImageIndex + 1) % prev.images.length
+      currentImageIndex: (prev.currentImageIndex + 1) % prev.images.length,
     }));
   };
 
   if (!cabana) {
-    return <div className="text-center py-8 text-slate-600">Cabaña no encontrada</div>;
+    return (
+      <div className="text-center py-8 text-slate-600">
+        Cabaña no encontrada
+      </div>
+    );
   }
 
   const currentImage = modal.images[modal.currentImageIndex];
@@ -76,7 +85,9 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
     <div className="w-full">
       {/* Encabezado */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-slate-900 mb-2">{cabana.nombre}</h2>
+        <h2 className="text-3xl font-bold text-slate-900 mb-2">
+          {cabana.nombre}
+        </h2>
         <p className="text-slate-600">{images.length} imágenes disponibles</p>
       </div>
 
@@ -91,18 +102,20 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
             {/* Imagen */}
             <img
               src={image.url}
-              alt={image.title}
+              alt={`${cabana.nombre} - ${image.title} - Complejo Mirador de Luz, Villa Santa Cruz del Lago, Córdoba`}
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               onError={(e) => {
-                e.currentTarget.src = '/placeholder.svg';
+                e.currentTarget.src = "/placeholder.svg";
               }}
             />
 
             {/* Overlay con título */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-              <h3 className="text-white font-semibold text-sm">{image.title}</h3>
+              <h3 className="text-white font-semibold text-sm">
+                {image.title}
+              </h3>
               <p className="text-white/80 text-xs">{image.filename}</p>
             </div>
 
@@ -141,7 +154,7 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
                 alt={currentImage.title}
                 className="max-h-[70vh] max-w-full object-contain"
                 onError={(e) => {
-                  e.currentTarget.src = '/placeholder.svg';
+                  e.currentTarget.src = "/placeholder.svg";
                 }}
               />
 
@@ -167,14 +180,20 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
             <div className="bg-black/50 text-white p-4 rounded-lg mb-4">
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="text-lg font-semibold">{currentImage.title}</h3>
-                  <p className="text-white/70 text-sm font-mono">{currentImage.filename}</p>
+                  <h3 className="text-lg font-semibold">
+                    {currentImage.title}
+                  </h3>
+                  <p className="text-white/70 text-sm font-mono">
+                    {currentImage.filename}
+                  </p>
                 </div>
                 <div className="text-right">
                   <div className="text-2xl font-bold text-orange-500">
                     {modal.currentImageIndex + 1}
                   </div>
-                  <div className="text-white/70 text-sm">de {modal.images.length}</div>
+                  <div className="text-white/70 text-sm">
+                    de {modal.images.length}
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,11 +203,13 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
               {modal.images.map((img, idx) => (
                 <button
                   key={img.id}
-                  onClick={() => setModal(prev => ({ ...prev, currentImageIndex: idx }))}
+                  onClick={() =>
+                    setModal((prev) => ({ ...prev, currentImageIndex: idx }))
+                  }
                   className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all ${
                     idx === modal.currentImageIndex
-                      ? 'ring-2 ring-orange-500 opacity-100'
-                      : 'opacity-60 hover:opacity-100'
+                      ? "ring-2 ring-orange-500 opacity-100"
+                      : "opacity-60 hover:opacity-100"
                   }`}
                 >
                   <img
@@ -206,8 +227,3 @@ export function GaleriaConNombres({ cabanaid = 1 }: { cabanaid?: number | string
     </div>
   );
 }
-
-
-
-
-

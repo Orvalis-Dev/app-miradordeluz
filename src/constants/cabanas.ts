@@ -38,7 +38,7 @@ export const cabanas: Cabana[] = [
       { icon: "mountain", label: "Vista a montañas" },
       { icon: "parking", label: "Cochera" },
     ],
-    imagenUrl: "/images/cabana-1/cabana-1-portada-1.webp",
+    imagenUrl: "/images/cabana-1/cabana-1-portada-3.webp",
     slug: "cabana-1",
     capacity: 4,
   },

@@ -2,20 +2,20 @@
 
 /* Configuración de fuente base */
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Scroll suave para navegación con anclas */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-  /* Altura del navbar fijo */
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 100px;
+  /* Altura del navbar fijo + un margen extra */
 }
 
 /* Ajuste para mobile */
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: 64px;
+    scroll-padding-top: 80px;
   }
 }
 
