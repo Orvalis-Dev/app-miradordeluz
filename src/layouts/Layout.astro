@@ -110,6 +110,45 @@ const schema = JSON.stringify({
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900 selection:bg-orange-500 selection:text-white">
   <slot />
+
+  <script>
+    /**
+     * Mejora del scroll para sitios con animaciones GSAP y expansiones de layout.
+     * Realiza múltiples intentos de posicionamiento para asegurar que los cambios
+     * de altura de la página (por carga de imágenes o animaciones) no pierdan el objetivo.
+     */
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const targetId = hash.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        // 1. Intento casi inmediato (fuerza la carga de la zona)
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }, 100);
+
+        // 2. Segundo intento a los 500ms (cuando React/Hydration suele haber terminado)
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 500);
+
+        // 3. Intento final definitivo a los 1500ms 
+        // (después de animaciones de expansión de 1s y cálculos de GSAP)
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 1500);
+      }
+    };
+
+    // Ejecutar al cargar la página
+    window.addEventListener('load', scrollToHash);
+    
+    // Si el usuario hace clic en un link con hash estando en la misma página
+    window.addEventListener('hashchange', scrollToHash);
+  </script>
 </body>
 </html>
 

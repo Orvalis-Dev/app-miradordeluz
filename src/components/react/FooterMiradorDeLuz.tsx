@@ -6,7 +6,6 @@ import {
   IconMapPin as LocationIcon,
   IconPhone as PhoneIcon,
   IconMail as MailIcon,
-  IconArrowUp as ArrowUpIcon,
 } from "./ui/Icons";
 
 // Tipos
@@ -26,7 +25,6 @@ interface FooterMiradorDeLuzProps {
   email?: string;
   redesSociales?: RedSocial[];
   linksNavegacion?: LinkNavegacion[];
-  mostrarScrollTop?: boolean;
 }
 
 const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
@@ -55,12 +53,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
     { texto: "Galería", url: "/galeria" },
     { texto: "Reservar", url: "/#cabanas" },
   ],
-  mostrarScrollTop = true,
 }) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="w-full bg-slate-900 text-white border-t border-white/5 font-montserrat">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
@@ -185,19 +178,6 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
           </div>
         </div>
       </div>
-
-      {/* Scroll Top Button */}
-      {mostrarScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-amber-600 hover:bg-amber-500 
-                   text-white rounded-full shadow-2xl flex items-center justify-center
-                   transition-all duration-300 hover:scale-110 active:scale-95 z-50 group"
-          aria-label="Volver arriba"
-        >
-          <ArrowUpIcon className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-        </button>
-      )}
     </footer>
   );
 };

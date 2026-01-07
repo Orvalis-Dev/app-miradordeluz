@@ -145,7 +145,6 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({ variant }) => {
           {/* Desktop Navigation Links - Hidden on Mobile */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 mx-4">
             {[
-              { label: "Inicio", href: "/" },
               { label: "Cabañas", href: "/#cabanas" },
               { label: "Galería", href: "/galeria" },
               { label: "Contacto", href: "/contacto" },
