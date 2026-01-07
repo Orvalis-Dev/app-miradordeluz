@@ -12,9 +12,13 @@ import {
 
 interface NavbarMiradorDeLuzProps {
   variant?: "glass" | "solid-navy" | "transparent";
+  showReservaButton?: boolean;
 }
 
-const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({ variant }) => {
+const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
+  variant,
+  showReservaButton = true,
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAlwaysScrolled, setIsAlwaysScrolled] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
@@ -174,14 +178,16 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({ variant }) => {
 
           {/* Right Action Area (Mobile & Desktop) */}
           <div className="flex items-center gap-3 md:gap-4">
-            <a
-              href="/#cabanas"
-              className={`font-montserrat bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white 
-                       px-3 md:px-6 py-1.5 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-[10px] md:text-sm
-                       transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 whitespace-nowrap`}
-            >
-              RESERVAR
-            </a>
+            {showReservaButton && (
+              <a
+                href="/#cabanas"
+                className={`font-montserrat bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white 
+                         px-3 md:px-6 py-1.5 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-[10px] md:text-sm
+                         transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 whitespace-nowrap`}
+              >
+                RESERVAR
+              </a>
+            )}
 
             {/* Menú Hamburguesa */}
             <button
@@ -236,28 +242,30 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({ variant }) => {
           </div>
 
           {/* Acción Principal (Botón Reserva) */}
-          <div className="px-5 pt-6 pb-2">
-            <a
-              href="/#cabanas"
-              onClick={cerrarMenu}
-              className="group w-full bg-orange-500 hover:bg-orange-600 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/20 transition-all active:scale-[0.98]"
-            >
-              <span className="uppercase tracking-wider">RESERVAR</span>
-              <svg
-                className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          {showReservaButton && (
+            <div className="px-5 pt-6 pb-2">
+              <a
+                href="/#cabanas"
+                onClick={cerrarMenu}
+                className="group w-full bg-orange-500 hover:bg-orange-600 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/20 transition-all active:scale-[0.98]"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-            </a>
-          </div>
+                <span className="uppercase tracking-wider">RESERVAR</span>
+                <svg
+                  className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </a>
+            </div>
+          )}
 
           {/* Links de navegación */}
           <nav className="flex-1 overflow-y-auto pt-4 px-5">

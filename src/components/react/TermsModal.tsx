@@ -88,7 +88,7 @@ const TermsModal: FC<TermsModalProps> = ({ open, onClose }) => {
             <p>
               Las reservas en Complejo Mirador de Luz se gestionan de manera
               personalizada. Para confirmar una reserva, se solicitará el pago
-              de una seña (porcentaje del total a convenir) mediante
+              de una seña (50%) mediante
               transferencia bancaria. El saldo restante deberá abonarse al
               momento del ingreso (Check-in) en efectivo o transferencia, salvo
               acuerdo previo diferente. La reserva solo se considera efectiva
@@ -113,8 +113,8 @@ const TermsModal: FC<TermsModalProps> = ({ open, onClose }) => {
               <li>
                 En caso de aviso con antelación (mínimo 15 días antes de la
                 fecha de ingreso), el monto abonado podrá quedar como crédito
-                para una futura estadía (sujeto a disponibilidad y tarifas
-                vigentes), con una validez de 6 meses.
+                siempre y cuando no sea temporada alta. Si es el caso, queda
+                abonar la diferencia de dinero del precio de temporada alta.
               </li>
               <li>
                 Si el huésped decide retirarse antes de finalizar su estadía

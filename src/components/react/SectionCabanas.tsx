@@ -71,7 +71,11 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
             const esPar = index % 2 === 0;
 
             return (
-              <div key={cabana.id} className="relative">
+              <div
+                key={cabana.id}
+                id={cabana.slug}
+                className="relative scroll-mt-32"
+              >
                 <div
                   className={`flex flex-col ${
                     esPar ? "lg:flex-row" : "lg:flex-row-reverse"

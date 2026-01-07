@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, type FC } from "react";
+import { useState, useEffect, useRef, type FC, type RefObject } from "react";
 
 interface SectionHeroIntermedioProps {
   backgroundImage?: string;
@@ -56,7 +56,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
             }, 100);
 
             // Reproducir video cuando la sección esté visible
-            const playVideo = (ref: React.RefObject<HTMLVideoElement>) => {
+            const playVideo = (ref: RefObject<HTMLVideoElement | null>) => {
               if (ref.current) {
                 ref.current.play().catch((err) => {
                   console.log("Error al reproducir video:", err);
@@ -80,7 +80,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
               setIsExpanded(false);
 
               // Pausar video solo cuando sale completamente hacia arriba
-              const pauseVideo = (ref: React.RefObject<HTMLVideoElement>) => {
+              const pauseVideo = (ref: RefObject<HTMLVideoElement | null>) => {
                 if (ref.current) {
                   ref.current.pause();
                 }
@@ -153,7 +153,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
         }
         ${
           isExpanded
-            ? "w-full rounded-none shadow-none h-[100vh] md:h-[100vh]"
+            ? "w-full rounded-none shadow-none h-screen md:h-screen"
             : "h-[60vh] w-full md:w-[85%] lg:w-[60%] rounded-none md:rounded-2xl shadow-none md:shadow-2xl"
         }
       `}
@@ -173,7 +173,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
                   ref={videoMobileRef}
                   className={`
                     absolute inset-0 w-full h-full object-cover md:hidden
-                    transition-all duration-1000 ease-out
+                    transition-all duration-1000 ease-out blur-[2px]
                     ${isExpanded ? "scale-[1.3]" : "scale-[1.4]"}
                   `}
                   src={videoMobile}
@@ -189,7 +189,7 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
                   ref={videoDesktopRef}
                   className={`
                     absolute inset-0 w-full h-full object-cover hidden md:block
-                    transition-all duration-1000 ease-out
+                    transition-all duration-1000 ease-out blur-[2px]
                     ${isExpanded ? "scale-[3.2]" : "scale-[3.4]"}
                   `}
                   src={videoDesktop}

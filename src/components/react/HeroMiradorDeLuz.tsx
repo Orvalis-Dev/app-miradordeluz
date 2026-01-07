@@ -326,7 +326,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                 <span className="hidden md:inline">
                   Conoce nuestras Cabañas
                 </span>
-                <span className="md:hidden">Ver Cabañas</span>
+                <span className="md:hidden">Conoce nuestras Cabañas</span>
               </a>
             </div>
           </div>
