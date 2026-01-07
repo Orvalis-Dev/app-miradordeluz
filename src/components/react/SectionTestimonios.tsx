@@ -54,90 +54,70 @@ interface SectionTestimoniosProps {
 const DEFAULT_TESTIMONIOS: TestimonioExtendido[] = [
   {
     id: "1",
-    name: "Horacio Di Paolo",
-    subtitle: "Villa Carlos Paz, Córdoba",
-    text: "Excelente lugar para descansar. Las cabañas son muy cómodas y la atención es increíble.",
+    name: "Agustin incorvaia",
+    reviewsCount: "3 opiniones",
+    date: "Hace un mes",
+    text: "Pasamos unas vacaciones increíbles en el complejo. Las instalaciones son excelentes y cuentan con todas las comodidades necesarias para una estadía perfecta. Los dueños, Mariano y Gigi, fueron súper amables y atentos en todo momento, lo que hizo nuestra experiencia aún mejor. Esperamos poder volver pronto. ¡Totalmente recomendable!",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=12",
   },
   {
     id: "2",
-    name: "Fabri & Yuli",
-    subtitle: "Buenos Aires, Argentina",
-    text: "Reservamos una cabaña para nuestra escapada de fin de semana. Paisaje increíble y atención excelente. Volveremos pronto!",
+    name: "Vani Elizabeth",
+    isLocalGuide: true,
+    reviewsCount: "131 opiniones · 30 fotos",
+    date: "Hace 4 meses",
+    text: "Hermoso lugar unas vistas increíbles hermosa la pileta. La cabaña muy linda bien equipada todo nuevo y muy limpio. La atención de Mariano muy buena. Super recomendable",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=25",
   },
   {
     id: "3",
-    name: "Alejandro Pazos",
-    subtitle: "Rosario, Santa Fe",
-    text: "Hemos venido con un grupo de 30 amigos. Excelente todo. Muy recomendable para grupos grandes.",
+    name: "Mariana Gomez",
+    isLocalGuide: true,
+    reviewsCount: "23 opiniones · 31 fotos",
+    date: "Hace 9 meses",
+    text: "Hermoso el lugar!! Las habitaciones cuentan con cada detalle para una excelente estadía, tele, WiFi, cocina equipada, aires acondionado en cada espacio, más ventiladores, sobre todo limpieza y excelente trato de sus dueños, Mariano y Gigi súper atentos, la pileta es hermosa profunda e impecable, y la vista excelente, volveremos sin dudarlo!! Excelente relación precio/calidad.",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=33",
   },
   {
     id: "4",
-    name: "Alejandro Lezcano",
-    subtitle: "Tafí del Valle, Tucumán",
-    text: "Ya tengo mi lugar para quedarme cuando visite Tafí. Hotel increíble... Excelente Atención, Servicio y Habitaciones Confortables.",
+    name: "ALAN JHONS",
+    reviewsCount: "1 opinión",
+    date: "una semana atrás",
+    isNew: true,
+    text: "EXCELENTE LUGAR MUY TRANQUILO.AMABILIDAD MUY BUENA ATENCION Y SERVICIOS HIGIÉNICO Y CÓMODO RECOMENDABLE.!!! Raul y MARY. 🏖🏖🏝🏡…",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=68",
   },
   {
     id: "5",
-    name: "Patricia González",
-    subtitle: "Córdoba Capital",
-    text: "Fuimos en familia y las cabañas son súper cómodas. Ideal para desconectar. La vista es hermosa!",
+    name: "Micaela Ferrero",
+    reviewsCount: "4 opiniones",
+    date: "Hace 8 meses",
+    text: "Hermosas las cabañas, tienen todas las comodidades para pasar una linda e inolvidable estadía. La vista desde las cabañas y la pileta es única!! Para destacar la atención tanto de Mariano como de Gigi. 100% recomendable!!!",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=45",
   },
   {
     id: "6",
-    name: "Martín Silva",
-    subtitle: "Mendoza, Argentina",
-    text: "Excelente experiencia. Todo muy limpio y ordenado. El personal muy atento. Definitivamente volveremos.",
+    name: "Claudia Resnik",
+    isLocalGuide: true,
+    reviewsCount: "253 opiniones · 502 fotos",
+    date: "Hace 4 meses",
+    text: "Hermoso lugar para descansar, con una vista privilegiada, súper atentos y cálidos los dueños. Muy recomendable!!!",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=51",
   },
   {
     id: "7",
-    name: "Sofía Ramírez",
-    subtitle: "San Luis, Argentina",
-    text: "Un lugar mágico en medio de la naturaleza. Las cabañas tienen todo lo necesario. Perfectas para una escapada romántica.",
+    name: "MARIA DEL C. LEDEZMA",
+    reviewsCount: "7 opiniones · 1 foto",
+    date: "Hace 10 meses",
+    text: "Es un lugar privilegiado, ideal para descansar y disfrutar tanto de el paisaje, como de la cabaña, muy cómoda y con todos los servicios. La pileta y el parque hermosos. Y la amabilidad y buena atención de sus dueños. Volveremos sin dudas",
     rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=47",
-  },
-  {
-    id: "8",
-    name: "Roberto Fernández",
-    subtitle: "La Rioja, Argentina",
-    text: "Instalaciones impecables y el entorno natural es espectacular. Ideal para quienes buscan tranquilidad y confort.",
-    rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=58",
-  },
-  {
-    id: "9",
-    name: "Carolina & Diego",
-    subtitle: "Salta, Argentina",
-    text: "Celebramos nuestro aniversario aquí y fue memorable. Atención personalizada y detalles que hacen la diferencia.",
-    rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=36",
-  },
-  {
-    id: "10",
-    name: "Lucas Morales",
-    subtitle: "Catamarca, Argentina",
-    text: "La mejor decisión para nuestras vacaciones. Precio justo, excelente ubicación y paisajes inolvidables.",
-    rating: 5,
-    avatarUrl: "https://i.pravatar.cc/150?img=62",
   },
 ];
 
 const SectionTestimonios: FC<SectionTestimoniosProps> = ({
   testimonios = DEFAULT_TESTIMONIOS,
   mostrarBoton = true,
-  textoBoton = "Dejanos tu Opinión",
+  textoBoton = "Ver todas las opiniones en Google Maps",
   onClickBoton,
   autoPlayInterval = 1000,
   pauseOnHover = true,
@@ -147,12 +127,35 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   // Limitar testimonios a 5 en mobile (DEFINIR PRIMERO)
   const testimoniosMobile = testimonios.slice(0, 5);
   const maxMobileIndex = Math.max(0, testimoniosMobile.length - 1);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const currentTouch = e.targetTouches[0].clientX;
+    const diff = touchStart - currentTouch;
+
+    if (diff > 50) {
+      handleMobileNext();
+      setTouchStart(null);
+    } else if (diff < -50) {
+      handleMobilePrev();
+      setTouchStart(null);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStart(null);
+  };
 
   const handleClickBoton = () => {
     if (onClickBoton) {
@@ -264,58 +267,71 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
           <div className="hidden lg:block"></div>
 
           {/* Contenedor del carrusel - Desktop */}
-          {/* Desktop: mostrar 3 cards de la página actual */}
-          <div className="hidden lg:grid grid-cols-4 gap-6">
+          {/* Desktop: mostrar 4 cards de la página actual */}
+          <div className="hidden lg:grid grid-cols-4 gap-6 content-stretch transition-all duration-500">
             {testimonios
               .slice(currentIndex, currentIndex + 4)
               .map((testimonio) => (
-                <div key={testimonio.id}>
-                  <TestimonialCard
-                    text={testimonio.text}
-                    name={testimonio.name}
-                    subtitle={testimonio.subtitle}
-                    avatarUrl={testimonio.avatarUrl}
-                    rating={testimonio.rating}
-                  />
-                </div>
+                <TestimonialCard
+                  key={testimonio.id}
+                  text={testimonio.text}
+                  name={testimonio.name}
+                  avatarUrl={testimonio.avatarUrl}
+                  rating={testimonio.rating}
+                  date={testimonio.date}
+                  isLocalGuide={testimonio.isLocalGuide}
+                  reviewsCount={testimonio.reviewsCount}
+                  isNew={testimonio.isNew}
+                />
               ))}
           </div>
 
           {/* Grid responsive para Tablet */}
           {/* Tablet: 2 por página (si hay) */}
-          <div className="hidden md:grid lg:hidden md:grid-cols-2 gap-4 mb-8">
+          <div className="hidden md:grid lg:hidden md:grid-cols-2 gap-4 mb-8 content-stretch">
             {testimonios
               .slice(currentIndex, currentIndex + 2)
               .map((testimonio) => (
-                <div key={testimonio.id} className="flex justify-center">
-                  <TestimonialCard
-                    text={testimonio.text}
-                    name={testimonio.name}
-                    subtitle={testimonio.subtitle}
-                    avatarUrl={testimonio.avatarUrl}
-                    rating={testimonio.rating}
-                  />
-                </div>
+                <TestimonialCard
+                  key={testimonio.id}
+                  className="mx-auto"
+                  text={testimonio.text}
+                  name={testimonio.name}
+                  avatarUrl={testimonio.avatarUrl}
+                  rating={testimonio.rating}
+                  date={testimonio.date}
+                  isLocalGuide={testimonio.isLocalGuide}
+                  reviewsCount={testimonio.reviewsCount}
+                  isNew={testimonio.isNew}
+                />
               ))}
           </div>
 
           {/* Mobile: Carrusel una card a la vez - Solo 5 testimonios */}
           <div className="md:hidden flex flex-col items-center">
             {/* Card actual - Centrada */}
-            <div className="mb-8 w-full max-w-xs flex justify-center">
+            <div
+              className="mb-8 w-full max-w-xs flex justify-center cursor-grab active:cursor-grabbing"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {testimoniosMobile[mobileIndex] && (
                 <TestimonialCard
                   text={testimoniosMobile[mobileIndex].text}
                   name={testimoniosMobile[mobileIndex].name}
-                  subtitle={testimoniosMobile[mobileIndex].subtitle}
                   avatarUrl={testimoniosMobile[mobileIndex].avatarUrl}
                   rating={testimoniosMobile[mobileIndex].rating}
+                  date={testimoniosMobile[mobileIndex].date}
+                  isLocalGuide={testimoniosMobile[mobileIndex].isLocalGuide}
+                  reviewsCount={testimoniosMobile[mobileIndex].reviewsCount}
+                  isNew={testimoniosMobile[mobileIndex].isNew}
                 />
               )}
             </div>
 
             {/* Flechas de navegación Mobile sin paginación - Color Naranja */}
-            <div className="flex items-center justify-center gap-6 mb-8">
+            <div className="flex items-center justify-center gap-6 mb-4">
               <button
                 onClick={handleMobilePrev}
                 disabled={isMobilePrevDisabled}
@@ -328,6 +344,17 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
               >
                 <ChevronLeftIcon />
               </button>
+
+              <div className="flex gap-1.5">
+                {testimoniosMobile.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      i === mobileIndex ? "bg-orange-500 w-4" : "bg-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
 
               <button
                 onClick={handleMobileNext}
@@ -342,21 +369,12 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
                 <ChevronRightIcon />
               </button>
             </div>
-
-            {/* Botón "Ver más testimonios" - Redirige a Google Maps */}
-            <button
-              onClick={handleClickBoton}
-              className="mt-4 px-6 py-2 rounded-[18px] border-2 border-orange-500 text-orange-500 font-semibold transition-all duration-200 hover:bg-orange-50"
-              aria-label="Ver más testimonios"
-            >
-              Ver más testimonios
-            </button>
           </div>
         </div>
 
         {/* Controles inferiores */}
-        {/* Desktop/Tablet: flechas, página y CTA */}
-        <div className="hidden md:flex items-center justify-between mt-6">
+        {/* Desktop/Tablet: flechas y página CENTRADOS */}
+        <div className="hidden md:flex flex-col items-center gap-8 mt-6">
           <div className="flex items-center gap-6">
             <button
               onClick={handlePrev}
@@ -364,15 +382,16 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
               className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
                 isPrevDisabled
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:shadow-md"
+                  : "hover:shadow-md hover:text-orange-500"
               }`}
               aria-label="Anterior"
             >
               <ChevronLeftIcon />
             </button>
 
-            <div className="text-sm text-[#6B6B6B]">
-              Página {currentPage} de {totalPages}
+            <div className="text-sm font-semibold text-[#1E1E1E] bg-white px-4 py-2 rounded-full shadow-sm">
+              <span className="text-orange-500">{currentPage}</span> /{" "}
+              {totalPages}
             </div>
 
             <button
@@ -381,7 +400,7 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
               className={`w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
                 isNextDisabled
                   ? "opacity-30 cursor-not-allowed"
-                  : "hover:shadow-md"
+                  : "hover:shadow-md hover:text-orange-500"
               }`}
               aria-label="Siguiente"
             >
@@ -392,41 +411,33 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
           <div>
             <button
               onClick={handleClickBoton}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[18px] border-2 border-[#0B1220] bg-[#0B1220] text-white font-semibold shadow transition-all duration-200 hover:brightness-95"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-[#0B1220] bg-[#0B1220] text-white font-bold shadow-lg transition-all duration-300 hover:bg-white hover:text-[#0B1220] hover:scale-105"
               aria-label={textoBoton}
             >
-              {googleReviewUrl && (
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-              )}
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+              </svg>
               {textoBoton}
             </button>
           </div>
         </div>
 
         {/* Mobile: Botón alargado al final */}
-        <div className="md:hidden mt-8">
+        <div className="md:hidden mt-4">
           <button
             onClick={handleClickBoton}
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-[18px] border-2 border-[#0B1220] bg-[#0B1220] text-white font-semibold shadow transition-all duration-200 hover:brightness-95"
+            className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl border-2 border-[#0B1220] bg-[#0B1220] text-white font-bold shadow-md transition-all duration-200 active:scale-95"
             aria-label={textoBoton}
           >
-            {googleReviewUrl && (
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-              </svg>
-            )}
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
             {textoBoton}
           </button>
         </div>

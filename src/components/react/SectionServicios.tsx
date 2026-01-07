@@ -129,7 +129,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
     {
       id: "1",
       icon: <CoffeeIcon />,
-      titulo: "Desayuno incluido.",
+      titulo: "Desayuno incluido",
       descripcion: "Comenzá el día con productos regionales y caseros",
       colorAccent: "amber",
     },
@@ -143,14 +143,14 @@ const SectionServicios: FC<SectionServiciosProps> = ({
     {
       id: "3",
       icon: <CarIcon />,
-      titulo: "Estacionamiento.",
+      titulo: "Estacionamiento",
       descripcion: "Espacio seguro dentro del predio para tu vehículo",
       colorAccent: "green",
     },
     {
       id: "4",
       icon: <BedIcon />,
-      titulo: "Ropa blanca.",
+      titulo: "Ropa blanca",
       descripcion: "Toallas, sábanas y servicio de limpieza incluidos",
       colorAccent: "amber",
     },
@@ -202,7 +202,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
     "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800",
   ],
   mostrarCTA = true,
-  textoCTA = "Ver fotos",
+  textoCTA = "Ver todos los servicios",
   onClickCTA,
 }) => {
   // Función para obtener color de acento
@@ -220,8 +220,8 @@ const SectionServicios: FC<SectionServiciosProps> = ({
     if (onClickCTA) {
       onClickCTA();
     } else {
-      // Redirigir a la página de galería
-      window.location.href = "/galeria";
+      // Abrir modal de servicios
+      setIsModalOpen(true);
     }
   };
 
@@ -257,14 +257,12 @@ const SectionServicios: FC<SectionServiciosProps> = ({
 
         {/* Bloque de Servicios (selección con íconos y link a modal) */}
         <div className="mb-16 md:mb-20">
-          {/* Título del bloque */}
-
-          {/* Fila única de iconos representativos (sin wrap) — aumenté tamaño y separación pero sin romper a 2 líneas */}
-          <div className="flex items-center justify-center gap-6 md:gap-8 py-6 flex-nowrap overflow-x-auto px-2">
+          {/* Grilla de iconos representativos - UX mejorada: 2 columnas en mobile, 3 en desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:max-w-4xl lg:mx-auto gap-y-8 md:gap-y-12 gap-x-4 py-8 px-2 justify-items-center">
             {servicios.slice(0, 6).map((servicio) => (
               <div
                 key={servicio.id}
-                className="flex flex-col items-center gap-3 w-32 md:w-36 text-center shrink-0"
+                className="flex flex-col items-center gap-3 w-full max-w-[140px] md:max-w-[160px] text-center"
               >
                 <div
                   className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center ${getAccentColor(
@@ -273,26 +271,11 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                 >
                   {servicio.icon || <BedIcon />}
                 </div>
-                <div className="font-montserrat text-sm md:text-base font-medium text-[#1E1E1E] truncate whitespace-nowrap max-w-32 md:max-w-36">
+                <div className="font-montserrat text-sm md:text-base font-medium text-[#1E1E1E] w-full px-1">
                   {servicio.titulo}
                 </div>
               </div>
             ))}
-
-            {/* Ítem '+' como séptimo elemento que abre el modal */}
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              aria-label="Mostrar todos"
-              className="flex flex-col items-center gap-3 w-32 md:w-36 text-center shrink-0"
-            >
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-stone-100 text-stone-700">
-                <PlusIcon />
-              </div>
-              <div className="font-montserrat text-sm md:text-base font-medium text-[#1E1E1E]">
-                Más
-              </div>
-            </button>
           </div>
         </div>
 
@@ -356,168 +339,183 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                 </button>
               </div>
 
-              <div className="p-6 max-h-[70vh] overflow-y-auto space-y-8">
-                {/* 1) INSTALACIONES */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 className="font-montserrat text-lg font-semibold">
-                      INSTALACIONES
-                    </h4>
-                  </div>
-
-                  <div className="flex flex-col gap-3">
-                    {[
-                      { id: "parque", titulo: "Parque", Icon: TreeIcon },
-                      { id: "pileta", titulo: "Pileta", Icon: PoolIcon },
-                      { id: "cochera", titulo: "Cochera", Icon: CarIcon },
-                      { id: "asador", titulo: "Asador", Icon: GrillIcon },
-                    ].map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-4 p-3 bg-white rounded-md shadow-sm w-full"
-                      >
-                        <div className="w-12 h-12 rounded-md bg-stone-100 flex items-center justify-center text-stone-700">
-                          <item.Icon />
-                        </div>
-                        <div className="font-montserrat text-sm font-semibold text-[#1E1E1E]">
-                          {item.titulo}
-                        </div>
+              <div className="p-0 max-h-[80vh] overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:divide-x divide-stone-100 items-start">
+                  {/* Columna 1: Instalaciones y Servicios */}
+                  <div className="p-6 md:p-8 space-y-10">
+                    {/* INSTALACIONES */}
+                    <section>
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#A8936D] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                        INSTALACIONES
+                      </h4>
+                      <div className="space-y-0">
+                        {[
+                          { id: "parque", titulo: "Parque", Icon: TreeIcon },
+                          { id: "pileta", titulo: "Pileta", Icon: PoolIcon },
+                          { id: "cochera", titulo: "Cochera", Icon: CarIcon },
+                          { id: "asador", titulo: "Asador", Icon: GrillIcon },
+                        ].map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-center gap-4 py-2 border-b border-stone-50 last:border-0 group"
+                          >
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#A8936D] transition-colors">
+                              <item.Icon />
+                            </div>
+                            <span className="font-montserrat text-[15px] font-medium text-[#333]">
+                              {item.titulo}
+                            </span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </section>
 
-                {/* 2) EQUIPAMIENTOS */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 className="font-montserrat text-lg font-semibold">
-                      EQUIPAMIENTOS
-                    </h4>
-                  </div>
-
-                  <div className="flex flex-col gap-3">
-                    {[
-                      { id: "tv", titulo: "Televisión", Icon: TVIcon },
-                      {
-                        id: "ac",
-                        titulo: "Aire Acond./Calefacción",
-                        Icon: ACIcon,
-                      },
-                      { id: "fan", titulo: "Ventilador", Icon: FanIcon },
-                      { id: "cocina", titulo: "Cocina", Icon: StoveIcon },
-                      {
-                        id: "heladera",
-                        titulo: "Heladera c/Freezer",
-                        Icon: FridgeIcon,
-                      },
-                      {
-                        id: "micro",
-                        titulo: "Microondas",
-                        Icon: MicrowaveIcon,
-                      },
-                    ].map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-4 p-3 bg-white rounded-md shadow-sm w-full"
-                      >
-                        <div className="w-12 h-12 rounded-md bg-stone-100 flex items-center justify-center text-stone-700">
-                          <item.Icon />
-                        </div>
-                        <div className="font-montserrat text-sm font-semibold text-[#1E1E1E]">
-                          {item.titulo}
-                        </div>
+                    {/* SERVICIOS */}
+                    <section>
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#A8936D] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                        SERVICIOS
+                      </h4>
+                      <div className="space-y-0">
+                        {[
+                          {
+                            id: "limpieza",
+                            titulo: "Servicio de Limpieza",
+                            Icon: CleaningIcon,
+                          },
+                          {
+                            id: "ropa",
+                            titulo: "Ropa de cama y toallas",
+                            Icon: BeddingIcon,
+                          },
+                          {
+                            id: "wifi",
+                            titulo: "WiFi gratuito",
+                            Icon: WifiIcon,
+                          },
+                          {
+                            id: "desayuno",
+                            titulo: "Desayuno seco/artesanal",
+                            Icon: BreakfastIcon,
+                          },
+                        ].map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-center gap-4 py-2 border-b border-stone-50 last:border-0 group"
+                          >
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#A8936D] transition-colors">
+                              <item.Icon />
+                            </div>
+                            <span className="font-montserrat text-[15px] font-medium text-[#333]">
+                              {item.titulo}
+                            </span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 3) SERVICIOS */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 className="font-montserrat text-lg font-semibold">
-                      SERVICIOS
-                    </h4>
+                    </section>
                   </div>
 
-                  <div className="flex flex-col gap-3">
-                    {[
-                      {
-                        id: "limpieza",
-                        titulo: "Servicio de Limpieza",
-                        Icon: CleaningIcon,
-                      },
-                      { id: "ropa", titulo: "Ropa de cama", Icon: BeddingIcon },
-                      {
-                        id: "toallas",
-                        titulo: "Toallas y Toallones",
-                        Icon: TowelsIcon,
-                      },
-                      { id: "wifi", titulo: "WIFI", Icon: WifiIcon },
-                      {
-                        id: "desayuno",
-                        titulo: "Desayuno",
-                        Icon: BreakfastIcon,
-                      },
-                    ].map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-4 p-3 bg-white rounded-md shadow-sm w-full"
-                      >
-                        <div className="w-12 h-12 rounded-md bg-stone-100 flex items-center justify-center text-stone-700">
-                          <item.Icon />
-                        </div>
-                        <div className="font-montserrat text-sm font-semibold text-[#1E1E1E]">
-                          {item.titulo}
-                        </div>
+                  {/* Columna 2: Equipamientos y Seguridad */}
+                  <div className="p-6 md:p-8 space-y-10 bg-stone-50/50 min-h-full">
+                    {/* EQUIPAMIENTOS */}
+                    <section>
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#A8936D] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                        EQUIPAMIENTOS
+                      </h4>
+                      <div className="space-y-0">
+                        {[
+                          {
+                            id: "tv",
+                            titulo: "Televisión / Smart TV",
+                            Icon: TVIcon,
+                          },
+                          {
+                            id: "ac",
+                            titulo: "Aire Acond. Frío/Calor",
+                            Icon: ACIcon,
+                          },
+                          {
+                            id: "fan",
+                            titulo: "Ventilador de techo",
+                            Icon: FanIcon,
+                          },
+                          {
+                            id: "cocina",
+                            titulo: "Cocina completa",
+                            Icon: StoveIcon,
+                          },
+                          {
+                            id: "heladera",
+                            titulo: "Heladera con Freezer",
+                            Icon: FridgeIcon,
+                          },
+                          {
+                            id: "micro",
+                            titulo: "Microondas",
+                            Icon: MicrowaveIcon,
+                          },
+                        ].map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-center gap-4 py-2 border-b border-stone-100 last:border-0 group"
+                          >
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#A8936D] transition-colors">
+                              <item.Icon />
+                            </div>
+                            <span className="font-montserrat text-[15px] font-medium text-[#333]">
+                              {item.titulo}
+                            </span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </section>
 
-                {/* 4) PROTECCIONES */}
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <h4 className="font-montserrat text-lg font-semibold">
-                      PROTECCIONES
-                    </h4>
-                  </div>
-
-                  <div className="flex flex-col gap-3">
-                    {[
-                      {
-                        id: "matafuegos",
-                        titulo: "Matafuegos",
-                        Icon: FireExtIcon,
-                      },
-                      {
-                        id: "luz",
-                        titulo: "Luz de Emergencia",
-                        Icon: EmergencyLightIcon,
-                      },
-                      {
-                        id: "med",
-                        titulo: "Emergencia Médica",
-                        Icon: MedicalIcon,
-                      },
-                      {
-                        id: "dif",
-                        titulo: "Disyuntor diferencial",
-                        Icon: DifferentialIcon,
-                      },
-                      { id: "alarma", titulo: "Alarma", Icon: AlarmIcon },
-                    ].map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-4 p-3 bg-white rounded-md shadow-sm w-full"
-                      >
-                        <div className="w-12 h-12 rounded-md bg-stone-100 flex items-center justify-center text-stone-700">
-                          <item.Icon />
-                        </div>
-                        <div className="font-montserrat text-sm font-semibold text-[#1E1E1E]">
-                          {item.titulo}
-                        </div>
+                    {/* PROTECCIONES */}
+                    <section>
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#A8936D] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                        SEGURIDAD
+                      </h4>
+                      <div className="space-y-0">
+                        {[
+                          {
+                            id: "matafuegos",
+                            titulo: "Matafuegos",
+                            Icon: FireExtIcon,
+                          },
+                          {
+                            id: "luz",
+                            titulo: "Luz de Emergencia",
+                            Icon: EmergencyLightIcon,
+                          },
+                          {
+                            id: "med",
+                            titulo: "Emergencia Médica 24hs",
+                            Icon: FiPlus,
+                          },
+                          {
+                            id: "dif",
+                            titulo: "Disyuntor diferencial",
+                            Icon: DifferentialIcon,
+                          },
+                          {
+                            id: "alarma",
+                            titulo: "Alarma monitoreada",
+                            Icon: AlarmIcon,
+                          },
+                        ].map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-center gap-4 py-2 border-b border-stone-100 last:border-0 group"
+                          >
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#A8936D] transition-colors">
+                              <item.Icon />
+                            </div>
+                            <span className="font-montserrat text-[15px] font-medium text-[#333]">
+                              {item.titulo}
+                            </span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </section>
                   </div>
                 </div>
               </div>
