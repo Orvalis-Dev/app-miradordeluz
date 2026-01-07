@@ -101,8 +101,8 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                     }`}
                   >
                     <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
-                      <div className="mb-3">
-                        <span className="font-montserrat text-[14px] font-semibold text-[#A8936D] tracking-[0.2em] uppercase">
+                      <div className="mb-4">
+                        <span className="inline-block px-3 py-1 bg-stone-100 rounded-full font-montserrat text-[11px] md:text-[12px] font-bold text-[#A8936D] tracking-[0.1em] uppercase">
                           {cabana.etiqueta}
                         </span>
                       </div>
@@ -116,18 +116,18 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                         </a>
                       </h3>
 
-                      <p className="font-montserrat text-[14px] md:text-[16px] font-medium text-[#4A4A4A] leading-relaxed mb-5">
+                      <p className="font-montserrat text-[14px] md:text-[16px] font-medium text-[#4A4A4A] leading-[1.7] mb-6">
                         {cabana.descripcion}
                       </p>
 
                       {/* Amenities en grid 2x2 */}
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-5">
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-6">
                         {cabana.amenities.map((amenity, idx) => (
                           <div
                             key={idx}
-                            className="flex items-center gap-2 text-gray-700 text-sm"
+                            className="flex items-center gap-3 text-gray-700 text-sm"
                           >
-                            <span className="text-amber-600">
+                            <span className="text-[#A8936D]">
                               {getIcon(amenity.icon)}
                             </span>
                             <span className="font-montserrat font-medium">
@@ -137,17 +137,17 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                         ))}
                       </div>
 
-                      <div className="border-t border-gray-200 my-5" />
+                      <div className="border-t border-gray-100 my-6" />
 
-                      <div className="flex justify-end">
+                      <div className="flex justify-center lg:justify-start">
                         <a
                           href={`/reserva-${cabana.slug}`}
-                          className="inline-flex items-center gap-2 text-amber-600 font-bold hover:text-amber-700 transition-colors uppercase tracking-wider text-sm"
+                          className="w-full lg:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-[#A8936D] text-[#A8936D] font-bold hover:bg-[#A8936D] hover:text-white transition-all duration-300 rounded-xl uppercase tracking-widest text-xs group"
                         >
-                          Ver detalles
+                          Ver {cabana.nombre}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
+                            className="h-4 w-4 transform group-hover:translate-x-1 transition-transform"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
