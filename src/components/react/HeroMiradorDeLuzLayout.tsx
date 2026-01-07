@@ -41,7 +41,7 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
               <button className="hover:text-[#8b7355] transition-colors">
                 ESP
               </button>
-              <span className="text-gray-400">/</span>
+              <span className="text-gray-600">/</span>
               <button className="hover:text-[#8b7355] transition-colors">
                 ENG
               </button>
@@ -159,7 +159,7 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
                 <button className="hover:text-[#8b7355] transition-colors">
                   ESP
                 </button>
-                <span className="text-gray-400">/</span>
+                <span className="text-gray-600">/</span>
                 <button className="hover:text-[#8b7355] transition-colors">
                   ENG
                 </button>

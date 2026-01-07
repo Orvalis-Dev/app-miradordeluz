@@ -268,7 +268,7 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
                     className={`w-5 h-5 ${
                       i < Math.round(averageRating)
                         ? "text-yellow-400"
-                        : "text-gray-200"
+                        : "text-gray-300"
                     }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
@@ -277,7 +277,7 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
                   </svg>
                 ))}
               </div>
-              <span className="text-sm text-[#6B6B6B] mt-1">
+              <span className="text-sm text-[#4a4a4a] mt-1 font-medium">
                 {testimonios.length} opiniones
               </span>
             </div>

@@ -17,79 +17,79 @@ interface GalleryImage {
 
 const PREMIUM_IMAGES: GalleryImage[] = [
   {
-    src: "/images/cabana-1/cabana-1-portada.webp",
-    alt: "Vista principal Cabaña 1",
-    title: "Cabaña 1",
+    src: "/images/exterior/exterior-45.webp",
+    alt: "Vista panorámica del complejo",
+    title: "Vista Panorámica",
   },
   {
-    src: "/images/cabana-2/cabana-2-1.webp",
-    alt: "Vista principal Cabaña 2",
-    title: "Cabaña 2",
+    src: "/images/exterior/exterior-40.webp",
+    alt: "Entorno natural y jardines",
+    title: "Nuestro Entorno",
   },
   {
-    src: "/images/cabana-3/cabana-3-1.webp",
-    alt: "Vista principal Cabaña 3",
-    title: "Cabaña 3",
-  },
-  {
-    src: "/images/cabana-4/cabana-4-1.webp",
-    alt: "Vista principal Cabaña 4",
-    title: "Cabaña 4",
-  },
-  {
-    src: "/images/pileta/pileta-2.webp",
-    alt: "Piscina bajo el sol",
-    title: "Nuestra Piscina",
-  },
-  {
-    src: "/images/pileta/pileta-10.webp",
-    alt: "Atardecer en la piscina",
-    title: "Relax total",
-  },
-  {
-    src: "/images/exterior/exterior-1.webp",
-    alt: "Vistas panorámicas de las sierras",
+    src: "/images/exterior/exterior-41.webp",
+    alt: "Vistas a las sierras",
     title: "Vistas Únicas",
   },
   {
+    src: "/images/pileta/pileta-14.webp",
+    alt: "Nuestra piscina bajo el sol",
+    title: "Piscina",
+  },
+  {
     src: "/images/exterior/exterior-12.webp",
-    alt: "Parque y jardines",
-    title: "Nuestros Jardines",
+    alt: "Parque y zonas comunes",
+    title: "Parque",
   },
   {
-    src: "/images/cabana-1/cabana-1-living.webp",
-    alt: "Interior acogedor",
-    title: "Confort Interior",
+    src: "/images/exterior/exterior-16.webp",
+    alt: "Atardecer en el complejo",
+    title: "Atardeceres",
   },
   {
-    src: "/images/cabana-2/cabana-2-10.webp",
-    alt: "Dormitorio de ensueño",
-    title: "Tu Descanso",
+    src: "/images/pileta/pileta-38.webp",
+    alt: "Relax y descanso en la piscina",
+    title: "Relax",
   },
   {
-    src: "/images/exterior/exterior-5.webp",
-    alt: "Vistas desde el complejo",
-    title: "Entorno Natural",
-  },
-  {
-    src: "/images/exterior/exterior-20.webp",
-    alt: "Detalles del complejo",
-    title: "Cada detalle cuenta",
-  },
-  {
-    src: "/images/pileta/pileta-16.webp",
+    src: "/images/pileta/pileta-34.webp",
     alt: "Zona de solárium",
     title: "Solárium",
   },
   {
-    src: "/images/exterior/exterior-15.webp",
-    alt: "Espacios comunes",
-    title: "Naturaleza Pura",
+    src: "/images/pileta/pileta-50.webp",
+    alt: "Detalles de nuestra piscina",
+    title: "Piscina",
   },
   {
-    src: "/images/cabana-3/cabana-3-10.webp",
-    alt: "Detalle interior",
-    title: "Calidez",
+    src: "/images/cabana-3/cabana-3-5.webp",
+    alt: "Interior acogedor Cabaña 3",
+    title: "Cabaña 3",
+  },
+  {
+    src: "/images/cabana-3/cabana-3-30.webp",
+    alt: "Detalles de confort Cabaña 3",
+    title: "Cabaña 3",
+  },
+  {
+    src: "/images/cabana-2/cabana-2-46.webp",
+    alt: "Espacios amplios en Cabaña 2",
+    title: "Cabaña 2",
+  },
+  {
+    src: "/images/cabana-2/cabana-2-42.webp",
+    alt: "Confort y diseño en Cabaña 2",
+    title: "Cabaña 2",
+  },
+  {
+    src: "/images/cabana-2/cabana-2-9.webp",
+    alt: "Dormitorio Cabaña 2",
+    title: "Cabaña 2",
+  },
+  {
+    src: "/images/cabana-1/cabana-1-habitacion-3.webp",
+    alt: "Dormitorio principal Cabaña 1",
+    title: "Cabaña 1",
   },
 ];
 
@@ -224,7 +224,7 @@ export default function Gallery() {
                 <p className="font-montserrat text-lg font-bold">
                   {PREMIUM_IMAGES[selectedIndex].title}
                 </p>
-                <p className="font-montserrat text-xs text-gray-400">
+                <p className="font-montserrat text-xs text-gray-300">
                   {selectedIndex + 1} / {PREMIUM_IMAGES.length}
                 </p>
               </div>

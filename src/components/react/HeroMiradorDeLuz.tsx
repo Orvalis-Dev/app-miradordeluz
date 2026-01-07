@@ -128,7 +128,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
   titulo = "MIRADOR DE LUZ",
   subtitulo = "COMPLEJO DE CABAÑAS",
   descripcion = "Descansá entre la naturaleza y la luz del amanecer",
-  imagenFondo = "/images/hero-principal.jpg",
+  imagenFondo = "/images/hero-principal.webp",
   videoFondo,
   isVerticalVideo = false,
   mostrarNavbar = false,
@@ -217,9 +217,9 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                   alt="Logo Mirador de Luz"
                   className="w-10 h-10 md:w-12 md:h-12 object-contain"
                 />
-                <h1 className="font-montserrat text-2xl md:text-3xl font-bold text-white tracking-wide">
+                <span className="font-montserrat text-2xl md:text-3xl font-bold text-white tracking-wide">
                   Mirador de Luz
-                </h1>
+                </span>
               </div>
 
               {/* Desktop Navigation */}
@@ -298,17 +298,17 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
           {/* Texto central */}
           <div className="text-center mb-8 md:mb-12">
             {/* Subtítulo */}
-            <p className="font-montserrat text-[#A8936D] text-[14px] font-semibold tracking-[0.4em] uppercase mb-4 drop-shadow-sm">
+            <p className="font-montserrat text-amber-500 text-[14px] font-bold tracking-[0.4em] uppercase mb-4 drop-shadow-sm">
               {subtitulo}
             </p>
 
             {/* Título principal */}
-            <h2
+            <h1
               className="font-montserrat text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-white mb-4 md:mb-6
                          drop-shadow-2xl leading-tight"
             >
               {titulo}
-            </h2>
+            </h1>
 
             {/* Descripción (sin la frase "y la luz del amanecer") */}
             <p className="font-montserrat text-white/90 text-[18px] md:text-[20px] font-medium max-w-2xl mx-auto">
@@ -321,7 +321,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             <div className="flex justify-center mb-8">
               <a
                 href="#cabanas"
-                className="font-montserrat inline-flex items-center gap-3 bg-orange-500 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-orange-600 hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300 transform tracking-wider border border-white/20"
+                className="font-montserrat inline-flex items-center gap-3 bg-orange-600 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-orange-700 hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300 transform tracking-wider border border-white/20"
               >
                 <span className="hidden md:inline">
                   Conoce nuestras Cabañas

@@ -3,7 +3,7 @@ import { type FC } from "react";
 // Icono de comillas
 const QuoteIcon: FC = () => (
   <svg
-    className="w-8 h-8 text-gray-200"
+    className="w-8 h-8 text-slate-300"
     fill="currentColor"
     viewBox="0 0 24 24"
   >
@@ -15,7 +15,7 @@ const QuoteIcon: FC = () => (
 const StarIcon: FC<{ filled: boolean }> = ({ filled }) => (
   <svg
     className={`w-4 h-4 md:w-5 md:h-5 ${
-      filled ? "text-yellow-400" : "text-gray-200"
+      filled ? "text-yellow-400" : "text-gray-300"
     }`}
     fill="currentColor"
     viewBox="0 0 20 20"
@@ -137,28 +137,28 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
           {/* Nombre + Info de Review */}
           <div className="flex-1 min-w-0">
             <div className="flex flex-col">
-              <h4 className="font-montserrat text-sm font-semibold text-[#1E1E1E] truncate">
+              <h3 className="font-montserrat text-sm font-semibold text-[#1E1E1E] truncate">
                 {name}
-              </h4>
+              </h3>
               <div className="flex items-center gap-1 flex-wrap">
-                <p className="font-montserrat text-[10px] text-gray-400 font-medium">
+                <p className="font-montserrat text-[10px] text-gray-600 font-medium">
                   {date}
                 </p>
                 {isNew && (
-                  <span className="text-[9px] text-orange-500 font-bold uppercase ring-1 ring-orange-100 px-1 rounded">
+                  <span className="text-[9px] text-orange-600 font-bold uppercase ring-1 ring-orange-100 px-1 rounded">
                     Nueva
                   </span>
                 )}
               </div>
-              <p className="font-montserrat text-[9px] text-gray-400 truncate mt-0.5">
+              <p className="font-montserrat text-[9px] text-gray-600 truncate mt-0.5">
                 {reviewsCount}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col items-end opacity-40">
-            <GoogleIcon className="w-4 h-4" />
-            <span className="text-[7px] font-bold mt-1 uppercase text-right leading-none tracking-tighter">
+          <div className="flex flex-col items-end opacity-70">
+            <GoogleIcon className="w-4 h-4 text-slate-700" />
+            <span className="text-[7px] font-bold mt-1 uppercase text-right leading-none tracking-tighter text-slate-700">
               Verificada
             </span>
           </div>

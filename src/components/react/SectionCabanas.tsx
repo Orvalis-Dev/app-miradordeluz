@@ -50,7 +50,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
         {/* Header con título y descripción */}
         <div className="text-center mb-16 md:mb-20">
           <div className="mb-4">
-            <span className="font-montserrat text-[14px] font-semibold text-[#A8936D] tracking-[0.2em] uppercase">
+            <span className="font-montserrat text-[14px] font-semibold text-[#8a754e] tracking-[0.2em] uppercase">
               Mirador de Luz
             </span>
           </div>
@@ -88,17 +88,31 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                       (window.location.href = `/reserva-${cabana.slug}`)
                     }
                   >
-                    <img
-                      src={cabana.imagenUrl}
-                      alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
-                      className="w-full h-full object-cover transition-all duration-700 brightness-[0.95] contrast-[1.05] saturate-[1.05] group-hover:scale-105 group-hover:brightness-110 group-hover:contrast-100"
-                      loading="lazy"
-                      style={
-                        {
-                          viewTransitionName: `cabin-image-${cabana.id}`,
-                        } as React.CSSProperties
-                      }
-                    />
+                    <picture className="w-full h-full">
+                      {cabana.imagenDesktop || cabana.imagenMobile ? (
+                        <>
+                          <source
+                            media="(min-width: 768px)"
+                            srcSet={cabana.imagenDesktop || cabana.imagenUrl}
+                          />
+                          <source
+                            media="(max-width: 767px)"
+                            srcSet={cabana.imagenMobile || cabana.imagenUrl}
+                          />
+                        </>
+                      ) : null}
+                      <img
+                        src={cabana.imagenUrl}
+                        alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
+                        className="w-full h-full object-cover transition-all duration-700 brightness-[0.95] contrast-[1.05] saturate-[1.05] group-hover:scale-105 group-hover:brightness-110 group-hover:contrast-100"
+                        loading="lazy"
+                        style={
+                          {
+                            viewTransitionName: `cabin-image-${cabana.id}`,
+                          } as React.CSSProperties
+                        }
+                      />
+                    </picture>
                     {/* Overlay de sombra suave (gradiente) para profundidad */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-40" />
 
@@ -114,7 +128,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                   >
                     <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
                       <div className="mb-4">
-                        <span className="inline-block px-3 py-1 bg-stone-100 rounded-full font-montserrat text-[11px] md:text-[12px] font-bold text-[#A8936D] tracking-[0.1em] uppercase">
+                        <span className="inline-block px-3 py-1 bg-stone-100 rounded-full font-montserrat text-[11px] md:text-[12px] font-bold text-[#8a754e] tracking-[0.1em] uppercase">
                           {cabana.etiqueta}
                         </span>
                       </div>
@@ -144,7 +158,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                             key={idx}
                             className="flex items-center gap-3 text-gray-700 text-sm"
                           >
-                            <span className="text-[#A8936D]">
+                            <span className="text-[#8a754e]">
                               {getIcon(amenity.icon)}
                             </span>
                             <span className="font-montserrat font-medium">

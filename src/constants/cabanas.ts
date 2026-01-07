@@ -19,6 +19,8 @@ export type Cabana = {
   descripcion: string;
   amenities: Amenity[];
   imagenUrl: string;
+  imagenDesktop?: string;
+  imagenMobile?: string;
   slug: string;
 };
 
@@ -36,6 +38,8 @@ export const cabanas: Cabana[] = [
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/cabana-1/cabana-1-portada-2.webp",
+    imagenDesktop: "/images/cabins-home/cabana-1-portada-2-desktop.webp",
+    imagenMobile: "/images/cabins-home/cabana-1-portada-2-mobile.webp",
     slug: "cabana-1",
   },
   {
@@ -51,6 +55,8 @@ export const cabanas: Cabana[] = [
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/cabana-2/cabana-2-1.webp",
+    imagenDesktop: "/images/cabins-home/cabana-2-1-desktop.webp",
+    imagenMobile: "/images/cabins-home/cabana-2-1-mobile.webp",
     slug: "cabana-2",
   },
   {
@@ -66,6 +72,8 @@ export const cabanas: Cabana[] = [
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/cabana-3/cabana-3-3.webp",
+    imagenDesktop: "/images/cabins-home/cabana-3-3-desktop.webp",
+    imagenMobile: "/images/cabins-home/cabana-3-3-mobile.webp",
     slug: "cabana-3",
   },
   {
@@ -81,6 +89,8 @@ export const cabanas: Cabana[] = [
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/exterior/exterior-42.webp",
+    imagenDesktop: "/images/cabins-home/exterior-42-desktop.webp",
+    imagenMobile: "/images/cabins-home/exterior-42-mobile.webp",
     slug: "cabana-4",
   },
 ];

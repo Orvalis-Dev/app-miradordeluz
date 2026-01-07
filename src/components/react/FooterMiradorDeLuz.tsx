@@ -77,12 +77,12 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
                 <span className="text-3xl font-bold tracking-tight">
                   Mirador <span className="text-amber-500">de Luz</span>
                 </span>
-                <span className="text-[11px] uppercase tracking-[0.3em] text-gray-400 mt-1 font-semibold">
+                <span className="text-[11px] uppercase tracking-[0.3em] text-gray-300 mt-1 font-semibold">
                   Complejo de Cabañas
                 </span>
               </div>
             </a>
-            <p className="text-gray-400 text-sm font-medium tracking-wide italic">
+            <p className="text-gray-300 text-sm font-medium tracking-wide italic">
               "Tu refugio en las sierras de Córdoba."
             </p>
           </div>
@@ -154,16 +154,16 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
         <div className="mt-12 pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
             {/* Copyright + Dev */}
-            <div className="text-[11px] text-gray-500 font-medium text-center md:text-left tracking-wide">
+            <div className="text-[11px] text-gray-300 font-medium text-center md:text-left tracking-wide">
               © {new Date().getFullYear()} Mirador de Luz. Todos los derechos
               reservados.{" "}
-              <span className="opacity-40 ml-1">
+              <span className="ml-1 text-gray-300">
                 Desarrollado por{" "}
                 <a
                   href="https://orvalis.com.ar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 no-underline hover:underline hover:text-white transition-all duration-300"
+                  className="text-white no-underline hover:underline hover:text-white transition-all duration-300"
                 >
                   Orvalis
                 </a>
@@ -174,7 +174,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
             {/* Legal Link */}
             <button
               onClick={() => setIsTermsOpen(true)}
-              className="text-[11px] text-gray-400 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/10 tracking-widest uppercase px-2"
+              className="text-[11px] text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase px-2"
             >
               Términos y Condiciones
             </button>

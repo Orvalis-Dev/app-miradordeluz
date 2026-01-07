@@ -68,13 +68,13 @@ const ReservaStickyCard: React.FC<ReservaStickyCardProps> = ({
 
       <button
         onClick={handleWhatsAppClick}
-        className="w-full bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 shadow-lg shadow-orange-200 transition-all mb-4 group"
+        className="w-full bg-orange-600 hover:bg-orange-700 active:scale-[0.98] text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 shadow-lg shadow-orange-200 transition-all mb-4 group"
       >
         <WhatsAppIcon className="w-6 h-6 fill-current" />
         <span className="text-base">CONSULTAR POR WHATSAPP</span>
       </button>
 
-      <p className="text-slate-400 text-xs text-center font-medium italic">
+      <p className="text-slate-600 text-xs text-center font-medium italic">
         Respuesta rápida. Hablás directo con los dueños, sin comisiones.
       </p>
     </div>

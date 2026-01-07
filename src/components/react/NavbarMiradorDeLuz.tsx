@@ -181,7 +181,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             {showReservaButton && (
               <a
                 href="/#cabanas"
-                className={`font-montserrat bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white 
+                className={`font-montserrat bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white 
                          px-3 md:px-6 py-1.5 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-[10px] md:text-sm
                          transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 whitespace-nowrap`}
               >
@@ -234,7 +234,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             </a>
             <button
               onClick={cerrarMenu}
-              className="text-white/50 hover:text-white transition-colors p-1"
+              className="text-white/80 hover:text-white transition-colors p-1"
               aria-label="Cerrar menú"
             >
               <IconClose className="w-6 h-6" />
@@ -247,7 +247,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               <a
                 href="/#cabanas"
                 onClick={cerrarMenu}
-                className="group w-full bg-orange-500 hover:bg-orange-600 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/20 transition-all active:scale-[0.98]"
+                className="group w-full bg-orange-600 hover:bg-orange-700 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/20 transition-all active:scale-[0.98]"
               >
                 <span className="uppercase tracking-wider">RESERVAR</span>
                 <svg
@@ -305,10 +305,10 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
                             className={`block py-3 font-montserrat text-sm font-medium transition-colors ${
                               isActive
                                 ? "text-orange-400"
-                                : "text-slate-400 hover:text-orange-400"
+                                : "text-slate-500 hover:text-orange-400"
                             }`}
                           >
-                             Cabaña {n}
+                            Cabaña {n}
                           </a>
                         </li>
                       );
@@ -346,8 +346,8 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
           </nav>
 
           {/* Footer del menú */}
-          <div className="p-6 bg-slate-950/50 border-t border-white/10">
-            <p className="text-xs font-montserrat font-semibold text-slate-500 mb-4 uppercase tracking-widest text-center md:text-left">
+          <div className="p-6 bg-slate-950 border-t border-white/10">
+            <p className="text-xs font-montserrat font-semibold text-slate-300 mb-4 uppercase tracking-widest text-center md:text-left">
               ¿Tienes dudas?
             </p>
 
@@ -386,7 +386,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             <div className="text-center md:text-left">
               <button
                 onClick={abrirTerminos}
-                className="text-[10px] font-montserrat text-slate-500 hover:text-white transition-colors uppercase tracking-[0.2em] font-medium"
+                className="text-[10px] font-montserrat text-slate-300 hover:text-white transition-colors uppercase tracking-[0.2em] font-medium"
               >
                 Términos y Condiciones
               </button>

@@ -223,7 +223,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
                 <p className="font-montserrat text-lg font-bold">
                   {cabanaName}
                 </p>
-                <p className="font-montserrat text-xs text-gray-400">
+                <p className="font-montserrat text-xs text-gray-300">
                   {currentIndex + 1} / {images.length}
                 </p>
               </div>

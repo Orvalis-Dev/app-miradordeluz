@@ -15,6 +15,8 @@ interface SectionUbicacionMiradorDeLuzProps {
   }[];
   fraseDestacada?: string;
   imagenPrincipal?: string;
+  imagenPrincipalDesktop?: string;
+  imagenPrincipalMobile?: string;
   fondoColor?: string;
   /* Clases Tailwind para controlar tamaños/estilos desde quien use el componente */
   tituloClass?: string;
@@ -41,25 +43,27 @@ Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos
   ],
   bulletPoints = [
     {
-      icon: <IconMapPin className="w-5 h-5 text-[#A8936D]" />,
+      icon: <IconMapPin className="w-5 h-5 text-[#8a754e]" />,
       text: "A 5 min de Villa Carlos Paz",
     },
     {
-      icon: <Sparkles className="w-5 h-5 text-[#A8936D]" />,
+      icon: <Sparkles className="w-5 h-5 text-[#8a754e]" />,
       text: "Complejo a estrenar",
     },
     {
-      icon: <IconMountain className="w-5 h-5 text-[#A8936D]" />,
+      icon: <IconMountain className="w-5 h-5 text-[#8a754e]" />,
       text: "Vista a las sierras",
     },
   ],
   fraseDestacada = "¡Te esperamos para que vivas la experiencia Mirador de Luz!",
   imagenPrincipal = "/images/exterior/exterior-30.webp",
+  imagenPrincipalDesktop = "/images/cabins-home/exterior-30-desktop.webp",
+  imagenPrincipalMobile = "/images/cabins-home/exterior-30-mobile.webp",
   fondoColor = "bg-gradient-to-br from-amber-50/30 via-orange-50/20 to-stone-50",
   tituloClass = "font-montserrat text-[28px] md:text-[32px] lg:text-[42px] font-extrabold text-[#1E1E1E] leading-tight",
   parrafoClass = "font-montserrat text-[16px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed",
   fraseClass = "font-montserrat text-[18px] md:text-[22px] font-bold text-[#1E1E1E] italic",
-  etiquetaClass = "font-montserrat text-[10px] md:text-[14px] font-bold text-[#A8936D] tracking-[0.2em] uppercase",
+  etiquetaClass = "font-montserrat text-[10px] md:text-[14px] font-bold text-[#8a754e] tracking-[0.2em] uppercase",
 }) => {
   // Función para resaltar palabras específicas en el texto
   const highlightText = (texto: string, destacados: string[] = []) => {
@@ -80,7 +84,7 @@ Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos
               nuevasPartes.push(
                 <span
                   key={`${fragmento}-${idx}`}
-                  className="font-semibold text-[#A8936D]"
+                  className="font-semibold text-[#8a754e]"
                 >
                   {fragmento}
                 </span>
@@ -125,12 +129,26 @@ Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos
           {/* Columna de Imagen (Orden 2 en Mobile, Orden 2 en Desktop) */}
           <div className="relative w-full lg:w-5/12 lg:order-2 flex items-start group">
             <div className="w-full rounded-[40px] aspect-[4/5] overflow-hidden shadow-2xl transform transition-transform duration-700 hover:scale-[1.02]">
-              <img
-                src={imagenPrincipal}
-                alt="Complejo de Cabañas Mirador de Luz en Villa Santa Cruz del Lago, Córdoba - Vista exterior y entorno natural"
-                className="w-full h-full object-cover object-center"
-                style={{ minHeight: "300px", aspectRatio: "4/5" }}
-              />
+              <picture className="w-full h-full">
+                {imagenPrincipalDesktop && (
+                  <source
+                    media="(min-width: 768px)"
+                    srcSet={imagenPrincipalDesktop}
+                  />
+                )}
+                {imagenPrincipalMobile && (
+                  <source
+                    media="(max-width: 767px)"
+                    srcSet={imagenPrincipalMobile}
+                  />
+                )}
+                <img
+                  src={imagenPrincipal}
+                  alt="Complejo de Cabañas Mirador de Luz en Villa Santa Cruz del Lago, Córdoba - Vista exterior y entorno natural"
+                  className="w-full h-full object-cover object-center"
+                  style={{ minHeight: "300px", aspectRatio: "4/5" }}
+                />
+              </picture>
             </div>
 
             {/* Decoración sutil tras la imagen */}

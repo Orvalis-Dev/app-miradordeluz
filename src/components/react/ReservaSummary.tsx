@@ -131,7 +131,7 @@ Saldo: $${montoSaldo.toLocaleString("es-AR")}
             {cabana?.precio_base
               ? cabana.precio_base.toLocaleString("es-AR")
               : "—"}
-            <span className="text-sm font-normal text-gray-500">/noche</span>
+            <span className="text-sm font-normal text-gray-600">/noche</span>
           </div>
           <div className="mt-1">
             <span className="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-semibold">
@@ -155,7 +155,7 @@ Saldo: $${montoSaldo.toLocaleString("es-AR")}
             {cabana?.precio_base
               ? cabana.precio_base.toLocaleString("es-AR")
               : "—"}
-            <span className="text-sm font-normal text-gray-500">/noche</span>
+            <span className="text-sm font-normal text-gray-600">/noche</span>
           </div>
           <span className="text-xs bg-slate-100 text-slate-700 px-3 py-1 rounded-full font-semibold">
             Hasta {capacidad} huéspedes
@@ -281,7 +281,7 @@ Saldo: $${montoSaldo.toLocaleString("es-AR")}
             </svg>
             Enviar a WhatsApp
           </button>
-          <p className="text-sm text-gray-500 text-center mt-3">
+          <p className="text-sm text-gray-600 text-center mt-3">
             Te responderemos en menos de 1 hora
           </p>
         </div>

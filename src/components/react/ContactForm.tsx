@@ -240,7 +240,7 @@ export default function ContactForm() {
           <div className="space-y-2">
             <label
               htmlFor="nombre"
-              className="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest px-1"
+              className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
             >
               Nombre completo
             </label>
@@ -265,7 +265,7 @@ export default function ContactForm() {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest px-1"
+              className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
             >
               Email
             </label>
@@ -291,7 +291,7 @@ export default function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="asunto"
-            className="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest px-1"
+            className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
           >
             Asunto
           </label>
@@ -309,7 +309,7 @@ export default function ContactForm() {
             >
               <span
                 className={
-                  formData.asunto ? "text-slate-900" : "text-slate-400"
+                  formData.asunto ? "text-slate-900" : "text-slate-500"
                 }
               >
                 {formData.asunto
@@ -318,7 +318,7 @@ export default function ContactForm() {
               </span>
               <ChevronDown
                 size={18}
-                className={`text-slate-400 transition-transform duration-300 ${
+                className={`text-slate-500 transition-transform duration-300 ${
                   isSelectOpen ? "rotate-180 text-orange-500" : ""
                 }`}
               />
@@ -366,7 +366,7 @@ export default function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="mensaje"
-            className="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest px-1"
+            className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
           >
             Mensaje
           </label>
@@ -394,7 +394,7 @@ export default function ContactForm() {
               className={`text-[10px] font-bold uppercase tracking-wider ${
                 formData.mensaje.length > 950
                   ? "text-orange-500"
-                  : "text-slate-400"
+                  : "text-slate-500"
               }`}
             >
               {formData.mensaje.length} / 1000
