@@ -1,0 +1,17 @@
+# Permisos para robots (indexadores)
+User-agent: *
+Allow: /
+
+# Bloquear APIs y componentes internos que no son páginas
+Disallow: /api/
+Disallow: /_image
+Disallow: /components/
+Disallow: /admin/
+Disallow: /stats/
+
+# Reglas especificas para bots comunes
+User-agent: Googlebot
+Allow: /
+
+# Sitemap para descubrimiento de contenido
+Sitemap: https://miradordeluz.com/sitemap-index.xml

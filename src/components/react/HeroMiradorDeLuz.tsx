@@ -110,6 +110,8 @@ interface HeroMiradorDeLuzProps {
   subtitulo?: string;
   descripcion?: string;
   imagenFondo?: string;
+  videoFondo?: string;
+  isVerticalVideo?: boolean;
   colorPrimario?: string;
   colorSecundario?: string;
   colorAccent?: string;
@@ -127,6 +129,8 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
   subtitulo = "COMPLEJO DE CABAÑAS",
   descripcion = "Descansá entre la naturaleza y la luz del amanecer",
   imagenFondo = "/images/hero-principal.jpg",
+  videoFondo,
+  isVerticalVideo = false,
   mostrarNavbar = false,
   onSearch,
 }) => {
@@ -157,23 +161,48 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Imagen de fondo */}
-      <div
-        className="absolute inset-0 bg-cover bg-[center_75%] md:bg-center bg-no-repeat transition-all duration-500"
-        style={{ backgroundImage: `url(${imagenFondo})` }}
-        role="img"
-        aria-label="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
-      >
-        {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
+      {/* Fondo (Video o Imagen) */}
+      {videoFondo ? (
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            className={`absolute inset-0 w-full h-full object-cover ${
+              isVerticalVideo ? "lg:scale-[3.2]" : ""
+            }`}
+            src={videoFondo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          />
+          {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
+          <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
+            }}
+          />
+        </div>
+      ) : (
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
-          }}
-        />
-      </div>
+          className="absolute inset-0 bg-cover bg-[center_75%] md:bg-center bg-no-repeat transition-all duration-500"
+          style={{ backgroundImage: `url(${imagenFondo})` }}
+          role="img"
+          aria-label="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
+        >
+          {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
+          <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
+            }}
+          />
+        </div>
+      )}
 
       {/* Contenido */}
       <div className="relative z-10 min-h-screen flex flex-col">

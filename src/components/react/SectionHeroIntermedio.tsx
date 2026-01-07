@@ -9,22 +9,30 @@ interface SectionHeroIntermedioProps {
   accentColor?: string;
   hideNavbar?: boolean; // Nueva prop para controlar si se oculta el navbar
   maxHeight?: string; // Altura máxima cuando está expandido (ej: '75vh', '80vh', '100vh')
+  isVerticalVideo?: boolean;
+  videoMobile?: string;
+  videoDesktop?: string;
 }
 
 const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
   backgroundImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920",
   backgroundVideo,
+  videoMobile,
+  videoDesktop,
   subheading = "CERCA DE TODO",
   title = "Naturaleza & Confort.\nEn el Mirador de la Montaña.",
   overlayOpacity = "medium",
   accentColor = "text-amber-300",
   hideNavbar = true,
   maxHeight = "100vh",
+  isVerticalVideo = false,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoMobileRef = useRef<HTMLVideoElement>(null);
+  const videoDesktopRef = useRef<HTMLVideoElement>(null);
   const [hasPlayed, setHasPlayed] = useState(false);
 
   // Mapear opacidad del overlay
@@ -48,12 +56,19 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
             }, 100);
 
             // Reproducir video cuando la sección esté visible
-            if (videoRef.current) {
-              videoRef.current.play().catch((err) => {
-                console.log("Error al reproducir video:", err);
-              });
-              setHasPlayed(true);
-            }
+            const playVideo = (ref: React.RefObject<HTMLVideoElement>) => {
+              if (ref.current) {
+                ref.current.play().catch((err) => {
+                  console.log("Error al reproducir video:", err);
+                });
+              }
+            };
+
+            playVideo(videoRef);
+            playVideo(videoMobileRef);
+            playVideo(videoDesktopRef);
+
+            setHasPlayed(true);
           } else {
             // Solo pausar si el usuario scrollea hacia arriba (sale completamente de la vista)
             // Verificamos si el video ya se reprodujo y si la sección está por encima del viewport
@@ -65,9 +80,16 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
               setIsExpanded(false);
 
               // Pausar video solo cuando sale completamente hacia arriba
-              if (videoRef.current) {
-                videoRef.current.pause();
-              }
+              const pauseVideo = (ref: React.RefObject<HTMLVideoElement>) => {
+                if (ref.current) {
+                  ref.current.pause();
+                }
+              };
+
+              pauseVideo(videoRef);
+              pauseVideo(videoMobileRef);
+              pauseVideo(videoDesktopRef);
+
               setHasPlayed(false);
             }
           }
@@ -123,37 +145,89 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
       ref={sectionRef}
       className={`
         relative overflow-hidden mx-auto
-        transition-all duration-1000 ease-out
+        transition-all ease-out
         ${
           isExpanded
-            ? "w-full rounded-none shadow-none"
-            : "h-[60vh] w-[95%] md:w-[85%] lg:w-[60%] rounded-2xl shadow-2xl"
+            ? "duration-700 md:duration-1000" // Reducción de duración en móvil
+            : "duration-1000"
+        }
+        ${
+          isExpanded
+            ? "w-full rounded-none shadow-none h-[100vh] md:h-[100vh]"
+            : "h-[60vh] w-full md:w-[85%] lg:w-[60%] rounded-none md:rounded-2xl shadow-none md:shadow-2xl"
         }
       `}
       style={{
-        height: isExpanded ? maxHeight : undefined,
-        minHeight: isExpanded ? maxHeight : undefined,
+        // Use inline style only for desktop override if needed, but rely on classes for responsive default
+        height: undefined,
+        minHeight: undefined,
       }}
     >
       {/* Video de fondo o Imagen de fondo */}
-      {backgroundVideo ? (
-        <div className="absolute inset-0">
-          <video
-            id="hero-intermedio-video"
-            ref={videoRef}
-            className={`
-              absolute inset-0 w-full h-full object-cover
-              transition-all duration-1000 ease-out
-              ${isExpanded ? "scale-100" : "scale-110"}
-            `}
-            src={backgroundVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-label="Video del complejo de cabañas y su entorno natural"
-          />
+      {videoMobile || videoDesktop || backgroundVideo ? (
+        <div className="absolute inset-0 overflow-hidden">
+          {videoMobile || videoDesktop ? (
+            <>
+              {videoMobile && (
+                <video
+                  ref={videoMobileRef}
+                  className={`
+                    absolute inset-0 w-full h-full object-cover md:hidden
+                    transition-all duration-1000 ease-out
+                    ${isExpanded ? "scale-[1.3]" : "scale-[1.4]"}
+                  `}
+                  src={videoMobile}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              )}
+              {videoDesktop && (
+                <video
+                  ref={videoDesktopRef}
+                  className={`
+                    absolute inset-0 w-full h-full object-cover hidden md:block
+                    transition-all duration-1000 ease-out
+                    ${isExpanded ? "scale-[3.2]" : "scale-[3.4]"}
+                  `}
+                  src={videoDesktop}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              )}
+            </>
+          ) : (
+            <video
+              id="hero-intermedio-video"
+              ref={videoRef}
+              className={`
+                absolute inset-0 w-full h-full object-cover
+                transition-all duration-1000 ease-out
+                ${
+                  isVerticalVideo
+                    ? isExpanded
+                      ? "scale-100 lg:scale-[3.2]"
+                      : "scale-110 lg:scale-[3.4]"
+                    : isExpanded
+                    ? "scale-100"
+                    : "scale-110"
+                }
+              `}
+              src={backgroundVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label="Video del complejo de cabañas y su entorno natural"
+            />
+          )}
+
           {/* Overlay oscuro */}
           <div
             className={`
