@@ -93,6 +93,11 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                       alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
                       className="w-full h-full object-cover transition-all duration-700 brightness-[0.95] contrast-[1.05] saturate-[1.05] group-hover:scale-105 group-hover:brightness-110 group-hover:contrast-100"
                       loading="lazy"
+                      style={
+                        {
+                          viewTransitionName: `cabin-image-${cabana.id}`,
+                        } as React.CSSProperties
+                      }
                     />
                     {/* Overlay de sombra suave (gradiente) para profundidad */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-40" />
@@ -118,6 +123,11 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                         <a
                           href={`/reserva-${cabana.slug}`}
                           className="hover:text-amber-700 transition-colors"
+                          style={
+                            {
+                              viewTransitionName: `cabin-title-${cabana.id}`,
+                            } as React.CSSProperties
+                          }
                         >
                           {cabana.nombre}
                         </a>

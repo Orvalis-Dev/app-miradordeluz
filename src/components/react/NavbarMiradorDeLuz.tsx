@@ -308,7 +308,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
                                 : "text-slate-400 hover:text-orange-400"
                             }`}
                           >
-                            — Cabaña {n}
+                             Cabaña {n}
                           </a>
                         </li>
                       );

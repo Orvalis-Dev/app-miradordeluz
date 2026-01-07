@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -107,6 +108,7 @@ const schema = JSON.stringify({
   <script type="application/ld+json" set:html={schema} />
 
   <link rel="sitemap" href="/sitemap-index.xml" />
+  <ViewTransitions />
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900 selection:bg-orange-500 selection:text-white">
   <slot />
@@ -143,8 +145,8 @@ const schema = JSON.stringify({
       }
     };
 
-    // Ejecutar al cargar la página
-    window.addEventListener('load', scrollToHash);
+    // Ejecutar al cargar la página (inicial y transiciones)
+    document.addEventListener('astro:page-load', scrollToHash);
     
     // Si el usuario hace clic en un link con hash estando en la misma página
     window.addEventListener('hashchange', scrollToHash);

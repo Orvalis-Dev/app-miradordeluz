@@ -130,7 +130,7 @@ export function GaleriaConNombres({
       {/* Modal Lightbox */}
       {modal.isOpen && currentImage && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/95 z-[10000] flex items-center justify-center p-4"
           onClick={closeModal}
         >
           {/* Botón cerrar */}

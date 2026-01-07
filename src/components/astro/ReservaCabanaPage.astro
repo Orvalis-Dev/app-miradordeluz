@@ -61,6 +61,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
           client:load 
           images={images} 
           cabanaName={cabana.nombre} 
+          cabanaId={cabana.id}
         />
       </div>
 
@@ -72,7 +73,10 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
           
           <!-- Title & Summary -->
           <section>
-            <h1 class="text-3xl md:text-5xl font-montserrat font-bold text-slate-900 mb-6 tracking-tight">
+            <h1 
+              class="text-3xl md:text-5xl font-montserrat font-bold text-slate-900 mb-6 tracking-tight"
+              style={`view-transition-name: cabin-title-${cabana.id};`}
+            >
               {cabana.nombre}
             </h1>
             
@@ -109,7 +113,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">WiFi de cortesía</h3>
+                  <h3 class="font-bold text-slate-900 text-lg">WiFi</h3>
                   <p class="text-slate-500 leading-snug">Conexión estable en todo el complejo para tu trabajo o relax.</p>
                 </div>
               </div>
