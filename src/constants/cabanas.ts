@@ -20,9 +20,6 @@ export type Cabana = {
   amenities: Amenity[];
   imagenUrl: string;
   slug: string;
-  capacity?: number;
-  precio_base?: number;
-  images?: string[];
 };
 
 export const cabanas: Cabana[] = [
@@ -40,7 +37,6 @@ export const cabanas: Cabana[] = [
     ],
     imagenUrl: "/images/cabana-1/cabana-1-portada-3.webp",
     slug: "cabana-1",
-    capacity: 4,
   },
   {
     id: "2",
@@ -56,7 +52,6 @@ export const cabanas: Cabana[] = [
     ],
     imagenUrl: "/images/cabana-2/cabana-2-1.webp",
     slug: "cabana-2",
-    capacity: 6,
   },
   {
     id: "3",
@@ -72,7 +67,6 @@ export const cabanas: Cabana[] = [
     ],
     imagenUrl: "/images/cabana-3/cabana-3-3.webp",
     slug: "cabana-3",
-    capacity: 4,
   },
   {
     id: "4",
@@ -88,6 +82,5 @@ export const cabanas: Cabana[] = [
     ],
     imagenUrl: "/images/exterior/exterior-42.webp",
     slug: "cabana-4",
-    capacity: 6,
   },
 ];
