@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import NavbarMiradorDeLuz from "../components/react/NavbarMiradorDeLuz";
 import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
+import ContactForm from "../components/react/ContactForm";
 
 // Datos de contacto
 const contactInfo = {
@@ -141,76 +142,7 @@ const mapCoords = {
           </div>
 
           <!-- Columna Derecha: Contact Form -->
-          <div
-            class="bg-white p-8 md:p-10 rounded-[24px] shadow-2xl border border-gray-100/50"
-          >
-            <h2
-              class="font-montserrat text-3xl font-semibold mb-8 text-slate-900 tracking-tight"
-            >
-              Envíanos un mensaje
-            </h2>
-
-            <form class="space-y-5">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label for="nombre" class="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest mb-2 px-1">Nombre completo</label>
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    required
-                    class="font-montserrat w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none"
-                    placeholder="Tu nombre"
-                  />
-                </div>
-                <div>
-                  <label for="email" class="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest mb-2 px-1">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    class="font-montserrat w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label for="asunto" class="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest mb-2 px-1">Asunto</label>
-                <select
-                  id="asunto"
-                  name="asunto"
-                  required
-                  class="font-montserrat w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none"
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="consulta">Consulta general</option>
-                  <option value="reserva">Información sobre reserva</option>
-                  <option value="disponibilidad">Consultar disponibilidad</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="mensaje" class="font-montserrat block text-xs font-extrabold text-slate-500 uppercase tracking-widest mb-2 px-1">Mensaje</label>
-                <textarea
-                  id="mensaje"
-                  name="mensaje"
-                  rows="4"
-                  required
-                  class="font-montserrat w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none resize-none"
-                  placeholder="¿En qué te podemos ayudar?"></textarea>
-              </div>
-
-              <button
-                type="submit"
-                class="font-montserrat w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-[0.2em] transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-1 transform"
-              >
-                ENVIAR MENSAJE
-              </button>
-            </form>
-          </div>
+          <ContactForm client:load />
         </div>
       </div>
     </section>
@@ -237,7 +169,7 @@ const mapCoords = {
         >
           <iframe
             src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13619.6!2d${mapCoords.lng}!3d${mapCoords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d65f0c8772fbd%3A0x4d7f1d8348462d0a!2sMirador%20de%20Luz!5e0!3m2!1ses!2sar!4v1702000000000!5m2!1ses!2sar`}
-            class="w-full h-[450px] md:h-[500px]"
+            class="w-full h-112.5 md:h-125"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
