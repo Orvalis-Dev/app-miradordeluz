@@ -27,7 +27,7 @@ Navbar estático y responsive que permanece visible durante todo el scroll con c
 El componente ya está incluido en el proyecto:
 
 ```tsx
-src/components/react/NavbarMiradorDeLuz.tsx
+src / components / react / NavbarMiradorDeLuz.tsx;
 ```
 
 ---
@@ -44,7 +44,7 @@ import NavbarMiradorDeLuz from "../components/react/NavbarMiradorDeLuz";
 <Layout title="Mi Página">
   <!-- Navbar fijo con efecto transparente -->
   <NavbarMiradorDeLuz client:load transparente={true} />
-  
+
   <!-- Resto del contenido -->
   <main>
     <!-- ... -->
@@ -79,7 +79,8 @@ Controla si el navbar comienza transparente y se vuelve sólido al hacer scroll.
 
 El navbar detecta automáticamente qué sección está visible y cambia sus colores para adaptarse al fondo:
 
-#### 🏔️ Hero Section (Fondo Oscuro)
+#### Hero Section (Fondo Oscuro)
+
 ```
 Navbar: Transparente → Negro semi-transparente
 Texto: Blanco
@@ -88,6 +89,7 @@ Iconos: Fondo blanco semi-transparente
 ```
 
 #### 📍 Ubicación Section (Fondo Blanco)
+
 ```
 Navbar: Blanco semi-transparente con blur
 Texto: Gris oscuro
@@ -96,6 +98,7 @@ Iconos: Fondo gris claro
 ```
 
 #### 🎥 Hero Intermedio (Fondo Video Oscuro)
+
 ```
 Navbar: Negro semi-transparente con blur
 Texto: Blanco
@@ -104,6 +107,7 @@ Iconos: Fondo blanco semi-transparente
 ```
 
 #### 🏠 Cabañas Section (Fondo Blanco)
+
 ```
 Navbar: Blanco semi-transparente con blur
 Texto: Gris oscuro
@@ -112,6 +116,7 @@ Iconos: Fondo gris claro
 ```
 
 #### ⭐ Testimonios Section (Fondo Stone)
+
 ```
 Navbar: Stone claro con blur
 Texto: Gris oscuro
@@ -133,21 +138,21 @@ Iconos: Fondo gris claro
 
 ```typescript
 const estilosPorSeccion: Record<string, SeccionEstilo> = {
-  'hero-section': {
-    background: 'bg-transparent', // o bg-black/80 después de scroll
-    textColor: 'text-white',
-    hoverColor: 'hover:text-amber-300',
-    logoColor: 'text-white',
-    socialBg: 'bg-white/10 hover:bg-white/20',
-    buttonGradient: 'from-amber-500 to-orange-500',
+  "hero-section": {
+    background: "bg-transparent", // o bg-black/80 después de scroll
+    textColor: "text-white",
+    hoverColor: "hover:text-amber-300",
+    logoColor: "text-white",
+    socialBg: "bg-white/10 hover:bg-white/20",
+    buttonGradient: "from-amber-500 to-orange-500",
   },
-  'ubicacion-section': {
-    background: 'bg-white/90 backdrop-blur-md shadow-md',
-    textColor: 'text-gray-800',
-    hoverColor: 'hover:text-amber-600',
-    logoColor: 'text-gray-900',
-    socialBg: 'bg-gray-200 hover:bg-gray-300',
-    buttonGradient: 'from-amber-500 to-orange-500',
+  "ubicacion-section": {
+    background: "bg-white/90 backdrop-blur-md shadow-md",
+    textColor: "text-gray-800",
+    hoverColor: "hover:text-amber-600",
+    logoColor: "text-gray-900",
+    socialBg: "bg-gray-200 hover:bg-gray-300",
+    buttonGradient: "from-amber-500 to-orange-500",
   },
   // ... más secciones
 };
@@ -181,7 +186,7 @@ const handleScroll = () => {
   // Para cada sección, calcula la distancia al navbar
   const rect = elemento.getBoundingClientRect();
   const distancia = Math.abs(rect.top - 80); // 80px = altura del navbar
-  
+
   // Encuentra la sección más cercana que esté visible
   if (rect.top < window.innerHeight && rect.bottom > 80) {
     // Esta sección está visible
@@ -190,12 +195,14 @@ const handleScroll = () => {
 ```
 
 **Ventajas sobre Intersection Observer:**
+
 - ✅ Funciona perfectamente al hacer scroll hacia arriba
 - ✅ Funciona perfectamente al hacer scroll hacia abajo
 - ✅ Detecta siempre la sección más cercana al navbar
 - ✅ Sin comportamientos extraños en los límites entre secciones
 
 **Cómo funciona:**
+
 1. En cada scroll, revisa todas las secciones
 2. Calcula qué sección está más cerca de la posición 80px (debajo del navbar)
 3. Solo considera secciones que están visibles en viewport
@@ -207,11 +214,11 @@ El navbar detecta automáticamente estas secciones:
 
 ```typescript
 const secciones = [
-  'hero-section',
-  'ubicacion-section',
-  'hero-intermedio-section',
-  'cabanas-section',
-  'testimonios',
+  "hero-section",
+  "ubicacion-section",
+  "hero-intermedio-section",
+  "cabanas-section",
+  "testimonios",
 ];
 ```
 
@@ -229,7 +236,7 @@ El navbar ahora incluye un **menú hamburguesa** que abre un drawer lateral desd
 
 ```
 ┌─────────────────────────────┐
-│  🏔️ Mirador de Luz      [X] │  ← Header con logo y botón cerrar
+│  Mirador de Luz      [X] │  ← Header con logo y botón cerrar
 ├─────────────────────────────┤
 │                             │
 │  HOME                       │  ← Links de navegación
@@ -254,11 +261,13 @@ El navbar ahora incluye un **menú hamburguesa** que abre un drawer lateral desd
 ### Comportamiento del Menú:
 
 1. **Al hacer click en el menú hamburguesa:**
+
    - El drawer se desliza desde la derecha
    - Aparece un overlay oscuro detrás
    - El scroll del body se bloquea
 
 2. **Para cerrar el menú:**
+
    - Click en el botón X del header
    - Click en el overlay oscuro
    - Click en cualquier link de navegación
@@ -307,21 +316,21 @@ Edita el componente `NavbarMiradorDeLuz.tsx`:
 
 ```tsx
 // Color del fondo al scrollear
-className="bg-black/80 backdrop-blur-md"
+className = "bg-black/80 backdrop-blur-md";
 // Cambiar a:
-className="bg-slate-900/90 backdrop-blur-md"
+className = "bg-slate-900/90 backdrop-blur-md";
 
 // Color hover de los links
-className="hover:text-amber-300"
+className = "hover:text-amber-300";
 // Cambiar a:
-className="hover:text-blue-400"
+className = "hover:text-blue-400";
 ```
 
 ### Cambiar Logo
 
 ```tsx
 <a href="/" className="...">
-  🏔️ Mirador de Luz
+  Mirador de Luz
 </a>
 ```
 
@@ -337,7 +346,7 @@ Reemplazar con imagen:
 
 ```tsx
 // En useEffect
-setScrolled(window.scrollY > 50);  // Activa después de 50px
+setScrolled(window.scrollY > 50); // Activa después de 50px
 
 // Cambiar a 100px
 setScrolled(window.scrollY > 100);
@@ -393,7 +402,7 @@ setScrolled(window.scrollY > 100);
 El navbar tiene `z-50` para asegurar que siempre esté por encima del contenido:
 
 ```tsx
-className="fixed top-0 left-0 right-0 z-50"
+className = "fixed top-0 left-0 right-0 z-50";
 ```
 
 Jerarquía de z-index:
@@ -434,7 +443,7 @@ Secciones: z-1 a z-11
 
 ```
 ┌────────────────────────────────────────────┐
-│ 🏔️ Mirador    Cabañas  Contacto  [Reservas]│  ← Transparente
+│ Mirador    Cabañas  Contacto  [Reservas]│  ← Transparente
 └────────────────────────────────────────────┘
 ```
 
@@ -442,7 +451,7 @@ Secciones: z-1 a z-11
 
 ```
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ 🏔️ Mirador    Cabañas  Contacto  [Reservas]┃  ← Negro blur + sombra
+┃ Mirador    Cabañas  Contacto  [Reservas]┃  ← Negro blur + sombra
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
@@ -453,6 +462,7 @@ Secciones: z-1 a z-11
 ### El navbar no cambia de color
 
 **Solución:**
+
 - Verificar que las secciones tengan los IDs correctos:
   - `hero-section`
   - `ubicacion-section`
@@ -465,6 +475,7 @@ Secciones: z-1 a z-11
 ### El navbar tiene colores incorrectos al hacer scroll hacia arriba
 
 **Problema resuelto en v2.1.0:**
+
 - Anteriormente usaba Intersection Observer que no detectaba bien al scrollear hacia arriba
 - Ahora usa `getBoundingClientRect()` que detecta la sección más cercana al navbar
 - Funciona perfectamente en ambas direcciones de scroll
@@ -472,6 +483,7 @@ Secciones: z-1 a z-11
 ### El menú lateral no se abre
 
 **Solución:**
+
 - Verificar que el componente tiene `client:load` en Astro
 - Revisar console por errores de JavaScript
 - Verificar que el z-index del menú (70) y overlay (60) son mayores que otros elementos
@@ -479,12 +491,14 @@ Secciones: z-1 a z-11
 ### El scroll del body no se bloquea cuando el menú está abierto
 
 **Ya está implementado:**
+
 - El navbar automáticamente agrega `overflow: hidden` al body cuando el menú se abre
 - Se restaura al cerrar el menú
 
 ### Los links internos no funcionan
 
 **Solución:**
+
 - Verificar que los IDs existen en la página (`#cabanas`, `#testimonios`, etc.)
 - Agregar scroll-behavior en CSS global:
 
@@ -497,6 +511,7 @@ html {
 ### El navbar cubre contenido
 
 **Solución:**
+
 - Agregar padding-top al contenido principal:
 
 ```astro
@@ -580,6 +595,7 @@ html {
 ## 📝 Changelog
 
 ### v3.0.0 (20/11/2024)
+
 - ✅ Menú hamburguesa con drawer lateral (desliza desde la derecha)
 - ✅ Eliminados links del navbar principal
 - ✅ Overlay oscuro al abrir menú
@@ -590,18 +606,20 @@ html {
 - ✅ Diseño responsive idéntico en mobile y desktop
 
 ### v2.1.0 (20/11/2024)
+
 - ✅ Reemplazado Intersection Observer por getBoundingClientRect
 - ✅ Corregido comportamiento al hacer scroll hacia arriba
 - ✅ Detección más precisa de la sección activa
 - ✅ Sin superposiciones ni colores incorrectos
 
 ### v2.0.0 (20/11/2024)
+
 - ✅ Colores adaptativos según sección de fondo
 - ✅ 5 esquemas de colores predefinidos
 - ✅ Transiciones suaves de 500ms
 
 ### v1.0.0 (20/11/2024)
+
 - ✅ Navbar fijo con efecto transparente
 - ✅ Responsive design
 - ✅ Links de navegación con scroll suave
-

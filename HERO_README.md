@@ -1,4 +1,4 @@
-# 🏔️ Hero Mirador de Luz - Documentación
+# Hero Mirador de Luz - Documentación
 
 ## Componente React Hero para Complejo de Cabañas
 
@@ -9,6 +9,7 @@ Componente completo y reutilizable para la sección Hero de un sitio web de caba
 ## 📦 Instalación
 
 El componente ya está creado en:
+
 ```
 src/components/react/HeroMiradorDeLuz.tsx
 ```
@@ -40,30 +41,30 @@ http://localhost:4321/ejemplo-hero
 
 ## ⚙️ Props Configurables
 
-| Prop | Tipo | Default | Descripción |
-|------|------|---------|-------------|
-| `titulo` | string | "MIRADOR DE LUZ" | Título principal grande |
-| `subtitulo` | string | "COMPLEJO DE CABAÑAS" | Subtítulo pequeño superior |
-| `descripcion` | string | "Descansá entre..." | Frase descriptiva |
-| `imagenFondo` | string | URL de Unsplash | URL de la imagen de fondo |
-| `colorPrimario` | string | "emerald" | Color principal (Tailwind) |
-| `colorSecundario` | string | "amber" | Color secundario |
-| `colorAccent` | string | "orange" | Color de acento |
-| `onSearch` | function | undefined | Callback al buscar reserva |
+| Prop              | Tipo     | Default               | Descripción                |
+| ----------------- | -------- | --------------------- | -------------------------- |
+| `titulo`          | string   | "MIRADOR DE LUZ"      | Título principal grande    |
+| `subtitulo`       | string   | "COMPLEJO DE CABAÑAS" | Subtítulo pequeño superior |
+| `descripcion`     | string   | "Descansá entre..."   | Frase descriptiva          |
+| `imagenFondo`     | string   | URL de Unsplash       | URL de la imagen de fondo  |
+| `colorPrimario`   | string   | "emerald"             | Color principal (Tailwind) |
+| `colorSecundario` | string   | "amber"               | Color secundario           |
+| `colorAccent`     | string   | "orange"              | Color de acento            |
+| `onSearch`        | function | undefined             | Callback al buscar reserva |
 
 ---
 
 ## 📝 Ejemplo con Props Personalizadas
 
 ```tsx
-<HeroMiradorDeLuz 
+<HeroMiradorDeLuz
   client:load
   titulo="TU REFUGIO EN LAS SIERRAS"
   subtitulo="CABAÑAS DE MONTAÑA"
   descripcion="Experimentá la naturaleza en su máximo esplendor"
   imagenFondo="/images/hero-custom.jpg"
   onSearch={(datos) => {
-    console.log('Reserva solicitada:', datos);
+    console.log("Reserva solicitada:", datos);
     // Redirigir o abrir modal
     window.location.href = `/reservar?adultos=${datos.adultos}&ninos=${datos.ninos}`;
   }}
@@ -75,6 +76,7 @@ http://localhost:4321/ejemplo-hero
 ## 🎨 Características del Diseño
 
 ### Navbar Superior
+
 - ✅ Logo "Mirador de Luz"
 - ✅ Selector de idioma (ESP/ENG)
 - ✅ Botón "Reservas" con gradiente naranja/amarillo
@@ -83,12 +85,14 @@ http://localhost:4321/ejemplo-hero
 - ✅ Responsive: simplificado en móvil
 
 ### Contenido Central
+
 - ✅ Subtítulo en mayúsculas con tracking ancho (color amarillo)
 - ✅ Título principal muy grande y bold (blanco)
 - ✅ Descripción/frase descriptiva (blanco suave)
 - ✅ Animaciones y transiciones suaves
 
 ### Buscador de Reservas
+
 - ✅ Contenedor blanco con bordes redondeados
 - ✅ Sombra elegante
 - ✅ **4 secciones**:
@@ -100,6 +104,7 @@ http://localhost:4321/ejemplo-hero
 - ✅ Layout vertical en mobile
 
 ### Paleta de Colores
+
 - 🟢 **Verde (Emerald)**: Botones principales, detalles naturales
 - 🟡 **Amarillo (Amber)**: Highlights, subtítulos, hover states
 - 🟠 **Naranja (Orange)**: Botón de reservas, gradientes cálidos
@@ -111,16 +116,19 @@ http://localhost:4321/ejemplo-hero
 ## 📱 Responsividad
 
 ### Desktop (> 1024px)
+
 - Navbar completo con todos los elementos
 - Buscador horizontal con separadores verticales
 - Título muy grande (text-8xl)
 
 ### Tablet (768px - 1024px)
+
 - Navbar simplificado
 - Buscador horizontal compacto
 - Título grande (text-7xl)
 
 ### Mobile (< 768px)
+
 - Solo logo y hamburguesa en navbar
 - Buscador vertical con secciones apiladas
 - Botón "Reservar" full-width
@@ -133,11 +141,11 @@ http://localhost:4321/ejemplo-hero
 ### Estados Internos del Componente
 
 ```typescript
-const [adultos, setAdultos] = useState(2);     // Contador de adultos (min: 1)
-const [ninos, setNinos] = useState(0);         // Contador de niños (min: 0)
-const [idioma, setIdioma] = useState('ESP');   // Idioma actual
-const [fechaInicio, setFechaInicio] = useState('');  // Check-in
-const [fechaFin, setFechaFin] = useState('');        // Check-out
+const [adultos, setAdultos] = useState(2); // Contador de adultos (min: 1)
+const [ninos, setNinos] = useState(0); // Contador de niños (min: 0)
+const [idioma, setIdioma] = useState("ESP"); // Idioma actual
+const [fechaInicio, setFechaInicio] = useState(""); // Check-in
+const [fechaFin, setFechaFin] = useState(""); // Check-out
 ```
 
 ### Handler de Búsqueda
@@ -152,9 +160,9 @@ const handleSearch = () => {
     adultos,
     ninos,
   };
-  
-  console.log('Búsqueda de reserva:', datos);
-  
+
+  console.log("Búsqueda de reserva:", datos);
+
   if (onSearch) {
     onSearch(datos);
   }
@@ -168,13 +176,11 @@ const handleSearch = () => {
 ### Cambiar la Imagen de Fondo
 
 ```tsx
-<HeroMiradorDeLuz 
-  client:load
-  imagenFondo="/images/mi-cabana.jpg"
-/>
+<HeroMiradorDeLuz client:load imagenFondo="/images/mi-cabana.jpg" />
 ```
 
 **Imágenes recomendadas:**
+
 - Resolución mínima: 1920x1080px
 - Formato: JPG o WebP optimizado
 - Temática: Naturaleza, bosque, montaña, lago
@@ -182,28 +188,28 @@ const handleSearch = () => {
 ### Integrar con un Sistema de Reservas Real
 
 ```tsx
-<HeroMiradorDeLuz 
+<HeroMiradorDeLuz
   client:load
   onSearch={async (datos) => {
     try {
       // Llamar a tu API
-      const response = await fetch('/api/verificar-disponibilidad', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/verificar-disponibilidad", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos),
       });
-      
+
       const resultado = await response.json();
-      
+
       if (resultado.disponible) {
         // Redirigir a checkout
         window.location.href = `/checkout?reserva=${resultado.id}`;
       } else {
         // Mostrar mensaje de no disponibilidad
-        alert('Lo sentimos, no hay disponibilidad para esas fechas');
+        alert("Lo sentimos, no hay disponibilidad para esas fechas");
       }
     } catch (error) {
-      console.error('Error al buscar disponibilidad:', error);
+      console.error("Error al buscar disponibilidad:", error);
     }
   }}
 />
@@ -214,6 +220,7 @@ const handleSearch = () => {
 Actualmente el componente usa colores de Tailwind CSS. Para cambiar:
 
 **Opción 1**: Editar el archivo directamente y cambiar las clases:
+
 - `emerald-600` → `teal-600`
 - `amber-300` → `yellow-300`
 - `orange-500` → `red-500`
@@ -226,13 +233,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'mirador-verde': '#047857',
-        'mirador-amarillo': '#FBBF24',
-        'mirador-naranja': '#F59E0B',
-      }
-    }
-  }
-}
+        "mirador-verde": "#047857",
+        "mirador-amarillo": "#FBBF24",
+        "mirador-naranja": "#F59E0B",
+      },
+    },
+  },
+};
 ```
 
 ---
@@ -248,8 +255,8 @@ npm install react-icons
 ```
 
 ```tsx
-import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import { MdLocationOn } from 'react-icons/md';
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
 ```
 
 ### Opción 2: Mantener los SVG inline (ya implementado)
@@ -277,6 +284,7 @@ El componente incluye:
 **Problema**: Pantalla en blanco o error de hidratación
 
 **Solución**:
+
 ```astro
 <!-- Asegúrate de usar client:load -->
 <HeroMiradorDeLuz client:load />
@@ -287,6 +295,7 @@ El componente incluye:
 **Problema**: Las clases de Tailwind no se generan
 
 **Solución**:
+
 1. Verifica que Tailwind esté configurado
 2. Reinicia el servidor de desarrollo
 3. Limpia cache: `rm -rf .astro`
@@ -296,6 +305,7 @@ El componente incluye:
 **Problema**: URL de imagen inválida o CORS
 
 **Solución**:
+
 - Usa imágenes locales en `/public/images/`
 - O URLs públicas de servicios como Unsplash
 - Verifica que la URL sea accesible
@@ -311,6 +321,7 @@ El componente incluye:
 - [Pixabay](https://pixabay.com/images/search/cabin/)
 
 **Búsquedas recomendadas:**
+
 - "mountain cabin"
 - "forest house"
 - "nature lodge"
@@ -339,15 +350,18 @@ Beige: #FEF3C7 (amber-50)
 ## 🚀 Próximos Pasos
 
 1. **Ver el componente en acción**:
+
    ```
    http://localhost:4321/ejemplo-hero
    ```
 
 2. **Reemplazar la imagen de fondo**:
+
    - Agrega tu imagen en `/public/images/hero-mirador.jpg`
    - Actualiza la prop: `imagenFondo="/images/hero-mirador.jpg"`
 
 3. **Integrar con tu API de reservas**:
+
    - Implementa el callback `onSearch`
    - Conecta con tu backend Laravel
 
@@ -365,5 +379,3 @@ Componente creado para el proyecto Mirador de Luz.
 
 **Última actualización**: 19/11/2024  
 **Versión**: 1.0.0
-
-

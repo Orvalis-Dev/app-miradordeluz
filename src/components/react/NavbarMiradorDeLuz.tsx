@@ -7,6 +7,8 @@ import {
   IconWhatsApp as WhatsAppIcon,
   IconMapPin as LocationIcon,
   IconMenu as MenuIcon,
+  IconMountain,
+  IconClose,
 } from "./ui/Icons";
 
 // Tipos para los estilos de sección
@@ -303,13 +305,54 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
           <div className="flex items-center">
             <a
               href="/"
-              className={`font-montserrat text-xl md:text-2xl font-bold ${estiloActual.logoColor} tracking-wide ${estiloActual.hoverColor} transition-colors`}
+              className={`flex items-center gap-2 font-montserrat text-xl md:text-2xl font-bold ${estiloActual.logoColor} tracking-wide ${estiloActual.hoverColor} transition-all group`}
             >
-              🏔️ Mirador de Luz
+              <IconMountain className="w-6 h-6 md:w-8 md:h-8 text-amber-500 group-hover:scale-110 transition-transform" />
+              <span>Mirador de Luz</span>
             </a>
           </div>
 
-          {/* Desktop/Mobile Navigation - Siempre igual */}
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8 mx-4">
+            <a
+              href="/"
+              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+            >
+              Inicio
+            </a>
+            <a
+              href="#cabanas"
+              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+            >
+              Cabañas
+            </a>
+            <a
+              href="#servicios"
+              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+            >
+              Servicios
+            </a>
+            <a
+              href="/galeria"
+              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+            >
+              Galería
+            </a>
+            <a
+              href="#ubicacion"
+              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+            >
+              Ubicación
+            </a>
+            <a
+              href="/contacto"
+              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+            >
+              Contacto
+            </a>
+          </div>
+
+          {/* Desktop/Mobile Navigation Right - Siempre igual */}
           <div className="flex items-center gap-3 md:gap-4">
             {/* Botón Reservar (redirecciona a sección Nuestras Cabañas) */}
             <a
@@ -361,7 +404,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             {/* Menú Hamburguesa */}
             <button
               onClick={toggleMenu}
-              className={`${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
+              className={`lg:hidden ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
               aria-label="Abrir menú"
             >
               <MenuIcon />
@@ -386,19 +429,36 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
       >
         <div className="flex flex-col h-full">
           {/* Header del menú con logo y botón cerrar */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <div className="flex items-center justify-center flex-1">
-              <span className="font-montserrat text-xl font-bold text-gray-900">
-                🏔️ Mirador de Luz
+          <div className="flex items-center justify-between p-5 border-b border-gray-100">
+            <a
+              href="/"
+              className="flex items-center gap-2"
+              onClick={cerrarMenu}
+            >
+              <IconMountain className="w-6 h-6 text-amber-500" />
+              <span className="font-montserrat text-lg font-bold text-gray-900 tracking-tight">
+                Mirador de Luz
               </span>
-            </div>
+            </a>
             <button
               onClick={cerrarMenu}
-              className="text-gray-500 hover:text-gray-700 transition-colors"
+              className="text-gray-400 hover:text-gray-600 transition-colors p-1"
               aria-label="Cerrar menú"
             >
+              <IconClose className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Acción Principal (Botón Reserva) */}
+          <div className="px-5 pt-6 pb-2">
+            <a
+              href="/#cabanas"
+              onClick={cerrarMenu}
+              className="group w-full bg-orange-500 hover:bg-orange-600 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-200 transition-all active:scale-[0.98]"
+            >
+              <span>RESERVAR AHORA</span>
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5 transition-transform group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -407,33 +467,33 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
                 />
               </svg>
-            </button>
+            </a>
           </div>
 
           {/* Links de navegación */}
-          <nav className="flex-1 overflow-y-auto py-6 px-4">
-            <ul className="space-y-4">
+          <nav className="flex-1 overflow-y-auto pt-4 px-5">
+            <ul className="space-y-1">
               <li>
                 <a
                   href="/"
                   onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-semibold text-gray-900 hover:text-amber-600 transition-colors block"
+                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >
-                  HOME
+                  Inicio
                 </a>
               </li>
               <li>
                 <a
                   href="#cabanas"
                   onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-semibold text-gray-900 hover:text-amber-600 transition-colors flex items-center justify-between"
+                  className="font-montserrat py-4 text-lg font-bold text-gray-900 hover:text-orange-500 transition-colors flex items-center justify-between border-b border-gray-50 uppercase tracking-wider"
                 >
-                  CABAÑAS
+                  Nuestras Cabañas
                   <svg
-                    className="w-5 h-5"
+                    className="w-5 h-5 text-gray-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -451,67 +511,85 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
                 <a
                   href="#servicios"
                   onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-medium text-gray-600 hover:text-amber-600 transition-colors block"
+                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >
-                  SERVICIOS
+                  Servicios
                 </a>
               </li>
               <li>
                 <a
                   href="/galeria"
                   onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-medium text-gray-600 hover:text-amber-600 transition-colors block"
+                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >
-                  GALERÍA
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#testimonios"
-                  onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-medium text-gray-600 hover:text-amber-600 transition-colors block"
-                >
-                  TESTIMONIOS
+                  Galería
                 </a>
               </li>
               <li>
                 <a
                   href="#ubicacion"
                   onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-medium text-gray-600 hover:text-amber-600 transition-colors block"
+                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >
-                  UBICACIÓN
+                  Ubicación
                 </a>
               </li>
               <li>
                 <a
                   href="/contacto"
                   onClick={cerrarMenu}
-                  className="font-montserrat text-lg font-medium text-gray-600 hover:text-amber-600 transition-colors block"
+                  className="font-montserrat py-3 text-base font-medium text-gray-600 hover:text-orange-500 transition-colors block border-b border-gray-50 uppercase tracking-wide"
                 >
-                  CONTACTO
+                  Contacto
                 </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    abrirTerminos();
-                  }}
-                  className="font-montserrat text-lg text-left w-full font-medium text-gray-600 hover:text-amber-600 transition-colors block"
-                  aria-haspopup="dialog"
-                >
-                  TÉRMINOS Y CONDICIONES
-                </button>
               </li>
             </ul>
           </nav>
 
-          {/* Footer del menú - Espacio para logo */}
-          <div className="border-t border-gray-200 p-4 flex items-center justify-center">
-            {/* TODO: Agregar logo de las cabañas aquí */}
-            <div className="w-full h-20 flex items-center justify-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-              <span className="text-gray-400 text-xs">Logo de Cabañas</span>
+          {/* Footer del menú */}
+          <div className="p-6 bg-gray-50 border-t border-gray-200">
+            <p className="text-xs font-montserrat font-semibold text-gray-400 mb-4 uppercase tracking-widest">
+              ¿Tienes dudas?
+            </p>
+
+            {/* Redes Sociales */}
+            <div className="flex items-center gap-4 mb-8">
+              <a
+                href="https://wa.me/5493813513513"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                aria-label="WhatsApp"
+              >
+                <WhatsAppIcon className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.instagram.com/complejo_miradordeluz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                aria-label="Instagram"
+              >
+                <InstagramIcon className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.google.com/maps/place/Mirador+de+Luz/@-31.3730543,-64.5250168,17z/data=!4m6!3m5!1s0x942d65f0c8772fbd:0x4d7f1d8348462d0a!8m2!3d-31.3730589!4d-64.5224419!16s%2Fg%2F11y59brg9t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform"
+                aria-label="Ubicación"
+              >
+                <LocationIcon className="w-6 h-6" />
+              </a>
             </div>
+
+            {/* Link Legal */}
+            <button
+              onClick={abrirTerminos}
+              className="text-[10px] font-montserrat text-gray-400 hover:text-gray-600 transition-colors uppercase tracking-[0.2em] font-medium"
+            >
+              Términos y Condiciones
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-# 🏔️ Hero Intermedio - Documentación
+# Hero Intermedio - Documentación
 
 ## Componente de Separador Visual con Imagen de Fondo
 
@@ -36,26 +36,28 @@ http://localhost:4321/ejemplo-hero-intermedio
 
 ## ⚙️ Props Configurables
 
-| Prop | Tipo | Default | Descripción |
-|------|------|---------|-------------|
-| `backgroundImage` | string | URL Unsplash | URL de la imagen de fondo |
-| `subheading` | string | "CERCA DE TODO" | Etiqueta pequeña superior |
-| `title` | string | "Naturaleza & Confort..." | Título principal (usa \n para saltos) |
-| `overlayOpacity` | 'light' \| 'medium' \| 'dark' \| 'darker' | 'medium' | Opacidad del overlay |
-| `height` | string | 'h-[60vh]' | Altura del hero (clases Tailwind) |
-| `accentColor` | string | 'text-amber-300' | Color de la etiqueta superior |
+| Prop              | Tipo                                      | Default                   | Descripción                           |
+| ----------------- | ----------------------------------------- | ------------------------- | ------------------------------------- |
+| `backgroundImage` | string                                    | URL Unsplash              | URL de la imagen de fondo             |
+| `subheading`      | string                                    | "CERCA DE TODO"           | Etiqueta pequeña superior             |
+| `title`           | string                                    | "Naturaleza & Confort..." | Título principal (usa \n para saltos) |
+| `overlayOpacity`  | 'light' \| 'medium' \| 'dark' \| 'darker' | 'medium'                  | Opacidad del overlay                  |
+| `height`          | string                                    | 'h-[60vh]'                | Altura del hero (clases Tailwind)     |
+| `accentColor`     | string                                    | 'text-amber-300'          | Color de la etiqueta superior         |
 
 ---
 
 ## 🎨 Características del Diseño
 
 ### 1. **Imagen de Fondo**
+
 - ✅ Ancho completo (`w-full`)
 - ✅ `bg-cover` y `bg-center`
 - ✅ Altura configurable (default: 60vh)
 - ✅ `object-cover` para mantener proporciones
 
 ### 2. **Overlay Oscuro**
+
 - ✅ 4 niveles de opacidad:
   - `light`: 30% negro
   - `medium`: 50% negro (default)
@@ -63,16 +65,19 @@ http://localhost:4321/ejemplo-hero-intermedio
   - `darker`: 70% negro
 
 ### 3. **Contenido Centrado**
+
 - ✅ Centrado vertical y horizontal perfecto
 - ✅ `flex items-center justify-center`
 - ✅ Responsive y adaptable
 
 ### 4. **Etiqueta Superior (Subheading)**
+
 - ✅ Texto pequeño (`text-xs md:text-sm`)
 - ✅ Mayúsculas con tracking amplio
 - ✅ Color configurable (default: amarillo/ámbar)
 
 ### 5. **Título Principal**
+
 - ✅ Grande y bold (`text-3xl → text-6xl`)
 - ✅ Blanco con legibilidad perfecta
 - ✅ Soporte para múltiples líneas con `\n`
@@ -89,6 +94,7 @@ http://localhost:4321/ejemplo-hero-intermedio
 ```
 
 **Resultado:**
+
 - Imagen de montañas
 - "CERCA DE TODO" en amarillo
 - "Naturaleza & Confort.\nEn el Mirador de la Montaña."
@@ -98,7 +104,7 @@ http://localhost:4321/ejemplo-hero-intermedio
 ### Ejemplo 2: Personalizado Completo
 
 ```astro
-<SectionHeroIntermedioMiradorDeLuz 
+<SectionHeroIntermedioMiradorDeLuz
   client:load
   backgroundImage="/images/lago-san-roque.jpg"
   subheading="MIRADOR DE LUZ"
@@ -121,7 +127,7 @@ http://localhost:4321/ejemplo-hero-intermedio
 <section>...</section>
 
 <!-- Hero intermedio 1 -->
-<SectionHeroIntermedioMiradorDeLuz 
+<SectionHeroIntermedioMiradorDeLuz
   client:load
   title="Cabañas equipadas.\nComodidad garantizada."
 />
@@ -130,7 +136,7 @@ http://localhost:4321/ejemplo-hero-intermedio
 <section>...</section>
 
 <!-- Hero intermedio 2 -->
-<SectionHeroIntermedioMiradorDeLuz 
+<SectionHeroIntermedioMiradorDeLuz
   client:load
   backgroundImage="/images/otra-vista.jpg"
   title="Actividades para todos.\nExperiencias inolvidables."
@@ -142,23 +148,26 @@ http://localhost:4321/ejemplo-hero-intermedio
 ## 🎨 Combinaciones de Colores
 
 ### Amarillo/Naranja (Cálido)
+
 ```tsx
-accentColor="text-amber-300"    // Amarillo suave
-accentColor="text-orange-300"   // Naranja suave
-accentColor="text-yellow-200"   // Amarillo muy claro
+accentColor = "text-amber-300"; // Amarillo suave
+accentColor = "text-orange-300"; // Naranja suave
+accentColor = "text-yellow-200"; // Amarillo muy claro
 ```
 
 ### Verde (Natural)
+
 ```tsx
-accentColor="text-emerald-300"  // Verde esmeralda
-accentColor="text-teal-300"     // Verde azulado
-accentColor="text-lime-300"     // Verde lima
+accentColor = "text-emerald-300"; // Verde esmeralda
+accentColor = "text-teal-300"; // Verde azulado
+accentColor = "text-lime-300"; // Verde lima
 ```
 
 ### Neutros
+
 ```tsx
-accentColor="text-gray-200"     // Gris claro
-accentColor="text-white"        // Blanco puro
+accentColor = "text-gray-200"; // Gris claro
+accentColor = "text-white"; // Blanco puro
 ```
 
 ---
@@ -167,19 +176,19 @@ accentColor="text-white"        // Blanco puro
 
 ```tsx
 // Bajo (separador sutil)
-height="h-[40vh]"
+height = "h-[40vh]";
 
 // Medio (default, equilibrado)
-height="h-[60vh]"
+height = "h-[60vh]";
 
 // Alto (impactante)
-height="h-[80vh]"
+height = "h-[80vh]";
 
 // Pantalla completa
-height="h-screen"
+height = "h-screen";
 
 // Fijo en píxeles
-height="h-[500px]"
+height = "h-[500px]";
 ```
 
 ---
@@ -187,44 +196,53 @@ height="h-[500px]"
 ## 🎯 Niveles de Overlay
 
 ### Light (30%)
+
 ```tsx
-overlayOpacity="light"
+overlayOpacity = "light";
 ```
+
 Usar cuando la imagen es oscura o quieres más visibilidad de la foto.
 
 ### Medium (50%) - Default
+
 ```tsx
-overlayOpacity="medium"
+overlayOpacity = "medium";
 ```
+
 Balance perfecto para la mayoría de casos.
 
 ### Dark (60%)
+
 ```tsx
-overlayOpacity="dark"
+overlayOpacity = "dark";
 ```
+
 Ideal para imágenes muy claras o con mucho detalle.
 
 ### Darker (70%)
+
 ```tsx
-overlayOpacity="darker"
+overlayOpacity = "darker";
 ```
+
 Máximo contraste, casi monocromático.
 
 ---
 
 ## 📱 Responsividad
 
-| Pantalla | Subheading | Título | Altura |
-|----------|------------|--------|--------|
-| **Mobile** | text-xs | text-3xl | Mantiene proporción |
-| **Tablet** | text-sm | text-5xl | Mantiene proporción |
-| **Desktop** | text-sm | text-6xl | Mantiene proporción |
+| Pantalla    | Subheading | Título   | Altura              |
+| ----------- | ---------- | -------- | ------------------- |
+| **Mobile**  | text-xs    | text-3xl | Mantiene proporción |
+| **Tablet**  | text-sm    | text-5xl | Mantiene proporción |
+| **Desktop** | text-sm    | text-6xl | Mantiene proporción |
 
 ---
 
 ## 💡 Casos de Uso
 
 ### 1. **Separador de Secciones**
+
 ```astro
 <section>Sobre Nosotros</section>
 <SectionHeroIntermedioMiradorDeLuz title="Nuestras Cabañas" />
@@ -232,16 +250,18 @@ Máximo contraste, casi monocromático.
 ```
 
 ### 2. **Destacar Servicios**
+
 ```astro
-<SectionHeroIntermedioMiradorDeLuz 
+<SectionHeroIntermedioMiradorDeLuz
   subheading="SERVICIOS"
   title="Todo lo que necesitás.\nY más."
 />
 ```
 
 ### 3. **Llamado a la Acción Visual**
+
 ```astro
-<SectionHeroIntermedioMiradorDeLuz 
+<SectionHeroIntermedioMiradorDeLuz
   subheading="RESERVÁ HOY"
   title="Tu próxima aventura.\nEmpieza acá."
   overlayOpacity="darker"
@@ -249,9 +269,10 @@ Máximo contraste, casi monocromático.
 ```
 
 ### 4. **Entre Galería de Fotos**
+
 ```astro
 <GaleriaFotos />
-<SectionHeroIntermedioMiradorDeLuz 
+<SectionHeroIntermedioMiradorDeLuz
   title="Más que un lugar.\nUna experiencia."
 />
 <Testimonios />
@@ -262,20 +283,23 @@ Máximo contraste, casi monocromático.
 ## 🖼️ Imágenes Recomendadas
 
 ### Características Ideales
+
 - **Resolución**: 1920x1080px mínimo
 - **Aspecto**: Horizontal panorámico
-- **Contenido**: 
+- **Contenido**:
   - Paisajes amplios
   - Vista desde altura
   - Montañas, lagos, bosques
   - Cabañas en entorno natural
 
 ### Composición
+
 - ✅ Evitar texto o detalles importantes en el centro
 - ✅ Horizonte centrado o en regla de tercios
 - ✅ Colores no muy saturados (el overlay los oscurecerá)
 
 ### Bancos de Imágenes
+
 ```
 Unsplash:
 - photo-1506905925346-21bda4d32df4 (montañas)
@@ -295,10 +319,12 @@ Pexels:
 ### Mejores Prácticas
 
 1. **Título no muy largo**
+
    - Máximo 2-3 líneas
    - 5-8 palabras por línea
 
 2. **Contraste**
+
    - Siempre usar overlay
    - Texto blanco sobre oscuro
 
@@ -328,19 +354,21 @@ Modificar en el código:
 ### Agregar Botón
 
 ```tsx
-{/* Después del título */}
+{
+  /* Después del título */
+}
 <div className="mt-8">
   <button className="bg-amber-500 text-white px-8 py-3 rounded-lg">
     Descubrir más
   </button>
-</div>
+</div>;
 ```
 
 ### Animaciones al Scroll
 
 ```tsx
 // Instalar: npm install framer-motion
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 <motion.h2
   initial={{ opacity: 0, y: 20 }}
@@ -348,7 +376,7 @@ import { motion } from 'framer-motion';
   transition={{ duration: 0.8 }}
 >
   {renderTitle()}
-</motion.h2>
+</motion.h2>;
 ```
 
 ---
@@ -376,26 +404,26 @@ import SectionHeroIntermedioMiradorDeLuz from '../components/react/SectionHeroIn
 <Layout>
   <!-- Hero principal -->
   <HeroMiradorDeLuz client:load />
-  
+
   <!-- Sobre nosotros -->
   <SectionUbicacionMiradorDeLuz client:load />
-  
+
   <!-- Hero intermedio -->
-  <SectionHeroIntermedioMiradorDeLuz 
+  <SectionHeroIntermedioMiradorDeLuz
     client:load
     title="Experiencias únicas.\nRecuerdos eternos."
   />
-  
+
   <!-- Cabañas -->
   <section id="cabanas">...</section>
-  
+
   <!-- Hero intermedio -->
-  <SectionHeroIntermedioMiradorDeLuz 
+  <SectionHeroIntermedioMiradorDeLuz
     client:load
     backgroundImage="/images/otra-vista.jpg"
     title="Todo listo para vos.\nSolo traé las ganas."
   />
-  
+
   <!-- Contacto -->
   <section>...</section>
 </Layout>
@@ -408,31 +436,34 @@ import SectionHeroIntermedioMiradorDeLuz from '../components/react/SectionHeroIn
 ### La imagen no se ve
 
 **Solución:**
+
 ```tsx
 // Usar rutas absolutas:
-backgroundImage="/images/hero.jpg"  // En public/images/
+backgroundImage = "/images/hero.jpg"; // En public/images/
 
 // O URLs completas:
-backgroundImage="https://..."
+backgroundImage = "https://...";
 ```
 
 ### El texto no se lee bien
 
 **Solución:**
+
 ```tsx
 // Aumentar opacidad del overlay:
-overlayOpacity="darker"
+overlayOpacity = "darker";
 
 // O agregar sombra al texto (en el código):
-className="text-shadow-lg"
+className = "text-shadow-lg";
 ```
 
 ### El título no hace salto de línea
 
 **Solución:**
+
 ```tsx
 // Usar \n en el string:
-title="Primera línea.\nSegunda línea."
+title = "Primera línea.\nSegunda línea.";
 
 // NO usar <br/> directamente
 ```
@@ -453,7 +484,7 @@ title="Primera línea.\nSegunda línea."
 
 ```tsx
 // En lugar de backgroundImage, usar:
-style={{ 
+style={{
   background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
 }}
 ```
@@ -461,10 +492,10 @@ style={{
 ### Con Video de Fondo
 
 ```tsx
-<video 
-  autoPlay 
-  loop 
-  muted 
+<video
+  autoPlay
+  loop
+  muted
   className="absolute inset-0 w-full h-full object-cover"
 >
   <source src="/videos/montanas.mp4" type="video/mp4" />
@@ -475,5 +506,3 @@ style={{
 
 **Última actualización**: 19/11/2024  
 **Versión**: 1.0.0
-
-

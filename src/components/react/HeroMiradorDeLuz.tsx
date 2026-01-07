@@ -159,16 +159,16 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
     <section className="relative min-h-screen w-full overflow-hidden">
       {/* Imagen de fondo */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-[center_75%] md:bg-center bg-no-repeat transition-all duration-500"
         style={{ backgroundImage: `url(${imagenFondo})` }}
       >
-        {/* Overlay optimizado: Oscurece el centro para lectura pero libera los bordes para lucir la foto */}
-        <div className="absolute inset-0 bg-black/15" />
+        {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 80%)",
+              "radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
           }}
         />
       </div>
@@ -182,7 +182,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
               {/* Logo / Nombre */}
               <div className="flex items-center">
                 <h1 className="font-montserrat text-2xl md:text-3xl font-bold text-white tracking-wide">
-                  🏔️ Mirador de Luz
+                  Mirador de Luz
                 </h1>
               </div>
 
@@ -285,9 +285,12 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             <div className="flex justify-center mb-8">
               <a
                 href="#cabanas"
-                className="font-montserrat inline-flex items-center gap-3 bg-orange-500 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-600 hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300 transform uppercase tracking-wider border border-white/20"
+                className="font-montserrat inline-flex items-center gap-3 bg-orange-500 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-orange-600 hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300 transform tracking-wider border border-white/20"
               >
-                Conoce nuestras cabañas
+                <span className="hidden md:inline">
+                  Conoce nuestras Cabañas
+                </span>
+                <span className="md:hidden">Ver Cabañas</span>
               </a>
             </div>
           </div>
@@ -295,13 +298,13 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
       </div>
 
       {/* Elemento de ubicación centrado al fondo del hero */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="inline-flex items-center gap-3 bg-transparent border border-white/20 text-white px-6 py-3 rounded-full shadow-lg backdrop-blur-sm">
-          <span className="w-5 h-5 text-amber-500" aria-hidden>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 w-full px-4 flex justify-center">
+        <div className="inline-flex items-center gap-2 md:gap-3 bg-transparent border border-white/20 text-white px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg backdrop-blur-sm">
+          <span className="w-4 h-4 md:w-5 md:h-5 text-amber-500" aria-hidden>
             <LocationIcon />
           </span>
-          <span className="font-montserrat font-semibold text-sm">
-            Villa Santa Cruz del Lago, Córdoba, Argentina
+          <span className="font-montserrat font-semibold text-[10px] sm:text-xs md:text-sm whitespace-nowrap">
+            Villa Santa Cruz del Lago, Córdoba
           </span>
         </div>
       </div>
