@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { useState, type FC } from "react";
 
 type HeroProps = {
   videoUrl: string;
@@ -9,7 +9,7 @@ type HeroProps = {
 
 const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
   videoUrl,
-  subtitle = 'CERCA DE TODO',
+  subtitle = "CERCA DE TODO",
   titleLine1,
   titleLine2,
 }) => {
@@ -22,17 +22,15 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
         <nav className="container mx-auto px-4 lg:px-8 h-[72px] md:h-[80px] flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <a href="/" className="flex items-center gap-2">
               <img
-                src="/images/logo/logo-mirador.svg"
+                src="/logo-mirador-luz.webp"
                 alt="Mirador de Luz"
-                className="h-10 md:h-12 w-auto"
-                onError={(e) => {
-                  // Fallback si no existe la imagen
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement!.innerHTML = '<span class="font-montserrat font-bold text-xl md:text-2xl text-[#8b7355]">MIRADOR DE LUZ</span>';
-                }}
+                className="h-10 md:h-12 w-auto object-contain"
               />
+              <span className="font-montserrat font-bold text-xl md:text-2xl text-[#8b7355]">
+                MIRADOR DE LUZ
+              </span>
             </a>
           </div>
 
@@ -166,7 +164,7 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
                   ENG
                 </button>
               </div>
-              
+
               <a
                 href="/reservas"
                 className="block w-full px-6 py-3 bg-[#b89968] hover:bg-[#a08858] text-white font-montserrat font-semibold text-sm rounded-md transition-colors text-center"
@@ -286,5 +284,3 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
 };
 
 export default HeroMiradorDeLuzLayout;
-
-

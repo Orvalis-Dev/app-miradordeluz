@@ -182,7 +182,12 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
           <nav className="absolute top-0 left-0 right-0 z-20 px-4 md:px-8 lg:px-16 py-6">
             <div className="flex items-center justify-between">
               {/* Logo / Nombre */}
-              <div className="flex items-center">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/logo-mirador-luz.webp"
+                  alt="Logo Mirador de Luz"
+                  className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                />
                 <h1 className="font-montserrat text-2xl md:text-3xl font-bold text-white tracking-wide">
                   Mirador de Luz
                 </h1>

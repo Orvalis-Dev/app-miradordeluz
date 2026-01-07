@@ -7,7 +7,6 @@ import {
   IconPhone as PhoneIcon,
   IconMail as MailIcon,
   IconArrowUp as ArrowUpIcon,
-  IconMountain as LogoIcon,
 } from "./ui/Icons";
 
 // Tipos
@@ -73,7 +72,11 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
               href="/"
               className="flex items-center gap-3 group transition-transform hover:scale-105"
             >
-              <LogoIcon className="w-12 h-12 text-amber-500" />
+              <img
+                src="/logo-mirador-luz.webp"
+                alt="Logo Mirador de Luz"
+                className="w-16 h-16 object-contain"
+              />
               <div className="flex flex-col items-start leading-none text-left">
                 <span className="text-3xl font-bold tracking-tight">
                   Mirador <span className="text-amber-500">de Luz</span>

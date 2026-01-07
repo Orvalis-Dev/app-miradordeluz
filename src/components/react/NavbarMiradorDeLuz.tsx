@@ -7,7 +7,6 @@ import {
   IconWhatsApp as WhatsAppIcon,
   IconMapPin as LocationIcon,
   IconMenu as MenuIcon,
-  IconMountain,
   IconClose,
 } from "./ui/Icons";
 
@@ -307,7 +306,11 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               href="/"
               className={`flex items-center gap-2 font-montserrat text-xl md:text-2xl font-bold ${estiloActual.logoColor} tracking-wide ${estiloActual.hoverColor} transition-all group`}
             >
-              <IconMountain className="w-6 h-6 md:w-8 md:h-8 text-amber-500 group-hover:scale-110 transition-transform" />
+              <img
+                src="/logo-mirador-luz.webp"
+                alt="Logo Mirador de Luz"
+                className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-110 transition-transform"
+              />
               <span>Mirador de Luz</span>
             </a>
           </div>
@@ -435,7 +438,11 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               className="flex items-center gap-2"
               onClick={cerrarMenu}
             >
-              <IconMountain className="w-6 h-6 text-amber-500" />
+              <img
+                src="/logo-mirador-luz.webp"
+                alt="Logo Mirador de Luz"
+                className="w-8 h-8 object-contain"
+              />
               <span className="font-montserrat text-lg font-bold text-gray-900 tracking-tight">
                 Mirador de Luz
               </span>
