@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { useState, type FC } from "react";
 import {
   IconInstagram as InstagramIcon,
   IconFacebook as FacebookIcon,
@@ -7,6 +7,7 @@ import {
   IconPhone as PhoneIcon,
   IconMail as MailIcon,
 } from "./ui/Icons";
+import TermsModal from "./TermsModal";
 
 // Tipos
 interface RedSocial {
@@ -54,6 +55,8 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
     { texto: "Reservar", url: "/#cabanas" },
   ],
 }) => {
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+
   return (
     <footer className="w-full bg-slate-900 text-white border-t border-white/5 font-montserrat">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
@@ -169,15 +172,18 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
             </div>
 
             {/* Legal Link */}
-            <a
-              href="/terminos-y-condiciones"
+            <button
+              onClick={() => setIsTermsOpen(true)}
               className="text-[11px] text-gray-400 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/10 tracking-widest uppercase px-2"
             >
               Términos y Condiciones
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Modal de Términos */}
+      <TermsModal open={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
     </footer>
   );
 };

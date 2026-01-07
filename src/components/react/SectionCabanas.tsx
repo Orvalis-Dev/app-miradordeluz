@@ -87,9 +87,12 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                     <img
                       src={cabana.imagenUrl}
                       alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-700 brightness-[0.95] contrast-[1.05] saturate-[1.05] group-hover:scale-105 group-hover:brightness-110 group-hover:contrast-100"
                       loading="lazy"
                     />
+                    {/* Overlay de sombra suave (gradiente) para profundidad */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-40" />
+
                     {/* Overlay al hacer hover para indicar click */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
@@ -142,9 +145,9 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                       <div className="flex justify-center lg:justify-start">
                         <a
                           href={`/reserva-${cabana.slug}`}
-                          className="w-full lg:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-[#A8936D] text-[#A8936D] font-bold hover:bg-[#A8936D] hover:text-white transition-all duration-300 rounded-xl uppercase tracking-widest text-xs group"
+                          className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-amber-500 text-white font-bold rounded-xl uppercase tracking-widest text-xs transition-all duration-300 shadow-lg hover:bg-gradient-to-r hover:from-amber-600 hover:to-orange-600 hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 group"
                         >
-                          Ver {cabana.nombre}
+                          Ver disponibilidad
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-4 w-4 transform group-hover:translate-x-1 transition-transform"

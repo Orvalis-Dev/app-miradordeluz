@@ -1,12 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import CabanaCarousel from "../react/CabanaCarousel";
-import ReservaSummary from "../react/ReservaSummary";
+import NavbarMiradorDeLuz from "../react/NavbarMiradorDeLuz";
+import FooterMiradorDeLuz from "../react/FooterMiradorDeLuz";
+import CabanaGalleryGrid from "../react/CabanaGalleryGrid";
+import ReservaStickyCard from "../react/ReservaStickyCard";
+import AmenitiesModal from "../react/AmenitiesModal";
 import {
   getReservaCabanaConfig,
   getReservaCabanaImages,
   SERVICIOS,
 } from "../../constants/reservasConfig";
+import { cabanas } from "../../constants/cabanas";
 
 const { cabanaId } = Astro.props as { cabanaId: string };
 
@@ -15,112 +19,204 @@ if (!cabanaConfig) {
   return Astro.redirect("/");
 }
 
+const cabanaDetail = cabanas.find((c) => c.id === cabanaId);
 const images = getReservaCabanaImages(cabanaId);
-
-const MOCK_PRICE_RANGES = [
-  {
-    fecha_inicio: "2025-01-01",
-    fecha_fin: "2025-03-31",
-    precio_por_noche: cabanaConfig.precio_base,
-  },
-  {
-    fecha_inicio: "2025-04-01",
-    fecha_fin: "2025-12-14",
-    precio_por_noche: cabanaConfig.precio_base + 10000,
-  },
-  {
-    fecha_inicio: "2025-12-15",
-    fecha_fin: "2026-01-10",
-    precio_por_noche: cabanaConfig.precio_base + 35000,
-  },
-];
 
 const cabana = {
   id: cabanaConfig.id,
   nombre: cabanaConfig.nombre,
   capacidad: cabanaConfig.capacidad,
-  precio_base: cabanaConfig.precio_base,
+  descripcion: cabanaDetail?.descripcion || "Disfrutá de una estadía inolvidable en nuestras cabañas totalmente equipadas.",
 };
 
-const pageTitle = `Reservar - ${cabana.nombre}`;
+const pageTitle = `${cabana.nombre} - Mirador de Luz`;
 ---
 
 <Layout
   title={pageTitle}
-  description="Formulario de reserva y detalle de la cabaña"
-  image="/videos/LagoSanRoque.mp4"
+  description={cabana.descripcion}
 >
-  <main class="max-w-7xl mx-auto px-4 md:px-8 py-12">
-    <!-- Breadcrumb + title -->
-    <div class="mb-6">
-      <a
-        class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors"
-        href="/#nuestras-cabanas"
-        aria-label="Volver atrás"
-      >
-        ← Volver atrás
-      </a>
-      <h1 class="text-3xl font-extrabold text-[#1E1E1E] mt-3 text-center">
-        {cabana.nombre}
-      </h1>
-    </div>
+  <NavbarMiradorDeLuz client:load variant="solid-navy" />
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start pb-32 md:pb-0">
-      <!-- Izquierda: imágenes + servicios -->
-      <section class="space-y-8 md:col-span-2">
-        <!-- Carrusel de imágenes -->
-        <div>
-          <CabanaCarousel
-            client:visible
-            images={images}
-            alt={`${cabana.nombre} - Cabaña en Villa Santa Cruz del Lago, Córdoba - Vista de las instalaciones`}
-          />
+  <main class="bg-gray-50 pt-20 pb-16 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <!-- Botón Volver -->
+      <div class="mb-4 md:mb-6">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 py-2 rounded-full text-sm font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 transition-all px-3 bg-white/50 backdrop-blur-sm shadow-sm border border-gray-100"
+          aria-label="Volver al inicio"
+        >
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span>Volver al inicio</span>
+        </a>
+      </div>
+      
+      <!-- HERO GALLERY (Airbnb Style) -->
+      <div class="mb-12">
+        <CabanaGalleryGrid 
+          client:load 
+          images={images} 
+          cabanaName={cabana.nombre} 
+        />
+      </div>
+
+      <!-- MAIN CONTENT LAYOUT (2 Columns) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-16 items-start">
+        
+        <!-- LEFT COLUMN (Info) -->
+        <div class="lg:col-span-2 space-y-10">
+          
+          <!-- Title & Summary -->
+          <section>
+            <h1 class="text-3xl md:text-5xl font-montserrat font-bold text-slate-900 mb-6 tracking-tight">
+              {cabana.nombre}: Confort y Vista
+            </h1>
+            
+            <div class="flex flex-wrap gap-3 mb-8">
+              <span class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 text-sm font-semibold shadow-sm flex items-center gap-2">
+                <span class="text-lg">👥</span> Hasta {cabana.capacidad} Personas
+              </span>
+              <span class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 text-sm font-semibold shadow-sm flex items-center gap-2">
+                <span class="text-lg">🛏️</span> {cabana.id === '1' || cabana.id === '3' ? '1 Dormitorio' : '2 Dormitorios'}
+              </span>
+              <span class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 text-sm font-semibold shadow-sm flex items-center gap-2">
+                <span class="text-lg">🚿</span> 1 Baño
+              </span>
+            </div>
+
+            <div class="prose prose-slate max-w-none">
+              <p class="text-slate-600 text-lg leading-relaxed md:text-xl font-medium opacity-90">
+                {cabana.descripcion}
+              </p>
+            </div>
+          </section>
+
+          <hr class="border-slate-200" />
+
+          <!-- Amenities -->
+          <section>
+            <h2 class="text-2xl md:text-3xl font-montserrat font-bold text-slate-900 mb-8 tracking-tight">
+              Lo que ofrece este alojamiento
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+              <div class="flex items-start gap-5 group font-montserrat">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">WiFi de cortesía</h3>
+                  <p class="text-slate-500 leading-snug">Conexión estable en todo el complejo para tu trabajo o relax.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 group font-montserrat">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">Cocina completa</h3>
+                  <p class="text-slate-500 leading-snug">Heladera con freezer, horno, vajilla completa y cafetera.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 group font-montserrat">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
+                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.5-7 3 3 3 6 1 9 3.5-2 5-3 5-3s1 1 1 2c0 1.5-1 4-1.5 5.5l1.657 1.657z" /></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">Asador privado</h3>
+                  <p class="text-slate-500 leading-snug">Parrilla individual en el deck de tu cabaña para tus asados.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 group font-montserrat">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">Smart TV 43"</h3>
+                  <p class="text-slate-500 leading-snug">Entretenimiento garantizado con Youtube y Netflix disponibles.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 group font-montserrat">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">Aire Split F/C</h3>
+                  <p class="text-slate-500 leading-snug">Climatización perfecta durante todo el año (frío/calor).</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 group font-montserrat">
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
+                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-lg">Cochera Cubierta</h3>
+                  <p class="text-slate-500 leading-snug">Protección para tu vehículo frente a cada cabaña.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-12">
+               <AmenitiesModal 
+                 client:load 
+                 amenities={SERVICIOS} 
+                 cabaName={cabana.nombre} 
+                 variant="button" 
+               />
+            </div>
+          </section>
+
+          <hr class="border-slate-200" />
+
+          <!-- Ubicación -->
+          <section class="pb-8">
+            <h2
+              class="text-2xl md:text-3xl font-montserrat font-bold text-slate-900 mb-6 tracking-tight"
+            >
+              Cómo llegar
+            </h2>
+            <p class="text-slate-600 mb-6 text-lg font-montserrat">
+              Estamos ubicados en <span class="font-bold text-slate-900"
+                >Villa Santa Cruz del Lago</span
+              >, en un punto estratégico para recorrer Punilla y a solo 5 minutos
+              de Villa Carlos Paz.
+            </p>
+            <div
+              class="aspect-video w-full rounded-3xl overflow-hidden shadow-2xl border border-white relative bg-white"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.8!2d-64.5224419!3d-31.3730543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d65f0c8772fbd%3A0x4d7f1d8348462d0a!2sMirador%20de%20Luz!5e0!3m2!1ses!2sar!4v1702000000000!5m2!1ses!2sar"
+                class="w-full h-full"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación de Mirador de Luz en Google Maps"
+              ></iframe>
+            </div>
+          </section>
         </div>
 
-        <!-- Servicios -->
-        <div class="bg-white rounded-2xl p-6 shadow">
-          <h2 class="text-2xl font-bold text-gray-900 mb-5">Servicios</h2>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
-            {SERVICIOS.map((servicio) => (
-              <li class="flex items-start gap-3 text-gray-700">
-                <span
-                  class="mt-0.5 inline-flex w-6 h-6 items-center justify-center rounded-full bg-slate-100 text-slate-700 shrink-0"
-                  aria-hidden="true"
-                >
-                  <svg
-                    class="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20 6L9 17l-5-5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span class="font-medium leading-snug">{servicio}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+        <!-- RIGHT COLUMN (Sticky Card) -->
+        <aside class="relative h-full">
+          <div class="lg:sticky lg:top-32 pb-12">
+            <ReservaStickyCard client:load cabanaName={cabana.nombre} />
+          </div>
+        </aside>
 
-      <!-- Derecha: panel de reserva -->
-      <aside class="md:col-span-1">
-        <div class="sticky top-24 space-y-6">
-          <ReservaSummary
-            client:visible
-            cabana={(cabana as any) ?? null}
-            priceRanges={MOCK_PRICE_RANGES}
-          />
-        </div>
-      </aside>
+      </div>
     </div>
   </main>
+
+  <FooterMiradorDeLuz client:visible />
 </Layout>
 
 
