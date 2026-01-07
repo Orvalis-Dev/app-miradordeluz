@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { FC } from "react";
 import TermsModal from "./TermsModal";
-import useIsMouseInTopEighth from "../../hooks/useIsMouseInTopEighth";
 import {
   IconInstagram as InstagramIcon,
   IconWhatsApp as WhatsAppIcon,
@@ -10,144 +9,33 @@ import {
   IconClose,
 } from "./ui/Icons";
 
-// Tipos para los estilos de sección
-type SeccionEstilo = {
-  background: string;
-  textColor: string;
-  hoverColor: string;
-  logoColor: string;
-  socialBg: string;
-  buttonGradient: string;
-};
-
-// Configuración de colores por sección
-const estilosPorSeccion: Record<string, SeccionEstilo> = {
-  "hero-section": {
-    background: "bg-transparent",
-    textColor: "text-white",
-    hoverColor: "hover:text-amber-300",
-    logoColor: "text-white",
-    socialBg: "bg-white/10 hover:bg-white/20",
-    buttonGradient:
-      "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  },
-  ubicacion: {
-    background: "bg-white/90 backdrop-blur-md shadow-md",
-    textColor: "text-gray-800",
-    hoverColor: "hover:text-amber-600",
-    logoColor: "text-gray-900",
-    socialBg: "bg-gray-200 hover:bg-gray-300",
-    buttonGradient:
-      "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  },
-  "hero-intermedio-section": {
-    background: "bg-black/70 backdrop-blur-md",
-    textColor: "text-white",
-    hoverColor: "hover:text-amber-300",
-    logoColor: "text-white",
-    socialBg: "bg-white/10 hover:bg-white/20",
-    buttonGradient:
-      "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  },
-  "cabanas-section": {
-    background: "bg-white/90 backdrop-blur-md shadow-md",
-    textColor: "text-gray-800",
-    hoverColor: "hover:text-amber-600",
-    logoColor: "text-gray-900",
-    socialBg: "bg-gray-200 hover:bg-gray-300",
-    buttonGradient:
-      "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  },
-  testimonios: {
-    background: "bg-stone-50/95 backdrop-blur-md shadow-md",
-    textColor: "text-gray-800",
-    hoverColor: "hover:text-amber-600",
-    logoColor: "text-gray-900",
-    socialBg: "bg-gray-200 hover:bg-gray-300",
-    buttonGradient:
-      "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  },
-  default: {
-    background: "bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg",
-    textColor: "text-white",
-    hoverColor: "hover:text-amber-300",
-    logoColor: "text-white",
-    socialBg: "bg-white/10 hover:bg-white/20",
-    buttonGradient:
-      "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
-  },
-};
-
 interface NavbarMiradorDeLuzProps {
-  transparente?: boolean;
-  /** Si true, el navbar está en la página Hero principal y siempre visible */
-  isHeroPage?: boolean;
+  variant?: "glass" | "solid-navy" | "transparent";
 }
 
-const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
-  transparente = false,
-  isHeroPage = false,
-}) => {
-  const [seccionActual, setSeccionActual] = useState("hero-section");
-  const [scrollY, setScrollY] = useState(0);
+const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({ variant }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isAlwaysScrolled, setIsAlwaysScrolled] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [mostrarTerminos, setMostrarTerminos] = useState(false);
-  const [mouseOverNavbar, setMouseOverNavbar] = useState(false);
-
-  // Determinar si estamos en la sección Hero (por sección, no por página)
-  const isInHeroSection = seccionActual === "hero-section";
-
-  // Inicializar shouldShowNavbar basado en si está en sección Hero o es página Hero
-  const [shouldShowNavbar, setShouldShowNavbar] = useState(
-    isHeroPage || isInHeroSection
-  );
-
-  // Usar el custom hook cuando NO está en sección Hero (ignora isHeroPage)
-  const isMouseInTopEighth = useIsMouseInTopEighth(!isInHeroSection);
-
-  // Ref para mantener el timeout entre renders
-  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Actualizar scroll Y
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-
-      // Detectar la sección más cercana al top del navbar
-      const secciones = [
-        "hero-section",
-        "ubicacion",
-        "hero-intermedio-section",
-        "cabanas-section",
-        "testimonios",
-      ];
-
-      let seccionMasCercana = "hero-section";
-      let distanciaMasCorta = Infinity;
-
-      secciones.forEach((id) => {
-        const elemento = document.getElementById(id);
-        if (elemento) {
-          const rect = elemento.getBoundingClientRect();
-          // Distancia desde el top del navbar (80px) al top de la sección
-          const distancia = Math.abs(rect.top - 80);
-
-          // Si la sección está visible y es la más cercana al navbar
-          if (rect.top < window.innerHeight && rect.bottom > 80) {
-            if (distancia < distanciaMasCorta) {
-              distanciaMasCorta = distancia;
-              seccionMasCercana = id;
-            }
-          }
-        }
-      });
-
-      setSeccionActual(seccionMasCercana);
+    const checkPath = () => {
+      const path = window.location.pathname;
+      setCurrentPath(path);
+      setIsAlwaysScrolled(
+        path.includes("/contacto") || path.includes("/galeria")
+      );
     };
 
-    // Listener de scroll
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    checkPath();
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Inicializar
 
@@ -156,66 +44,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
     };
   }, []);
 
-  // useEffect para manejar la visibilidad del navbar basado en mouse y hover
-  useEffect(() => {
-    console.log("[Navbar] useEffect visibility ejecutado:", {
-      isHeroPage,
-      seccionActual,
-      isInHeroSection,
-      isMouseInTopEighth,
-      mouseOverNavbar,
-    });
-
-    // Si está en la sección hero-section, siempre visible
-    if (isInHeroSection) {
-      console.log(
-        "[Navbar] ✅ En sección Hero (hero-section) - navbar siempre visible"
-      );
-      setShouldShowNavbar(true);
-      return;
-    }
-
-    // Si es una página de ejemplo (isHeroPage=false sin secciones), también siempre visible
-    if (isHeroPage && seccionActual === "hero-section") {
-      console.log("[Navbar] ✅ Página Hero simple - navbar siempre visible");
-      setShouldShowNavbar(true);
-      return;
-    }
-
-    // Si el mouse está en el top o sobre el navbar, mostrar
-    if (isMouseInTopEighth || mouseOverNavbar) {
-      console.log("[Navbar] Mouse detectado - mostrando navbar");
-      setShouldShowNavbar(true);
-      // Limpiar timeout pendiente si existe
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-        hideTimeoutRef.current = null;
-      }
-    } else {
-      // Ocultar después de 1 segundo si no está cerca del top ni sobre el navbar
-      console.log("[Navbar] Mouse fuera - programando ocultación en 1 segundo");
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-      }
-      hideTimeoutRef.current = setTimeout(() => {
-        console.log("[Navbar] ⏱️  Timeout ejecutado - ocultando navbar");
-        setShouldShowNavbar(false);
-      }, 1000);
-    }
-
-    return () => {
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-        hideTimeoutRef.current = null;
-      }
-    };
-  }, [
-    isHeroPage,
-    isInHeroSection,
-    isMouseInTopEighth,
-    mouseOverNavbar,
-    seccionActual,
-  ]);
+  const shouldHaveScrolledStyle = isScrolled || isAlwaysScrolled;
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -226,7 +55,6 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
   };
 
   const abrirTerminos = () => {
-    // cerrar drawer y abrir modal de términos
     setMenuAbierto(false);
     setMostrarTerminos(true);
   };
@@ -238,12 +66,10 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
   // Prevenir scroll del body cuando el menú está abierto
   const previousOverflowRef = useRef<string | null>(null);
   useEffect(() => {
-    // Guardar el overflow previo y aplicar 'hidden' cuando se abra el menú.
     if (menuAbierto) {
       previousOverflowRef.current = document.body.style.overflow ?? "";
       document.body.style.overflow = "hidden";
     } else {
-      // Restaurar solo si habíamos guardado un valor previo.
       if (previousOverflowRef.current !== null) {
         document.body.style.overflow = previousOverflowRef.current;
         previousOverflowRef.current = null;
@@ -251,9 +77,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
         document.body.style.overflow = "";
       }
     }
-
     return () => {
-      // Al desmontar, restaurar el overflow previo si existe.
       if (previousOverflowRef.current !== null) {
         document.body.style.overflow = previousOverflowRef.current;
         previousOverflowRef.current = null;
@@ -263,88 +87,97 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
     };
   }, [menuAbierto]);
 
-  // Obtener estilos de la sección actual
-  const estiloActual =
-    estilosPorSeccion[seccionActual] || estilosPorSeccion.default;
+  const isContactPage =
+    currentPath.includes("/contacto") || variant === "solid-navy";
 
-  // Si es página Hero Y está en sección Hero, usar transparente; si NO es página Hero, usar el gradiente del footer
-  const backgroundClass =
-    isHeroPage && isInHeroSection
-      ? "bg-transparent"
-      : "bg-gradient-to-b from-gray-800 to-gray-900";
+  const navBaseClass =
+    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-4 md:px-8 lg:px-16";
 
-  // Aplicar clase de ocultación si no debe mostrar
-  const navClass = `fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-16 py-4 transition-all duration-500 ${backgroundClass} ${
-    !shouldShowNavbar
-      ? "opacity-0 pointer-events-none transform -translate-y-full"
-      : "opacity-100 pointer-events-auto transform translate-y-0"
-  }`;
+  let scrolledClass = "";
+  let textColor = "";
+  let logoColor = "";
 
-  const handleMouseEnterNav = () => {
-    if (!isHeroPage) {
-      setMouseOverNavbar(true);
-    }
-  };
-
-  const handleMouseLeaveNav = () => {
-    if (!isHeroPage) {
-      setMouseOverNavbar(false);
-    }
-  };
+  if (isContactPage) {
+    scrolledClass = "bg-slate-900 shadow-md py-2 md:py-3";
+    textColor = "text-white";
+    logoColor = "text-white";
+  } else if (shouldHaveScrolledStyle) {
+    scrolledClass = "bg-white/90 backdrop-blur-md shadow-md py-2 md:py-3";
+    textColor = "text-gray-900";
+    logoColor = "text-gray-900";
+  } else {
+    scrolledClass = "bg-transparent py-4 md:py-6";
+    textColor = "text-white";
+    logoColor = "text-white";
+  }
 
   return (
     <>
-      <nav
-        className={navClass}
-        onMouseEnter={handleMouseEnterNav}
-        onMouseLeave={handleMouseLeaveNav}
-      >
+      <nav className={`${navBaseClass} ${scrolledClass}`}>
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo / Nombre */}
           <div className="flex items-center">
             <a
               href="/"
-              className={`flex items-center gap-2 font-montserrat text-xl md:text-2xl font-bold ${estiloActual.logoColor} tracking-wide ${estiloActual.hoverColor} transition-all group`}
+              className={`flex items-center gap-2 font-montserrat font-bold ${logoColor} tracking-wide transition-all group`}
             >
               <img
                 src="/logo-mirador-luz.webp"
                 alt="Logo Mirador de Luz"
-                className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-110 transition-transform"
+                className={`object-contain transition-all duration-300 ${
+                  shouldHaveScrolledStyle
+                    ? "w-8 h-8 md:w-10 md:h-10"
+                    : "w-10 h-10 md:w-12 md:h-12"
+                } group-hover:scale-110`}
               />
-              <span>Mirador de Luz</span>
+              <span
+                className={`transition-all duration-300 ${
+                  shouldHaveScrolledStyle
+                    ? "text-sm md:text-xl"
+                    : "text-base md:text-2xl"
+                }`}
+              >
+                Mirador de Luz
+              </span>
             </a>
           </div>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links - Hidden on Mobile */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 mx-4">
-            <a
-              href="/#cabanas"
-              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
-            >
-              Cabañas
-            </a>
-            <a
-              href="/galeria"
-              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
-            >
-              Galería
-            </a>
-            <a
-              href="/contacto"
-              className={`font-montserrat text-sm font-semibold uppercase tracking-widest ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors`}
-            >
-              Contacto
-            </a>
+            {[
+              { label: "Inicio", href: "/" },
+              { label: "Cabañas", href: "/#cabanas" },
+              { label: "Galería", href: "/galeria" },
+              { label: "Contacto", href: "/contacto" },
+            ].map((link) => {
+              const isActive =
+                currentPath === link.href ||
+                (link.href !== "/" && currentPath.includes(link.href));
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`relative group font-montserrat text-xs xl:text-sm font-semibold uppercase tracking-widest ${textColor} transition-colors py-1`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute left-0 bottom-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  ></span>
+                </a>
+              );
+            })}
           </div>
 
-          {/* Desktop/Mobile Navigation Right - Siempre igual */}
+          {/* Right Action Area (Mobile & Desktop) */}
           <div className="flex items-center gap-3 md:gap-4">
-            {/* Botón Reservar (redirecciona a sección Nuestras Cabañas) */}
             <a
               href="/#cabanas"
-              className={`font-montserrat bg-gradient-to-r ${estiloActual.buttonGradient} text-white 
-                       px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-xs md:text-sm
-                       transform hover:scale-105 transition-all shadow-lg`}
+              className={`font-montserrat bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white 
+                       px-3 md:px-6 py-1.5 md:py-2.5 rounded-lg font-bold uppercase tracking-wider text-[10px] md:text-sm
+                       transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 whitespace-nowrap`}
             >
               RESERVAR
             </a>
@@ -352,7 +185,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             {/* Menú Hamburguesa */}
             <button
               onClick={toggleMenu}
-              className={`lg:hidden ${estiloActual.textColor} ${estiloActual.hoverColor} transition-colors p-2`}
+              className={`lg:hidden ${textColor} hover:text-orange-500 transition-colors p-2`}
               aria-label="Abrir menú"
             >
               <MenuIcon />
