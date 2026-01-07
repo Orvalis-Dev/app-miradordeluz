@@ -1,5 +1,10 @@
 import type { APIRoute } from "astro";
 import nodemailer from "nodemailer";
+import {
+  applySecurityHeaders,
+  applyCORSHeaders,
+} from "../../lib/securityHeaders";
+import { checkRateLimit } from "../../lib/rateLimiter";
 
 // Tipos
 interface ContactFormData {
@@ -98,42 +103,80 @@ function getSubjectLabel(asunto: string): string {
 }
 
 // Endpoint POST
-export const POST: APIRoute = async ({ request }) => {
-  // Solo aceptar POST
-  if (request.method !== "POST") {
-    return new Response(
-      JSON.stringify({
-        success: false,
-        message: "Método no permitido",
-      } as ApiResponse),
-      { status: 405, headers: { "Content-Type": "application/json" } }
-    );
-  }
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  // Obtener IP del cliente
+  const clientIP = clientAddress || "unknown";
+
+  // Crear response base
+  let response: Response;
 
   try {
+    // 🛡️ RATE LIMITING - Verificar límite de solicitudes
+    const rateLimit = checkRateLimit(clientIP, 5, 15 * 60 * 1000); // 5 solicitudes cada 15 minutos
+
+    if (!rateLimit.allowed) {
+      console.warn(
+        `[RATE LIMIT] IP ${clientIP} ha excedido el límite de solicitudes`
+      );
+      response = new Response(
+        JSON.stringify({
+          success: false,
+          message:
+            "Has alcanzado el límite de solicitudes. Por favor intenta más tarde.",
+        } as ApiResponse),
+        {
+          status: 429, // Too Many Requests
+          headers: {
+            "Content-Type": "application/json",
+            "Retry-After": rateLimit.retryAfter?.toString() || "900",
+          },
+        }
+      );
+
+      // Aplicar headers de seguridad
+      return applyCORSHeaders(applySecurityHeaders(response));
+    }
+
+    // Solo aceptar POST
+    if (request.method !== "POST") {
+      response = new Response(
+        JSON.stringify({
+          success: false,
+          message: "Método no permitido",
+        } as ApiResponse),
+        { status: 405, headers: { "Content-Type": "application/json" } }
+      );
+
+      return applyCORSHeaders(applySecurityHeaders(response));
+    }
+
     // Parsear el body
     let body: unknown;
     try {
       body = await request.json();
     } catch {
-      return new Response(
+      response = new Response(
         JSON.stringify({
           success: false,
           message: "JSON inválido",
         } as ApiResponse),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
+
+      return applyCORSHeaders(applySecurityHeaders(response));
     }
 
     // Validar los datos
     if (!validateContactData(body)) {
-      return new Response(
+      response = new Response(
         JSON.stringify({
           success: false,
           message: "Datos inválidos",
         } as ApiResponse),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
+
+      return applyCORSHeaders(applySecurityHeaders(response));
     }
 
     // Sanitizar los datos
@@ -288,7 +331,10 @@ Villa Santa Cruz del Lago, Córdoba, Argentina
       `,
     });
 
-    return new Response(
+    // Logging de solicitud exitosa
+    console.log(`[CONTACTO] Mensaje enviado exitosamente desde ${clientIP}`);
+
+    response = new Response(
       JSON.stringify({
         success: true,
         message:
@@ -299,19 +345,22 @@ Villa Santa Cruz del Lago, Córdoba, Argentina
         headers: { "Content-Type": "application/json" },
       }
     );
-  } catch (error) {
-    console.error("Error en endpoint de contacto:", error);
 
-    return new Response(
+    return applyCORSHeaders(applySecurityHeaders(response));
+  } catch (error) {
+    console.error("[ERROR] En endpoint de contacto:", error);
+
+    response = new Response(
       JSON.stringify({
         success: false,
         message: "Error al enviar el mensaje. Por favor intenta más tarde.",
-        error: error instanceof Error ? error.message : "Error desconocido",
       } as ApiResponse),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
       }
     );
+
+    return applyCORSHeaders(applySecurityHeaders(response));
   }
 };
