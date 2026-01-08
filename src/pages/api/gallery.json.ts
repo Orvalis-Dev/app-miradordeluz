@@ -1,10 +1,19 @@
-import type { APIRoute } from 'astro';
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import type { APIRoute } from "astro";
 
-type MediaType = 'image' | 'video';
+export const prerender = false;
 
-export type GalleryCategoryId = 'cabana1' | 'cabana2' | 'cabana3' | 'cabana4' | 'exterior' | 'pileta';
+import fs from "node:fs/promises";
+import path from "node:path";
+
+type MediaType = "image" | "video";
+
+export type GalleryCategoryId =
+  | "cabana1"
+  | "cabana2"
+  | "cabana3"
+  | "cabana4"
+  | "exterior"
+  | "pileta";
 
 export interface GalleryItem {
   id: string;
@@ -21,37 +30,52 @@ export interface GalleryPayload {
   items: GalleryItem[];
 }
 
-const IMAGE_EXTS = new Set(['.webp', '.jpg', '.jpeg', '.png', '.gif', '.avif', '.svg']);
-const VIDEO_EXTS = new Set(['.mp4', '.mov', '.webm', '.m4v']);
+const IMAGE_EXTS = new Set([
+  ".webp",
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".gif",
+  ".avif",
+  ".svg",
+]);
+const VIDEO_EXTS = new Set([".mp4", ".mov", ".webm", ".m4v"]);
 
-const CATEGORIES: Array<{ id: GalleryCategoryId; label: string; folder: string }> = [
-  { id: 'cabana1', label: 'Cabaña 1', folder: 'cabana-1' },
-  { id: 'cabana2', label: 'Cabaña 2', folder: 'cabana-2' },
-  { id: 'cabana3', label: 'Cabaña 3', folder: 'cabana-3' },
-  { id: 'cabana4', label: 'Cabaña 4', folder: 'cabana-4' },
-  { id: 'exterior', label: 'Exterior', folder: 'exterior' },
-  { id: 'pileta', label: 'Pileta', folder: 'pileta' },
+const CATEGORIES: Array<{
+  id: GalleryCategoryId;
+  label: string;
+  folder: string;
+}> = [
+  { id: "cabana1", label: "Cabaña 1", folder: "cabana-1" },
+  { id: "cabana2", label: "Cabaña 2", folder: "cabana-2" },
+  { id: "cabana3", label: "Cabaña 3", folder: "cabana-3" },
+  { id: "cabana4", label: "Cabaña 4", folder: "cabana-4" },
+  { id: "exterior", label: "Exterior", folder: "exterior" },
+  { id: "pileta", label: "Pileta", folder: "pileta" },
 ];
 
-const collator = new Intl.Collator('es', { numeric: true, sensitivity: 'base' });
+const collator = new Intl.Collator("es", {
+  numeric: true,
+  sensitivity: "base",
+});
 
 function filenameToTitle(filename: string, folder: string) {
-  const base = filename.replace(/\.[^.]+$/, '');
+  const base = filename.replace(/\.[^.]+$/, "");
   let clean = base;
   // Quitar prefijos típicos:
   // cabana-1-xxx -> xxx
   // exterior-xxx -> xxx
   // Si no matchea, igual devuelve algo legible.
-  clean = clean.replace(new RegExp(`^${folder}-`, 'i'), '');
-  clean = clean.replace(/^cabana-\d+-/i, '');
-  clean = clean.replace(/^exterior-/i, '');
-  clean = clean.replace(/[_-]+/g, ' ').trim();
-  if (!clean) return 'Archivo';
+  clean = clean.replace(new RegExp(`^${folder}-`, "i"), "");
+  clean = clean.replace(/^cabana-\d+-/i, "");
+  clean = clean.replace(/^exterior-/i, "");
+  clean = clean.replace(/[_-]+/g, " ").trim();
+  if (!clean) return "Archivo";
   return clean
-    .split(' ')
+    .split(" ")
     .filter(Boolean)
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+    .join(" ");
 }
 
 async function safeReadDir(dirPath: string) {
@@ -64,7 +88,7 @@ async function safeReadDir(dirPath: string) {
 }
 
 export const GET: APIRoute = async () => {
-  const publicImagesDir = path.join(process.cwd(), 'public', 'images');
+  const publicImagesDir = path.join(process.cwd(), "public", "images");
 
   const items: GalleryItem[] = [];
 
@@ -75,7 +99,7 @@ export const GET: APIRoute = async () => {
     const files = entries
       .filter((e) => e.isFile())
       .map((e) => e.name)
-      .filter((name) => name !== '.DS_Store')
+      .filter((name) => name !== ".DS_Store")
       .sort((a, b) => collator.compare(a, b));
 
     let idx = 0;
@@ -87,11 +111,11 @@ export const GET: APIRoute = async () => {
 
       idx += 1;
       const title = filenameToTitle(filename, cat.folder);
-      const type: MediaType = isVideo ? 'video' : 'image';
+      const type: MediaType = isVideo ? "video" : "image";
       const src = `/images/${cat.folder}/${filename}`;
 
       items.push({
-        id: `${cat.id}-${idx.toString().padStart(3, '0')}`,
+        id: `${cat.id}-${idx.toString().padStart(3, "0")}`,
         src,
         title,
         alt: `${title} - ${cat.label} - Mirador de Luz`,
@@ -109,15 +133,9 @@ export const GET: APIRoute = async () => {
 
   return new Response(JSON.stringify(payload), {
     headers: {
-      'Content-Type': 'application/json; charset=utf-8',
+      "Content-Type": "application/json; charset=utf-8",
       // Cache corto en dev; en prod se puede subir si querés.
-      'Cache-Control': 'no-store',
+      "Cache-Control": "no-store",
     },
   });
 };
-
-
-
-
-
-

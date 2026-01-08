@@ -1,372 +1,128 @@
-import React, { useState, type FormEvent, useRef, useEffect } from "react";
-import {
-  Send,
-  AlertCircle,
-  CheckCircle2,
-  Loader2,
-  ChevronDown,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface FormData {
-  nombre: string;
-  email: string;
-  asunto: string;
-  mensaje: string;
-}
-
-interface FormErrors {
-  nombre?: string;
-  email?: string;
-  asunto?: string;
-  mensaje?: string;
-}
+import React from "react";
+import { useForm, ValidationError } from "@formspree/react";
+import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    nombre: "",
-    email: "",
-    asunto: "",
-    mensaje: "",
-  });
+  const [state, handleSubmit] = useForm("xzdznolb");
 
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [honeypot, setHoneypot] = useState("");
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
-  const selectRef = useRef<HTMLDivElement>(null);
-
-  const options = [
-    { value: "consulta", label: "Consulta general" },
-    { value: "reserva", label: "Información sobre reserva" },
-    { value: "disponibilidad", label: "Consultar disponibilidad" },
-    { value: "otro", label: "Otro" },
-  ];
-
-  // Cerrar dropdown al hacer click fuera
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        selectRef.current &&
-        !selectRef.current.contains(event.target as Node)
-      ) {
-        setIsSelectOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const handleSelectOption = (value: string) => {
-    setFormData((prev) => ({ ...prev, asunto: value }));
-    setIsSelectOpen(false);
-    if (errors.asunto) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors.asunto;
-        return newErrors;
-      });
-    }
-  };
-
-  // Sanitización de strings (limpieza profunda)
-  const sanitizeString = (str: string) => {
-    return str
-      .trim()
-      .replace(
-        /[&<>"']/g,
-        (m) =>
-          ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;",
-          }[m] || m)
-      )
-      .slice(0, 1000);
-  };
-
-  const validate = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    // Nombre
-    if (!formData.nombre.trim()) {
-      newErrors.nombre = "El nombre es obligatorio";
-    } else if (formData.nombre.trim().length < 3) {
-      newErrors.nombre = "El nombre debe tener al menos 3 caracteres";
-    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(formData.nombre)) {
-      newErrors.nombre = "El nombre solo puede contener letras";
-    }
-
-    // Email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email) {
-      newErrors.email = "El email es obligatorio";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Ingresa un email válido";
-    }
-
-    // Asunto
-    if (!formData.asunto) {
-      newErrors.asunto = "Selecciona un asunto";
-    }
-
-    // Mensaje
-    if (!formData.mensaje.trim()) {
-      newErrors.mensaje = "El mensaje no puede estar vacío";
-    } else if (formData.mensaje.trim().length < 10) {
-      newErrors.mensaje = "El mensaje es demasiado corto (mín. 10 caracteres)";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
-    // Limpiar error al escribir
-    if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name as keyof FormErrors];
-        return newErrors;
-      });
-    }
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    // Check honeypot
-    if (honeypot) {
-      console.warn("Bot detected via honeypot");
-      return;
-    }
-
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-
-    // NO sanitizar aquí - el servidor lo hará
-    // Solo preparamos los datos para enviar al endpoint
-    const dataToSend = {
-      nombre: formData.nombre,
-      email: formData.email,
-      asunto: formData.asunto,
-      mensaje: formData.mensaje,
-    };
-
-    try {
-      const response = await fetch("/api/contacto", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Error al enviar el mensaje");
-      }
-
-      // Éxito
-      setIsSuccess(true);
-      setFormData({ nombre: "", email: "", asunto: "", mensaje: "" });
-    } catch (error) {
-      console.error("Error enviando el formulario:", error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : "Hubo un error al enviar el mensaje. Por favor intenta de nuevo."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  if (isSuccess) {
+  if (state.succeeded) {
     return (
       <div className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 flex flex-col items-center text-center animate-in fade-in zoom-in duration-500">
         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
           <CheckCircle2 size={40} />
         </div>
-        <h2 className="font-montserrat text-3xl font-bold text-slate-800 mb-4">
-          ¡Mensaje Enviado!
-        </h2>
-        <p className="text-slate-600 mb-8 max-w-sm">
-          Gracias por contactarte con Mirador de Luz. Te responderemos a la
-          brevedad posible.
+        <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">
+          ¡Gracias por contactarnos!
+        </h3>
+        <p className="text-gray-500 mb-8 max-w-sm">
+          Te responderemos a la brevedad para coordinar tu estadía.
         </p>
-        <button
-          onClick={() => setIsSuccess(false)}
-          className="font-montserrat bg-linear-to-r from-orange-500 to-amber-500 text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:from-orange-600 hover:to-amber-600 transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-1"
-        >
-          Enviar otro mensaje
-        </button>
       </div>
     );
   }
 
   return (
-    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100/50">
-      <h2 className="font-montserrat text-3xl font-semibold mb-8 text-slate-900 tracking-tight">
-        Envíanos un mensaje
-      </h2>
-
-      <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-        {/* Honeypot field (hidden from users) */}
-        <div className="hidden" aria-hidden="true">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100"
+    >
+      <div className="space-y-6">
+        {/* Nombre */}
+        <div>
+          <label
+            htmlFor="nombre"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Nombre completo
+          </label>
           <input
+            id="nombre"
             type="text"
-            name="website"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
-            tabIndex={-1}
-            autoComplete="off"
+            name="nombre"
+            required
+            className="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all duration-300 bg-gray-50/50 hover:bg-white"
+            placeholder="Tu nombre"
+          />
+          <ValidationError
+            prefix="Nombre"
+            field="nombre"
+            errors={state.errors}
+            className="text-red-500 text-sm mt-1 block"
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="space-y-2">
-            <label
-              htmlFor="nombre"
-              className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
-            >
-              Nombre completo
-            </label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleChange}
-              className={`font-montserrat w-full px-4 py-3 bg-gray-50/50 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none ${
-                errors.nombre ? "border-red-500" : "border-gray-200"
-              }`}
-              placeholder="Tu nombre"
-            />
-            {errors.nombre && (
-              <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                <AlertCircle size={12} /> {errors.nombre}
-              </p>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <label
-              htmlFor="email"
-              className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`font-montserrat w-full px-4 py-3 bg-gray-50/50 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none ${
-                errors.email ? "border-red-500" : "border-gray-200"
-              }`}
-              placeholder="tu@email.com"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                <AlertCircle size={12} /> {errors.email}
-              </p>
-            )}
-          </div>
+        {/* Email */}
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            className="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all duration-300 bg-gray-50/50 hover:bg-white"
+            placeholder="tu@email.com"
+          />
+          <ValidationError
+            prefix="Email"
+            field="email"
+            errors={state.errors}
+            className="text-red-500 text-sm mt-1 block"
+          />
         </div>
 
-        <div className="space-y-2">
+        {/* Asunto */}
+        <div>
           <label
             htmlFor="asunto"
-            className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
+            className="block text-sm font-medium text-gray-700 mb-2"
           >
             Asunto
           </label>
-          <div className="relative" ref={selectRef}>
-            <button
-              type="button"
-              onClick={() => setIsSelectOpen(!isSelectOpen)}
-              className={`font-montserrat w-full px-4 py-3 bg-gray-50/50 border rounded-xl flex items-center justify-between transition-all outline-none text-left ${
-                errors.asunto ? "border-red-500" : "border-gray-200"
-              } ${
-                isSelectOpen
-                  ? "ring-2 ring-orange-500 border-transparent bg-white shadow-sm"
-                  : ""
-              }`}
+          <div className="relative">
+            <select
+              id="asunto"
+              name="asunto"
+              required
+              defaultValue=""
+              className="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all duration-300 bg-gray-50/50 hover:bg-white appearance-none cursor-pointer text-gray-700"
             >
-              <span
-                className={
-                  formData.asunto ? "text-slate-900" : "text-slate-500"
-                }
-              >
-                {formData.asunto
-                  ? options.find((o) => o.value === formData.asunto)?.label
-                  : "Selecciona una opción"}
-              </span>
-              <ChevronDown
-                size={18}
-                className={`text-slate-500 transition-transform duration-300 ${
-                  isSelectOpen ? "rotate-180 text-orange-500" : ""
-                }`}
-              />
-            </button>
-
-            <AnimatePresence>
-              {isSelectOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden backdrop-blur-sm"
-                >
-                  <div className="py-1">
-                    {options.map((option) => (
-                      <button
-                        key={option.value}
-                        type="button"
-                        onClick={() => handleSelectOption(option.value)}
-                        className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors hover:bg-orange-50 flex items-center justify-between ${
-                          formData.asunto === option.value
-                            ? "text-orange-600 bg-orange-50/50"
-                            : "text-slate-700"
-                        }`}
-                      >
-                        {option.label}
-                        {formData.asunto === option.value && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <option value="" disabled>
+                Selecciona un asunto
+              </option>
+              <option value="consulta">Consulta general</option>
+              <option value="reserva">Información sobre reserva</option>
+              <option value="disponibilidad">Consultar disponibilidad</option>
+              <option value="otro">Otro</option>
+            </select>
+            {/* Custom Arrow */}
+            <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                  fillRule="evenodd"
+                ></path>
+              </svg>
+            </div>
           </div>
-          {errors.asunto && (
-            <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-              <AlertCircle size={12} /> {errors.asunto}
-            </p>
-          )}
+          <ValidationError
+            prefix="Asunto"
+            field="asunto"
+            errors={state.errors}
+            className="text-red-500 text-sm mt-1 block"
+          />
         </div>
 
-        <div className="space-y-2">
+        {/* Mensaje */}
+        <div>
           <label
             htmlFor="mensaje"
-            className="font-montserrat block text-xs font-extrabold text-slate-600 uppercase tracking-widest px-1"
+            className="block text-sm font-medium text-gray-700 mb-2"
           >
             Mensaje
           </label>
@@ -374,52 +130,37 @@ export default function ContactForm() {
             id="mensaje"
             name="mensaje"
             rows={4}
-            value={formData.mensaje}
-            onChange={handleChange}
-            maxLength={1000}
-            className={`font-montserrat w-full px-4 py-3 bg-gray-50/50 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all outline-none resize-none ${
-              errors.mensaje ? "border-red-500" : "border-gray-200"
-            }`}
-            placeholder="¿En qué te podemos ayudar?"
-          ></textarea>
-          <div className="flex justify-between items-center px-1">
-            {errors.mensaje ? (
-              <p className="text-red-500 text-xs flex items-center gap-1">
-                <AlertCircle size={12} /> {errors.mensaje}
-              </p>
-            ) : (
-              <span></span>
-            )}
-            <span
-              className={`text-[10px] font-bold uppercase tracking-wider ${
-                formData.mensaje.length > 950
-                  ? "text-orange-500"
-                  : "text-slate-500"
-              }`}
-            >
-              {formData.mensaje.length} / 1000
-            </span>
-          </div>
+            required
+            className="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all duration-300 bg-gray-50/50 hover:bg-white resize-none"
+            placeholder="Hola, quisiera consultar disponibilidad para..."
+          />
+          <ValidationError
+            prefix="Mensaje"
+            field="mensaje"
+            errors={state.errors}
+            className="text-red-500 text-sm mt-1 block"
+          />
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting}
-          className="font-montserrat w-full bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 disabled:from-gray-400 disabled:to-gray-500 text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-[0.2em] transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 hover:-translate-y-1 transform flex items-center justify-center gap-2"
+          disabled={state.submitting}
+          className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-orange-500/25 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
         >
-          {isSubmitting ? (
+          {state.submitting ? (
             <>
-              <Loader2 className="animate-spin" size={20} />
-              ENVIANDO...
+              <Loader2 className="w-5 h-5 animate-spin" />
+              <span>Enviando...</span>
             </>
           ) : (
             <>
-              <Send size={18} />
-              ENVIAR MENSAJE
+              <span>Enviar Mensaje</span>
+              <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </>
           )}
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }

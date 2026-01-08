@@ -2,11 +2,11 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "pnpm run build && pnpm preview --host"
+startCommand = "node ./dist/server/entry.mjs"
 restartPolicyType = "always"
 restartPolicyMaxRetries = 5
 
 [env]
-# 🔐 Variables críticas para seguridad
-FORCE_HTTPS = "true"
+HOST = "0.0.0.0"
 NODE_ENV = "production"
+FORCE_HTTPS = "true"
