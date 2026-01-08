@@ -105,7 +105,9 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                         src={cabana.imagenUrl}
                         alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
                         className="w-full h-full object-cover transition-all duration-700 brightness-[0.95] contrast-[1.05] saturate-[1.05] group-hover:scale-105 group-hover:brightness-110 group-hover:contrast-100"
-                        loading="lazy"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        width="800"
+                        height="533"
                         style={
                           {
                             viewTransitionName: `cabin-image-${cabana.id}`,

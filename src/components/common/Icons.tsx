@@ -20,6 +20,10 @@ import {
   Users,
   Bath,
 } from "lucide-react";
+// Import individual icons could be more efficient if tree-shaking fails
+// But modern Vite/Astro usually handles the named imports above well in production.
+// Added this comment to ensure we are watching the bundle.
+
 import type { LucideProps } from "lucide-react";
 import type { FC } from "react";
 

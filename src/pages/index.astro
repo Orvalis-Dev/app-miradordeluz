@@ -19,7 +19,7 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
   <!-- Navbar fijo que permanece visible durante el scroll -->
   <NavbarMiradorDeLuz client:load />
 
-  <ScrollAnimations client:load />
+  <ScrollAnimations client:idle />
 
   <main>
     <!-- 1. Hero Principal -->
@@ -80,5 +80,5 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
   </main>
 
   <!-- Footer -->
-  <FooterMiradorDeLuz client:load />
+  <FooterMiradorDeLuz client:visible />
 </Layout>

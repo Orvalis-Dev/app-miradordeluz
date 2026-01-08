@@ -9,9 +9,10 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
+import type { CabanaImage } from "@constants/reservasConfig";
 
 interface CabanaGalleryGridProps {
-  images: string[];
+  images: CabanaImage[];
   cabanaName: string;
   cabanaId: string;
 }
@@ -129,7 +130,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
           onClick={() => openModal(0)}
         >
           <img
-            src={images[0]}
+            src={images[0]?.desktop}
             alt={`${cabanaName} 1`}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
@@ -144,7 +145,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
             onClick={() => openModal(idx + 1)}
           >
             <img
-              src={img}
+              src={img.desktop}
               alt={`${cabanaName} ${idx + 2}`}
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -180,7 +181,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
               onClick={() => openModal(idx)}
             >
               <img
-                src={img}
+                src={img.mobile}
                 alt={`${cabanaName} ${idx + 1}`}
                 className="w-full h-full object-cover"
               />
@@ -264,7 +265,9 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
             <div className="relative w-full h-full flex items-center justify-center overflow-hidden touch-none">
               <motion.img
                 key={currentIndex}
-                src={images[currentIndex]}
+                src={images[currentIndex].desktop}
+                srcSet={`${images[currentIndex].mobile} 768w, ${images[currentIndex].desktop} 1200w`}
+                sizes="(max-width: 768px) 100vw, 85vw"
                 variants={variants}
                 initial="enter"
                 animate="center"

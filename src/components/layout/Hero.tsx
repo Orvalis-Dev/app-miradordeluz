@@ -186,12 +186,14 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
           />
         </div>
       ) : (
-        <div
-          className="absolute inset-0 bg-cover bg-[center_75%] md:bg-center bg-no-repeat transition-all duration-500"
-          style={{ backgroundImage: `url(${imagenFondo})` }}
-          role="img"
-          aria-label="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
-        >
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src={imagenFondo}
+            alt="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
+            className="absolute inset-0 w-full h-full object-cover object-[center_75%] md:object-center transition-all duration-500"
+            loading="eager"
+            fetchPriority="high"
+          />
           {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
           <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
           <div
