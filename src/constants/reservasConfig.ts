@@ -67,7 +67,7 @@ const CABANA_IMAGE_FILENAMES: Record<ReservaCabanaId, string[]> = {
     "cabana-1-habitacion.webp",
     "cabana-1-habitacion-1.webp",
     "cabana-1-habitacion-2.webp",
-    "cabana-1-hbitacion-3.webp",
+    "cabana-1-habitacion-3.webp",
     "cabana-1-habitacion-4.webp",
     "cabana-1-habitacion-5.webp",
     "cabana-1-cocina.webp",
