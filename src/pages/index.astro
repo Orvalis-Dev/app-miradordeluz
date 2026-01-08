@@ -1,15 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import NavbarMiradorDeLuz from "../components/react/NavbarMiradorDeLuz";
-import HeroMiradorDeLuz from "../components/react/HeroMiradorDeLuz";
-import SectionUbicacionMiradorDeLuz from "../components/react/SectionUbicacionMiradorDeLuz";
-import SectionHeroIntermedio from "../components/react/SectionHeroIntermedio";
-import SectionCabanas from "../components/react/SectionCabanas";
-import SectionServicios from "../components/react/SectionServicios";
-import SectionTestimonios from "../components/react/SectionTestimonios";
-import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
-import ScrollAnimations from "../components/react/ScrollAnimations";
-import { SITE_CONFIG } from "../constants/config";
+import NavbarMiradorDeLuz from "@components/layout/Navbar";
+import HeroMiradorDeLuz from "@components/layout/Hero";
+import SectionUbicacionMiradorDeLuz from "@components/sections/SectionUbicacionMiradorDeLuz";
+import SectionHeroIntermedio from "@components/sections/SectionHeroIntermedio";
+import SectionCabanas from "@components/sections/SectionCabanas";
+import SectionServicios from "@components/sections/SectionServicios";
+import SectionTestimonios from "@components/sections/SectionTestimonios";
+import FooterMiradorDeLuz from "@components/layout/Footer";
+import ScrollAnimations from "@components/common/ScrollAnimations";
+import { SITE_CONFIG } from "@constants/config";
 
 // URL para dejar una reseña
 const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;

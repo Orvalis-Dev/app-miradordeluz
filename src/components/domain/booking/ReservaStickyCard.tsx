@@ -1,5 +1,5 @@
 import React from "react";
-import { IconWhatsApp as WhatsAppIcon } from "./ui/Icons";
+import { IconWhatsApp as WhatsAppIcon } from "@components/common/Icons";
 
 interface ReservaStickyCardProps {
   cabanaName: string;

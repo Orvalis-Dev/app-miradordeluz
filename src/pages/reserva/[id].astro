@@ -1,0 +1,14 @@
+---
+import ReservaCabanaPage from "../../components/astro/ReservaCabanaPage.astro";
+import { cabanas } from "../../constants/cabanas";
+
+export function getStaticPaths() {
+  return cabanas.map((cabana) => ({
+    params: { id: cabana.id },
+  }));
+}
+
+const { id } = Astro.params;
+---
+
+<ReservaCabanaPage cabanaId={id} />

@@ -7,9 +7,9 @@ import {
   IconParking,
   IconMountain,
   IconFire,
-} from "./ui/Icons";
-import { cabanas } from "../../constants/cabanas";
-import type { IconName } from "../../constants/cabanas";
+} from "@components/common/Icons";
+import { cabanas } from "@constants/cabanas";
+import type { IconName } from "@constants/cabanas";
 
 const getIcon = (name: IconName) => {
   switch (name) {

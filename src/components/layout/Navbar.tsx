@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { FC } from "react";
-import TermsModal from "./TermsModal";
+import TermsModal from "@components/common/TermsModal";
 import {
   IconInstagram as InstagramIcon,
   IconWhatsApp as WhatsAppIcon,
@@ -8,7 +8,7 @@ import {
   IconMenu as MenuIcon,
   IconClose,
   IconChevronDown,
-} from "./ui/Icons";
+} from "@components/common/Icons";
 
 interface NavbarMiradorDeLuzProps {
   variant?: "glass" | "solid-navy" | "transparent";

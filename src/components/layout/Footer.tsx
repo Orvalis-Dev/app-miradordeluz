@@ -6,8 +6,8 @@ import {
   IconMapPin as LocationIcon,
   IconPhone as PhoneIcon,
   IconMail as MailIcon,
-} from "./ui/Icons";
-import TermsModal from "./TermsModal";
+} from "@components/common/Icons";
+import TermsModal from "@components/common/TermsModal";
 
 // Tipos
 interface RedSocial {

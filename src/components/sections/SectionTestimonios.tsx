@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, type FC } from "react";
-import TestimonialCard, { type Testimonial } from "./TestimonialCard";
+import TestimonialCard, {
+  type Testimonial,
+} from "@components/common/TestimonialCard";
 
 // Iconos de flechas para navegación del carrusel
 const ChevronLeftIcon: FC = () => (

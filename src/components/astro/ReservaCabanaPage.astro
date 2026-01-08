@@ -1,17 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import NavbarMiradorDeLuz from "../react/NavbarMiradorDeLuz";
-import FooterMiradorDeLuz from "../react/FooterMiradorDeLuz";
-import CabanaGalleryGrid from "../react/CabanaGalleryGrid";
-import ReservaStickyCard from "../react/ReservaStickyCard";
-import AmenitiesModal from "../react/AmenitiesModal";
-import { IconUsers, IconBed, IconBath } from "../react/ui/Icons";
+import NavbarMiradorDeLuz from "@components/layout/Navbar";
+import FooterMiradorDeLuz from "@components/layout/Footer";
+import CabanaGalleryGrid from "@components/domain/gallery/CabanaGalleryGrid";
+import ReservaStickyCard from "@components/domain/booking/ReservaStickyCard";
+import AmenitiesModal from "@components/common/AmenitiesModal";
+import { IconUsers, IconBed, IconBath } from "@components/common/Icons";
 import {
   getReservaCabanaConfig,
   getReservaCabanaImages,
   SERVICIOS,
-} from "../../constants/reservasConfig";
-import { cabanas } from "../../constants/cabanas";
+} from "@constants/reservasConfig";
+import { cabanas } from "@constants/cabanas";
 
 const { cabanaId } = Astro.props as { cabanaId: string };
 

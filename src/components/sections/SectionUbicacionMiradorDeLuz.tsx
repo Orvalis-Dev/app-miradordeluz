@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from "react";
-import { IconMapPin, IconMountain } from "./ui/Icons";
+import { IconMapPin, IconMountain } from "@components/common/Icons";
 import { Sparkles } from "lucide-react";
 
 interface SectionUbicacionMiradorDeLuzProps {

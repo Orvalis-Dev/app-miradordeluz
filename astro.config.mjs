@@ -10,6 +10,13 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [react(), sitemap()],
 
+  redirects: {
+    "/reserva-cabana-1": "/reserva/1",
+    "/reserva-cabana-2": "/reserva/2",
+    "/reserva-cabana-3": "/reserva/3",
+    "/reserva-cabana-4": "/reserva/4",
+  },
+
   output: "static",
   site: "https://miradordeluz.com",
 
