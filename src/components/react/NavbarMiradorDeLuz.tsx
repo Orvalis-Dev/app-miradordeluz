@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { FC } from "react";
-import TermsModal from "./TermsModal";
+import TermsModal from "@components/common/TermsModal";
 import {
   IconInstagram as InstagramIcon,
   IconWhatsApp as WhatsAppIcon,
@@ -8,7 +8,7 @@ import {
   IconMenu as MenuIcon,
   IconClose,
   IconChevronDown,
-} from "./ui/Icons";
+} from "@components/common/Icons";
 
 interface NavbarMiradorDeLuzProps {
   variant?: "glass" | "solid-navy" | "transparent";
@@ -191,7 +191,9 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
 
             {/* Menú Hamburguesa */}
             <button
+              type="button"
               onClick={toggleMenu}
+              aria-expanded={menuAbierto}
               className={`lg:hidden ${textColor} hover:text-orange-500 transition-colors p-2`}
               aria-label="Abrir menú"
             >
@@ -233,6 +235,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               </span>
             </a>
             <button
+              type="button"
               onClick={cerrarMenu}
               className="text-white/80 hover:text-white transition-colors p-1"
               aria-label="Cerrar menú"
@@ -272,9 +275,10 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
             <ul className="space-y-1">
               <li>
                 <button
+                  type="button"
                   onClick={() => setCabanasAbierto(!cabanasAbierto)}
                   className={`w-full font-montserrat py-4 text-lg font-bold transition-colors flex items-center justify-between border-b border-white/5 uppercase tracking-wider ${
-                    currentPath.includes("reserva-cabana")
+                    currentPath.includes("/reserva")
                       ? "text-orange-500"
                       : "text-white hover:text-orange-500"
                   }`}

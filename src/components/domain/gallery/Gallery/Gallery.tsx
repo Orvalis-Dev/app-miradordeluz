@@ -10,86 +10,102 @@ import {
 } from "lucide-react";
 
 interface GalleryImage {
-  src: string;
+  srcDesktop: string;
+  srcMobile: string;
   alt: string;
   title: string;
 }
 
 const PREMIUM_IMAGES: GalleryImage[] = [
   {
-    src: "/images/exterior/exterior-45.webp",
-    alt: "Vista panorámica del complejo",
-    title: "Vista Panorámica",
+    srcDesktop: "/images/gallery/imagen-1-desktop.webp",
+    srcMobile: "/images/gallery/imagen-1-mobile.webp",
+    alt: "Vista aérea del complejo Mirador de Luz",
+    title: "Nuestro Complejo",
   },
   {
-    src: "/images/exterior/exterior-40.webp",
-    alt: "Entorno natural y jardines",
-    title: "Nuestro Entorno",
+    srcDesktop: "/images/gallery/imagen-2-desktop.webp",
+    srcMobile: "/images/gallery/imagen-2-mobile.webp",
+    alt: "Piscina principal con vista a las sierras",
+    title: "Piscina y Relax",
   },
   {
-    src: "/images/exterior/exterior-41.webp",
-    alt: "Vistas a las sierras",
+    srcDesktop: "/images/gallery/imagen-3-desktop.webp",
+    srcMobile: "/images/gallery/imagen-3-mobile.webp",
+    alt: "Interior moderno y acogedor de nuestras cabañas",
+    title: "Interiores",
+  },
+  {
+    srcDesktop: "/images/gallery/imagen-4-desktop.webp",
+    srcMobile: "/images/gallery/imagen-4-mobile.webp",
+    alt: "Detalle del dormitorio principal",
+    title: "Confort Superior",
+  },
+  {
+    srcDesktop: "/images/gallery/imagen-5-desktop.webp",
+    srcMobile: "/images/gallery/imagen-5-mobile.webp",
+    alt: "Área de estar con ventanales panorámicos",
     title: "Vistas Únicas",
   },
   {
-    src: "/images/pileta/pileta-14.webp",
-    alt: "Nuestra piscina bajo el sol",
-    title: "Piscina",
+    srcDesktop: "/images/gallery/imagen-6-desktop.webp",
+    srcMobile: "/images/gallery/imagen-6-mobile.webp",
+    alt: "Cocina totalmente equipada",
+    title: "Equipamiento",
   },
   {
-    src: "/images/exterior/exterior-12.webp",
-    alt: "Parque y zonas comunes",
-    title: "Parque",
+    srcDesktop: "/images/gallery/imagen-7-desktop.webp",
+    srcMobile: "/images/gallery/imagen-7-mobile.webp",
+    alt: "Exterior de las cabañas en armonía con la naturaleza",
+    title: "Arquitectura",
   },
   {
-    src: "/images/exterior/exterior-16.webp",
-    alt: "Atardecer en el complejo",
-    title: "Atardeceres",
+    srcDesktop: "/images/gallery/imagen-8-desktop.webp",
+    srcMobile: "/images/gallery/imagen-8-mobile.webp",
+    alt: "Jardines y espacios verdes del complejo",
+    title: "Naturaleza",
   },
   {
-    src: "/images/pileta/pileta-38.webp",
-    alt: "Relax y descanso en la piscina",
-    title: "Relax",
+    srcDesktop: "/images/gallery/imagen-9-desktop.webp",
+    srcMobile: "/images/gallery/imagen-9-mobile.webp",
+    alt: "Piscina iluminada al atardecer",
+    title: "Noches Mágicas",
   },
   {
-    src: "/images/pileta/pileta-34.webp",
-    alt: "Zona de solárium",
-    title: "Solárium",
+    srcDesktop: "/images/gallery/imagen-10-desktop.webp",
+    srcMobile: "/images/gallery/imagen-10-mobile.webp",
+    alt: "Detalles de decoración y estilo",
+    title: "Diseño",
   },
   {
-    src: "/images/pileta/pileta-50.webp",
-    alt: "Detalles de nuestra piscina",
-    title: "Piscina",
+    srcDesktop: "/images/gallery/imagen-11-desktop.webp",
+    srcMobile: "/images/gallery/imagen-11-mobile.webp",
+    alt: "Baño moderno con terminaciones de calidad",
+    title: "Calidad",
   },
   {
-    src: "/images/cabana-3/cabana-3-5.webp",
-    alt: "Interior acogedor Cabaña 3",
-    title: "Cabaña 3",
+    srcDesktop: "/images/gallery/imagen-12-desktop.webp",
+    srcMobile: "/images/gallery/imagen-12-mobile.webp",
+    alt: "Vistas a las sierras desde el balcón",
+    title: "Panorámicas",
   },
   {
-    src: "/images/cabana-3/cabana-3-30.webp",
-    alt: "Detalles de confort Cabaña 3",
-    title: "Cabaña 3",
+    srcDesktop: "/images/gallery/imagen-13-desktop.webp",
+    srcMobile: "/images/gallery/imagen-13-mobile.webp",
+    alt: "Área de juegos y recreación",
+    title: "Diversión",
   },
   {
-    src: "/images/cabana-2/cabana-2-46.webp",
-    alt: "Espacios amplios en Cabaña 2",
-    title: "Cabaña 2",
+    srcDesktop: "/images/gallery/imagen-14-desktop.webp",
+    srcMobile: "/images/gallery/imagen-14-mobile.webp",
+    alt: "Entorno natural y senderos",
+    title: "Exploración",
   },
   {
-    src: "/images/cabana-2/cabana-2-42.webp",
-    alt: "Confort y diseño en Cabaña 2",
-    title: "Cabaña 2",
-  },
-  {
-    src: "/images/cabana-2/cabana-2-9.webp",
-    alt: "Dormitorio Cabaña 2",
-    title: "Cabaña 2",
-  },
-  {
-    src: "/images/cabana-1/cabana-1-habitacion-3.webp",
-    alt: "Dormitorio principal Cabaña 1",
-    title: "Cabaña 1",
+    srcDesktop: "/images/gallery/imagen-15-desktop.webp",
+    srcMobile: "/images/gallery/imagen-15-mobile.webp",
+    alt: "Atardecer reflejado en la piscina",
+    title: "Experiencia Mirador",
   },
 ];
 
@@ -186,15 +202,18 @@ export default function Gallery() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
-            className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg bg-gray-200 shadow-sm transition-all hover:shadow-xl"
+            className="group relative aspect-video cursor-pointer overflow-hidden rounded-lg bg-gray-200 shadow-sm transition-all hover:shadow-xl"
             onClick={() => openLightbox(index)}
           >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
-            />
+            <picture className="block h-full w-full">
+              <source media="(max-width: 768px)" srcSet={image.srcMobile} />
+              <img
+                src={image.srcDesktop}
+                alt={image.alt}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+            </picture>
             {/* Overlay al hacer hover */}
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               <div className="bg-white/20 backdrop-blur-md rounded-full p-3 mb-3 scale-0 group-hover:scale-100 transition-transform duration-500">
@@ -266,7 +285,9 @@ export default function Gallery() {
             <div className="relative w-full h-full flex items-center justify-center overflow-hidden touch-none">
               <motion.img
                 key={selectedIndex}
-                src={PREMIUM_IMAGES[selectedIndex].src}
+                src={PREMIUM_IMAGES[selectedIndex].srcDesktop}
+                srcSet={`${PREMIUM_IMAGES[selectedIndex].srcMobile} 768w, ${PREMIUM_IMAGES[selectedIndex].srcDesktop} 1200w`}
+                sizes="(max-width: 768px) 100vw, 1200px"
                 variants={variants}
                 initial="enter"
                 animate="center"

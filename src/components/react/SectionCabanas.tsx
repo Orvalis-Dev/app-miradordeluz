@@ -7,9 +7,9 @@ import {
   IconParking,
   IconMountain,
   IconFire,
-} from "./ui/Icons";
-import { cabanas } from "../../constants/cabanas";
-import type { IconName } from "../../constants/cabanas";
+} from "@components/common/Icons";
+import { cabanas } from "@constants/cabanas";
+import type { IconName } from "@constants/cabanas";
 
 const getIcon = (name: IconName) => {
   switch (name) {
@@ -135,7 +135,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
 
                       <h3 className="font-montserrat text-[28px] md:text-[32px] font-bold text-[#1E1E1E] mb-4">
                         <a
-                          href={`/reserva-${cabana.slug}`}
+                          href={`/reserva/${cabana.id}`}
                           className="hover:text-amber-700 transition-colors"
                           style={
                             {
@@ -153,9 +153,9 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
 
                       {/* Amenities en grid 2x2 */}
                       <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-6">
-                        {cabana.amenities.map((amenity, idx) => (
+                        {cabana.amenities.map((amenity) => (
                           <div
-                            key={idx}
+                            key={amenity.label}
                             className="flex items-center gap-3 text-gray-700 text-sm"
                           >
                             <span className="text-[#8a754e]">
@@ -172,7 +172,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
 
                       <div className="flex justify-center lg:justify-start">
                         <a
-                          href={`/reserva-${cabana.slug}`}
+                          href={`/reserva/${cabana.id}`}
                           className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-amber-500 text-white font-bold rounded-xl uppercase tracking-widest text-xs transition-all duration-300 shadow-lg hover:bg-gradient-to-r hover:from-amber-600 hover:to-orange-600 hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 group"
                         >
                           Ver disponibilidad

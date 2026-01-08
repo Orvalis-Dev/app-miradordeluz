@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "img": "node scripts/optimizar.js",
     "convert:webp": "node scripts/convertToWebpFinal.js",
     "rename:images": "node scripts/renameImages.js",
     "generate:images": "node scripts/generateImageData.js"
@@ -24,6 +25,7 @@
     "astro": "^5.16.6",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
+    "fs-extra": "^11.3.3",
     "gsap": "^3.14.2",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
