@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "pnpm run build && pnpm preview"
+startCommand = "pnpm run build && pnpm preview --host"
 restartPolicyType = "always"
 restartPolicyMaxRetries = 5
 

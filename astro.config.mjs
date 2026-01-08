@@ -11,7 +11,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [react(), sitemap()],
 
-  output: "static",
+  output: "hybrid",
   site: "https://miradordeluz.com",
 
   build: {
