@@ -24,6 +24,11 @@ export default defineConfig({
     inlineStylesheets: "auto",
   },
 
+  server: {
+    port: Number(process.env.PORT ?? 4321),
+    host: true,
+  },
+
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: true,
