@@ -15,7 +15,6 @@
     "generate:images": "node scripts/generateImageData.js"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.1",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.1",
     "@formspree/react": "^3.0.0",
