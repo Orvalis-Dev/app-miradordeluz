@@ -125,9 +125,9 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 18,
-        "url": "/images/cabana-1/cabana-1-hbitacion-3.webp",
+        "url": "/images/cabana-1/cabana-1-habitacion-3.webp",
         "title": "Hbitacion 3",
-        "filename": "cabana-1-hbitacion-3.webp"
+        "filename": "cabana-1-habitacion-3.webp"
       },
       {
         "id": 19,
