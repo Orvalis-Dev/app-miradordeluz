@@ -2,8 +2,6 @@ import { type FC, type ReactNode, useState } from "react";
 import {
   FiWifi,
   FiCoffee,
-  FiTruck,
-  FiCheck,
   FiClock,
   FiEye,
   FiLayers,
@@ -11,17 +9,9 @@ import {
   FiTv,
   FiWind,
   FiDivide,
-  FiAlertCircle,
   FiBell,
-  FiAlertTriangle,
 } from "react-icons/fi";
-import {
-  GiBarbecue,
-  GiFlame,
-  GiPineTree,
-  GiBed,
-  GiCooler,
-} from "react-icons/gi";
+import { GiBarbecue, GiPineTree, GiBed, GiCooler } from "react-icons/gi";
 import {
   MdOutlinePool,
   MdGarage,
