@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, type FC } from "react";
+import { motion } from "framer-motion";
 import TestimonialCard, {
   type Testimonial,
 } from "@components/common/TestimonialCard";
@@ -207,7 +208,13 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         {/* Cabecera: título + rating + navegación desktop */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-8">
-          <div className="text-center md:text-left flex-1">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center md:text-left flex-1"
+          >
             <h2 className="font-montserrat text-[36px] md:text-[48px] lg:text-[56px] font-extrabold text-[#1E1E1E] leading-tight mb-4">
               Experiencias de <br className="hidden lg:block" /> Nuestros
               Huéspedes
@@ -216,9 +223,15 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
               Descubrí lo que dicen quienes ya vivieron la experiencia en
               nuestras cabañas
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col items-center md:flex-row md:items-center gap-6 md:gap-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="flex flex-col items-center md:flex-row md:items-center gap-6 md:gap-10"
+          >
             {/* Rating Display */}
             <div className="flex items-center gap-6">
               <div className="text-[56px] md:text-[64px] font-extrabold text-[#0B1220] -tracking-tighter leading-none">
@@ -259,11 +272,17 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
                 <ChevronRightIcon />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Carrusel de testimonios con Swiper */}
-        <div className="relative mb-12 group">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="relative mb-12 group"
+        >
           <Swiper
             {...swiperOptions}
             grabCursor={true}
@@ -288,10 +307,16 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
 
           {/* Paginación personalizada - visible en mobile */}
           <div className="swiper-pagination-custom flex justify-center gap-2 mt-4 md:hidden transition-all duration-300"></div>
-        </div>
+        </motion.div>
 
         {/* Botón de acción final */}
-        <div className="flex flex-col items-center gap-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          className="flex flex-col items-center gap-8"
+        >
           <button
             onClick={handleClickBoton}
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#0B1220] text-white font-bold shadow-lg transition-all duration-300 hover:bg-[#1a253a] hover:scale-105 active:scale-95"
@@ -309,7 +334,7 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
             </svg>
             {textoBoton}
           </button>
-        </div>
+        </motion.div>
       </div>
       <style
         dangerouslySetInnerHTML={{
