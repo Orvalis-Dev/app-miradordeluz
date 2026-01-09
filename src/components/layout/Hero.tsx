@@ -192,7 +192,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             alt="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
             className="absolute inset-0 w-full h-full object-cover object-[center_75%] md:object-center transition-all duration-500"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
           />
           {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
           <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
@@ -323,7 +323,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             <div className="flex justify-center mb-8">
               <a
                 href="#cabanas"
-                className="font-montserrat inline-flex items-center gap-3 bg-orange-600 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-orange-700 hover:scale-105 hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300 transform tracking-wider border border-white/20"
+                className="font-montserrat inline-flex items-center gap-3 bg-orange-700 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-orange-800 hover:scale-105 hover:shadow-[0_0_25px_rgba(194,65,12,0.4)] transition-all duration-300 transform tracking-wider border border-white/20"
               >
                 <span className="hidden md:inline">
                   Conoce nuestras Cabañas

@@ -77,7 +77,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
                 <span className="text-3xl font-bold tracking-tight">
                   Mirador <span className="text-amber-500">de Luz</span>
                 </span>
-                <span className="text-[11px] uppercase tracking-[0.3em] text-gray-300 mt-1 font-semibold">
+                <span className="text-xs uppercase tracking-[0.3em] text-gray-300 mt-1 font-semibold">
                   Complejo de Cabañas
                 </span>
               </div>
@@ -154,7 +154,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
         <div className="mt-12 pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
             {/* Copyright + Dev */}
-            <div className="text-[11px] text-gray-300 font-medium text-center md:text-left tracking-wide">
+            <div className="text-xs text-gray-300 font-medium text-center md:text-left tracking-wide">
               © {new Date().getFullYear()} Mirador de Luz. Todos los derechos
               reservados.{" "}
               <span className="ml-1 text-gray-300">
@@ -163,7 +163,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
                   href="https://orvalis.com.ar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white no-underline hover:underline hover:text-white transition-all duration-300"
+                  className="text-white underline hover:text-amber-500 transition-all duration-300"
                 >
                   Orvalis
                 </a>
@@ -174,7 +174,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
             {/* Legal Link */}
             <button
               onClick={() => setIsTermsOpen(true)}
-              className="text-[11px] text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase px-2"
+              className="text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase px-2"
             >
               Términos y Condiciones
             </button>

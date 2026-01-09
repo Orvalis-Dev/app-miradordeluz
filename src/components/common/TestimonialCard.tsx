@@ -103,7 +103,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
             ))}
           </div>
           {isLocalGuide && (
-            <span className="text-[9px] text-orange-600 font-bold uppercase tracking-wider">
+            <span className="text-[11px] text-orange-700 font-bold uppercase tracking-wider">
               Local Guide
             </span>
           )}
@@ -145,20 +145,20 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
                   {date}
                 </p>
                 {isNew && (
-                  <span className="text-[9px] text-orange-600 font-bold uppercase ring-1 ring-orange-100 px-1 rounded">
+                  <span className="text-[11px] text-orange-700 font-bold uppercase ring-1 ring-orange-200 px-1 rounded">
                     Nueva
                   </span>
                 )}
               </div>
-              <p className="font-montserrat text-[9px] text-gray-600 truncate mt-0.5">
+              <p className="font-montserrat text-xs text-slate-500 truncate mt-0.5">
                 {reviewsCount}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col items-end opacity-70">
+          <div className="flex flex-col items-end opacity-90">
             <GoogleIcon className="w-4 h-4 text-slate-700" />
-            <span className="text-[7px] font-bold mt-1 uppercase text-right leading-none tracking-tighter text-slate-700">
+            <span className="text-[11px] font-bold mt-1 uppercase text-right leading-none tracking-tighter text-slate-700">
               Verificada
             </span>
           </div>

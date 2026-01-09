@@ -227,7 +227,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
         <div className="text-center mb-12 md:mb-16">
           {/* Etiqueta pequeña */}
           <div className="mb-4">
-            <span className="font-montserrat text-[14px] font-semibold text-[#8a754e] tracking-[0.2em] uppercase">
+            <span className="font-montserrat text-[14px] font-semibold text-[#756341] tracking-[0.2em] uppercase">
               SERVICIOS & INSTALACIONES
             </span>
           </div>
@@ -311,7 +311,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                 <button
                   onClick={closeModal}
                   aria-label="Cerrar"
-                  className="p-2 rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8a754e]"
+                  className="p-2 rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#756341]"
                 >
                   <svg
                     className="w-6 h-6"
@@ -335,7 +335,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                   <div className="p-6 md:p-8 space-y-10">
                     {/* INSTALACIONES */}
                     <section>
-                      <h4 className="font-montserrat text-[12px] font-bold text-[#8a754e] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#756341] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
                         INSTALACIONES
                       </h4>
                       <div className="space-y-0">
@@ -349,7 +349,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                             key={item.id}
                             className="flex items-center gap-4 py-2 border-b border-stone-50 last:border-0 group"
                           >
-                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#8a754e] transition-colors">
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-600 group-hover:text-[#756341] transition-colors">
                               <item.Icon />
                             </div>
                             <span className="font-montserrat text-[15px] font-medium text-[#333]">
@@ -362,7 +362,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
 
                     {/* SERVICIOS */}
                     <section>
-                      <h4 className="font-montserrat text-[12px] font-bold text-[#8a754e] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#756341] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
                         SERVICIOS
                       </h4>
                       <div className="space-y-0">
@@ -392,7 +392,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                             key={item.id}
                             className="flex items-center gap-4 py-2 border-b border-stone-50 last:border-0 group"
                           >
-                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#8a754e] transition-colors">
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-600 group-hover:text-[#756341] transition-colors">
                               <item.Icon />
                             </div>
                             <span className="font-montserrat text-[15px] font-medium text-[#333]">
@@ -408,7 +408,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                   <div className="p-6 md:p-8 space-y-10 bg-stone-50/50 min-h-full">
                     {/* EQUIPAMIENTOS */}
                     <section>
-                      <h4 className="font-montserrat text-[12px] font-bold text-[#8a754e] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#756341] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
                         EQUIPAMIENTOS
                       </h4>
                       <div className="space-y-0">
@@ -448,7 +448,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                             key={item.id}
                             className="flex items-center gap-4 py-2 border-b border-stone-100 last:border-0 group"
                           >
-                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#8a754e] transition-colors">
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-600 group-hover:text-[#756341] transition-colors">
                               <item.Icon />
                             </div>
                             <span className="font-montserrat text-[15px] font-medium text-[#333]">
@@ -461,7 +461,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
 
                     {/* PROTECCIONES */}
                     <section>
-                      <h4 className="font-montserrat text-[12px] font-bold text-[#8a754e] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
+                      <h4 className="font-montserrat text-[12px] font-bold text-[#756341] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
                         SEGURIDAD
                       </h4>
                       <div className="space-y-0">
@@ -496,7 +496,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                             key={item.id}
                             className="flex items-center gap-4 py-2 border-b border-stone-100 last:border-0 group"
                           >
-                            <div className="w-8 h-8 flex items-center justify-center text-stone-500 group-hover:text-[#8a754e] transition-colors">
+                            <div className="w-8 h-8 flex items-center justify-center text-stone-600 group-hover:text-[#756341] transition-colors">
                               <item.Icon />
                             </div>
                             <span className="font-montserrat text-[15px] font-medium text-[#333]">

@@ -146,7 +146,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={state.submitting}
-          className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-orange-500/25 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+          className="w-full bg-orange-700 hover:bg-orange-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-orange-500/25 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
         >
           {state.submitting ? (
             <>

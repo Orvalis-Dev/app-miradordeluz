@@ -50,7 +50,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
         {/* Header con título y descripción */}
         <div className="text-center mb-16 md:mb-20">
           <div className="mb-4">
-            <span className="font-montserrat text-[14px] font-semibold text-[#8a754e] tracking-[0.2em] uppercase">
+            <span className="font-montserrat text-[14px] font-semibold text-[#756341] tracking-[0.2em] uppercase">
               Mirador de Luz
             </span>
           </div>
@@ -128,7 +128,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                   >
                     <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8">
                       <div className="mb-4">
-                        <span className="inline-block px-3 py-1 bg-stone-100 rounded-full font-montserrat text-[11px] md:text-[12px] font-bold text-[#8a754e] tracking-[0.1em] uppercase">
+                        <span className="inline-block px-3 py-1 bg-stone-100 rounded-full font-montserrat text-[11px] md:text-[12px] font-bold text-[#756341] tracking-[0.1em] uppercase">
                           {cabana.etiqueta}
                         </span>
                       </div>
@@ -158,7 +158,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                             key={amenity.label}
                             className="flex items-center gap-3 text-gray-700 text-sm"
                           >
-                            <span className="text-[#8a754e]">
+                            <span className="text-[#756341]">
                               {getIcon(amenity.icon)}
                             </span>
                             <span className="font-montserrat font-medium">
@@ -173,7 +173,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
                       <div className="flex justify-center lg:justify-start">
                         <a
                           href={`/reserva/${cabana.id}`}
-                          className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-amber-500 text-white font-bold rounded-xl uppercase tracking-widest text-xs transition-all duration-300 shadow-lg hover:bg-gradient-to-r hover:from-amber-600 hover:to-orange-600 hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 group"
+                          className="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-amber-700 text-white font-bold rounded-xl uppercase tracking-widest text-xs transition-all duration-300 shadow-lg hover:bg-gradient-to-r hover:from-amber-800 hover:to-orange-800 hover:shadow-2xl hover:shadow-orange-500/40 hover:-translate-y-1 group"
                         >
                           Ver disponibilidad
                           <svg

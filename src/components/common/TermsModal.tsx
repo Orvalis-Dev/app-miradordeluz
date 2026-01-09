@@ -88,12 +88,11 @@ const TermsModal: FC<TermsModalProps> = ({ open, onClose }) => {
             <p>
               Las reservas en Complejo Mirador de Luz se gestionan de manera
               personalizada. Para confirmar una reserva, se solicitará el pago
-              de una seña (50%) mediante
-              transferencia bancaria. El saldo restante deberá abonarse al
-              momento del ingreso (Check-in) en efectivo o transferencia, salvo
-              acuerdo previo diferente. La reserva solo se considera efectiva
-              una vez enviado el comprobante de pago y recibido nuestro mensaje
-              de confirmación.
+              de una seña (50%) mediante transferencia bancaria. El saldo
+              restante deberá abonarse al momento del ingreso (Check-in) en
+              efectivo o transferencia, salvo acuerdo previo diferente. La
+              reserva solo se considera efectiva una vez enviado el comprobante
+              de pago y recibido nuestro mensaje de confirmación.
             </p>
           </section>
 
@@ -231,7 +230,7 @@ const TermsModal: FC<TermsModalProps> = ({ open, onClose }) => {
         <div className="mt-8 flex justify-center border-t pt-6">
           <button
             onClick={onClose}
-            className="px-8 py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+            className="px-8 py-3 bg-amber-700 text-white font-bold rounded-lg hover:bg-amber-800 transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
           >
             Cerrar
           </button>

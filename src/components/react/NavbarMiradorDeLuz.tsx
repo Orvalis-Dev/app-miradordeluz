@@ -250,7 +250,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               <a
                 href="/#cabanas"
                 onClick={cerrarMenu}
-                className="group w-full bg-orange-600 hover:bg-orange-700 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/20 transition-all active:scale-[0.98]"
+                className="group w-full bg-orange-700 hover:bg-orange-800 text-white font-montserrat font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-orange-950/20 transition-all active:scale-[0.98]"
               >
                 <span className="uppercase tracking-wider">RESERVAR</span>
                 <svg

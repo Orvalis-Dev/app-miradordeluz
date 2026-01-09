@@ -43,15 +43,15 @@ Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos
   ],
   bulletPoints = [
     {
-      icon: <IconMapPin className="w-5 h-5 text-[#8a754e]" />,
+      icon: <IconMapPin className="w-5 h-5 text-[#756341]" />,
       text: "A 5 min de Villa Carlos Paz",
     },
     {
-      icon: <Sparkles className="w-5 h-5 text-[#8a754e]" />,
+      icon: <Sparkles className="w-5 h-5 text-[#756341]" />,
       text: "Complejo a estrenar",
     },
     {
-      icon: <IconMountain className="w-5 h-5 text-[#8a754e]" />,
+      icon: <IconMountain className="w-5 h-5 text-[#756341]" />,
       text: "Vista a las sierras",
     },
   ],
@@ -63,7 +63,7 @@ Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos
   tituloClass = "font-montserrat text-[28px] md:text-[32px] lg:text-[42px] font-extrabold text-[#1E1E1E] leading-tight",
   parrafoClass = "font-montserrat text-[16px] md:text-[18px] font-medium text-[#4A4A4A] leading-relaxed",
   fraseClass = "font-montserrat text-[18px] md:text-[22px] font-bold text-[#1E1E1E] italic",
-  etiquetaClass = "font-montserrat text-[10px] md:text-[14px] font-bold text-[#8a754e] tracking-[0.2em] uppercase",
+  etiquetaClass = "font-montserrat text-[10px] md:text-[14px] font-bold text-[#756341] tracking-[0.2em] uppercase",
 }) => {
   // Función para resaltar palabras específicas en el texto
   const highlightText = (texto: string, destacados: string[] = []) => {
@@ -84,7 +84,7 @@ Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos
               nuevasPartes.push(
                 <span
                   key={`${fragmento}-${idx}`}
-                  className="font-semibold text-[#8a754e]"
+                  className="font-semibold text-[#756341]"
                 >
                   {fragmento}
                 </span>
