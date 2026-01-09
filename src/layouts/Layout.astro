@@ -2,6 +2,17 @@
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 
+// FontSource Imports
+import '@fontsource/montserrat/300.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/800.css';
+import '@fontsource/merriweather/400.css';
+import '@fontsource/merriweather/700.css';
+import '@fontsource/merriweather/900.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -101,10 +112,6 @@ const schema = JSON.stringify({
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <script type="application/ld+json" set:html={schema} />
 
   <link rel="sitemap" href="/sitemap-index.xml" />

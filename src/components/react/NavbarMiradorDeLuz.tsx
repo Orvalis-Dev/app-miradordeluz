@@ -13,11 +13,13 @@ import {
 interface NavbarMiradorDeLuzProps {
   variant?: "glass" | "solid-navy" | "transparent";
   showReservaButton?: boolean;
+  logoSrc?: string;
 }
 
 const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
   variant,
   showReservaButton = true,
+  logoSrc,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAlwaysScrolled, setIsAlwaysScrolled] = useState(false);
@@ -128,8 +130,10 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               className={`flex items-center gap-2 font-montserrat font-bold ${logoColor} tracking-wide transition-all group`}
             >
               <img
-                src="/logo-mirador-luz.webp"
+                src={logoSrc || "/logo-mirador-luz.webp"}
                 alt="Logo Mirador de Luz"
+                width="48"
+                height="48"
                 className={`object-contain transition-all duration-300 ${
                   shouldHaveScrolledStyle
                     ? "w-8 h-8 md:w-10 md:h-10"
@@ -226,7 +230,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
               onClick={cerrarMenu}
             >
               <img
-                src="/logo-mirador-luz.webp"
+                src={logoSrc || "/logo-mirador-luz.webp"}
                 alt="Logo Mirador de Luz"
                 className="w-8 h-8 object-contain"
               />

@@ -3,6 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import NavbarMiradorDeLuz from "@components/layout/Navbar";
 import FooterMiradorDeLuz from "@components/layout/Footer";
 import ContactForm from "@components/domain/booking/ContactForm";
+import GoogleMapFacade from "../components/react/GoogleMapFacade";
+// Optimización de Logo
+import { getImage } from "astro:assets";
+import logoImage from "../assets/logo-mirador-luz.webp";
+
+const optimizedLogo = await getImage({
+  src: logoImage,
+  format: "webp",
+  width: 120,
+});
 
 // Datos de contacto
 const contactInfo = {
@@ -29,7 +39,11 @@ const mapCoords = {
   description="Contacta con Mirador de Luz. Estamos aquí para ayudarte a planificar tu estadía perfecta en Villa Santa Cruz del Lago, Córdoba."
 >
   <!-- Navbar (Copiamos el estilo de la galería con fondo sólido) -->
-  <NavbarMiradorDeLuz client:load variant="solid-navy" />
+  <NavbarMiradorDeLuz
+    client:load
+    variant="solid-navy"
+    logoSrc={optimizedLogo.src}
+  />
 
   <main>
     <section class="relative bg-gray-50 text-slate-900 pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
@@ -167,14 +181,12 @@ const mapCoords = {
         <div
           class="rounded-3xl overflow-hidden shadow-2xl border border-white relative bg-white"
         >
-          <iframe
-            src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13619.6!2d${mapCoords.lng}!3d${mapCoords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d65f0c8772fbd%3A0x4d7f1d8348462d0a!2sMirador%20de%20Luz!5e0!3m2!1ses!2sar!4v1702000000000!5m2!1ses!2sar`}
-            class="w-full h-112.5 md:h-125"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
+          <GoogleMapFacade
+            client:visible
+            iframeSrc={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13619.6!2d${mapCoords.lng}!3d${mapCoords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d65f0c8772fbd%3A0x4d7f1d8348462d0a!2sMirador%20de%20Luz!5e0!3m2!1ses!2sar!4v1702000000000!5m2!1ses!2sar`}
+            placeholderImage="/images/exterior/exterior-1-desktop.webp"
             title="Ubicación de Mirador de Luz en Google Maps"
-          ></iframe>
+          />
         </div>
 
         <div class="text-center mt-12">
@@ -195,5 +207,5 @@ const mapCoords = {
   </main>
 
   <!-- Footer consistente con el resto del sitio -->
-  <FooterMiradorDeLuz client:load />
+  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 </Layout>

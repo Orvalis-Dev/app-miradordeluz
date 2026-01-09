@@ -10,6 +10,25 @@ import SectionTestimonios from "@components/sections/SectionTestimonios";
 import FooterMiradorDeLuz from "@components/layout/Footer";
 import ScrollAnimations from "@components/common/ScrollAnimations";
 import { SITE_CONFIG } from "@constants/config";
+import { getImage } from "astro:assets";
+import heroImage from "../assets/hero-principal.webp";
+import logoImage from "../assets/logo-mirador-luz.webp";
+
+const optimizedHeroMobile = await getImage({
+  src: heroImage,
+  format: "webp",
+  width: 768,
+});
+const optimizedHeroDesktop = await getImage({
+  src: heroImage,
+  format: "webp",
+  width: 1920,
+});
+const optimizedLogo = await getImage({
+  src: logoImage,
+  format: "webp",
+  width: 120, // Sufficient for retina
+});
 
 // URL para dejar una reseña
 const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
@@ -17,14 +36,19 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
 
 <Layout title="Mirador de Luz - Cabañas en Carlos Paz">
   <!-- Navbar fijo que permanece visible durante el scroll -->
-  <NavbarMiradorDeLuz client:load />
+  <NavbarMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 
   <ScrollAnimations client:idle />
 
   <main>
     <!-- 1. Hero Principal -->
     <div id="hero-section" style="position: relative;">
-      <HeroMiradorDeLuz client:load />
+      <HeroMiradorDeLuz
+        client:load
+        imagenFondo={optimizedHeroDesktop.src}
+        imagenFondoMobile={optimizedHeroMobile.src}
+        logoSrc={optimizedLogo.src}
+      />
       <div
         class="hero-overlay"
         style="position: absolute; inset: 0; background: black; opacity: 0.5; pointer-events: none; z-index: 5;"
@@ -38,13 +62,13 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
       class="scroll-mt-20"
       style="position: relative; z-index: 10; background: white;"
     >
-      <SectionUbicacionMiradorDeLuz client:visible />
+      <SectionUbicacionMiradorDeLuz client:load />
     </div>
 
     <!-- 3. Hero Intermedio con Video (60% → 100% con animación) -->
     <div id="hero-intermedio-section" style="position: relative; z-index: 9;">
       <SectionHeroIntermedio
-        client:visible
+        client:load
         videoMobile="/videos/video-mobile.mp4"
         videoDesktop="/videos/video-desktop.mp4"
         subheading="MIRADOR DE LUZ"
@@ -60,19 +84,19 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
       style="position: relative; z-index: 11; background: white;"
     >
       <div id="cabanas" class="scroll-mt-20">
-        <SectionCabanas client:visible />
+        <SectionCabanas client:load />
       </div>
     </div>
 
     <!-- 5. Servicios e Instalaciones Section -->
     <div id="servicios" class="scroll-mt-20">
-      <SectionServicios client:visible />
+      <SectionServicios client:load />
     </div>
 
     <!-- 6. Testimonios Section - Integrado con Google Maps -->
     <div id="testimonios" class="scroll-mt-20">
       <SectionTestimonios 
-        client:visible 
+        client:load 
         textoBoton="Ver todas las opiniones en Google Maps"
         googleReviewUrl={googleReviewUrl}
       />
@@ -80,5 +104,5 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
   </main>
 
   <!-- Footer -->
-  <FooterMiradorDeLuz client:visible />
+  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 </Layout>

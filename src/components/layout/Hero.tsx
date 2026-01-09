@@ -110,12 +110,14 @@ interface HeroMiradorDeLuzProps {
   subtitulo?: string;
   descripcion?: string;
   imagenFondo?: string;
+  imagenFondoMobile?: string;
   videoFondo?: string;
   isVerticalVideo?: boolean;
   colorPrimario?: string;
   colorSecundario?: string;
   colorAccent?: string;
   mostrarNavbar?: boolean;
+  logoSrc?: string;
   onSearch?: (datos: {
     fechaInicio: string;
     fechaFin: string;
@@ -129,9 +131,11 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
   subtitulo = "COMPLEJO DE CABAÑAS",
   descripcion = "Descansá entre la naturaleza y la luz del amanecer",
   imagenFondo = "/images/hero-principal.webp",
+  imagenFondoMobile,
   videoFondo,
   isVerticalVideo = false,
   mostrarNavbar = false,
+  logoSrc,
   onSearch,
 }) => {
   const [adultos, setAdultos] = useState(2);
@@ -175,34 +179,19 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             playsInline
             preload="metadata"
           />
-          {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
-          <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
-            }}
-          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/40" />
         </div>
       ) : (
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={imagenFondo}
             alt="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
-            className="absolute inset-0 w-full h-full object-cover object-[center_75%] md:object-center transition-all duration-500"
+            className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
-            fetchpriority="high"
           />
-          {/* Overlay optimizado: Gradiente lineal para profundidad y legibilidad */}
-          <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)",
-            }}
-          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/40" />
         </div>
       )}
 
@@ -215,8 +204,10 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
               {/* Logo / Nombre */}
               <div className="flex items-center gap-3">
                 <img
-                  src="/logo-mirador-luz.webp"
+                  src={logoSrc || "/logo-mirador-luz.webp"}
                   alt="Logo Mirador de Luz"
+                  width="48"
+                  height="48"
                   className="w-10 h-10 md:w-12 md:h-12 object-contain"
                 />
                 <span className="font-montserrat text-2xl md:text-3xl font-bold text-white tracking-wide">

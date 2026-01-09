@@ -5,6 +5,7 @@ type HeroProps = {
   subtitle?: string;
   titleLine1: string;
   titleLine2?: string;
+  logoSrc?: string;
 };
 
 const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
@@ -12,6 +13,7 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
   subtitle = "CERCA DE TODO",
   titleLine1,
   titleLine2,
+  logoSrc,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -24,7 +26,7 @@ const HeroMiradorDeLuzLayout: FC<HeroProps> = ({
           <div className="flex items-center">
             <a href="/" className="flex items-center gap-2">
               <img
-                src="/logo-mirador-luz.webp"
+                src={logoSrc || "/logo-mirador-luz.webp"}
                 alt="Mirador de Luz"
                 className="h-10 md:h-12 w-auto object-contain"
               />

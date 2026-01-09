@@ -2,6 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import NavbarMiradorDeLuz from "@components/layout/Navbar";
 import FooterMiradorDeLuz from "@components/layout/Footer";
+// Optimización de Logo
+import { getImage } from "astro:assets";
+import logoImage from "../assets/logo-mirador-luz.webp";
+
+const optimizedLogo = await getImage({
+  src: logoImage,
+  format: "webp",
+  width: 120,
+});
 ---
 
 <Layout 
@@ -9,7 +18,7 @@ import FooterMiradorDeLuz from "@components/layout/Footer";
   description="Test con HTML Astro puro"
 >
   <div class="navbar-wrapper-galeria">
-    <NavbarMiradorDeLuz client:load />
+    <NavbarMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
   </div>
 
   <main class="pt-20 bg-white">
@@ -75,7 +84,7 @@ import FooterMiradorDeLuz from "@components/layout/Footer";
     </section>
   </main>
 
-  <FooterMiradorDeLuz client:load />
+  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 </Layout>
 
 <style>

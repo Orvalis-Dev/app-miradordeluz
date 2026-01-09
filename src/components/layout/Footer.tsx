@@ -26,6 +26,7 @@ interface FooterMiradorDeLuzProps {
   email?: string;
   redesSociales?: RedSocial[];
   linksNavegacion?: LinkNavegacion[];
+  logoSrc?: string;
 }
 
 const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
@@ -54,6 +55,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
     { texto: "Galería", url: "/galeria" },
     { texto: "Reservar", url: "/#cabanas" },
   ],
+  logoSrc,
 }) => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
@@ -69,7 +71,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
               className="flex items-center gap-3 group transition-transform hover:scale-105"
             >
               <img
-                src="/logo-mirador-luz.webp"
+                src={logoSrc || "/logo-mirador-luz.webp"}
                 alt="Logo Mirador de Luz"
                 className="w-16 h-16 object-contain"
               />
