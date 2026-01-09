@@ -2,18 +2,18 @@
 
 ## Propósito
 
-Este documento detalla todas las medidas de seguridad implementadas y recomendadas para la landing page de Mirador del Luz alojada en Railway. Incluye configuración de HTTPS, protección contra vulnerabilidades comunes, validación de datos y best practices de seguridad.
+Este documento detalla todas las medidas de seguridad implementadas y recomendadas para la landing page de Mirador del Luz alojada en Cloudflare Pages. Incluye configuración de HTTPS, protección contra vulnerabilidades comunes, validación de datos y best practices de seguridad.
 
 **Última actualización:** Enero 2026  
-**Entorno:** Railway  
-**Stack:** Astro + React + Node.js
+**Entorno:** Cloudflare Pages  
+**Stack:** Astro + React + Cloudflare Workers
 
 ---
 
 ## 📋 Tabla de Contenidos
 
 1. [HTTPS y Transport Security](#https-y-transport-security)
-2. [Configuración de Railway](#configuración-de-railway)
+2. [Configuración de Cloudflare Pages](#configuración-de-cloudflare-pages)
 3. [Headers de Seguridad](#headers-de-seguridad)
 4. [Validación y Sanitización de Datos](#validación-y-sanitización-de-datos)
 5. [Protección contra Vulnerabilidades](#protección-contra-vulnerabilidades)
@@ -29,7 +29,7 @@ Este documento detalla todas las medidas de seguridad implementadas y recomendad
 
 ### ✅ Implementación Actual
 
-La página está configurada para servirse con HTTPS desde Railway. El sitio es accesible en `https://miradordeluz.com`.
+La página está configurada para servirse con HTTPS desde Cloudflare Pages. El sitio es accesible en `https://miradordeluz.com`.
 
 ### 🔧 Configuración en Astro
 
@@ -37,74 +37,39 @@ La página está configurada para servirse con HTTPS desde Railway. El sitio es 
 // astro.config.mjs (ACTUAL)
 export default defineConfig({
   site: "https://miradordeluz.com", // ✅ URL con HTTPS obligatorio
+  output: "hybrid",
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
   // ... resto de configuración
 });
 ```
 
-### ⚙️ Configuración en Railway (railway.toml)
+### ⚙️ Configuración en Cloudflare Pages
 
-**Crear archivo `railway.toml` en la raíz del proyecto:**
+Cloudflare Pages gestiona automáticamente el despliegue y la seguridad básica:
 
-```toml
-[build]
-builder = "nixpacks"
+1. **HTTPS Forzado:** Cloudflare redirige automáticamente todo el tráfico HTTP a HTTPS por defecto.
+2. **Ciclo de vida:** Se dispara con cada `git push` a la rama `main`.
+3. **Build Command:** `pnpm run build`
+4. **Output Directory:** `dist`
 
-[deploy]
-startCommand = "pnpm run build && pnpm preview"
-restartPolicyType = "always"
-restartPolicyMaxRetries = 5
+### 📋 Redirección HTTP → HTTPS
 
-[env]
-# Variables críticas para seguridad
-FORCE_HTTPS = "true"
-NODE_ENV = "production"
-```
-
-### 📋 Redirección HTTP → HTTPS (Express Middleware)
-
-**Crear archivo `src/middleware.ts`:**
-
-```typescript
-import type { MiddlewareHandler } from "astro";
-
-export const onRequest: MiddlewareHandler = async (context, next) => {
-  // En producción (Railway), forzar HTTPS
-  if (process.env.NODE_ENV === "production") {
-    const request = context.request;
-    const url = new URL(request.url);
-
-    // Redirigir HTTP a HTTPS
-    if (url.protocol === "http:" && !url.hostname.includes("localhost")) {
-      return new Response(null, {
-        status: 301,
-        headers: {
-          Location: `https://${url.hostname}${url.pathname}${url.search}`,
-        },
-      });
-    }
-  }
-
-  return next();
-};
-```
+En Cloudflare Pages, no es necesario un middleware manual para esto, ya que se configura desde el dashboard de Cloudflare o viene activo por defecto.
 
 ### 🔗 HSTS (HTTP Strict Transport Security)
 
-**Implementar en los endpoints de API (`src/pages/api/contacto.ts`):**
+Cloudflare maneja HSTS a nivel de red (Edge). Se recomienda activarlo en el dashboard de Cloudflare:
+**Websites > SSL/TLS > Edge Certificates > HSTS**.
+"Strict-Transport-Security",
+"max-age=31536000; includeSubDomains; preload"
+);
 
-```typescript
-export const prerender = false;
-
-export const POST: APIRoute = async ({ request, response }) => {
-  // Agregar header HSTS
-  response.headers.set(
-    "Strict-Transport-Security",
-    "max-age=31536000; includeSubDomains; preload"
-  );
-
-  // Resto del código...
+// Resto del código...
 };
-```
+
+````
 
 ### 📌 Verificación HSTS Preload
 
@@ -116,11 +81,11 @@ Registrar el sitio en HSTS Preload list:
 
 ---
 
-## 🚂 Configuración de Railway
+## ☁️ Configuración de Cloudflare Pages
 
 ### Variables de Entorno (Environment Variables)
 
-En el panel de Railway, configurar las siguientes variables:
+En el panel de Cloudflare (Settings > Functions > Environment variables), configurar las siguientes variables:
 
 ```plaintext
 # 🔐 CRÍTICAS
@@ -139,7 +104,7 @@ SITE_URL=https://miradordeluz.com
 # 🛡️ Seguridad
 RATE_LIMIT_WINDOW=15
 RATE_LIMIT_MAX_REQUESTS=100
-```
+````
 
 ### Archivo `.env` Local (NUNCA commitear)
 
@@ -491,9 +456,9 @@ if (!API_KEY) {
 }
 ```
 
-### Variables Sensibles en Railway
+### Variables Sensibles en Cloudflare
 
-En Railway Dashboard → Variables:
+En Cloudflare Dashboard → Pages → Settings → Functions:
 
 ```
 SMTP_EMAIL=xxxxx@gmail.com          (App password, NO contraseña Gmail)

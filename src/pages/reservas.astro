@@ -1,6 +1,8 @@
 ---
 import ReservaCabanaPage from "../components/astro/ReservaCabanaPage.astro";
 
+export const prerender = false;
+
 // Leer parámetro de consulta (si viene desde los botones de las cabañas)
 const url = new URL(Astro.request.url);
 const cabanaId = url.searchParams.get("cabana") ?? "1";

@@ -109,25 +109,15 @@ Content-Type: application/json
 
 ---
 
-### 5. ✅ Configuración Railway
+### 5. ✅ Configuración Cloudflare Pages
 
-**Archivo creado:** [railway.toml](railway.toml)
+Cloudflare Pages gestiona automáticamente el despliegue a través de la integración con Git.
 
-**Configuración:**
+**Configuración en Cloudflare Dashboard:**
 
-```toml
-[build]
-builder = "nixpacks"
-
-[deploy]
-startCommand = "pnpm run build && pnpm preview"
-restartPolicyType = "always"
-restartPolicyMaxRetries = 5
-
-[env]
-FORCE_HTTPS = "true"
-NODE_ENV = "production"
-```
+- **Build Command:** `pnpm run build`
+- **Output Directory:** `dist`
+- **Node Version:** 18+ (especificado en `package.json`)
 
 **Variables de Entorno requeridas en Railway Dashboard:**
 

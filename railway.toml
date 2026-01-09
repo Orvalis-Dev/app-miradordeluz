@@ -1,5 +1,0 @@
-[build]
-builder = "nixpacks"
-
-[env]
-NODE_ENV = "production"

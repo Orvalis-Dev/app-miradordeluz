@@ -5,10 +5,14 @@ import path from "path";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), sitemap()],
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
 
   redirects: {
     "/reserva-cabana-1": "/reserva/1",
@@ -17,7 +21,7 @@ export default defineConfig({
     "/reserva-cabana-4": "/reserva/4",
   },
 
-  output: "static",
+  output: "hybrid",
   site: "https://miradordeluz.com",
 
   build: {
