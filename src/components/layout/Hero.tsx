@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FC } from "react";
+import { motion } from "framer-motion";
 
 // Puedes instalar: npm install react-icons
 // O usar estos placeholders SVG
@@ -184,7 +185,10 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
         </div>
       ) : (
         <div className="absolute inset-0 overflow-hidden">
-          <img
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
             src={imagenFondo}
             alt="Cabañas Mirador de Luz - Complejo vacacional en las sierras de Córdoba con vista panorámica"
             className="absolute inset-0 w-full h-full object-cover"
@@ -291,26 +295,44 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
           {/* Texto central */}
           <div className="text-center mb-8 md:mb-12">
             {/* Subtítulo */}
-            <p className="font-montserrat text-amber-500 text-[14px] font-bold tracking-[0.4em] uppercase mb-4 drop-shadow-sm">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-montserrat text-amber-500 text-[14px] font-bold tracking-[0.4em] uppercase mb-4 drop-shadow-sm"
+            >
               {subtitulo}
-            </p>
+            </motion.p>
 
             {/* Título principal */}
-            <h1
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="font-montserrat text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-white mb-4 md:mb-6
                          drop-shadow-2xl leading-tight"
             >
               {titulo}
-            </h1>
+            </motion.h1>
 
             {/* Descripción (sin la frase "y la luz del amanecer") */}
-            <p className="font-montserrat text-white/90 text-[18px] md:text-[20px] font-medium max-w-2xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="font-montserrat text-white/90 text-[18px] md:text-[20px] font-medium max-w-2xl mx-auto"
+            >
               {descripcion.replace(" y la luz del amanecer", "")}
-            </p>
+            </motion.p>
           </div>
 
           {/* Caja de búsqueda de reservas */}
-          <div className="w-full max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="w-full max-w-6xl"
+          >
             <div className="flex justify-center mb-8">
               <a
                 href="#cabanas"
@@ -322,7 +344,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                 <span className="md:hidden">Conoce nuestras cabañas</span>
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

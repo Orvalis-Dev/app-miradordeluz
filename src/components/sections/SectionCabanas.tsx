@@ -103,7 +103,7 @@ const CabinItem: FC<{ cabana: any; index: number }> = ({ cabana, index }) => {
             <img
               src={cabana.imagenUrl}
               alt={`${cabana.nombre} - Cabaña equipada en Villa Santa Cruz del Lago, Córdoba`}
-              className="w-full h-full object-cover transition-all duration-700 brightness-[0.95] contrast-[1.05] saturate-[1.05] group-hover:brightness-110 group-hover:contrast-100"
+              className="w-full h-full object-cover"
               loading={index === 0 ? "eager" : "lazy"}
               width="800"
               height="533"
@@ -114,11 +114,8 @@ const CabinItem: FC<{ cabana: any; index: number }> = ({ cabana, index }) => {
               }
             />
           </picture>
-          {/* Overlay de sombra suave (gradiente) para profundidad */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-40" />
-
-          {/* Overlay al hacer hover para indicar click */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+          {/* Overlay de sombra suave (gradiente) para profundidad - Estático para evitar parpadeos */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
         </motion.div>
 
         {/* Card blanca superpuesta */}
@@ -217,7 +214,7 @@ const SectionCabanas: FC<SectionCabanasProps> = ({
 }) => {
   return (
     <section
-      className="w-full bg-stone-100 pt-[50px] pb-0"
+      className="w-full bg-stone-100 pt-[80px] md:pt-[100px] pb-24 md:pb-32"
       id="nuestras-cabanas"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8">

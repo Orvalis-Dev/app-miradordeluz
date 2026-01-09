@@ -123,12 +123,20 @@ const schema = JSON.stringify({
   <script>
     /**
      * Mejora del scroll para sitios con animaciones GSAP y expansiones de layout.
-     * Realiza múltiples intentos de posicionamiento para asegurar que los cambios
-     * de altura de la página (por carga de imágenes o animaciones) no pierdan el objetivo.
+     * Desactiva la restauración automática del navegador para evitar saltos.
      */
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     const scrollToHash = () => {
       const hash = window.location.hash;
-      if (!hash) return;
+
+      // Si no hay hash, forzamos el inicio en la parte superior (Hero)
+      if (!hash) {
+        window.scrollTo(0, 0);
+        return;
+      }
 
       const targetId = hash.substring(1);
       const targetElement = document.getElementById(targetId);
