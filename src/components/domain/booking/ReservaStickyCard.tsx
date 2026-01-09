@@ -3,10 +3,12 @@ import { IconWhatsApp as WhatsAppIcon } from "@components/common/Icons";
 
 interface ReservaStickyCardProps {
   cabanaName: string;
+  isSticky?: boolean;
 }
 
 const ReservaStickyCard: React.FC<ReservaStickyCardProps> = ({
   cabanaName,
+  isSticky = true,
 }) => {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
@@ -16,7 +18,11 @@ const ReservaStickyCard: React.FC<ReservaStickyCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-8 sticky top-32">
+    <div
+      className={`bg-white rounded-2xl shadow-xl border border-slate-100 p-6 lg:p-8 ${
+        isSticky ? "sticky top-32" : ""
+      }`}
+    >
       <h3 className="text-slate-900 font-montserrat font-bold text-lg mb-4">
         Consultar Disponibilidad y Tarifas
       </h3>

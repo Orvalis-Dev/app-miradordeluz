@@ -273,6 +273,19 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
           <nav className="flex-1 overflow-y-auto pt-4 px-5">
             <ul className="space-y-1">
               <li>
+                <a
+                  href="/"
+                  onClick={cerrarMenu}
+                  className={`font-montserrat py-4 text-lg font-bold transition-colors flex items-center justify-between border-b border-white/5 uppercase tracking-wider ${
+                    currentPath === "/" || currentPath === ""
+                      ? "text-orange-500"
+                      : "text-white hover:text-orange-500"
+                  }`}
+                >
+                  INICIO
+                </a>
+              </li>
+              <li>
                 <button
                   onClick={() => setCabanasAbierto(!cabanasAbierto)}
                   className={`w-full font-montserrat py-4 text-lg font-bold transition-colors flex items-center justify-between border-b border-white/5 uppercase tracking-wider ${

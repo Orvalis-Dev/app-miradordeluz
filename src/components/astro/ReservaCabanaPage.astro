@@ -195,6 +195,11 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
 
           <hr class="border-slate-200" />
 
+          <!-- Tarjeta de Reserva para Mobile (Arriba del Mapa) -->
+          <div class="lg:hidden">
+            <ReservaStickyCard client:load cabanaName={cabana.nombre} isSticky={false} />
+          </div>
+
           <!-- Ubicación -->
           <section class="pb-8">
             <h2
@@ -223,8 +228,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
           </section>
         </div>
 
-        <!-- RIGHT COLUMN (Sticky Card) -->
-        <aside class="relative h-full">
+        <!-- RIGHT COLUMN (Sticky Card - Desktop Only) -->
+        <aside class="hidden lg:block relative h-full">
           <div class="lg:sticky lg:top-32 pb-12">
             <ReservaStickyCard client:load cabanaName={cabana.nombre} />
           </div>
