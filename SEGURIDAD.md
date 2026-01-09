@@ -37,7 +37,7 @@ La página está configurada para servirse con HTTPS desde Cloudflare Pages. El 
 // astro.config.mjs (ACTUAL)
 export default defineConfig({
   site: "https://miradordeluz.com", // ✅ URL con HTTPS obligatorio
-  output: "hybrid",
+  output: "static",
   adapter: cloudflare({
     imageService: "compile",
   }),

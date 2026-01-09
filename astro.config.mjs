@@ -21,7 +21,7 @@ export default defineConfig({
     "/reserva-cabana-4": "/reserva/4",
   },
 
-  output: "hybrid",
+  output: "static",
   site: "https://miradordeluz.com",
 
   build: {
