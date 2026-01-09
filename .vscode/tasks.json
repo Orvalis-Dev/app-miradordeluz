@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Check Build",
+			"type": "shell",
+			"command": "pnpm run build"
+		},
+		{
+			"label": "Check Build Final",
+			"type": "shell",
+			"command": "pnpm run build"
+		}
+	]
+}

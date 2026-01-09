@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import type { FC } from "react";
 
 interface TermsModalProps {
@@ -7,7 +9,6 @@ interface TermsModalProps {
 }
 
 const TermsModal: FC<TermsModalProps> = ({ open, onClose }) => {
-  const overlayRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -32,211 +33,209 @@ const TermsModal: FC<TermsModalProps> = ({ open, onClose }) => {
     };
   }, [open, onClose]);
 
-  if (!open) return null;
-
   return (
-    <div
-      ref={overlayRef}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Términos y condiciones - Mirador de Luz"
-      className="fixed inset-0 z-[90] flex items-center justify-center p-6"
-    >
-      {/* Fondo oscuro */}
-      <div
-        className="fixed inset-0 bg-black/60"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-
-      {/* Panel */}
-      <div className="relative z-10 max-h-[90vh] w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:w-2/3 overflow-y-auto bg-white rounded-lg shadow-2xl p-8">
-        <div className="flex items-start justify-between">
-          <h2 className="text-2xl font-bold text-amber-800 flex-1 text-center">
-            TÉRMINOS Y CONDICIONES DE RESERVA Y HOSPEDAJE
-          </h2>
-          <button
-            ref={closeButtonRef}
+    <AnimatePresence>
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Términos y condiciones - Mirador de Luz"
+          className="fixed inset-0 z-[120] flex items-center justify-center p-4"
+        >
+          {/* Fondo oscuro con Blur */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             onClick={onClose}
-            aria-label="Cerrar términos y condiciones"
-            className="ml-4 text-gray-500 hover:text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-amber-400 p-2"
+            aria-hidden="true"
+          />
+
+          {/* Panel con Zoom + Slide (Misma estructura que AmenitiesModal) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
+            className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+            {/* Header (Mismo estilo que AmenitiesModal) */}
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-white sticky top-0 z-10">
+              <h2 className="text-xl md:text-2xl font-montserrat font-bold text-slate-900 pr-8">
+                Términos y Condiciones de Reserva
+              </h2>
+              <button
+                ref={closeButtonRef}
+                onClick={onClose}
+                className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                aria-label="Cerrar términos y condiciones"
+              >
+                <X className="w-6 h-6 text-slate-500" />
+              </button>
+            </div>
+
+            {/* Body (Con scroll interno como AmenitiesModal) */}
+            <div className="p-8 overflow-y-auto">
+              <div className="space-y-8 text-slate-700 font-montserrat leading-relaxed">
+                <section>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      1
+                    </span>
+                    SOBRE LAS RESERVAS
+                  </h3>
+                  <p>
+                    Las reservas en Complejo Mirador de Luz se gestionan de
+                    manera personalizada. Para confirmar una reserva, se
+                    solicitará el pago de una seña (50%) mediante transferencia
+                    bancaria. El saldo restante deberá abonarse al momento del
+                    ingreso (Check-in) en efectivo o transferencia, salvo
+                    acuerdo previo diferente. La reserva solo se considera
+                    efectiva una vez enviado el comprobante de pago y recibido
+                    nuestro mensaje de confirmación.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      2
+                    </span>
+                    POLÍTICA DE CANCELACIÓN
+                  </h3>
+                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                    <p className="mb-4">
+                      Entendemos que pueden surgir imprevistos. Nuestra política
+                      es la siguiente:
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex gap-3">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>
+                          Las señas abonadas para confirmar fecha no son
+                          reembolsables en caso de cancelación por parte del
+                          huésped.
+                        </span>
+                      </li>
+                      <li className="flex gap-3">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>
+                          En caso de aviso con antelación (mínimo 15 días antes
+                          de la fecha de ingreso), el monto abonado podrá quedar
+                          como crédito.
+                        </span>
+                      </li>
+                      <li className="flex gap-3">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>
+                          Si el huésped decide retirarse antes de finalizar su
+                          estadía contratada, no se realizarán devoluciones.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      3
+                    </span>
+                    HORARIOS (CHECK-IN / OUT)
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
+                        Ingreso
+                      </span>
+                      <p className="text-lg font-bold text-slate-900">
+                        Desde las 14:00 hs
+                      </p>
+                    </div>
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
+                        Salida
+                      </span>
+                      <p className="text-lg font-bold text-slate-900">
+                        Hasta las 10:00 hs
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      4
+                    </span>
+                    NORMAS DE CONVIVENCIA
+                  </h3>
+                  <p>
+                    Mirador de Luz es un espacio pensado para el relax y la
+                    conexión con la naturaleza. Se ruega evitar ruidos molestos
+                    especialmente en horarios de descanso. Las instalaciones son
+                    de uso exclusivo para los huéspedes registrados.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      5
+                    </span>
+                    PISCINA Y SEGURIDAD
+                  </h3>
+                  <p className="text-sm bg-orange-50 text-orange-800 p-4 rounded-xl border border-orange-100">
+                    <strong>Importante:</strong> El uso de la piscina es bajo
+                    responsabilidad exclusiva de los huéspedes. Menores deben
+                    estar permanentemente supervisados. No se permite vidrio en
+                    el sector de solárium.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      6
+                    </span>
+                    MASCOTAS
+                  </h3>
+                  <p>
+                    Por cuestiones de higiene y seguridad, no se admiten
+                    mascotas en el complejo.
+                  </p>
+                </section>
+
+                <section className="pb-4">
+                  <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 text-sm">
+                      7
+                    </span>
+                    OBJETOS PERSONALES
+                  </h3>
+                  <p>
+                    El complejo no se hace responsable por pérdida o robo de
+                    objetos de valor no declarados. Recomendamos cerrar bien su
+                    cabaña al salir.
+                  </p>
+                </section>
+              </div>
+            </div>
+
+            {/* Footer con botón de acción (Mismo estilo que AmenitiesModal) */}
+            <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-center sticky bottom-0">
+              <button
+                onClick={onClose}
+                className="w-full md:w-auto px-12 py-3 bg-amber-700 text-white font-bold rounded-xl hover:bg-amber-800 transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+              >
+                Entendido
+              </button>
+            </div>
+          </motion.div>
         </div>
-
-        <hr className="my-6 border-gray-200" />
-
-        {/* Contenido */}
-        <div className="space-y-8 text-gray-700 leading-relaxed pb-4">
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              1. SOBRE LAS RESERVAS
-            </h3>
-            <p>
-              Las reservas en Complejo Mirador de Luz se gestionan de manera
-              personalizada. Para confirmar una reserva, se solicitará el pago
-              de una seña (50%) mediante transferencia bancaria. El saldo
-              restante deberá abonarse al momento del ingreso (Check-in) en
-              efectivo o transferencia, salvo acuerdo previo diferente. La
-              reserva solo se considera efectiva una vez enviado el comprobante
-              de pago y recibido nuestro mensaje de confirmación.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              2. POLÍTICA DE CANCELACIÓN Y MODIFICACIONES
-            </h3>
-            <p>
-              Entendemos que pueden surgir imprevistos. Nuestra política es la
-              siguiente:
-            </p>
-            <ul className="list-disc ml-5 mt-3 space-y-2">
-              <li>
-                Las señas abonadas para confirmar fecha no son reembolsables en
-                caso de cancelación por parte del huésped.
-              </li>
-              <li>
-                En caso de aviso con antelación (mínimo 15 días antes de la
-                fecha de ingreso), el monto abonado podrá quedar como crédito
-                siempre y cuando no sea temporada alta. Si es el caso, queda
-                abonar la diferencia de dinero del precio de temporada alta.
-              </li>
-              <li>
-                Si el huésped decide retirarse antes de finalizar su estadía
-                contratada, no se realizarán devoluciones del monto abonado.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              3. HORARIOS (CHECK-IN / CHECK-OUT)
-            </h3>
-            <p>
-              Para garantizar la limpieza y desinfección adecuada de las
-              cabañas:
-            </p>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <span className="font-bold text-gray-800">
-                  • Ingreso (Check-in):
-                </span>{" "}
-                A partir de las 14:00 hs.
-              </li>
-              <li>
-                <span className="font-bold text-gray-800">
-                  • Salida (Check-out):
-                </span>{" "}
-                Hasta las 10:00 hs.
-              </li>
-              <li>
-                <span className="font-bold text-gray-800">
-                  • Late Check-out:
-                </span>{" "}
-                La permanencia después de las 10:00 hs está sujeta a
-                disponibilidad y puede conllevar un costo adicional (medio día).
-                Por favor, consultanos con anticipación.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              4. NORMAS DE CONVIVENCIA
-            </h3>
-            <p>
-              Mirador de Luz es un espacio pensado para el relax y la conexión
-              con la naturaleza.
-            </p>
-            <ul className="list-disc ml-5 mt-3 space-y-2">
-              <li>
-                Se ruega evitar ruidos molestos o música a volumen alto,
-                especialmente en horarios de descanso (siesta y noche).
-              </li>
-              <li>
-                Las instalaciones (piscina, asadores, parque) son de uso
-                exclusivo para los huéspedes registrados. No se permiten visitas
-                sin autorización previa de la administración.
-              </li>
-              <li>
-                El cuidado de las instalaciones es responsabilidad del huésped.
-                Cualquier rotura o daño ocasionado por mal uso deberá ser
-                abonado antes de la salida.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              5. USO DE LA PISCINA Y SEGURIDAD
-            </h3>
-            <ul className="list-disc ml-5 mt-3 space-y-2">
-              <li>
-                El uso de la piscina es bajo responsabilidad exclusiva de los
-                huéspedes.
-              </li>
-              <li>
-                <span className="font-bold text-gray-800">
-                  Menores de edad:
-                </span>{" "}
-                Deben estar permanentemente acompañados y supervisados por un
-                adulto responsable dentro del recinto de la piscina. El complejo
-                no cuenta con servicio de guardavidas.
-              </li>
-              <li>
-                No se permite ingresar con envases de vidrio al sector de
-                solárium y piscina.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              6. MASCOTAS
-            </h3>
-            <p>
-              Por cuestiones de higiene y seguridad, no se admiten mascotas en
-              el complejo.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              7. OBJETOS PERSONALES
-            </h3>
-            <p>
-              El complejo no se hace responsable por la pérdida, olvido o robo
-              de dinero, joyas u objetos de valor que no hayan sido depositados
-              en custodia o declarados. Recomendamos cerrar bien su cabaña al
-              salir.
-            </p>
-          </section>
-        </div>
-
-        <div className="mt-8 flex justify-center border-t pt-6">
-          <button
-            onClick={onClose}
-            className="px-8 py-3 bg-amber-700 text-white font-bold rounded-lg hover:bg-amber-800 transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
-          >
-            Cerrar
-          </button>
-        </div>
-      </div>
-    </div>
+      )}
+    </AnimatePresence>
   );
 };
 

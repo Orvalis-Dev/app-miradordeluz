@@ -3,6 +3,15 @@ import TestimonialCard, {
   type Testimonial,
 } from "@components/common/TestimonialCard";
 
+// Swiper imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, FreeMode } from "swiper/modules";
+
+// Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 // Iconos de flechas para navegación del carrusel
 const ChevronLeftIcon: FC = () => (
   <svg
@@ -54,6 +63,13 @@ interface SectionTestimoniosProps {
 
 // Testimonios de fallback cuando no hay conexión con Google
 const DEFAULT_TESTIMONIOS: TestimonioExtendido[] = [
+  {
+    id: "0",
+    name: "Barby Herrera",
+    date: "Hace un año",
+    text: "La mejor experiencia que se pueden llevar es visitando este hermoso complejo , tuvimos la oportunidad que nos reciba su dueño mariano , despejo todas nuestras dudas y estuvo atento n todo momento q lo necesitamos . La vista del complejo es una de las cosas más linda que te puede pasar , la comidad de las cabañas excelente y todo muy nuevo y bien equipado . Volvéremos muy pronto 😍",
+    rating: 5,
+  },
   {
     id: "1",
     name: "Agustin incorvaia",
@@ -121,359 +137,171 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
   mostrarBoton = true,
   textoBoton = "Ver todas las opiniones en Google Maps",
   onClickBoton,
-  autoPlayInterval = 1000,
+  autoPlayInterval = 3000,
   pauseOnHover = true,
   googleReviewUrl,
 }) => {
-  // Estados
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [mobileIndex, setMobileIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
-  const sectionRef = useRef<HTMLElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  // Manejar el número de items por página según el ancho de pantalla
-  useEffect(() => {
-    const updateItemsPerPage = () => {
-      // lg: 1024px, md: 768px (coincide con Tailwind)
-      if (window.innerWidth >= 1024) {
-        setItemsPerPage(4);
-      } else if (window.innerWidth >= 768) {
-        setItemsPerPage(2);
-      } else {
-        setItemsPerPage(1);
-      }
-    };
-
-    updateItemsPerPage();
-    window.addEventListener("resize", updateItemsPerPage);
-    return () => window.removeEventListener("resize", updateItemsPerPage);
-  }, []);
-
-  // Asegurar que currentIndex sea válido al cambiar itemsPerPage
-  useEffect(() => {
-    setCurrentIndex((prev) => {
-      const page = Math.floor(prev / itemsPerPage);
-      return page * itemsPerPage;
-    });
-  }, [itemsPerPage]);
-
-  // Limitar testimonios a 5 en mobile (DEFINIR PRIMERO)
-  const testimoniosMobile = testimonios.slice(0, 5);
-  const maxMobileIndex = Math.max(0, testimoniosMobile.length - 1);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (touchStart === null) return;
-    const currentTouch = e.targetTouches[0].clientX;
-    const diff = touchStart - currentTouch;
-
-    if (diff > 50) {
-      handleMobileNext();
-      setTouchStart(null);
-    } else if (diff < -50) {
-      handleMobilePrev();
-      setTouchStart(null);
-    }
-  };
-
-  const handleTouchEnd = () => {
-    setTouchStart(null);
+  // Configuración de Swiper
+  const swiperOptions = {
+    modules: [Navigation, Pagination, Autoplay, FreeMode],
+    spaceBetween: 20,
+    speed: 600,
+    centeredSlides: false,
+    loop: true,
+    autoplay: {
+      delay: autoPlayInterval,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: pauseOnHover,
+    },
+    pagination: {
+      clickable: true,
+      el: ".swiper-pagination-custom",
+      renderBullet: (index: number, className: string) => {
+        return `<span class="${className} w-2 h-2 rounded-full bg-gray-300 transition-all duration-300 animate-all"></span>`;
+      },
+    },
+    navigation: {
+      prevEl: ".swiper-button-prev-custom",
+      nextEl: ".swiper-button-next-custom",
+    },
+    breakpoints: {
+      // Mobile
+      320: {
+        slidesPerView: 1.1,
+        spaceBetween: 15,
+        centeredSlides: true,
+      },
+      // Tablet
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        centeredSlides: false,
+      },
+      // Desktop
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+        centeredSlides: false,
+      },
+    },
   };
 
   const handleClickBoton = () => {
     if (onClickBoton) {
       onClickBoton();
     } else if (googleReviewUrl) {
-      // Abrir Google Maps para dejar una reseña
       window.open(googleReviewUrl, "_blank", "noopener,noreferrer");
     } else {
       console.log("Abrir formulario de opinión");
     }
   };
 
-  // Navegación del carrusel (Desktop/Tablet)
-  const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - itemsPerPage));
-  };
-
-  const handleNext = () => {
-    const nextIndex = currentIndex + itemsPerPage;
-    if (nextIndex < testimonios.length) {
-      setCurrentIndex(nextIndex);
-    }
-  };
-
-  // Navegación Mobile (un item a la vez)
-  const handleMobilePrev = () => {
-    setMobileIndex((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleMobileNext = () => {
-    setMobileIndex((prev) => Math.min(maxMobileIndex, prev + 1));
-  };
-
-  // Cálculos de paginación
-  const totalPages = Math.max(1, Math.ceil(testimonios.length / itemsPerPage));
-  const currentPage = Math.floor(currentIndex / itemsPerPage) + 1;
-
-  const isPrevDisabled = currentPage === 1;
-  const isNextDisabled = currentPage === totalPages;
-
-  const isMobilePrevDisabled = mobileIndex === 0;
-  const isMobileNextDisabled = mobileIndex >= maxMobileIndex;
-
-  const handleMouseEnter = () => {
-    if (pauseOnHover) setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (pauseOnHover) setIsHovered(false);
-  };
-
-  // Calcular rating promedio y paginación
+  // Calcular rating promedio
   const averageRating = testimonios.length
     ? testimonios.reduce((s, t) => s + (t.rating || 0), 0) / testimonios.length
     : 5;
   const averageDisplay = (Math.round(averageRating * 10) / 10).toFixed(1);
 
   return (
-    <section
-      ref={sectionRef}
-      className="w-full bg-gradient-to-br from-stone-50 via-stone-100 to-stone-50 py-16 md:py-10 min-h-screen"
-    >
+    <section className="w-full bg-linear-to-br from-stone-50 via-stone-100 to-stone-50 py-16 md:py-20 min-h-200">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
-        {/* Cabecera: título + rating grande */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-montserrat text-[36px] md:text-[48px] lg:text-[56px] font-extrabold text-[#1E1E1E] mb-2">
-            Experiencias de Nuestros Huéspedes
-          </h2>
-          <p className="font-montserrat text-[14px] md:text-[16px] font-medium text-[#4A4A4A] leading-relaxed max-w-2xl mx-auto mb-6">
-            Descubrí lo que dicen quienes ya vivieron la experiencia en nuestras
-            cabañas
-          </p>
+        {/* Cabecera: título + rating + navegación desktop */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-8">
+          <div className="text-center md:text-left flex-1">
+            <h2 className="font-montserrat text-[36px] md:text-[48px] lg:text-[56px] font-extrabold text-[#1E1E1E] leading-tight mb-4">
+              Experiencias de <br className="hidden lg:block" /> Nuestros
+              Huéspedes
+            </h2>
+            <p className="font-montserrat text-[14px] md:text-[16px] font-medium text-[#4A4A4A] leading-relaxed max-w-xl mx-auto md:mx-0">
+              Descubrí lo que dicen quienes ya vivieron la experiencia en
+              nuestras cabañas
+            </p>
+          </div>
 
-          <div className="flex items-center justify-center gap-6">
-            <div className="text-[56px] md:text-[72px] lg:text-[80px] font-extrabold text-[#0B1220] -tracking-tighter">
-              {averageDisplay}
-            </div>
-            <div className="flex flex-col items-start">
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.round(averageRating)
-                        ? "text-yellow-400"
-                        : "text-gray-300"
-                    }`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
+          <div className="flex flex-col items-center md:flex-row md:items-center gap-6 md:gap-10">
+            {/* Rating Display */}
+            <div className="flex items-center gap-6">
+              <div className="text-[56px] md:text-[64px] font-extrabold text-[#0B1220] -tracking-tighter leading-none">
+                {averageDisplay}
               </div>
-              <span className="text-sm text-[#4a4a4a] mt-1 font-medium">
-                {testimonios.length} opiniones
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Carrusel de testimonios */}
-        <div
-          className="relative mb-8"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          {/* Botones de navegación - Desktop */}
-          <div className="hidden lg:block"></div>
-
-          {/* Contenedor del carrusel - Desktop */}
-          {/* Desktop: mostrar 4 cards de la página actual */}
-          <div className="hidden lg:grid grid-cols-4 gap-6 content-stretch transition-all duration-500">
-            {testimonios
-              .slice(currentIndex, currentIndex + itemsPerPage)
-              .map((testimonio) => (
-                <TestimonialCard
-                  key={testimonio.id}
-                  text={testimonio.text}
-                  name={testimonio.name}
-                  avatarUrl={testimonio.avatarUrl}
-                  rating={testimonio.rating}
-                  date={testimonio.date}
-                  isLocalGuide={testimonio.isLocalGuide}
-                  reviewsCount={testimonio.reviewsCount}
-                  isNew={testimonio.isNew}
-                />
-              ))}
-          </div>
-
-          {/* Grid responsive para Tablet */}
-          {/* Tablet: 2 por página (si hay) */}
-          <div className="hidden md:grid lg:hidden md:grid-cols-2 gap-4 mb-8 content-stretch">
-            {testimonios
-              .slice(currentIndex, currentIndex + itemsPerPage)
-              .map((testimonio) => (
-                <TestimonialCard
-                  key={testimonio.id}
-                  className="mx-auto"
-                  text={testimonio.text}
-                  name={testimonio.name}
-                  avatarUrl={testimonio.avatarUrl}
-                  rating={testimonio.rating}
-                  date={testimonio.date}
-                  isLocalGuide={testimonio.isLocalGuide}
-                  reviewsCount={testimonio.reviewsCount}
-                  isNew={testimonio.isNew}
-                />
-              ))}
-          </div>
-
-          {/* Mobile: Carrusel una card a la vez - Solo 5 testimonios */}
-          <div className="md:hidden flex flex-col items-center">
-            {/* Card actual - Centrada */}
-            <div
-              className="mb-8 w-full max-w-xs flex justify-center cursor-grab active:cursor-grabbing"
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
-              {testimoniosMobile[mobileIndex] && (
-                <TestimonialCard
-                  text={testimoniosMobile[mobileIndex].text}
-                  name={testimoniosMobile[mobileIndex].name}
-                  avatarUrl={testimoniosMobile[mobileIndex].avatarUrl}
-                  rating={testimoniosMobile[mobileIndex].rating}
-                  date={testimoniosMobile[mobileIndex].date}
-                  isLocalGuide={testimoniosMobile[mobileIndex].isLocalGuide}
-                  reviewsCount={testimoniosMobile[mobileIndex].reviewsCount}
-                  isNew={testimoniosMobile[mobileIndex].isNew}
-                />
-              )}
+              <div className="flex flex-col items-start justify-center">
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`w-5 h-5 ${
+                        i < Math.round(averageRating)
+                          ? "text-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-sm text-[#4a4a4a] mt-1 font-medium whitespace-nowrap">
+                  {testimonios.length} opiniones en Google
+                </span>
+              </div>
             </div>
 
-            {/* Flechas de navegación Mobile sin paginación - Color Naranja */}
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <button
-                onClick={handleMobilePrev}
-                disabled={isMobilePrevDisabled}
-                className={`w-12 h-12 flex items-center justify-center transition-all duration-200 ${
-                  isMobilePrevDisabled
-                    ? "opacity-30 cursor-not-allowed"
-                    : "text-orange-500 hover:scale-110 active:scale-90"
-                }`}
-                aria-label="Anterior"
-              >
+            {/* Separador vertical sutil para desktop */}
+            <div className="hidden md:block w-px h-12 bg-stone-200" />
+
+            {/* Navegación Desktop - Solo visible en pantallas grandes */}
+            <div className="hidden md:flex items-center gap-3">
+              <button className="swiper-button-prev-custom w-12 h-12 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[#1E1E1E] transition-all duration-300 hover:text-orange-500 hover:border-orange-500 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-30 disabled:cursor-default">
                 <ChevronLeftIcon />
               </button>
-
-              <div className="flex gap-1.5">
-                {testimoniosMobile.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i === mobileIndex ? "bg-orange-500 w-4" : "bg-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={handleMobileNext}
-                disabled={isMobileNextDisabled}
-                className={`w-12 h-12 flex items-center justify-center transition-all duration-200 ${
-                  isMobileNextDisabled
-                    ? "opacity-30 cursor-not-allowed"
-                    : "text-orange-500 hover:scale-110 active:scale-90"
-                }`}
-                aria-label="Siguiente"
-              >
+              <button className="swiper-button-next-custom w-12 h-12 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[#1E1E1E] transition-all duration-300 hover:text-orange-500 hover:border-orange-500 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-30 disabled:cursor-default">
                 <ChevronRightIcon />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Controles inferiores */}
-        {/* Desktop/Tablet: flechas y página CENTRADOS */}
-        <div className="hidden md:flex flex-col items-center gap-8 mt-6">
-          <div className="flex items-center gap-6">
-            <button
-              onClick={handlePrev}
-              disabled={isPrevDisabled}
-              className={`w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
-                isPrevDisabled
-                  ? "opacity-30 cursor-not-allowed"
-                  : "hover:shadow-md hover:text-orange-500 hover:scale-105 active:scale-95"
-              }`}
-              aria-label="Anterior"
-            >
-              <ChevronLeftIcon />
-            </button>
+        {/* Carrusel de testimonios con Swiper */}
+        <div className="relative mb-12 group">
+          <Swiper
+            {...swiperOptions}
+            grabCursor={true}
+            className="testimonios-swiper pb-12! px-4!"
+          >
+            {testimonios.map((testimonio) => (
+              <SwiperSlide key={testimonio.id} className="h-auto py-4">
+                <TestimonialCard
+                  text={testimonio.text}
+                  name={testimonio.name}
+                  avatarUrl={testimonio.avatarUrl}
+                  rating={testimonio.rating}
+                  date={testimonio.date}
+                  isLocalGuide={testimonio.isLocalGuide}
+                  reviewsCount={testimonio.reviewsCount}
+                  isNew={testimonio.isNew}
+                  className="h-full mx-auto"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-            <div className="flex items-center gap-2">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentIndex(i * itemsPerPage)}
-                  className={`w-10 h-10 rounded-full font-bold transition-all duration-200 ${
-                    currentPage === i + 1
-                      ? "bg-orange-500 text-white shadow-md shadow-orange-200"
-                      : "bg-white text-[#4A4A4A] hover:bg-orange-50"
-                  }`}
-                  aria-label={`Ir a la página ${i + 1}`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-            </div>
-
-            <button
-              onClick={handleNext}
-              disabled={isNextDisabled}
-              className={`w-12 h-12 rounded-xl bg-white shadow-sm flex items-center justify-center transition-all duration-200 ${
-                isNextDisabled
-                  ? "opacity-30 cursor-not-allowed"
-                  : "hover:shadow-md hover:text-orange-500 hover:scale-105 active:scale-95"
-              }`}
-              aria-label="Siguiente"
-            >
-              <ChevronRightIcon />
-            </button>
-          </div>
-
-          <div>
-            <button
-              onClick={handleClickBoton}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-[#0B1220] bg-[#0B1220] text-white font-bold shadow-lg transition-all duration-300 hover:bg-white hover:text-[#0B1220] hover:scale-105"
-              aria-label={textoBoton}
-            >
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-              </svg>
-              {textoBoton}
-            </button>
-          </div>
+          {/* Paginación personalizada - visible en mobile */}
+          <div className="swiper-pagination-custom flex justify-center gap-2 mt-4 md:hidden transition-all duration-300"></div>
         </div>
 
-        {/* Mobile: Botón alargado al final */}
-        <div className="md:hidden mt-4">
+        {/* Botón de acción final */}
+        <div className="flex flex-col items-center gap-8">
           <button
             onClick={handleClickBoton}
-            className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl border-2 border-[#0B1220] bg-[#0B1220] text-white font-bold shadow-md transition-all duration-200 active:scale-95"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#0B1220] text-white font-bold shadow-lg transition-all duration-300 hover:bg-[#1a253a] hover:scale-105 active:scale-95"
             aria-label={textoBoton}
           >
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <svg
+              className="w-6 h-6 transition-transform group-hover:scale-110"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
@@ -483,6 +311,16 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
           </button>
         </div>
       </div>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .swiper-pagination-custom .swiper-pagination-bullet-active {
+          background-color: #f97316 !important;
+          width: 24px !important;
+        }
+      `,
+        }}
+      />
     </section>
   );
 };

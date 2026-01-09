@@ -32,8 +32,8 @@ const PREMIUM_IMAGES: GalleryImage[] = [
   {
     srcDesktop: "/images/gallery/imagen-3-desktop.webp",
     srcMobile: "/images/gallery/imagen-3-mobile.webp",
-    alt: "Interior moderno y acogedor de nuestras cabañas",
-    title: "Interiores",
+    alt: "Todas las comodidades de las cabañas",
+    title: "Todas las comodidades",
   },
   {
     srcDesktop: "/images/gallery/imagen-4-desktop.webp",
@@ -50,8 +50,8 @@ const PREMIUM_IMAGES: GalleryImage[] = [
   {
     srcDesktop: "/images/gallery/imagen-6-desktop.webp",
     srcMobile: "/images/gallery/imagen-6-mobile.webp",
-    alt: "Cocina totalmente equipada",
-    title: "Equipamiento",
+    alt: "Estacionamiento amplio y seguro",
+    title: "Estacionamiento",
   },
   {
     srcDesktop: "/images/gallery/imagen-7-desktop.webp",
@@ -68,8 +68,8 @@ const PREMIUM_IMAGES: GalleryImage[] = [
   {
     srcDesktop: "/images/gallery/imagen-9-desktop.webp",
     srcMobile: "/images/gallery/imagen-9-mobile.webp",
-    alt: "Piscina iluminada al atardecer",
-    title: "Noches Mágicas",
+    alt: "Confort en cualquier momento del dia",
+    title: "Confort a cualquier hora",
   },
   {
     srcDesktop: "/images/gallery/imagen-10-desktop.webp",
