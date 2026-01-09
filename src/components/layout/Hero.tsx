@@ -326,9 +326,9 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                 className="font-montserrat inline-flex items-center gap-3 bg-orange-700 text-white px-6 py-3 md:px-10 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-orange-800 hover:scale-105 hover:shadow-[0_0_25px_rgba(194,65,12,0.4)] transition-all duration-300 transform tracking-wider border border-white/20"
               >
                 <span className="hidden md:inline">
-                  Conoce nuestras Cabañas
+                  Conoce nuestras cabañas
                 </span>
-                <span className="md:hidden">Conoce nuestras Cabañas</span>
+                <span className="md:hidden">Conoce nuestras cabañas</span>
               </a>
             </div>
           </div>

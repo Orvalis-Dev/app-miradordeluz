@@ -27,17 +27,14 @@ interface SectionUbicacionMiradorDeLuzProps {
 
 const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
   etiqueta = "VILLA SANTA CRUZ DEL LAGO, CÓRDOBA.",
-  titulo = "Ubicado entre montañas y naturaleza, cerca de todo.",
+  titulo = "La paz de las sierras, a un paso de la ciudad.",
   parrafos = [
     {
-      texto: `"Mirador de Luz" es un complejo de cabañas atendido por sus propios dueños, diseñado para quienes buscan tranquilidad y confort con una espectacular vista a las sierras. 
-
-Estamos ubicados en un punto estratégico, a solo 5km del centro de Villa Carlos Paz, permitiéndote disfrutar de la paz de la montaña sin alejarte de la ciudad. Nuestro complejo está abierto todo el año, para que vivas una experiencia única en cualquier temporada.`,
+      texto: `Descubrí el equilibrio perfecto. Disfrutá del silencio y una vista panorámica única, sabiendo que el centro de Villa Carlos Paz está a solo 10 minutos.
+              Un complejo nuevo, abierto todo el año y con el sello de confianza que buscás: atendido cálidamente por sus propios dueños.`,
       destacados: [
-        '"Mirador de Luz"',
-        "vista a las sierras",
-        "5km del centro",
-        "abierto todo el año",
+        'atendido cálidamente por sus propios dueños',
+        '10 minutos',
       ],
     },
   ],

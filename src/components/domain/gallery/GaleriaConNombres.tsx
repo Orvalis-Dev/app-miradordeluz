@@ -100,16 +100,19 @@ export function GaleriaConNombres({
             onClick={() => openModal(index, images)}
           >
             {/* Imagen */}
-            <img
-              src={image.url}
-              alt={`${cabana.nombre} - ${image.title} - Complejo Mirador de Luz, Villa Santa Cruz del Lago, Córdoba`}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              onError={(e) => {
-                e.currentTarget.src = "/placeholder.svg";
-              }}
-            />
+            <picture className="w-full h-full">
+              <source srcSet={image.url_mobile} media="(max-width: 768px)" />
+              <img
+                src={image.url_desktop}
+                alt={`${cabana.nombre} - ${image.title} - Complejo Mirador de Luz, Villa Santa Cruz del Lago, Córdoba`}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg";
+                }}
+              />
+            </picture>
 
             {/* Overlay con título */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
