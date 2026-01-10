@@ -1,24 +1,32 @@
 import type { APIRoute } from "astro";
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = ({ site }) => {
+  const sitemapURL = new URL("sitemap-index.xml", site).href;
+
   const robotsTxt = `
-# Permisos para robots (indexadores)
+# Permisos generales
 User-agent: *
 Allow: /
 
-# Bloquear APIs y componentes internos que no son páginas
+# Bloquear partes privadas
 Disallow: /api/
 Disallow: /_image
-Disallow: /components/
 Disallow: /admin/
 Disallow: /stats/
 
-# Reglas especificas para bots comunes
-User-agent: Googlebot
-Allow: /
+# --- BLOQUEO DE INTELIGENCIA ARTIFICIAL (La forma correcta) ---
+# Bloquear GPT (ChatGPT)
+User-agent: GPTBot
+Disallow: /
 
-# Sitemap para descubrimiento de contenido
-Sitemap: https://miradordeluz.com/sitemap-index.xml
+# Bloquear Google AI (Gemini/Bard) - Ojo: Googlebot sigue entrando para SEO
+User-agent: Google-Extended
+Disallow: /
+
+# --- FIN BLOQUEO IA ---
+
+# Sitemap
+Sitemap: ${sitemapURL}
 `.trim();
 
   return new Response(robotsTxt, {
