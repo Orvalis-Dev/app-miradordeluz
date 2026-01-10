@@ -31,8 +31,6 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoMobileRef = useRef<HTMLVideoElement>(null);
-  const videoDesktopRef = useRef<HTMLVideoElement>(null);
   const [hasPlayed, setHasPlayed] = useState(false);
 
   // Mapear opacidad del overlay
@@ -65,8 +63,6 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
             };
 
             playVideo(videoRef);
-            playVideo(videoMobileRef);
-            playVideo(videoDesktopRef);
 
             setHasPlayed(true);
           } else {
@@ -87,8 +83,6 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
               };
 
               pauseVideo(videoRef);
-              pauseVideo(videoMobileRef);
-              pauseVideo(videoDesktopRef);
 
               setHasPlayed(false);
             }
@@ -166,67 +160,42 @@ const SectionHeroIntermedio: FC<SectionHeroIntermedioProps> = ({
       {/* Video de fondo o Imagen de fondo */}
       {videoMobile || videoDesktop || backgroundVideo ? (
         <div className="absolute inset-0 overflow-hidden">
-          {videoMobile || videoDesktop ? (
-            <>
-              {videoMobile && (
-                <video
-                  ref={videoMobileRef}
-                  className={`
-                    absolute inset-0 w-full h-full object-cover md:hidden
-                    transition-all duration-1000 ease-out blur-[2px]
-                    ${isExpanded ? "scale-[1.3]" : "scale-[1.4]"}
-                  `}
-                  src={videoMobile}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
-              )}
-              {videoDesktop && (
-                <video
-                  ref={videoDesktopRef}
-                  className={`
-                    absolute inset-0 w-full h-full object-cover hidden md:block
-                    transition-all duration-1000 ease-out blur-[2px]
-                    ${isExpanded ? "scale-[3.2]" : "scale-[3.4]"}
-                  `}
-                  src={videoDesktop}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
-              )}
-            </>
-          ) : (
-            <video
-              id="hero-intermedio-video"
-              ref={videoRef}
-              className={`
-                absolute inset-0 w-full h-full object-cover
-                transition-all duration-1000 ease-out
-                ${
-                  isVerticalVideo
-                    ? isExpanded
-                      ? "scale-100 lg:scale-[3.2]"
-                      : "scale-110 lg:scale-[3.4]"
-                    : isExpanded
-                    ? "scale-100"
-                    : "scale-110"
-                }
-              `}
-              src={backgroundVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              aria-label="Video del complejo de cabañas y su entorno natural"
-            />
-          )}
+          <video
+            ref={videoRef}
+            className={`
+              absolute inset-0 w-full h-full object-cover
+              transition-all duration-1000 ease-out
+              ${
+                videoMobile || videoDesktop
+                  ? `blur-[2px] ${
+                      isExpanded
+                        ? "scale-[1.3] md:scale-[3.2]"
+                        : "scale-[1.4] md:scale-[3.4]"
+                    }`
+                  : isVerticalVideo
+                  ? isExpanded
+                    ? "scale-100 lg:scale-[3.2]"
+                    : "scale-110 lg:scale-[3.4]"
+                  : isExpanded
+                  ? "scale-100"
+                  : "scale-110"
+              }
+            `}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="Video del complejo de cabañas y su entorno natural"
+          >
+            {videoDesktop && (
+              <source src={videoDesktop} media="(min-width: 768px)" />
+            )}
+            {videoMobile && <source src={videoMobile} />}
+            {backgroundVideo && !videoMobile && !videoDesktop && (
+              <source src={backgroundVideo} />
+            )}
+          </video>
 
           {/* Overlay oscuro */}
           <div
