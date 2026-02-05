@@ -14,49 +14,83 @@ export type ReservaCabanaConfig = {
 };
 
 export const SERVICIOS: string[] = [
-  "Desayuno",
   "Heladera",
   "Cocina con horno",
   "Vajilla completa",
   "Tv Led “32” smart",
-  "WIFI Gratis",
+  "WIFI Alta velocidad",
   "Aire acondicionado Frío/Calor",
   "Ventilador",
   "Ropa blanca",
   "Ropa de cama",
   "Cochera individual",
   "Asador individual",
-  "Servicio Limpieza (Día x medio 09:00 hs - 12:00 hs)",
+  "Servicio de Limpieza (Cada 3 días)",
   "Amplia Pileta con solárium húmedo y borde infinito",
-  "Jacuzzi",
+  "Hidromasaje",
   "Asesoramiento turístico",
 ];
+
+export function getServicios(id: string): string[] {
+  const isSmallCabana = id === "1" || id === "3";
+  const isBigCabana = id === "2" || id === "4";
+
+  const servicios = [
+    isBigCabana ? "Heladera con Freezer" : "Heladera",
+    "Cocina con horno",
+  ];
+
+  if (isBigCabana) {
+    servicios.push("Microondas");
+  } else {
+    // Cabañas 1 y 3 también tienen microondas según descripción
+    servicios.push("Microondas");
+  }
+
+  servicios.push(
+    "Vajilla completa",
+    "Tv Led “32” smart",
+    "WIFI Alta velocidad",
+    "Aire acondicionado Frío/Calor",
+    "Ventilador",
+    "Ropa blanca",
+    "Ropa de cama",
+    "Cochera individual",
+    "Asador individual",
+    "Servicio de Limpieza (Cada 3 días)",
+    "Amplia Pileta con solárium húmedo y borde infinito",
+    "Hidromasaje",
+    "Asesoramiento turístico",
+  );
+
+  return servicios;
+}
 
 export const CABANAS_RESERVA: Record<ReservaCabanaId, ReservaCabanaConfig> = {
   "1": {
     id: "1",
-    nombre: "Cabaña Nº1",
+    nombre: "Cabaña 1",
     capacidad: 4,
     precio_base: 85000,
     imageFolder: "cabana-1",
   },
   "2": {
     id: "2",
-    nombre: "Cabaña Nº2",
+    nombre: "Cabaña 2",
     capacidad: 6,
     precio_base: 110000,
     imageFolder: "cabana-2",
   },
   "3": {
     id: "3",
-    nombre: "Cabaña Nº3",
+    nombre: "Cabaña 3",
     capacidad: 4,
     precio_base: 98000,
     imageFolder: "cabana-3",
   },
   "4": {
     id: "4",
-    nombre: "Cabaña Nº4",
+    nombre: "Cabaña 4",
     capacidad: 6,
     precio_base: 135000,
     imageFolder: "cabana-4",

@@ -84,7 +84,7 @@ const SectionUbicacionMiradorDeLuz: FC<SectionUbicacionMiradorDeLuzProps> = ({
     },
     {
       icon: <Sparkles className="w-5 h-5 text-[#756341]" />,
-      text: "Complejo a estrenar",
+      text: "Equipamento completo",
     },
     {
       icon: <IconMountain className="w-5 h-5 text-[#756341]" />,

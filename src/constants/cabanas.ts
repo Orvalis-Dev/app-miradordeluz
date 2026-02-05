@@ -27,14 +27,14 @@ export type Cabana = {
 export const cabanas: Cabana[] = [
   {
     id: "1",
-    nombre: "Cabaña Nº1",
+    nombre: "Cabaña 1",
     etiqueta: "HASTA 4 PERSONAS",
     descripcion:
-      "Cabaña de fácil acceso y hermosa vista a las sierras. Entrada plana y sin escaleras; Living con cama marinera; cocina amplia con comedor; dormitorio matrimonial y/o individual; baño completo y cómodo.",
+      "Diseñada para 4 personas. Combina independencia con todas las comodidades. Incluye asador privado con parrilla individual y cochera semi-cubierta adjunta.",
     amenities: [
-      { icon: "bed", label: "Cama Matrimonial" },
-      { icon: "tv", label: 'Smart TV 43"' },
-      { icon: "mountain", label: "Vista a montañas" },
+      { icon: "wifi", label: "WiFi" },
+      { icon: "kitchen", label: "Cocina completa" },
+      { icon: "tv", label: 'Smart TV 32"' },
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/cabana-1/cabana-1-portada-2-desktop.webp",
@@ -44,14 +44,14 @@ export const cabanas: Cabana[] = [
   },
   {
     id: "2",
-    nombre: "Cabaña Nº2",
+    nombre: "Cabaña 2",
     etiqueta: "HASTA 6 PERSONAS",
     descripcion:
-      "Cabaña más confortable del complejo. Cuenta con 2 dormitorios matrimoniales y/o individuales; Living con sofá cama con marinera; cocina amplia con comedor; ante baño y baño completo.",
+      "Las unidades más exclusivas para 6 personas. 2 dormitorios definidos y living. Ideales para estadías largas gracias a su equipamiento de cocina superior.",
     amenities: [
       { icon: "bed", label: "2 Dormitorios" },
-      { icon: "tv", label: 'Smart TV 43"' },
-      { icon: "kitchen", label: "Cocina equipada" },
+      { icon: "tv", label: 'Smart TV 32"' },
+      { icon: "kitchen", label: "Heladera con Freezer" },
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/cabana-2/cabana-2-1-desktop.webp",
@@ -61,13 +61,13 @@ export const cabanas: Cabana[] = [
   },
   {
     id: "3",
-    nombre: "Cabaña Nº3",
+    nombre: "Cabaña 3",
     etiqueta: "MONOAMBIENTE HASTA 4 PERSONAS",
     descripcion:
-      "Cabaña de fácil acceso y sin escalones. Cuenta con cama matrimonial y cama marinera; cocina amplia con comedor y baño cómodo.",
+      "Opción práctica en planta baja sin escalones, ideal para accesibilidad. Formato monoambiente fluido para 4 personas con cocina completa y asador propio.",
     amenities: [
       { icon: "bed", label: "Cama Matrimonial" },
-      { icon: "tv", label: 'Smart TV 43"' },
+      { icon: "tv", label: 'Smart TV 32"' },
       { icon: "kitchen", label: "Cocina completa" },
       { icon: "parking", label: "Cochera" },
     ],
@@ -78,14 +78,14 @@ export const cabanas: Cabana[] = [
   },
   {
     id: "4",
-    nombre: "Cabaña Nº4",
+    nombre: "Cabaña 4",
     etiqueta: "HASTA 6 PERSONAS",
     descripcion:
-      "Cabaña más confortable del complejo. Cuenta con 2 dormitorios matrimoniales y/o individuales; Living con sofá cama con marinera; cocina amplia con comedor; ante baño y baño completo.",
+      "Las unidades más exclusivas para 6 personas. 2 dormitorios definidos y living. Ideales para estadías largas gracias a su equipamiento de cocina superior.",
     amenities: [
       { icon: "bed", label: "2 Dormitorios" },
-      { icon: "tv", label: 'Smart TV 43"' },
-      { icon: "kitchen", label: "Cocina completa" },
+      { icon: "tv", label: 'Smart TV 32"' },
+      { icon: "kitchen", label: "Heladera con Freezer" },
       { icon: "parking", label: "Cochera" },
     ],
     imagenUrl: "/images/exterior/exterior-42-desktop.webp",

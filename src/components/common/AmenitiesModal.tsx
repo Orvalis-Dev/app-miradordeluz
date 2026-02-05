@@ -122,7 +122,7 @@ const AmenitiesModal: FC<AmenitiesModalProps> = ({
                     Información Adicional
                   </h3>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    Nuestro complejo ofrece limpieza día por medio (09:00 a
+                    Nuestro complejo ofrece limpieza cada tres días (09:00 a
                     12:00 hs) y asesoramiento turístico personalizado para que
                     aproveches al máximo tu estadía en las Sierras.
                   </p>

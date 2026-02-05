@@ -11,6 +11,8 @@ import {
   FiWind,
   FiDivide,
   FiBell,
+  FiSun,
+  FiVideo,
 } from "react-icons/fi";
 import { GiBarbecue, GiPineTree, GiBed, GiCooler } from "react-icons/gi";
 import {
@@ -18,6 +20,8 @@ import {
   MdGarage,
   MdEmergency,
   MdLightMode,
+  MdHotTub,
+  MdBeachAccess,
 } from "react-icons/md";
 import { FaUtensils, FaFireExtinguisher, FaBed } from "react-icons/fa6";
 import { PiOvenDuotone, PiFanDuotone } from "react-icons/pi";
@@ -40,6 +44,16 @@ const ClockIcon: FC = () => <FiClock className="w-6 h-6" aria-hidden />;
 
 // Icons representativos para instalaciones (monocromo: stroke=currentColor)
 const PoolIcon: FC = () => <MdOutlinePool className="w-8 h-8" aria-hidden />;
+
+const HotTubIcon: FC = () => <MdHotTub className="w-8 h-8" aria-hidden />;
+
+const SunIcon: FC = () => <FiSun className="w-8 h-8" aria-hidden />;
+
+const CameraIcon: FC = () => <FiVideo className="w-6 h-6" aria-hidden />;
+
+const UmbrellaIcon: FC = () => (
+  <MdBeachAccess className="w-6 h-6" aria-hidden />
+);
 
 const ViewIcon: FC = () => <FiEye className="w-8 h-8" aria-hidden />;
 
@@ -119,74 +133,48 @@ const SectionServicios: FC<SectionServiciosProps> = ({
   servicios = [
     {
       id: "1",
-      icon: <CoffeeIcon />,
-      titulo: "Desayuno incluido",
-      descripcion: "Comenzá el día con productos regionales y caseros",
-      colorAccent: "amber",
+      icon: <WifiIcon />,
+      titulo: "WiFi",
+      descripcion: "Conexión en todo el predio",
+      colorAccent: "green",
     },
     {
       id: "2",
-      icon: <WifiIcon />,
-      titulo: "WiFi",
-      descripcion: "Conexión gratuita en todas las cabañas y espacios comunes",
+      icon: <CarIcon />,
+      titulo: "Cochera",
+      descripcion: "Espacio semi cubierto para tu vehículo",
       colorAccent: "green",
     },
     {
       id: "3",
-      icon: <CarIcon />,
-      titulo: "Estacionamiento",
-      descripcion: "Espacio seguro dentro del predio para tu vehículo",
-      colorAccent: "green",
+      icon: <PoolIcon />,
+      titulo: "Pileta",
+      descripcion: "Disfruta del sol y el agua",
+      colorAccent: "amber",
     },
     {
       id: "4",
       icon: <BedIcon />,
       titulo: "Ropa blanca",
-      descripcion: "Toallas, sábanas y servicio de limpieza incluidos",
+      descripcion: "Toallas y sábanas incluidas",
       colorAccent: "amber",
     },
     {
       id: "5",
       icon: <AirConditioningIcon />,
-      titulo: "A/C",
-      descripcion: "Climatización completa para tu confort todo el año",
+      titulo: "Climatización",
+      descripcion: "Aire acondicionado frío/calor",
       colorAccent: "orange",
     },
     {
       id: "6",
-      icon: <ClockIcon />,
-      titulo: "Check in flexible",
-      descripcion: "Horarios adaptados según disponibilidad",
-      colorAccent: "green",
+      icon: <GrillIcon />,
+      titulo: "Asador",
+      descripcion: "Zona de parrilla individual",
+      colorAccent: "amber",
     },
   ],
-  instalaciones = [
-    {
-      id: "1",
-      titulo: "Pileta con solarium",
-      descripcion: "Disfruta del agua y el sol en nuestro espacio renovado",
-    },
-    {
-      id: "2",
-      titulo: "Espacios verdes y miradores",
-      descripcion: "Amplios jardines con vistas panorámicas a las sierras",
-    },
-    {
-      id: "3",
-      titulo: "Quincho y zona de fogón",
-      descripcion: "Perfectos para asados y reuniones al aire libre",
-    },
-    {
-      id: "4",
-      titulo: "Decks y livings exteriores",
-      descripcion: "Espacios de descanso integrados con la naturaleza",
-    },
-    {
-      id: "5",
-      titulo: "Vistas panorámicas",
-      descripcion: "Miradores estratégicos con vista a las montañas",
-    },
-  ],
+  instalaciones = [],
   imagenesInstalaciones = [
     "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800",
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
@@ -288,7 +276,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
               >
                 <div
                   className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center ${getAccentColor(
-                    servicio.colorAccent
+                    servicio.colorAccent,
                   )}`}
                 >
                   {servicio.icon || <BedIcon />}
@@ -388,9 +376,19 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                         </h4>
                         <div className="space-y-0">
                           {[
-                            { id: "parque", titulo: "Parque", Icon: TreeIcon },
+                            { id: "parque", titulo: "Espacio verde", Icon: TreeIcon },
                             { id: "pileta", titulo: "Pileta", Icon: PoolIcon },
-                            { id: "cochera", titulo: "Cochera", Icon: CarIcon },
+                            {
+                              id: "hidro",
+                              titulo: "Hidromasaje",
+                              Icon: HotTubIcon,
+                            },
+                            {
+                              id: "solarium",
+                              titulo: "Solárium",
+                              Icon: SunIcon,
+                            },
+                            { id: "cochera", titulo: "Cochera semi cubierta", Icon: CarIcon },
                             { id: "asador", titulo: "Asador", Icon: GrillIcon },
                           ].map((item) => (
                             <div
@@ -417,23 +415,28 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                           {[
                             {
                               id: "limpieza",
-                              titulo: "Servicio de Limpieza",
+                              titulo: "Limpieza",
                               Icon: CleaningIcon,
                             },
                             {
                               id: "ropa",
-                              titulo: "Ropa de cama y toallas",
+                              titulo: "Ropa blanca",
                               Icon: BeddingIcon,
                             },
                             {
                               id: "wifi",
-                              titulo: "WiFi gratuito",
+                              titulo: "Wifi",
                               Icon: WifiIcon,
                             },
                             {
-                              id: "desayuno",
-                              titulo: "Desayuno seco/artesanal",
-                              Icon: BreakfastIcon,
+                              id: "reposeras",
+                              titulo: "Reposeras",
+                              Icon: TowelsIcon,
+                            },
+                            {
+                              id: "sombrilla",
+                              titulo: "Sombrilla y sillas",
+                              Icon: UmbrellaIcon,
                             },
                           ].map((item) => (
                             <div
@@ -463,17 +466,17 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                           {[
                             {
                               id: "tv",
-                              titulo: "Televisión / Smart TV",
+                              titulo: 'Smart TV 32"',
                               Icon: TVIcon,
                             },
                             {
                               id: "ac",
-                              titulo: "Aire Acond. Frío/Calor",
+                              titulo: "Aire acondicionado frío/calor",
                               Icon: ACIcon,
                             },
                             {
                               id: "fan",
-                              titulo: "Ventilador de techo",
+                              titulo: "Ventilador portátil",
                               Icon: FanIcon,
                             },
                             {
@@ -483,7 +486,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                             },
                             {
                               id: "heladera",
-                              titulo: "Heladera con Freezer",
+                              titulo: "Heladera",
                               Icon: FridgeIcon,
                             },
                             {
@@ -507,7 +510,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                         </div>
                       </section>
 
-                      {/* PROTECCIONES */}
+                      {/* SEGURIDAD */}
                       <section>
                         <h4 className="font-montserrat text-[12px] font-bold text-[#756341] tracking-[0.2em] uppercase mb-6 h-[20px] flex items-center">
                           SEGURIDAD
@@ -521,13 +524,8 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                             },
                             {
                               id: "luz",
-                              titulo: "Luz de Emergencia",
+                              titulo: "Luz de emergencia",
                               Icon: EmergencyLightIcon,
-                            },
-                            {
-                              id: "med",
-                              titulo: "Emergencia Médica 24hs",
-                              Icon: FiPlus,
                             },
                             {
                               id: "dif",
@@ -535,9 +533,9 @@ const SectionServicios: FC<SectionServiciosProps> = ({
                               Icon: DifferentialIcon,
                             },
                             {
-                              id: "alarma",
-                              titulo: "Alarma monitoreada",
-                              Icon: AlarmIcon,
+                              id: "camaras",
+                              titulo: "Cámaras de seguridad",
+                              Icon: CameraIcon,
                             },
                           ].map((item) => (
                             <div

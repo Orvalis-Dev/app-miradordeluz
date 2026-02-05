@@ -9,7 +9,7 @@ import { IconUsers, IconBed, IconBath } from "@components/common/Icons";
 import {
   getReservaCabanaConfig,
   getReservaCabanaImages,
-  SERVICIOS,
+  getServicios,
 } from "@constants/reservasConfig";
 import { cabanas } from "@constants/cabanas";
 // Optimización de Logo
@@ -40,6 +40,51 @@ const cabana = {
 };
 
 const pageTitle = `${cabana.nombre} - Mirador de Luz`;
+
+const amenityTexts: Record<string, any> = {
+  '1': {
+    wifi: { title: "WiFi", desc: "Conexión a internet de alta velocidad." },
+    kitchen: { title: "Cocina completa", desc: "Heladera bajo mesada, cocina con horno, vajilla completa y microondas." },
+    grill: { title: "Asador privado", desc: "Parrilla individual." },
+    tv: { title: 'Smart TV 32"', desc: "Incluye canales abiertos (TDA) y aplicaciones de streaming." },
+    ac: { title: "Equipamiento adicional", desc: "Aire acondicionado frío/calor, ventilador de pie, ropa blanca y mosquiteros." },
+    garage: { title: "Cochera", desc: "Semi cubierta, ubicada a la par de la cabaña." }
+  },
+  '2': {
+    wifi: { title: "WiFi", desc: "Conexión a internet de alta velocidad." },
+    kitchen: { title: "Cocina completa", desc: "Heladera con Freezer, cocina con horno, vajilla completa y microondas." },
+    grill: { title: "Asador privado", desc: "Parrilla individual." },
+    tv: { title: 'Smart TV 32"', desc: "Incluye canales abiertos (TDA) y aplicaciones de streaming." },
+    ac: { title: "Equipamiento adicional", desc: "Aire acondicionado frío/calor, ventilador de pie, ropa blanca y mosquiteros." },
+    garage: { title: "Cochera Cubierta", desc: "Protección para tu vehículo frente a cada cabaña." }
+  },
+  '3': {
+    wifi: { title: "WiFi", desc: "Conexión a internet de alta velocidad." },
+    kitchen: { title: "Cocina completa", desc: "Heladera bajo mesada, cocina con horno, vajilla completa y microondas." },
+    grill: { title: "Asador privado", desc: "Parrilla individual." },
+    tv: { title: 'Smart TV 32"', desc: "Incluye canales abiertos (TDA) y aplicaciones de streaming." },
+    ac: { title: "Equipamiento adicional", desc: "Aire acondicionado frío/calor, ventilador de pie, ropa blanca y mosquiteros." },
+    garage: { title: "Cochera", desc: "Semi cubierta, ubicada a la par de la cabaña." }
+  },
+  '4': {
+    wifi: { title: "WiFi", desc: "Conexión a internet de alta velocidad." },
+    kitchen: { title: "Cocina completa", desc: "Heladera con Freezer, cocina con horno, vajilla completa y microondas." },
+    grill: { title: "Asador privado", desc: "Parrilla individual." },
+    tv: { title: 'Smart TV 32"', desc: "Incluye canales abiertos (TDA) y aplicaciones de streaming." },
+    ac: { title: "Equipamiento adicional", desc: "Aire acondicionado frío/calor, ventilador de pie, ropa blanca y mosquiteros." },
+    garage: { title: "Cochera Cubierta", desc: "Protección para tu vehículo frente a cada cabaña." }
+  },
+  'default': {
+    wifi: { title: "WiFi", desc: "Conexión estable en todo el complejo para tu trabajo o relax." },
+    kitchen: { title: "Cocina completa", desc: "Heladera con freezer, horno, vajilla completa y cafetera." },
+    grill: { title: "Asador privado", desc: "Parrilla individual en el deck de tu cabaña para tus asados." },
+    tv: { title: 'Smart TV 32"', desc: "Entretenimiento garantizado con Youtube y Netflix disponibles." },
+    ac: { title: "Aire Split F/C", desc: "Climatización perfecta durante todo el año (frío/calor)." },
+    garage: { title: "Cochera Cubierta", desc: "Protección para tu vehículo frente a cada cabaña." }
+  }
+};
+
+const currentAmenities = amenityTexts[cabana.id] || amenityTexts['default'];
 ---
 
 <Layout
@@ -99,7 +144,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                 <IconUsers className="w-5 h-5 text-[#756341]" /> Hasta {cabana.capacidad} Personas
               </span>
               <span class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 text-sm font-semibold shadow-sm flex items-center gap-2">
-                <IconBed className="w-5 h-5 text-[#756341]" /> {cabana.id === '1' || cabana.id === '3' ? '1 Dormitorio' : '2 Dormitorios'}
+                <IconBed className="w-5 h-5 text-[#756341]" /> {cabana.id === '3' ? 'Monoambiente' : (cabana.id === '1' ? '1 Dormitorio' : '2 Dormitorios')}
               </span>
               <span class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 text-sm font-semibold shadow-sm flex items-center gap-2">
                 <IconBath className="w-5 h-5 text-[#756341]" /> 1 Baño
@@ -127,8 +172,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">WiFi</h3>
-                  <p class="text-slate-600 leading-snug">Conexión estable en todo el complejo para tu trabajo o relax.</p>
+                  <h3 class="font-bold text-slate-900 text-lg">{currentAmenities.wifi.title}</h3>
+                  <p class="text-slate-600 leading-snug">{currentAmenities.wifi.desc}</p>
                 </div>
               </div>
 
@@ -137,8 +182,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">Cocina completa</h3>
-                  <p class="text-slate-600 leading-snug">Heladera con freezer, horno, vajilla completa y cafetera.</p>
+                  <h3 class="font-bold text-slate-900 text-lg">{currentAmenities.kitchen.title}</h3>
+                  <p class="text-slate-600 leading-snug">{currentAmenities.kitchen.desc}</p>
                 </div>
               </div>
 
@@ -147,8 +192,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.5-7 3 3 3 6 1 9 3.5-2 5-3 5-3s1 1 1 2c0 1.5-1 4-1.5 5.5l1.657 1.657z" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">Asador privado</h3>
-                  <p class="text-slate-600 leading-snug">Parrilla individual en el deck de tu cabaña para tus asados.</p>
+                  <h3 class="font-bold text-slate-900 text-lg">{currentAmenities.grill.title}</h3>
+                  <p class="text-slate-600 leading-snug">{currentAmenities.grill.desc}</p>
                 </div>
               </div>
 
@@ -157,8 +202,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">Smart TV 43"</h3>
-                  <p class="text-slate-600 leading-snug">Entretenimiento garantizado con Youtube y Netflix disponibles.</p>
+                  <h3 class="font-bold text-slate-900 text-lg">{currentAmenities.tv.title}</h3>
+                  <p class="text-slate-600 leading-snug">{currentAmenities.tv.desc}</p>
                 </div>
               </div>
 
@@ -167,8 +212,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">Aire Split F/C</h3>
-                  <p class="text-slate-600 leading-snug">Climatización perfecta durante todo el año (frío/calor).</p>
+                  <h3 class="font-bold text-slate-900 text-lg">{currentAmenities.ac.title}</h3>
+                  <p class="text-slate-600 leading-snug">{currentAmenities.ac.desc}</p>
                 </div>
               </div>
 
@@ -177,8 +222,8 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
                 </div>
                 <div>
-                  <h3 class="font-bold text-slate-900 text-lg">Cochera Cubierta</h3>
-                  <p class="text-slate-600 leading-snug">Protección para tu vehículo frente a cada cabaña.</p>
+                  <h3 class="font-bold text-slate-900 text-lg">{currentAmenities.garage.title}</h3>
+                  <p class="text-slate-600 leading-snug">{currentAmenities.garage.desc}</p>
                 </div>
               </div>
             </div>
@@ -186,7 +231,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
             <div class="mt-12">
                <AmenitiesModal 
                  client:load 
-                 amenities={SERVICIOS} 
+                 amenities={getServicios(cabana.id)} 
                  cabaName={cabana.nombre} 
                  variant="button" 
                />
@@ -210,7 +255,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
             <p class="text-slate-600 mb-6 text-lg font-montserrat">
               Estamos ubicados en <span class="font-bold text-slate-900"
                 >Villa Santa Cruz del Lago</span
-              >, en un punto estratégico para recorrer Punilla y a solo 5 minutos
+              >, en un punto estratégico para recorrer Punilla y a solo 10 minutos
               de Villa Carlos Paz.
             </p>
             <div
