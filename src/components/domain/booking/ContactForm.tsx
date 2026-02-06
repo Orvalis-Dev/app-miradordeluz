@@ -14,7 +14,7 @@ export default function ContactForm({
   facebook = "https://facebook.com/miradordeluz",
   whatsapp = "https://wa.me/5493813513513",
 }: ContactFormProps) {
-  const [state, handleSubmit, reset] = useForm("snieva000@gmail.com");
+  const [state, handleSubmit, reset] = useForm("xzdznolb");
   const [attempts, setAttempts] = useState(0);
 
   // Incrementar intentos cuando el envío es exitoso
