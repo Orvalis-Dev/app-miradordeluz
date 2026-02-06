@@ -30,11 +30,12 @@ export default function ContactForm({
         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
           <CheckCircle2 size={40} />
         </div>
-        <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">
+        <h3 className="text-2xl font-montserrat font-extrabold text-gray-900 mb-2">
           ¡Gracias por contactarnos!
         </h3>
         <p className="text-gray-500 mb-8 max-w-sm font-medium">
-          Hemos recibido tu información correctamente. Te responderemos a la brevedad para coordinar tu estadía.
+          Hemos recibido tu información correctamente. Te responderemos a la
+          brevedad para coordinar tu estadía.
         </p>
 
         <div className="space-y-6 w-full max-w-xs">
@@ -42,7 +43,7 @@ export default function ContactForm({
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
               O contactanos más rápido:
             </p>
-            
+
             <div className="flex justify-center gap-5 mb-8">
               <a
                 href={instagram}
@@ -79,13 +80,17 @@ export default function ContactForm({
               onClick={() => reset()}
               className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 rounded-xl text-gray-600 text-sm font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 group"
             >
-              <RefreshCcw size={16} className="group-hover:rotate-180 transition-transform duration-500" />
+              <RefreshCcw
+                size={16}
+                className="group-hover:rotate-180 transition-transform duration-500"
+              />
               <span>Enviar otro formulario ({3 - attempts} restantes)</span>
             </button>
           ) : (
             <div className="p-4 bg-gray-50 rounded-xl">
               <p className="text-xs text-gray-500 italic">
-                Has alcanzado el límite de 3 envíos. Si necesitás más ayuda, por favor contactanos por WhatsApp o redes sociales.
+                Has alcanzado el límite de 3 envíos. Si necesitás más ayuda, por
+                favor contactanos por WhatsApp o redes sociales.
               </p>
             </div>
           )}
