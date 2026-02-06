@@ -156,7 +156,12 @@ const mapCoords = {
           </div>
 
           <!-- Columna Derecha: Contact Form -->
-          <ContactForm client:load />
+          <ContactForm 
+            client:load 
+            instagram={contactInfo.instagram}
+            facebook={contactInfo.facebook}
+            whatsapp={contactInfo.whatsappLink}
+          />
         </div>
       </div>
     </section>

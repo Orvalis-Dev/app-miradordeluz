@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import { Send, Loader2, CheckCircle2 } from "lucide-react";
+import { Send, Loader2, CheckCircle2, RefreshCcw } from "lucide-react";
+import { FaWhatsapp, FaInstagram, FaFacebookF } from "react-icons/fa6";
 
-export default function ContactForm() {
-  const [state, handleSubmit] = useForm("xzdznolb");
+interface ContactFormProps {
+  instagram?: string;
+  facebook?: string;
+  whatsapp?: string;
+}
+
+export default function ContactForm({
+  instagram = "https://instagram.com/miradordeluz",
+  facebook = "https://facebook.com/miradordeluz",
+  whatsapp = "https://wa.me/5493813513513",
+}: ContactFormProps) {
+  const [state, handleSubmit, reset] = useForm("snieva000@gmail.com");
+  const [attempts, setAttempts] = useState(0);
+
+  // Incrementar intentos cuando el envío es exitoso
+  useEffect(() => {
+    if (state.succeeded) {
+      setAttempts((prev) => prev + 1);
+    }
+  }, [state.succeeded]);
 
   if (state.succeeded) {
     return (
@@ -14,9 +33,63 @@ export default function ContactForm() {
         <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">
           ¡Gracias por contactarnos!
         </h3>
-        <p className="text-gray-500 mb-8 max-w-sm">
-          Te responderemos a la brevedad para coordinar tu estadía.
+        <p className="text-gray-500 mb-8 max-w-sm font-medium">
+          Hemos recibido tu información correctamente. Te responderemos a la brevedad para coordinar tu estadía.
         </p>
+
+        <div className="space-y-6 w-full max-w-xs">
+          <div className="pt-6 border-t border-gray-100">
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+              O contactanos más rápido:
+            </p>
+            
+            <div className="flex justify-center gap-5 mb-8">
+              <a
+                href={instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-pink-50 text-pink-600 hover:bg-pink-600 hover:text-white transition-all duration-300 shadow-sm"
+                title="Instagram"
+              >
+                <FaInstagram size={22} />
+              </a>
+              <a
+                href={facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm"
+                title="Facebook"
+              >
+                <FaFacebookF size={18} />
+              </a>
+              <a
+                href={whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-green-50 text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 shadow-md"
+                title="WhatsApp"
+              >
+                <FaWhatsapp size={24} />
+              </a>
+            </div>
+          </div>
+
+          {attempts < 3 ? (
+            <button
+              onClick={() => reset()}
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 rounded-xl text-gray-600 text-sm font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 group"
+            >
+              <RefreshCcw size={16} className="group-hover:rotate-180 transition-transform duration-500" />
+              <span>Enviar otro formulario ({3 - attempts} restantes)</span>
+            </button>
+          ) : (
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <p className="text-xs text-gray-500 italic">
+                Has alcanzado el límite de 3 envíos. Si necesitás más ayuda, por favor contactanos por WhatsApp o redes sociales.
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
