@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, type FC } from "react";
 import { motion } from "framer-motion";
-import TestimonialCard, {
-  type Testimonial,
-} from "@components/common/TestimonialCard";
+import TestimonialCard from "@components/common/TestimonialCard";
+import { TESTIMONIOS, type TestimonioExtendido } from "@data/testimonios";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -46,11 +45,6 @@ const ChevronRightIcon: FC = () => (
   </svg>
 );
 
-// Tipo de testimonio extendido con ID
-export interface TestimonioExtendido extends Testimonial {
-  id: string;
-}
-
 interface SectionTestimoniosProps {
   testimonios?: TestimonioExtendido[];
   mostrarBoton?: boolean;
@@ -62,79 +56,8 @@ interface SectionTestimoniosProps {
   googleReviewUrl?: string;
 }
 
-// Testimonios de fallback cuando no hay conexión con Google
-const DEFAULT_TESTIMONIOS: TestimonioExtendido[] = [
-  {
-    id: "0",
-    name: "Barby Herrera",
-    date: "Hace un año",
-    text: "La mejor experiencia que se pueden llevar es visitando este hermoso complejo , tuvimos la oportunidad que nos reciba su dueño mariano , despejo todas nuestras dudas y estuvo atento n todo momento q lo necesitamos . La vista del complejo es una de las cosas más linda que te puede pasar , la comidad de las cabañas excelente y todo muy nuevo y bien equipado . Volvéremos muy pronto 😍",
-    rating: 5,
-  },
-  {
-    id: "1",
-    name: "Agustin incorvaia",
-    reviewsCount: "3 opiniones",
-    date: "Hace un mes",
-    text: "Pasamos unas vacaciones increíbles en el complejo. Las instalaciones son excelentes y cuentan con todas las comodidades necesarias para una estadía perfecta. Los dueños, Mariano y Gigi, fueron súper amables y atentos en todo momento, lo que hizo nuestra experiencia aún mejor. Esperamos poder volver pronto. ¡Totalmente recomendable!",
-    rating: 5,
-  },
-  {
-    id: "2",
-    name: "Vani Elizabeth",
-    isLocalGuide: true,
-    reviewsCount: "131 opiniones · 30 fotos",
-    date: "Hace 4 meses",
-    text: "Hermoso lugar unas vistas increíbles hermosa la pileta. La cabaña muy linda bien equipada todo nuevo y muy limpio. La atención de Mariano muy buena. Super recomendable",
-    rating: 5,
-  },
-  {
-    id: "3",
-    name: "Mariana Gomez",
-    isLocalGuide: true,
-    reviewsCount: "23 opiniones · 31 fotos",
-    date: "Hace 9 meses",
-    text: "Hermoso el lugar!! Las habitaciones cuentan con cada detalle para una excelente estadía, tele, WiFi, cocina equipada, aires acondionado en cada espacio, más ventiladores, sobre todo limpieza y excelente trato de sus dueños, Mariano y Gigi súper atentos, la pileta es hermosa profunda e impecable, y la vista excelente, volveremos sin dudarlo!! Excelente relación precio/calidad.",
-    rating: 5,
-  },
-  {
-    id: "4",
-    name: "ALAN JHONS",
-    reviewsCount: "1 opinión",
-    date: "una semana atrás",
-    isNew: true,
-    text: "EXCELENTE LUGAR MUY TRANQUILO.AMABILIDAD MUY BUENA ATENCION Y SERVICIOS HIGIÉNICO Y CÓMODO RECOMENDABLE.!!! Raul y MARY. 🏖🏖🏝🏡…",
-    rating: 5,
-  },
-  {
-    id: "5",
-    name: "Micaela Ferrero",
-    reviewsCount: "4 opiniones",
-    date: "Hace 8 meses",
-    text: "Hermosas las cabañas, tienen todas las comodidades para pasar una linda e inolvidable estadía. La vista desde las cabañas y la pileta es única!! Para destacar la atención tanto de Mariano como de Gigi. 100% recomendable!!!",
-    rating: 5,
-  },
-  {
-    id: "6",
-    name: "Claudia Resnik",
-    isLocalGuide: true,
-    reviewsCount: "253 opiniones · 502 fotos",
-    date: "Hace 4 meses",
-    text: "Hermoso lugar para descansar, con una vista privilegiada, súper atentos y cálidos los dueños. Muy recomendable!!!",
-    rating: 5,
-  },
-  {
-    id: "7",
-    name: "MARIA DEL C. LEDEZMA",
-    reviewsCount: "7 opiniones · 1 foto",
-    date: "Hace 10 meses",
-    text: "Es un lugar privilegiado, ideal para descansar y disfrutar tanto de el paisaje, como de la cabaña, muy cómoda y con todos los servicios. La pileta y el parque hermosos. Y la amabilidad y buena atención de sus dueños. Volveremos sin dudas",
-    rating: 5,
-  },
-];
-
 const SectionTestimonios: FC<SectionTestimoniosProps> = ({
-  testimonios = DEFAULT_TESTIMONIOS,
+  testimonios = TESTIMONIOS,
   mostrarBoton = true,
   textoBoton = "Ver todas las opiniones en Google Maps",
   onClickBoton,
