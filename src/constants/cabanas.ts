@@ -37,9 +37,9 @@ export const cabanas: Cabana[] = [
       { icon: "tv", label: 'Smart TV 32"' },
       { icon: "parking", label: "Cochera" },
     ],
-    imagenUrl: "/images/cabana-1/cabana-1-portada-2-desktop.webp",
-    imagenDesktop: "/images/cabins-home/cabana-1-portada-2-desktop.webp",
-    imagenMobile: "/images/cabins-home/cabana-1-portada-2-mobile.webp",
+    imagenUrl: "/images/cabana-1/cabana-1-portada-desktop.webp",
+    imagenDesktop: "/images/cabana-1/cabana-1-portada-desktop.webp",
+    imagenMobile: "/images/cabana-1/cabana-1-portada-mobile.webp",
     slug: "cabana-1",
   },
   {

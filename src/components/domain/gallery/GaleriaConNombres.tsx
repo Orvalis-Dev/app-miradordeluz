@@ -36,11 +36,14 @@ export function GaleriaConNombres({
     }
 
     // Si no, generar URLs dinámicamente basadas en el número de imágenes
+    // Corregido: añadir sufijo -desktop y usar el formato correcto
     return Array.from({ length: cabana.totalImages }, (_, i) => ({
       id: i + 1,
-      url: `/images/cabana-${cabana.id}/cabana-${cabana.id}-${i + 1}.webp`,
+      url: `/images/cabana-${cabana.id}/cabana-${cabana.id}-${i + 1}-desktop.webp`,
+      url_desktop: `/images/cabana-${cabana.id}/cabana-${cabana.id}-${i + 1}-desktop.webp`,
+      url_mobile: `/images/cabana-${cabana.id}/cabana-${cabana.id}-${i + 1}-mobile.webp`,
       title: `Imagen ${i + 1}`,
-      filename: `cabana-${cabana.id}-${i + 1}.webp`,
+      filename: `cabana-${cabana.id}-${i + 1}`,
     }));
   }, [cabana]);
 

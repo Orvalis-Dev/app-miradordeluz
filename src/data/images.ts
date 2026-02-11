@@ -21,7 +21,7 @@ export const cabanas: Cabana[] = [
   {
     "id": 1,
     "nombre": "Cabaña 1",
-    "totalImages": 26,
+    "totalImages": 20,
     "images": [
       {
         "id": 1,
@@ -97,14 +97,6 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 10,
-        "url": "/images/cabana-1/cabana-1-entrada-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-entrada-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-entrada-1-mobile.webp",
-        "title": "Entrada 1",
-        "filename": "cabana-1-entrada-1"
-      },
-      {
-        "id": 11,
         "url": "/images/cabana-1/cabana-1-entrada-2-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-entrada-2-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-entrada-2-mobile.webp",
@@ -112,7 +104,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-entrada-2"
       },
       {
-        "id": 12,
+        "id": 11,
         "url": "/images/cabana-1/cabana-1-entrada-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-entrada-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-entrada-mobile.webp",
@@ -120,15 +112,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-entrada"
       },
       {
-        "id": 13,
-        "url": "/images/cabana-1/cabana-1-habitacion-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-habitacion-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-habitacion-1-mobile.webp",
-        "title": "Habitacion 1",
-        "filename": "cabana-1-habitacion-1"
-      },
-      {
-        "id": 14,
+        "id": 12,
         "url": "/images/cabana-1/cabana-1-habitacion-2-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-habitacion-2-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-habitacion-2-mobile.webp",
@@ -136,7 +120,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-habitacion-2"
       },
       {
-        "id": 15,
+        "id": 13,
         "url": "/images/cabana-1/cabana-1-habitacion-3-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-habitacion-3-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-habitacion-3-mobile.webp",
@@ -144,23 +128,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-habitacion-3"
       },
       {
-        "id": 16,
-        "url": "/images/cabana-1/cabana-1-habitacion-4-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-habitacion-4-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-habitacion-4-mobile.webp",
-        "title": "Habitacion 4",
-        "filename": "cabana-1-habitacion-4"
-      },
-      {
-        "id": 17,
-        "url": "/images/cabana-1/cabana-1-habitacion-5-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-habitacion-5-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-habitacion-5-mobile.webp",
-        "title": "Habitacion 5",
-        "filename": "cabana-1-habitacion-5"
-      },
-      {
-        "id": 18,
+        "id": 14,
         "url": "/images/cabana-1/cabana-1-habitacion-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-habitacion-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-habitacion-mobile.webp",
@@ -168,15 +136,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-habitacion"
       },
       {
-        "id": 19,
-        "url": "/images/cabana-1/cabana-1-living-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-living-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-living-1-mobile.webp",
-        "title": "Living 1",
-        "filename": "cabana-1-living-1"
-      },
-      {
-        "id": 20,
+        "id": 15,
         "url": "/images/cabana-1/cabana-1-living-2-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-living-2-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-living-2-mobile.webp",
@@ -184,7 +144,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-living-2"
       },
       {
-        "id": 21,
+        "id": 16,
         "url": "/images/cabana-1/cabana-1-living-3-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-living-3-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-living-3-mobile.webp",
@@ -192,7 +152,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-living-3"
       },
       {
-        "id": 22,
+        "id": 17,
         "url": "/images/cabana-1/cabana-1-living-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-living-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-living-mobile.webp",
@@ -200,7 +160,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-living"
       },
       {
-        "id": 23,
+        "id": 18,
         "url": "/images/cabana-1/cabana-1-portada-1-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-portada-1-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-portada-1-mobile.webp",
@@ -208,15 +168,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-portada-1"
       },
       {
-        "id": 24,
-        "url": "/images/cabana-1/cabana-1-portada-2-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-portada-2-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-portada-2-mobile.webp",
-        "title": "Portada 2",
-        "filename": "cabana-1-portada-2"
-      },
-      {
-        "id": 25,
+        "id": 19,
         "url": "/images/cabana-1/cabana-1-portada-3-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-portada-3-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-portada-3-mobile.webp",
@@ -224,7 +176,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-portada-3"
       },
       {
-        "id": 26,
+        "id": 20,
         "url": "/images/cabana-1/cabana-1-portada-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-portada-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-portada-mobile.webp",
@@ -236,7 +188,7 @@ export const cabanas: Cabana[] = [
   {
     "id": 2,
     "nombre": "Cabaña 2",
-    "totalImages": 46,
+    "totalImages": 25,
     "images": [
       {
         "id": 1,
@@ -384,38 +336,6 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 19,
-        "url": "/images/cabana-2/cabana-2-26-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-26-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-26-mobile.webp",
-        "title": "26",
-        "filename": "cabana-2-26"
-      },
-      {
-        "id": 20,
-        "url": "/images/cabana-2/cabana-2-27-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-27-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-27-mobile.webp",
-        "title": "27",
-        "filename": "cabana-2-27"
-      },
-      {
-        "id": 21,
-        "url": "/images/cabana-2/cabana-2-28-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-28-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-28-mobile.webp",
-        "title": "28",
-        "filename": "cabana-2-28"
-      },
-      {
-        "id": 22,
-        "url": "/images/cabana-2/cabana-2-29-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-29-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-29-mobile.webp",
-        "title": "29",
-        "filename": "cabana-2-29"
-      },
-      {
-        "id": 23,
         "url": "/images/cabana-2/cabana-2-3-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-3-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-3-mobile.webp",
@@ -423,87 +343,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-3"
       },
       {
-        "id": 24,
-        "url": "/images/cabana-2/cabana-2-30-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-30-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-30-mobile.webp",
-        "title": "30",
-        "filename": "cabana-2-30"
-      },
-      {
-        "id": 25,
-        "url": "/images/cabana-2/cabana-2-31-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-31-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-31-mobile.webp",
-        "title": "31",
-        "filename": "cabana-2-31"
-      },
-      {
-        "id": 26,
-        "url": "/images/cabana-2/cabana-2-32-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-32-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-32-mobile.webp",
-        "title": "32",
-        "filename": "cabana-2-32"
-      },
-      {
-        "id": 27,
-        "url": "/images/cabana-2/cabana-2-33-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-33-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-33-mobile.webp",
-        "title": "33",
-        "filename": "cabana-2-33"
-      },
-      {
-        "id": 28,
-        "url": "/images/cabana-2/cabana-2-34-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-34-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-34-mobile.webp",
-        "title": "34",
-        "filename": "cabana-2-34"
-      },
-      {
-        "id": 29,
-        "url": "/images/cabana-2/cabana-2-35-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-35-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-35-mobile.webp",
-        "title": "35",
-        "filename": "cabana-2-35"
-      },
-      {
-        "id": 30,
-        "url": "/images/cabana-2/cabana-2-36-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-36-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-36-mobile.webp",
-        "title": "36",
-        "filename": "cabana-2-36"
-      },
-      {
-        "id": 31,
-        "url": "/images/cabana-2/cabana-2-37-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-37-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-37-mobile.webp",
-        "title": "37",
-        "filename": "cabana-2-37"
-      },
-      {
-        "id": 32,
-        "url": "/images/cabana-2/cabana-2-38-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-38-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-38-mobile.webp",
-        "title": "38",
-        "filename": "cabana-2-38"
-      },
-      {
-        "id": 33,
-        "url": "/images/cabana-2/cabana-2-39-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-39-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-39-mobile.webp",
-        "title": "39",
-        "filename": "cabana-2-39"
-      },
-      {
-        "id": 34,
+        "id": 20,
         "url": "/images/cabana-2/cabana-2-4-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-4-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-4-mobile.webp",
@@ -511,63 +351,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-4"
       },
       {
-        "id": 35,
-        "url": "/images/cabana-2/cabana-2-40-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-40-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-40-mobile.webp",
-        "title": "40",
-        "filename": "cabana-2-40"
-      },
-      {
-        "id": 36,
-        "url": "/images/cabana-2/cabana-2-41-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-41-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-41-mobile.webp",
-        "title": "41",
-        "filename": "cabana-2-41"
-      },
-      {
-        "id": 37,
-        "url": "/images/cabana-2/cabana-2-42-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-42-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-42-mobile.webp",
-        "title": "42",
-        "filename": "cabana-2-42"
-      },
-      {
-        "id": 38,
-        "url": "/images/cabana-2/cabana-2-43-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-43-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-43-mobile.webp",
-        "title": "43",
-        "filename": "cabana-2-43"
-      },
-      {
-        "id": 39,
-        "url": "/images/cabana-2/cabana-2-44-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-44-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-44-mobile.webp",
-        "title": "44",
-        "filename": "cabana-2-44"
-      },
-      {
-        "id": 40,
-        "url": "/images/cabana-2/cabana-2-45-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-45-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-45-mobile.webp",
-        "title": "45",
-        "filename": "cabana-2-45"
-      },
-      {
-        "id": 41,
-        "url": "/images/cabana-2/cabana-2-46-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-46-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-46-mobile.webp",
-        "title": "46",
-        "filename": "cabana-2-46"
-      },
-      {
-        "id": 42,
+        "id": 21,
         "url": "/images/cabana-2/cabana-2-5-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-5-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-5-mobile.webp",
@@ -575,7 +359,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-5"
       },
       {
-        "id": 43,
+        "id": 22,
         "url": "/images/cabana-2/cabana-2-6-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-6-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-6-mobile.webp",
@@ -583,7 +367,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-6"
       },
       {
-        "id": 44,
+        "id": 23,
         "url": "/images/cabana-2/cabana-2-7-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-7-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-7-mobile.webp",
@@ -591,7 +375,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-7"
       },
       {
-        "id": 45,
+        "id": 24,
         "url": "/images/cabana-2/cabana-2-8-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-8-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-8-mobile.webp",
@@ -599,7 +383,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-8"
       },
       {
-        "id": 46,
+        "id": 25,
         "url": "/images/cabana-2/cabana-2-9-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-9-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-9-mobile.webp",
@@ -611,7 +395,7 @@ export const cabanas: Cabana[] = [
   {
     "id": 3,
     "nombre": "Cabaña 3",
-    "totalImages": 30,
+    "totalImages": 27,
     "images": [
       {
         "id": 1,
@@ -775,22 +559,6 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 21,
-        "url": "/images/cabana-3/cabana-3-28-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-28-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-28-mobile.webp",
-        "title": "28",
-        "filename": "cabana-3-28"
-      },
-      {
-        "id": 22,
-        "url": "/images/cabana-3/cabana-3-29-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-29-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-29-mobile.webp",
-        "title": "29",
-        "filename": "cabana-3-29"
-      },
-      {
-        "id": 23,
         "url": "/images/cabana-3/cabana-3-3-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-3-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-3-mobile.webp",
@@ -798,15 +566,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-3"
       },
       {
-        "id": 24,
-        "url": "/images/cabana-3/cabana-3-30-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-30-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-30-mobile.webp",
-        "title": "30",
-        "filename": "cabana-3-30"
-      },
-      {
-        "id": 25,
+        "id": 22,
         "url": "/images/cabana-3/cabana-3-4-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-4-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-4-mobile.webp",
@@ -814,7 +574,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-4"
       },
       {
-        "id": 26,
+        "id": 23,
         "url": "/images/cabana-3/cabana-3-5-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-5-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-5-mobile.webp",
@@ -822,7 +582,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-5"
       },
       {
-        "id": 27,
+        "id": 24,
         "url": "/images/cabana-3/cabana-3-6-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-6-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-6-mobile.webp",
@@ -830,7 +590,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-6"
       },
       {
-        "id": 28,
+        "id": 25,
         "url": "/images/cabana-3/cabana-3-7-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-7-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-7-mobile.webp",
@@ -838,7 +598,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-7"
       },
       {
-        "id": 29,
+        "id": 26,
         "url": "/images/cabana-3/cabana-3-8-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-8-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-8-mobile.webp",
@@ -846,7 +606,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-8"
       },
       {
-        "id": 30,
+        "id": 27,
         "url": "/images/cabana-3/cabana-3-9-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-9-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-9-mobile.webp",
