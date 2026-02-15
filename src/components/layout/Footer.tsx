@@ -8,6 +8,7 @@ import {
   IconMail as MailIcon,
 } from "@components/common/Icons";
 import TermsModal from "@components/common/TermsModal";
+import { WhatsAppButton } from "@components/common/WhatsAppButton";
 
 // Tipos
 interface RedSocial {
@@ -101,7 +102,22 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
               if (red.nombre === "ubicacion") return null;
               const Icono = iconMap[red.nombre as keyof typeof iconMap];
 
-              return Icono ? (
+              if (!Icono) return null;
+
+              if (red.nombre === "whatsapp") {
+                return (
+                  <WhatsAppButton
+                    key={idx}
+                    href={red.url}
+                    className="p-3 rounded-full bg-white/5 hover:bg-amber-500 hover:text-white transition-all duration-300 border border-white/10 group shadow-lg"
+                    aria-label={`Ir a ${red.nombre}`}
+                  >
+                    <Icono className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  </WhatsAppButton>
+                );
+              }
+
+              return (
                 <a
                   key={idx}
                   href={red.url}
@@ -112,7 +128,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
                 >
                   <Icono className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </a>
-              ) : null;
+              );
             })}
           </div>
 

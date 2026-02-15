@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { FC } from "react";
 import { motion } from "framer-motion";
+import { WhatsAppButton } from "@components/common/WhatsAppButton";
 
 // Puedes instalar: npm install react-icons
 // O usar estos placeholders SVG
@@ -252,17 +253,14 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
                   >
                     <InstagramIcon />
                   </a>
-                  <a
-                    href="https://wa.me/5493512345678"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <WhatsAppButton
                     className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 
                              flex items-center justify-center text-white transition-all
                              hover:scale-110"
                     aria-label="WhatsApp"
                   >
                     <WhatsAppIcon />
-                  </a>
+                  </WhatsAppButton>
                   <button
                     className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 
                              flex items-center justify-center text-white transition-all

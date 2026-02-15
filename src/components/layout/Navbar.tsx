@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import type { FC } from "react";
 import TermsModal from "@components/common/TermsModal";
+import { WhatsAppButton } from "@components/common/WhatsAppButton";
 import {
   IconInstagram as InstagramIcon,
   IconWhatsApp as WhatsAppIcon,
@@ -35,7 +36,7 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
       const path = window.location.pathname;
       setCurrentPath(path);
       setIsAlwaysScrolled(
-        path.includes("/contacto") || path.includes("/galeria")
+        path.includes("/contacto") || path.includes("/galeria"),
       );
     };
 
@@ -368,15 +369,12 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
 
             {/* Redes Sociales */}
             <div className="flex items-center justify-center md:justify-start gap-4 mb-8">
-              <a
-                href="https://wa.me/5493813513513"
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppButton
                 className="w-12 h-12 bg-white/5 text-white hover:text-orange-500 rounded-full flex items-center justify-center border border-white/10 hover:border-orange-500/50 transition-all group"
                 aria-label="WhatsApp"
               >
                 <WhatsAppIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
-              </a>
+              </WhatsAppButton>
               <a
                 href="https://www.instagram.com/complejo_miradordeluz/"
                 target="_blank"

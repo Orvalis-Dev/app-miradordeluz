@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import NavbarMiradorDeLuz from "@components/layout/Navbar";
 import FooterMiradorDeLuz from "@components/layout/Footer";
 import ContactForm from "@components/domain/booking/ContactForm";
+import { WhatsAppButton } from "@components/common/WhatsAppButton";
 import GoogleMapFacade from "../components/react/GoogleMapFacade";
 // Optimización de Logo
 import { getImage } from "astro:assets";
@@ -109,7 +110,13 @@ const mapCoords = {
                 </div>
                 <div>
                   <p class="text-slate-900 font-bold text-lg">{contactInfo.whatsapp}</p>
-                  <a href={contactInfo.whatsappLink} target="_blank" class="text-amber-600 hover:text-amber-700 text-sm font-medium transition-colors">Enviar WhatsApp</a>
+                  <WhatsAppButton 
+                    client:load 
+                    href={contactInfo.whatsappLink} 
+                    className="text-amber-600 hover:text-amber-700 text-sm font-medium transition-colors"
+                  >
+                    Enviar WhatsApp
+                  </WhatsAppButton>
                 </div>
               </div>
 
