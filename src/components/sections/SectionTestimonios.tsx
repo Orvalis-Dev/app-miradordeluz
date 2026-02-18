@@ -188,10 +188,16 @@ const SectionTestimonios: FC<SectionTestimoniosProps> = ({
 
             {/* Navegación Desktop - Solo visible en pantallas grandes */}
             <div className="hidden md:flex items-center gap-3">
-              <button className="swiper-button-prev-custom w-12 h-12 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[#1E1E1E] transition-all duration-300 hover:text-orange-500 hover:border-orange-500 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-30 disabled:cursor-default">
+              <button
+                className="swiper-button-prev-custom w-12 h-12 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[#1E1E1E] transition-all duration-300 hover:text-orange-500 hover:border-orange-500 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-30 disabled:cursor-default"
+                aria-label="Testimonio anterior"
+              >
                 <ChevronLeftIcon />
               </button>
-              <button className="swiper-button-next-custom w-12 h-12 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[#1E1E1E] transition-all duration-300 hover:text-orange-500 hover:border-orange-500 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-30 disabled:cursor-default">
+              <button
+                className="swiper-button-next-custom w-12 h-12 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-[#1E1E1E] transition-all duration-300 hover:text-orange-500 hover:border-orange-500 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer disabled:opacity-30 disabled:cursor-default"
+                aria-label="Siguiente testimonio"
+              >
                 <ChevronRightIcon />
               </button>
             </div>
