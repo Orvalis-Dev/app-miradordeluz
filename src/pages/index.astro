@@ -62,13 +62,13 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
       class="scroll-mt-20"
       style="position: relative; z-index: 10; background: white;"
     >
-      <SectionUbicacionMiradorDeLuz client:load />
+      <SectionUbicacionMiradorDeLuz client:visible />
     </div>
 
     <!-- 3. Hero Intermedio con Video (60% → 100% con animación) -->
     <div id="hero-intermedio-section" style="position: relative; z-index: 9;">
       <SectionHeroIntermedio
-        client:load
+        client:visible
         videoMobile="/videos/video-mobile.mp4"
         videoDesktop="/videos/video-desktop.mp4"
         subheading="MIRADOR DE LUZ"
@@ -84,13 +84,13 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
       style="position: relative; z-index: 11; background: white;"
     >
       <div id="cabanas" class="scroll-mt-20">
-        <SectionCabanas client:load />
+        <SectionCabanas client:visible />
       </div>
     </div>
 
     <!-- 5. Servicios e Instalaciones Section -->
     <div id="servicios" class="scroll-mt-20">
-      <SectionServicios client:load />
+      <SectionServicios client:visible />
     </div>
 
     <!-- 6. Testimonios Section - Integrado con Google Maps -->
@@ -104,5 +104,5 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
   </main>
 
   <!-- Footer -->
-  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
+  <FooterMiradorDeLuz client:idle logoSrc={optimizedLogo.src} />
 </Layout>

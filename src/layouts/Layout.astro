@@ -1,19 +1,15 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
-import { WhatsAppButton } from '../components/common/WhatsAppButton';
-import { IconWhatsApp } from '../components/common/Icons';
+import GlobalWhatsAppController from '../components/common/GlobalWhatsAppController';
 
-// FontSource Imports
-import '@fontsource/montserrat/300.css';
+// FontSource Imports - solo los pesos realmente usados por Tailwind (font-light→font-extrabold)
 import '@fontsource/montserrat/400.css';
 import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
-import '@fontsource/montserrat/800.css';
 import '@fontsource/merriweather/400.css';
 import '@fontsource/merriweather/700.css';
-import '@fontsource/merriweather/900.css';
 
 interface Props {
   title: string;
@@ -85,16 +81,10 @@ const schema = JSON.stringify({
 <html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
-  
-  <!-- Google Tag Manager -->
-  <script is:inline>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W43G6S3D');
-  </script>
-  <!-- End Google Tag Manager -->
+
+  <!-- GTM: inicializa dataLayer sin bloquear render (el script real carga post-load) -->
+  <script is:inline>window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});</script>
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
@@ -131,19 +121,12 @@ const schema = JSON.stringify({
   <ViewTransitions />
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50 text-gray-900 selection:bg-orange-500 selection:text-white">
-  <!-- Google Tag Manager (noscript) -->
+  <!-- GTM noscript fallback -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W43G6S3D"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
   <slot />
 
-  <WhatsAppButton 
-    client:load 
-    className="fixed bottom-6 right-6 z-50 p-4 bg-[#25D366] text-white rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:scale-110 flex items-center justify-center group"
-    aria-label="Contactar por WhatsApp"
-  >
-    <IconWhatsApp className="w-8 h-8" />
-  </WhatsAppButton>
+  <GlobalWhatsAppController client:idle />
 
   <script>
     /**
@@ -190,6 +173,15 @@ const schema = JSON.stringify({
     
     // Si el usuario hace clic en un link con hash estando en la misma página
     window.addEventListener('hashchange', scrollToHash);
+  </script>
+
+  <!-- GTM: carga el script real solo después de que el navegador haya terminado de pintar -->
+  <script is:inline>
+    window.addEventListener('load', function() {
+      var f=document.getElementsByTagName('script')[0],j=document.createElement('script');
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=GTM-W43G6S3D';
+      f.parentNode.insertBefore(j,f);
+    });
   </script>
 </body>
 </html>

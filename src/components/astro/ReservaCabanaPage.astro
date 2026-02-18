@@ -230,7 +230,7 @@ const currentAmenities = amenityTexts[cabana.id] || amenityTexts['default'];
             
             <div class="mt-12">
                <AmenitiesModal 
-                 client:load 
+                 client:visible 
                  amenities={getServicios(cabana.id)} 
                  cabaName={cabana.nombre} 
                  variant="button" 
@@ -284,7 +284,7 @@ const currentAmenities = amenityTexts[cabana.id] || amenityTexts['default'];
     </div>
   </main>
 
-  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
+  <FooterMiradorDeLuz client:idle logoSrc={optimizedLogo.src} />
 </Layout>
 
 

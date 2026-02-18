@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { FC } from "react";
+import { isMenuOpen } from "../../stores/uiStore"; // Store UI global
 import TermsModal from "@components/common/TermsModal";
 import { WhatsAppButton } from "@components/common/WhatsAppButton";
 import {
@@ -57,10 +58,12 @@ const NavbarMiradorDeLuz: FC<NavbarMiradorDeLuzProps> = ({
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
+    isMenuOpen.set(!menuAbierto);
   };
 
   const cerrarMenu = () => {
     setMenuAbierto(false);
+    isMenuOpen.set(false);
   };
 
   const abrirTerminos = () => {

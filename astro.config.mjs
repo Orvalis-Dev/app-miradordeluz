@@ -25,7 +25,8 @@ export default defineConfig({
   site: "https://miradordeluz.com",
 
   build: {
-    inlineStylesheets: "auto",
+    // "always" elimina los requests CSS bloqueantes inlineando todo en <style>
+    inlineStylesheets: "always",
   },
 
   server: {
@@ -34,8 +35,8 @@ export default defineConfig({
   },
 
   prefetch: {
+    // Solo prefetch en hover: evita descargar todo en mobile (conexiones lentas)
     defaultStrategy: "hover",
-    prefetchAll: true,
   },
 
   vite: {
