@@ -1,0 +1,7 @@
+/robots.txt
+  Content-Type: text/plain
+  Cache-Control: public, max-age=3600
+
+/sitemap-index.xml
+  Content-Type: application/xml
+  Cache-Control: public, max-age=3600
