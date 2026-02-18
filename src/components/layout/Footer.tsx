@@ -8,6 +8,7 @@ import {
   IconMail as MailIcon,
 } from "@components/common/Icons";
 import TermsModal from "@components/common/TermsModal";
+import PrivacyModal from "@components/common/PrivacyModal";
 import { WhatsAppButton } from "@components/common/WhatsAppButton";
 
 // Tipos
@@ -59,6 +60,7 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
   logoSrc,
 }) => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   return (
     <footer className="w-full bg-slate-900 text-white border-t border-white/5 font-montserrat">
@@ -189,19 +191,31 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
               </span>
             </div>
 
-            {/* Legal Link */}
-            <button
-              onClick={() => setIsTermsOpen(true)}
-              className="text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase px-2"
-            >
-              Términos y Condiciones
-            </button>
+            {/* Legal Links */}
+            <div className="flex gap-6 items-center">
+              <button
+                onClick={() => setIsPrivacyOpen(true)}
+                className="text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase"
+              >
+                Políticas y Privacidad
+              </button>
+              <button
+                onClick={() => setIsTermsOpen(true)}
+                className="text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase"
+              >
+                Términos y Condiciones
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Modal de Términos */}
-      <TermsModal open={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
+        {/* Modals */}
+        <TermsModal open={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
+        <PrivacyModal
+          open={isPrivacyOpen}
+          onClose={() => setIsPrivacyOpen(false)}
+        />
+      </div>
     </footer>
   );
 };
