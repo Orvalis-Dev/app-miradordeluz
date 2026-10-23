@@ -172,15 +172,16 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
 
         {/* Barra Inferior (Bottom Bar) */}
         <div className="mt-12 pt-8 border-t border-white/5">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 px-4">
+          <div className="flex flex-col md:flex-row md:flex-wrap items-center gap-6 px-4">
             {/* Copyright + Dev */}
-            <div className="text-xs text-gray-300 font-medium text-center md:text-left tracking-wide">
-              © {new Date().getFullYear()} Mirador de Luz. Todos los derechos
-              reservados.{" "}
-              <span className="ml-1 text-gray-300">
-                Desarrollado por{" "}
+            <div className="order-2 md:contents w-full flex flex-col items-center gap-2 text-xs text-gray-300 font-medium text-center md:text-left tracking-wide">
+              <span className="md:order-1">
+                © {new Date().getFullYear()} Mirador de Luz.
+              </span>
+              <span className="text-gray-300 md:order-3 md:ml-auto md:text-right">
+                Desarrollado y diseñado por{" "}
                 <a
-                  href="https://orvalis.com.ar"
+                  href="https://orvalis.com.ar/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white underline hover:text-amber-500 transition-all duration-300"
@@ -192,16 +193,16 @@ const FooterMiradorDeLuz: FC<FooterMiradorDeLuzProps> = ({
             </div>
 
             {/* Legal Links */}
-            <div className="flex gap-6 items-center">
+            <div className="order-1 md:order-2 flex gap-6 items-center">
               <button
                 onClick={() => setIsPrivacyOpen(true)}
-                className="text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase"
+                className="text-[10px] md:text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase"
               >
                 Políticas y Privacidad
               </button>
               <button
                 onClick={() => setIsTermsOpen(true)}
-                className="text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase"
+                className="text-[10px] md:text-xs text-gray-300 hover:text-amber-500 transition-colors font-medium underline underline-offset-4 decoration-white/20 tracking-widest uppercase"
               >
                 Términos y Condiciones
               </button>
