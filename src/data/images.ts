@@ -21,34 +21,26 @@ export const cabanas: Cabana[] = [
   {
     "id": 1,
     "nombre": "Cabaña 1",
-    "totalImages": 20,
+    "totalImages": 22,
     "images": [
       {
         "id": 1,
-        "url": "/images/cabana-1/cabana-1-baño-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-baño-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-baño-1-mobile.webp",
-        "title": "Baño 1",
-        "filename": "cabana-1-baño-1"
+        "url": "/images/cabana-1/cabana-1-bano-ducha-inodoro-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-bano-ducha-inodoro-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-bano-ducha-inodoro-mobile.webp",
+        "title": "Baño con ducha e inodoro",
+        "filename": "cabana-1-bano-ducha-inodoro"
       },
       {
         "id": 2,
-        "url": "/images/cabana-1/cabana-1-baño-2-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-baño-2-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-baño-2-mobile.webp",
-        "title": "Baño 2",
-        "filename": "cabana-1-baño-2"
+        "url": "/images/cabana-1/cabana-1-bano-lavabo-ducha-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-bano-lavabo-ducha-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-bano-lavabo-ducha-mobile.webp",
+        "title": "Lavabo y ducha",
+        "filename": "cabana-1-bano-lavabo-ducha"
       },
       {
         "id": 3,
-        "url": "/images/cabana-1/cabana-1-baño-3-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-baño-3-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-baño-3-mobile.webp",
-        "title": "Baño 3",
-        "filename": "cabana-1-baño-3"
-      },
-      {
-        "id": 4,
         "url": "/images/cabana-1/cabana-1-baño-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-baño-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-baño-mobile.webp",
@@ -56,12 +48,20 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-baño"
       },
       {
+        "id": 4,
+        "url": "/images/cabana-1/cabana-1-baño-1-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-baño-1-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-baño-1-mobile.webp",
+        "title": "Ducha y lavabo",
+        "filename": "cabana-1-baño-1"
+      },
+      {
         "id": 5,
-        "url": "/images/cabana-1/cabana-1-cochera-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-cochera-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-cochera-1-mobile.webp",
-        "title": "Cochera 1",
-        "filename": "cabana-1-cochera-1"
+        "url": "/images/cabana-1/cabana-1-baño-3-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-baño-3-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-baño-3-mobile.webp",
+        "title": "Baño 3",
+        "filename": "cabana-1-baño-3"
       },
       {
         "id": 6,
@@ -73,30 +73,46 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 7,
-        "url": "/images/cabana-1/cabana-1-cocina-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-cocina-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-cocina-mobile.webp",
-        "title": "Cocina",
-        "filename": "cabana-1-cocina"
+        "url": "/images/cabana-1/cabana-1-cochera-1-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-cochera-1-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-cochera-1-mobile.webp",
+        "title": "Cochera 1",
+        "filename": "cabana-1-cochera-1"
       },
       {
         "id": 8,
-        "url": "/images/cabana-1/cabana-1-comedor-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-comedor-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-comedor-1-mobile.webp",
-        "title": "Comedor 1",
-        "filename": "cabana-1-comedor-1"
+        "url": "/images/cabana-1/cabana-1-cocina-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-cocina-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-cocina-mobile.webp",
+        "title": "Cocina y comedor",
+        "filename": "cabana-1-cocina"
       },
       {
         "id": 9,
         "url": "/images/cabana-1/cabana-1-comedor-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-comedor-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-comedor-mobile.webp",
-        "title": "Comedor",
+        "title": "Sala de estar y cocina",
         "filename": "cabana-1-comedor"
       },
       {
         "id": 10,
+        "url": "/images/cabana-1/cabana-1-comedor-1-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-comedor-1-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-comedor-1-mobile.webp",
+        "title": "Dormitorio con vista al jardín",
+        "filename": "cabana-1-comedor-1"
+      },
+      {
+        "id": 11,
+        "url": "/images/cabana-1/cabana-1-entrada-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-entrada-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-entrada-mobile.webp",
+        "title": "Exterior y jardín",
+        "filename": "cabana-1-entrada"
+      },
+      {
+        "id": 12,
         "url": "/images/cabana-1/cabana-1-entrada-2-desktop.webp",
         "url_desktop": "/images/cabana-1/cabana-1-entrada-2-desktop.webp",
         "url_mobile": "/images/cabana-1/cabana-1-entrada-2-mobile.webp",
@@ -104,28 +120,12 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-1-entrada-2"
       },
       {
-        "id": 11,
-        "url": "/images/cabana-1/cabana-1-entrada-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-entrada-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-entrada-mobile.webp",
-        "title": "Entrada",
-        "filename": "cabana-1-entrada"
-      },
-      {
-        "id": 12,
-        "url": "/images/cabana-1/cabana-1-habitacion-2-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-habitacion-2-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-habitacion-2-mobile.webp",
-        "title": "Habitacion 2",
-        "filename": "cabana-1-habitacion-2"
-      },
-      {
         "id": 13,
-        "url": "/images/cabana-1/cabana-1-habitacion-3-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-habitacion-3-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-habitacion-3-mobile.webp",
-        "title": "Habitacion 3",
-        "filename": "cabana-1-habitacion-3"
+        "url": "/images/cabana-1/cabana-1-exterior-galeria-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-exterior-galeria-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-exterior-galeria-mobile.webp",
+        "title": "Galería exterior y jardín",
+        "filename": "cabana-1-exterior-galeria"
       },
       {
         "id": 14,
@@ -137,19 +137,19 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 15,
-        "url": "/images/cabana-1/cabana-1-living-2-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-living-2-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-living-2-mobile.webp",
-        "title": "Living 2",
-        "filename": "cabana-1-living-2"
+        "url": "/images/cabana-1/cabana-1-habitacion-2-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-habitacion-2-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-habitacion-2-mobile.webp",
+        "title": "Habitacion 2",
+        "filename": "cabana-1-habitacion-2"
       },
       {
         "id": 16,
-        "url": "/images/cabana-1/cabana-1-living-3-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-living-3-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-living-3-mobile.webp",
-        "title": "Living 3",
-        "filename": "cabana-1-living-3"
+        "url": "/images/cabana-1/cabana-1-habitacion-3-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-habitacion-3-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-habitacion-3-mobile.webp",
+        "title": "Habitacion 3",
+        "filename": "cabana-1-habitacion-3"
       },
       {
         "id": 17,
@@ -161,19 +161,19 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 18,
-        "url": "/images/cabana-1/cabana-1-portada-1-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-portada-1-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-portada-1-mobile.webp",
-        "title": "Portada 1",
-        "filename": "cabana-1-portada-1"
+        "url": "/images/cabana-1/cabana-1-living-2-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-living-2-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-living-2-mobile.webp",
+        "title": "Dormitorio y acceso al baño",
+        "filename": "cabana-1-living-2"
       },
       {
         "id": 19,
-        "url": "/images/cabana-1/cabana-1-portada-3-desktop.webp",
-        "url_desktop": "/images/cabana-1/cabana-1-portada-3-desktop.webp",
-        "url_mobile": "/images/cabana-1/cabana-1-portada-3-mobile.webp",
-        "title": "Portada 3",
-        "filename": "cabana-1-portada-3"
+        "url": "/images/cabana-1/cabana-1-living-3-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-living-3-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-living-3-mobile.webp",
+        "title": "Dormitorio con ventana",
+        "filename": "cabana-1-living-3"
       },
       {
         "id": 20,
@@ -182,13 +182,29 @@ export const cabanas: Cabana[] = [
         "url_mobile": "/images/cabana-1/cabana-1-portada-mobile.webp",
         "title": "Portada",
         "filename": "cabana-1-portada"
+      },
+      {
+        "id": 21,
+        "url": "/images/cabana-1/cabana-1-portada-1-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-portada-1-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-portada-1-mobile.webp",
+        "title": "Portada 1",
+        "filename": "cabana-1-portada-1"
+      },
+      {
+        "id": 22,
+        "url": "/images/cabana-1/cabana-1-portada-3-desktop.webp",
+        "url_desktop": "/images/cabana-1/cabana-1-portada-3-desktop.webp",
+        "url_mobile": "/images/cabana-1/cabana-1-portada-3-mobile.webp",
+        "title": "Portada 3",
+        "filename": "cabana-1-portada-3"
       }
     ]
   },
   {
     "id": 2,
     "nombre": "Cabaña 2",
-    "totalImages": 25,
+    "totalImages": 37,
     "images": [
       {
         "id": 1,
@@ -200,86 +216,6 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 2,
-        "url": "/images/cabana-2/cabana-2-10-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-10-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-10-mobile.webp",
-        "title": "10",
-        "filename": "cabana-2-10"
-      },
-      {
-        "id": 3,
-        "url": "/images/cabana-2/cabana-2-11-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-11-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-11-mobile.webp",
-        "title": "11",
-        "filename": "cabana-2-11"
-      },
-      {
-        "id": 4,
-        "url": "/images/cabana-2/cabana-2-12-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-12-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-12-mobile.webp",
-        "title": "12",
-        "filename": "cabana-2-12"
-      },
-      {
-        "id": 5,
-        "url": "/images/cabana-2/cabana-2-13-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-13-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-13-mobile.webp",
-        "title": "13",
-        "filename": "cabana-2-13"
-      },
-      {
-        "id": 6,
-        "url": "/images/cabana-2/cabana-2-14-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-14-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-14-mobile.webp",
-        "title": "14",
-        "filename": "cabana-2-14"
-      },
-      {
-        "id": 7,
-        "url": "/images/cabana-2/cabana-2-15-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-15-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-15-mobile.webp",
-        "title": "15",
-        "filename": "cabana-2-15"
-      },
-      {
-        "id": 8,
-        "url": "/images/cabana-2/cabana-2-16-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-16-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-16-mobile.webp",
-        "title": "16",
-        "filename": "cabana-2-16"
-      },
-      {
-        "id": 9,
-        "url": "/images/cabana-2/cabana-2-17-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-17-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-17-mobile.webp",
-        "title": "17",
-        "filename": "cabana-2-17"
-      },
-      {
-        "id": 10,
-        "url": "/images/cabana-2/cabana-2-18-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-18-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-18-mobile.webp",
-        "title": "18",
-        "filename": "cabana-2-18"
-      },
-      {
-        "id": 11,
-        "url": "/images/cabana-2/cabana-2-19-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-19-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-19-mobile.webp",
-        "title": "19",
-        "filename": "cabana-2-19"
-      },
-      {
-        "id": 12,
         "url": "/images/cabana-2/cabana-2-2-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-2-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-2-mobile.webp",
@@ -287,55 +223,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-2"
       },
       {
-        "id": 13,
-        "url": "/images/cabana-2/cabana-2-20-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-20-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-20-mobile.webp",
-        "title": "20",
-        "filename": "cabana-2-20"
-      },
-      {
-        "id": 14,
-        "url": "/images/cabana-2/cabana-2-21-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-21-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-21-mobile.webp",
-        "title": "21",
-        "filename": "cabana-2-21"
-      },
-      {
-        "id": 15,
-        "url": "/images/cabana-2/cabana-2-22-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-22-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-22-mobile.webp",
-        "title": "22",
-        "filename": "cabana-2-22"
-      },
-      {
-        "id": 16,
-        "url": "/images/cabana-2/cabana-2-23-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-23-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-23-mobile.webp",
-        "title": "23",
-        "filename": "cabana-2-23"
-      },
-      {
-        "id": 17,
-        "url": "/images/cabana-2/cabana-2-24-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-24-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-24-mobile.webp",
-        "title": "24",
-        "filename": "cabana-2-24"
-      },
-      {
-        "id": 18,
-        "url": "/images/cabana-2/cabana-2-25-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-25-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-25-mobile.webp",
-        "title": "25",
-        "filename": "cabana-2-25"
-      },
-      {
-        "id": 19,
+        "id": 3,
         "url": "/images/cabana-2/cabana-2-3-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-3-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-3-mobile.webp",
@@ -343,7 +231,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-3"
       },
       {
-        "id": 20,
+        "id": 4,
         "url": "/images/cabana-2/cabana-2-4-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-4-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-4-mobile.webp",
@@ -351,7 +239,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-4"
       },
       {
-        "id": 21,
+        "id": 5,
         "url": "/images/cabana-2/cabana-2-5-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-5-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-5-mobile.webp",
@@ -359,15 +247,15 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-5"
       },
       {
-        "id": 22,
+        "id": 6,
         "url": "/images/cabana-2/cabana-2-6-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-6-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-6-mobile.webp",
-        "title": "6",
+        "title": "Cocina y comedor",
         "filename": "cabana-2-6"
       },
       {
-        "id": 23,
+        "id": 7,
         "url": "/images/cabana-2/cabana-2-7-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-7-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-7-mobile.webp",
@@ -375,27 +263,251 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-2-7"
       },
       {
-        "id": 24,
+        "id": 8,
         "url": "/images/cabana-2/cabana-2-8-desktop.webp",
         "url_desktop": "/images/cabana-2/cabana-2-8-desktop.webp",
         "url_mobile": "/images/cabana-2/cabana-2-8-mobile.webp",
-        "title": "8",
+        "title": "Acceso al baño y lavabo",
         "filename": "cabana-2-8"
       },
       {
+        "id": 9,
+        "url": "/images/cabana-2/cabana-2-10-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-10-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-10-mobile.webp",
+        "title": "10",
+        "filename": "cabana-2-10"
+      },
+      {
+        "id": 10,
+        "url": "/images/cabana-2/cabana-2-11-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-11-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-11-mobile.webp",
+        "title": "11",
+        "filename": "cabana-2-11"
+      },
+      {
+        "id": 11,
+        "url": "/images/cabana-2/cabana-2-12-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-12-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-12-mobile.webp",
+        "title": "Dormitorio con camas individuales",
+        "filename": "cabana-2-12"
+      },
+      {
+        "id": 12,
+        "url": "/images/cabana-2/cabana-2-13-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-13-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-13-mobile.webp",
+        "title": "13",
+        "filename": "cabana-2-13"
+      },
+      {
+        "id": 13,
+        "url": "/images/cabana-2/cabana-2-14-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-14-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-14-mobile.webp",
+        "title": "14",
+        "filename": "cabana-2-14"
+      },
+      {
+        "id": 14,
+        "url": "/images/cabana-2/cabana-2-15-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-15-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-15-mobile.webp",
+        "title": "15",
+        "filename": "cabana-2-15"
+      },
+      {
+        "id": 15,
+        "url": "/images/cabana-2/cabana-2-16-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-16-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-16-mobile.webp",
+        "title": "16",
+        "filename": "cabana-2-16"
+      },
+      {
+        "id": 16,
+        "url": "/images/cabana-2/cabana-2-17-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-17-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-17-mobile.webp",
+        "title": "17",
+        "filename": "cabana-2-17"
+      },
+      {
+        "id": 17,
+        "url": "/images/cabana-2/cabana-2-18-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-18-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-18-mobile.webp",
+        "title": "18",
+        "filename": "cabana-2-18"
+      },
+      {
+        "id": 18,
+        "url": "/images/cabana-2/cabana-2-19-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-19-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-19-mobile.webp",
+        "title": "19",
+        "filename": "cabana-2-19"
+      },
+      {
+        "id": 19,
+        "url": "/images/cabana-2/cabana-2-20-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-20-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-20-mobile.webp",
+        "title": "20",
+        "filename": "cabana-2-20"
+      },
+      {
+        "id": 20,
+        "url": "/images/cabana-2/cabana-2-22-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-22-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-22-mobile.webp",
+        "title": "22",
+        "filename": "cabana-2-22"
+      },
+      {
+        "id": 21,
+        "url": "/images/cabana-2/cabana-2-23-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-23-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-23-mobile.webp",
+        "title": "23",
+        "filename": "cabana-2-23"
+      },
+      {
+        "id": 22,
+        "url": "/images/cabana-2/cabana-2-24-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-24-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-24-mobile.webp",
+        "title": "24",
+        "filename": "cabana-2-24"
+      },
+      {
+        "id": 23,
+        "url": "/images/cabana-2/cabana-2-25-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-25-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-25-mobile.webp",
+        "title": "25",
+        "filename": "cabana-2-25"
+      },
+      {
+        "id": 24,
+        "url": "/images/cabana-2/cabana-2-26-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-26-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-26-mobile.webp",
+        "title": "Fachada y jardín",
+        "filename": "cabana-2-26"
+      },
+      {
         "id": 25,
-        "url": "/images/cabana-2/cabana-2-9-desktop.webp",
-        "url_desktop": "/images/cabana-2/cabana-2-9-desktop.webp",
-        "url_mobile": "/images/cabana-2/cabana-2-9-mobile.webp",
-        "title": "9",
-        "filename": "cabana-2-9"
+        "url": "/images/cabana-2/cabana-2-27-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-27-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-27-mobile.webp",
+        "title": "Comedor junto a la cocina",
+        "filename": "cabana-2-27"
+      },
+      {
+        "id": 26,
+        "url": "/images/cabana-2/cabana-2-28-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-28-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-28-mobile.webp",
+        "title": "Dormitorio con dos camas individuales",
+        "filename": "cabana-2-28"
+      },
+      {
+        "id": 27,
+        "url": "/images/cabana-2/cabana-2-29-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-29-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-29-mobile.webp",
+        "title": "Dormitorio matrimonial",
+        "filename": "cabana-2-29"
+      },
+      {
+        "id": 28,
+        "url": "/images/cabana-2/cabana-2-30-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-30-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-30-mobile.webp",
+        "title": "Balcón con vista a las sierras",
+        "filename": "cabana-2-30"
+      },
+      {
+        "id": 29,
+        "url": "/images/cabana-2/cabana-2-31-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-31-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-31-mobile.webp",
+        "title": "Sala de estar y comedor",
+        "filename": "cabana-2-31"
+      },
+      {
+        "id": 30,
+        "url": "/images/cabana-2/cabana-2-32-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-32-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-32-mobile.webp",
+        "title": "Vista desde el balcón",
+        "filename": "cabana-2-32"
+      },
+      {
+        "id": 31,
+        "url": "/images/cabana-2/cabana-2-33-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-33-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-33-mobile.webp",
+        "title": "Ventana del comedor con vista al jardín",
+        "filename": "cabana-2-33"
+      },
+      {
+        "id": 32,
+        "url": "/images/cabana-2/cabana-2-34-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-34-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-34-mobile.webp",
+        "title": "Sala de estar con techo de madera",
+        "filename": "cabana-2-34"
+      },
+      {
+        "id": 33,
+        "url": "/images/cabana-2/cabana-2-35-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-35-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-35-mobile.webp",
+        "title": "Lavabo del baño",
+        "filename": "cabana-2-35"
+      },
+      {
+        "id": 34,
+        "url": "/images/cabana-2/cabana-2-36-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-36-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-36-mobile.webp",
+        "title": "Sala de estar junto al balcón",
+        "filename": "cabana-2-36"
+      },
+      {
+        "id": 35,
+        "url": "/images/cabana-2/cabana-2-37-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-37-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-37-mobile.webp",
+        "title": "Dormitorio matrimonial con ventana",
+        "filename": "cabana-2-37"
+      },
+      {
+        "id": 36,
+        "url": "/images/cabana-2/cabana-2-38-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-38-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-38-mobile.webp",
+        "title": "Dormitorio de camas individuales",
+        "filename": "cabana-2-38"
+      },
+      {
+        "id": 37,
+        "url": "/images/cabana-2/cabana-2-39-desktop.webp",
+        "url_desktop": "/images/cabana-2/cabana-2-39-desktop.webp",
+        "url_mobile": "/images/cabana-2/cabana-2-39-mobile.webp",
+        "title": "Sala de estar y acceso a los dormitorios",
+        "filename": "cabana-2-39"
       }
     ]
   },
   {
     "id": 3,
     "nombre": "Cabaña 3",
-    "totalImages": 27,
+    "totalImages": 29,
     "images": [
       {
         "id": 1,
@@ -407,86 +519,6 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 2,
-        "url": "/images/cabana-3/cabana-3-10-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-10-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-10-mobile.webp",
-        "title": "10",
-        "filename": "cabana-3-10"
-      },
-      {
-        "id": 3,
-        "url": "/images/cabana-3/cabana-3-11-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-11-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-11-mobile.webp",
-        "title": "11",
-        "filename": "cabana-3-11"
-      },
-      {
-        "id": 4,
-        "url": "/images/cabana-3/cabana-3-12-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-12-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-12-mobile.webp",
-        "title": "12",
-        "filename": "cabana-3-12"
-      },
-      {
-        "id": 5,
-        "url": "/images/cabana-3/cabana-3-13-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-13-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-13-mobile.webp",
-        "title": "13",
-        "filename": "cabana-3-13"
-      },
-      {
-        "id": 6,
-        "url": "/images/cabana-3/cabana-3-14-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-14-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-14-mobile.webp",
-        "title": "14",
-        "filename": "cabana-3-14"
-      },
-      {
-        "id": 7,
-        "url": "/images/cabana-3/cabana-3-15-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-15-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-15-mobile.webp",
-        "title": "15",
-        "filename": "cabana-3-15"
-      },
-      {
-        "id": 8,
-        "url": "/images/cabana-3/cabana-3-16-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-16-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-16-mobile.webp",
-        "title": "16",
-        "filename": "cabana-3-16"
-      },
-      {
-        "id": 9,
-        "url": "/images/cabana-3/cabana-3-17-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-17-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-17-mobile.webp",
-        "title": "17",
-        "filename": "cabana-3-17"
-      },
-      {
-        "id": 10,
-        "url": "/images/cabana-3/cabana-3-18-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-18-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-18-mobile.webp",
-        "title": "18",
-        "filename": "cabana-3-18"
-      },
-      {
-        "id": 11,
-        "url": "/images/cabana-3/cabana-3-19-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-19-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-19-mobile.webp",
-        "title": "19",
-        "filename": "cabana-3-19"
-      },
-      {
-        "id": 12,
         "url": "/images/cabana-3/cabana-3-2-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-2-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-2-mobile.webp",
@@ -494,71 +526,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-2"
       },
       {
-        "id": 13,
-        "url": "/images/cabana-3/cabana-3-20-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-20-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-20-mobile.webp",
-        "title": "20",
-        "filename": "cabana-3-20"
-      },
-      {
-        "id": 14,
-        "url": "/images/cabana-3/cabana-3-21-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-21-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-21-mobile.webp",
-        "title": "21",
-        "filename": "cabana-3-21"
-      },
-      {
-        "id": 15,
-        "url": "/images/cabana-3/cabana-3-22-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-22-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-22-mobile.webp",
-        "title": "22",
-        "filename": "cabana-3-22"
-      },
-      {
-        "id": 16,
-        "url": "/images/cabana-3/cabana-3-23-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-23-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-23-mobile.webp",
-        "title": "23",
-        "filename": "cabana-3-23"
-      },
-      {
-        "id": 17,
-        "url": "/images/cabana-3/cabana-3-24-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-24-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-24-mobile.webp",
-        "title": "24",
-        "filename": "cabana-3-24"
-      },
-      {
-        "id": 18,
-        "url": "/images/cabana-3/cabana-3-25-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-25-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-25-mobile.webp",
-        "title": "25",
-        "filename": "cabana-3-25"
-      },
-      {
-        "id": 19,
-        "url": "/images/cabana-3/cabana-3-26-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-26-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-26-mobile.webp",
-        "title": "26",
-        "filename": "cabana-3-26"
-      },
-      {
-        "id": 20,
-        "url": "/images/cabana-3/cabana-3-27-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-27-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-27-mobile.webp",
-        "title": "27",
-        "filename": "cabana-3-27"
-      },
-      {
-        "id": 21,
+        "id": 3,
         "url": "/images/cabana-3/cabana-3-3-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-3-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-3-mobile.webp",
@@ -566,31 +534,23 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-3"
       },
       {
-        "id": 22,
+        "id": 4,
         "url": "/images/cabana-3/cabana-3-4-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-4-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-4-mobile.webp",
-        "title": "4",
+        "title": "Mesada de la cocina junto a la ventana",
         "filename": "cabana-3-4"
       },
       {
-        "id": 23,
+        "id": 5,
         "url": "/images/cabana-3/cabana-3-5-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-5-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-5-mobile.webp",
-        "title": "5",
+        "title": "Cocina y comedor",
         "filename": "cabana-3-5"
       },
       {
-        "id": 24,
-        "url": "/images/cabana-3/cabana-3-6-desktop.webp",
-        "url_desktop": "/images/cabana-3/cabana-3-6-desktop.webp",
-        "url_mobile": "/images/cabana-3/cabana-3-6-mobile.webp",
-        "title": "6",
-        "filename": "cabana-3-6"
-      },
-      {
-        "id": 25,
+        "id": 6,
         "url": "/images/cabana-3/cabana-3-7-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-7-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-7-mobile.webp",
@@ -598,7 +558,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-7"
       },
       {
-        "id": 26,
+        "id": 7,
         "url": "/images/cabana-3/cabana-3-8-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-8-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-8-mobile.webp",
@@ -606,19 +566,187 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-3-8"
       },
       {
-        "id": 27,
+        "id": 8,
         "url": "/images/cabana-3/cabana-3-9-desktop.webp",
         "url_desktop": "/images/cabana-3/cabana-3-9-desktop.webp",
         "url_mobile": "/images/cabana-3/cabana-3-9-mobile.webp",
         "title": "9",
         "filename": "cabana-3-9"
+      },
+      {
+        "id": 9,
+        "url": "/images/cabana-3/cabana-3-10-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-10-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-10-mobile.webp",
+        "title": "10",
+        "filename": "cabana-3-10"
+      },
+      {
+        "id": 10,
+        "url": "/images/cabana-3/cabana-3-11-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-11-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-11-mobile.webp",
+        "title": "11",
+        "filename": "cabana-3-11"
+      },
+      {
+        "id": 11,
+        "url": "/images/cabana-3/cabana-3-12-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-12-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-12-mobile.webp",
+        "title": "12",
+        "filename": "cabana-3-12"
+      },
+      {
+        "id": 12,
+        "url": "/images/cabana-3/cabana-3-16-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-16-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-16-mobile.webp",
+        "title": "Dormitorio matrimonial y ventana",
+        "filename": "cabana-3-16"
+      },
+      {
+        "id": 13,
+        "url": "/images/cabana-3/cabana-3-17-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-17-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-17-mobile.webp",
+        "title": "17",
+        "filename": "cabana-3-17"
+      },
+      {
+        "id": 14,
+        "url": "/images/cabana-3/cabana-3-19-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-19-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-19-mobile.webp",
+        "title": "19",
+        "filename": "cabana-3-19"
+      },
+      {
+        "id": 15,
+        "url": "/images/cabana-3/cabana-3-20-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-20-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-20-mobile.webp",
+        "title": "20",
+        "filename": "cabana-3-20"
+      },
+      {
+        "id": 16,
+        "url": "/images/cabana-3/cabana-3-21-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-21-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-21-mobile.webp",
+        "title": "21",
+        "filename": "cabana-3-21"
+      },
+      {
+        "id": 17,
+        "url": "/images/cabana-3/cabana-3-22-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-22-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-22-mobile.webp",
+        "title": "22",
+        "filename": "cabana-3-22"
+      },
+      {
+        "id": 18,
+        "url": "/images/cabana-3/cabana-3-23-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-23-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-23-mobile.webp",
+        "title": "23",
+        "filename": "cabana-3-23"
+      },
+      {
+        "id": 19,
+        "url": "/images/cabana-3/cabana-3-24-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-24-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-24-mobile.webp",
+        "title": "24",
+        "filename": "cabana-3-24"
+      },
+      {
+        "id": 20,
+        "url": "/images/cabana-3/cabana-3-25-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-25-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-25-mobile.webp",
+        "title": "25",
+        "filename": "cabana-3-25"
+      },
+      {
+        "id": 21,
+        "url": "/images/cabana-3/cabana-3-26-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-26-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-26-mobile.webp",
+        "title": "26",
+        "filename": "cabana-3-26"
+      },
+      {
+        "id": 22,
+        "url": "/images/cabana-3/cabana-3-27-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-27-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-27-mobile.webp",
+        "title": "27",
+        "filename": "cabana-3-27"
+      },
+      {
+        "id": 23,
+        "url": "/images/cabana-3/cabana-3-28-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-28-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-28-mobile.webp",
+        "title": "Dormitorio y acceso al exterior",
+        "filename": "cabana-3-28"
+      },
+      {
+        "id": 24,
+        "url": "/images/cabana-3/cabana-3-29-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-29-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-29-mobile.webp",
+        "title": "Galería exterior y jardín",
+        "filename": "cabana-3-29"
+      },
+      {
+        "id": 25,
+        "url": "/images/cabana-3/cabana-3-30-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-30-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-30-mobile.webp",
+        "title": "Dormitorio matrimonial y cama individual",
+        "filename": "cabana-3-30"
+      },
+      {
+        "id": 26,
+        "url": "/images/cabana-3/cabana-3-31-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-31-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-31-mobile.webp",
+        "title": "Comedor y dormitorio integrado",
+        "filename": "cabana-3-31"
+      },
+      {
+        "id": 27,
+        "url": "/images/cabana-3/cabana-3-32-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-32-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-32-mobile.webp",
+        "title": "Mesa del comedor junto a la ventana",
+        "filename": "cabana-3-32"
+      },
+      {
+        "id": 28,
+        "url": "/images/cabana-3/cabana-3-33-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-33-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-33-mobile.webp",
+        "title": "Acceso al exterior desde el dormitorio",
+        "filename": "cabana-3-33"
+      },
+      {
+        "id": 29,
+        "url": "/images/cabana-3/cabana-3-34-desktop.webp",
+        "url_desktop": "/images/cabana-3/cabana-3-34-desktop.webp",
+        "url_mobile": "/images/cabana-3/cabana-3-34-mobile.webp",
+        "title": "Vista general del dormitorio",
+        "filename": "cabana-3-34"
       }
     ]
   },
   {
     "id": 4,
     "nombre": "Cabaña 4",
-    "totalImages": 10,
+    "totalImages": 16,
     "images": [
       {
         "id": 1,
@@ -630,14 +758,6 @@ export const cabanas: Cabana[] = [
       },
       {
         "id": 2,
-        "url": "/images/cabana-4/cabana-4-10-desktop.webp",
-        "url_desktop": "/images/cabana-4/cabana-4-10-desktop.webp",
-        "url_mobile": "/images/cabana-4/cabana-4-10-mobile.webp",
-        "title": "10",
-        "filename": "cabana-4-10"
-      },
-      {
-        "id": 3,
         "url": "/images/cabana-4/cabana-4-2-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-2-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-2-mobile.webp",
@@ -645,7 +765,7 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-4-2"
       },
       {
-        "id": 4,
+        "id": 3,
         "url": "/images/cabana-4/cabana-4-3-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-3-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-3-mobile.webp",
@@ -653,23 +773,23 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-4-3"
       },
       {
-        "id": 5,
+        "id": 4,
         "url": "/images/cabana-4/cabana-4-4-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-4-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-4-mobile.webp",
-        "title": "4",
+        "title": "Sala de estar con ventana al jardín",
         "filename": "cabana-4-4"
       },
       {
-        "id": 6,
+        "id": 5,
         "url": "/images/cabana-4/cabana-4-5-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-5-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-5-mobile.webp",
-        "title": "5",
+        "title": "Sala de estar junto al comedor",
         "filename": "cabana-4-5"
       },
       {
-        "id": 7,
+        "id": 6,
         "url": "/images/cabana-4/cabana-4-6-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-6-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-6-mobile.webp",
@@ -677,28 +797,84 @@ export const cabanas: Cabana[] = [
         "filename": "cabana-4-6"
       },
       {
-        "id": 8,
+        "id": 7,
         "url": "/images/cabana-4/cabana-4-7-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-7-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-7-mobile.webp",
-        "title": "7",
+        "title": "Dormitorio con cama individual",
         "filename": "cabana-4-7"
       },
       {
-        "id": 9,
+        "id": 8,
         "url": "/images/cabana-4/cabana-4-8-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-8-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-8-mobile.webp",
-        "title": "8",
+        "title": "Dormitorio matrimonial con ventana",
         "filename": "cabana-4-8"
       },
       {
-        "id": 10,
+        "id": 9,
         "url": "/images/cabana-4/cabana-4-9-desktop.webp",
         "url_desktop": "/images/cabana-4/cabana-4-9-desktop.webp",
         "url_mobile": "/images/cabana-4/cabana-4-9-mobile.webp",
-        "title": "9",
+        "title": "Dormitorio con dos camas individuales",
         "filename": "cabana-4-9"
+      },
+      {
+        "id": 10,
+        "url": "/images/cabana-4/cabana-4-10-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-10-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-10-mobile.webp",
+        "title": "Sala de estar con sillón y mesa",
+        "filename": "cabana-4-10"
+      },
+      {
+        "id": 11,
+        "url": "/images/cabana-4/cabana-4-11-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-11-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-11-mobile.webp",
+        "title": "Sala de estar junto a la ventana",
+        "filename": "cabana-4-11"
+      },
+      {
+        "id": 12,
+        "url": "/images/cabana-4/cabana-4-12-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-12-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-12-mobile.webp",
+        "title": "Mesada de la cocina junto a la ventana",
+        "filename": "cabana-4-12"
+      },
+      {
+        "id": 13,
+        "url": "/images/cabana-4/cabana-4-13-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-13-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-13-mobile.webp",
+        "title": "Cama individual y estantes de madera",
+        "filename": "cabana-4-13"
+      },
+      {
+        "id": 14,
+        "url": "/images/cabana-4/cabana-4-14-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-14-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-14-mobile.webp",
+        "title": "Baño y lavabo",
+        "filename": "cabana-4-14"
+      },
+      {
+        "id": 15,
+        "url": "/images/cabana-4/cabana-4-15-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-15-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-15-mobile.webp",
+        "title": "Comedor junto a la cocina",
+        "filename": "cabana-4-15"
+      },
+      {
+        "id": 16,
+        "url": "/images/cabana-4/cabana-4-16-desktop.webp",
+        "url_desktop": "/images/cabana-4/cabana-4-16-desktop.webp",
+        "url_mobile": "/images/cabana-4/cabana-4-16-mobile.webp",
+        "title": "Acceso al baño y lavabo",
+        "filename": "cabana-4-16"
       }
     ]
   }
