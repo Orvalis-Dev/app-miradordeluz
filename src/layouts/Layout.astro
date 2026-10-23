@@ -137,7 +137,62 @@ const schema = JSON.stringify({
       history.scrollRestoration = 'manual';
     }
 
+    let cabinReturn: { hash: string; top: number; left: number } | undefined;
+    let stopReturnAlignment = () => {};
+
+    document.addEventListener('astro:before-swap', (event) => {
+      stopReturnAlignment();
+      cabinReturn = undefined;
+      if (!/^\/reserva(?:\/|-)\S+/.test(event.from.pathname) || event.to.pathname !== '/') return;
+      if (event.to.hash && !/^#cabana-[1-4]$/.test(event.to.hash)) return;
+      if (!event.to.hash && event.navigationType !== 'traverse') return;
+
+      cabinReturn = {
+        hash: event.to.hash,
+        top: history.state?.scrollY ?? 0,
+        left: history.state?.scrollX ?? 0,
+      };
+      // Astro performs its native hash/history scroll before after-swap.
+      // Override only the incoming root until this transition finishes.
+      const style = event.newDocument.documentElement.style;
+      const value = style.getPropertyValue('scroll-behavior');
+      const priority = style.getPropertyPriority('scroll-behavior');
+      const incomingBody = event.newDocument.body;
+      style.setProperty('scroll-behavior', 'auto', 'important');
+      const restore = () => {
+        if (document.body !== incomingBody) return;
+        const currentStyle = document.documentElement.style;
+        if (value) currentStyle.setProperty('scroll-behavior', value, priority);
+        else currentStyle.removeProperty('scroll-behavior');
+      };
+      event.viewTransition.finished.finally(restore);
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      if (!cabinReturn) return;
+      const destination = cabinReturn;
+      const align = () => {
+        const target = document.getElementById(destination.hash.slice(1));
+        if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        else window.scrollTo({ top: destination.top, left: destination.left, behavior: 'instant' });
+      };
+      align();
+      // Lazy hydration and GSAP pins change document height after the swap.
+      // Maintain the return anchor only until the user takes over navigation.
+      const observer = new ResizeObserver(align);
+      observer.observe(document.body);
+      const interactions = ['wheel', 'touchstart', 'pointerdown', 'keydown', 'hashchange'];
+      stopReturnAlignment = () => {
+        observer.disconnect();
+        interactions.forEach((type) => window.removeEventListener(type, stopReturnAlignment));
+        cabinReturn = undefined;
+      };
+      interactions.forEach((type) => window.addEventListener(type, stopReturnAlignment, { passive: true }));
+    });
+
     const scrollToHash = () => {
+      // Keep the legacy smooth anchors everywhere except this cabin return.
+      if (cabinReturn && window.location.hash === cabinReturn.hash) return;
       const hash = window.location.hash;
 
       // Si no hay hash, forzamos el inicio en la parte superior (Hero)
