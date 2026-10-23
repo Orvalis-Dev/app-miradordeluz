@@ -12,7 +12,7 @@ const ReservaStickyCard: React.FC<ReservaStickyCardProps> = ({
 }) => {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      `Hola! Me gustaría consultar disponibilidad y tarifas para la ${cabanaName}.`
+      `¡Hola! Vi la ${cabanaName} en su página web y me gustaría consultar disponibilidad y tarifas. ¿Me podrían dar más información?`
     );
     window.open(`https://wa.me/5493813513513?text=${message}`, "_blank");
   };

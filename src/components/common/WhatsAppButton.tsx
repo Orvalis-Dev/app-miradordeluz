@@ -9,7 +9,7 @@ interface WhatsAppButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorEleme
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   phoneNumber = "5493813513513", // Valor por defecto basado en búsqueda
-  message = "¡Hola, me interesa el complejo Mirador de Luz! Quiero consultar disponibilidad y tarifas de las cabañas.",
+  message = "¡Hola! Estuve viendo su página web y me gustaría conocer la disponibilidad y las tarifas de las cabañas. ¿Me podrían orientar?",
   className = "",
   children,
   onClick,
