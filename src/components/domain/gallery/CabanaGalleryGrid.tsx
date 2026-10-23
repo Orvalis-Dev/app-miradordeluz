@@ -238,6 +238,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
                   {isZoomed ? <ZoomOut size={24} /> : <ZoomIn size={24} />}
                 </button>
                 <button
+                  aria-label="Cerrar galería"
                   className="text-white/70 hover:text-white transition-colors cursor-pointer bg-white/10 p-2 rounded-full backdrop-blur-md"
                   onClick={closeModal}
                 >
@@ -248,6 +249,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
 
             {/* Navegación Desktop */}
             <button
+              aria-label="Foto anterior"
               className="absolute left-6 top-1/2 z-[110] -translate-y-1/2 rounded-full bg-white/10 p-4 text-white backdrop-blur-md transition-all hover:bg-white/20 hidden md:flex items-center justify-center cursor-pointer border border-white/10"
               onClick={prevImage}
             >
@@ -255,6 +257,7 @@ const CabanaGalleryGrid: React.FC<CabanaGalleryGridProps> = ({
             </button>
 
             <button
+              aria-label="Foto siguiente"
               className="absolute right-6 top-1/2 z-[110] -translate-y-1/2 rounded-full bg-white/10 p-4 text-white backdrop-blur-md transition-all hover:bg-white/20 hidden md:flex items-center justify-center cursor-pointer border border-white/10"
               onClick={nextImage}
             >
