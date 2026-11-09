@@ -195,13 +195,15 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
 
           <hr class="border-slate-200" />
 
-          <!-- Tarjeta de Reserva para Mobile (Arriba del Mapa) -->
-          <div class="lg:hidden">
-            <ReservaStickyCard client:load cabanaName={cabana.nombre} isSticky={false} />
-          </div>
+        </div>
 
-          <!-- Ubicación -->
-          <section class="pb-8">
+        <!-- Un único formulario hidratado, debajo de los detalles en móvil. -->
+        <aside class="min-w-0 lg:col-start-3 lg:row-start-1 lg:row-span-2">
+          <ReservaStickyCard client:load cabanaName={cabana.nombre} />
+        </aside>
+
+        <!-- Ubicación -->
+        <section class="pb-8 lg:col-span-2">
             <h2
               class="text-2xl md:text-3xl font-montserrat font-bold text-slate-900 mb-6 tracking-tight"
             >
@@ -225,16 +227,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
                 title="Ubicación de Mirador de Luz en Google Maps"
               ></iframe>
             </div>
-          </section>
-        </div>
-
-        <!-- RIGHT COLUMN (Sticky Card - Desktop Only) -->
-        <aside class="hidden lg:block relative h-full">
-          <div class="lg:sticky lg:top-32 pb-12">
-            <ReservaStickyCard client:load cabanaName={cabana.nombre} />
-          </div>
-        </aside>
-
+        </section>
       </div>
     </div>
   </main>

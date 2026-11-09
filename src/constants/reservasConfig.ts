@@ -9,7 +9,7 @@ export type ReservaCabanaConfig = {
   id: ReservaCabanaId;
   nombre: string;
   capacidad: number;
-  precio_base: number;
+
   imageFolder: `cabana-${ReservaCabanaId}`;
 };
 
@@ -37,28 +37,28 @@ export const CABANAS_RESERVA: Record<ReservaCabanaId, ReservaCabanaConfig> = {
     id: "1",
     nombre: "Cabaña Nº1",
     capacidad: 4,
-    precio_base: 85000,
+
     imageFolder: "cabana-1",
   },
   "2": {
     id: "2",
     nombre: "Cabaña Nº2",
     capacidad: 6,
-    precio_base: 110000,
+
     imageFolder: "cabana-2",
   },
   "3": {
     id: "3",
     nombre: "Cabaña Nº3",
     capacidad: 4,
-    precio_base: 98000,
+
     imageFolder: "cabana-3",
   },
   "4": {
     id: "4",
     nombre: "Cabaña Nº4",
     capacidad: 6,
-    precio_base: 135000,
+
     imageFolder: "cabana-4",
   },
 };

@@ -60,3 +60,11 @@ El proyecto cuenta con scripts personalizados para el manejo de recursos:
 
 Para más detalles sobre la arquitectura, consulta:
 - [ESTRUCTURA.md](./ESTRUCTURA.md) - Organización de carpetas y detalles técnicos.
+
+## Solicitudes web del PMS
+
+La página de cada cabaña y la entrada `/reservas` usan la misma consulta al PMS. Configurá `PUBLIC_API_URL` (base pública HTTP en desarrollo; HTTPS en despliegue) y `PUBLIC_BOOKING_TENANT_SLUG` en el entorno de build. No agregues credenciales ni un token de cotización a variables públicas. Orvalis habilita el canal por establecimiento en el backend, con un WhatsApp e instrucciones de transferencia verificados. Sin habilitación, la landing ofrece el enlace de contacto habitual.
+
+La consulta obtiene las unidades y rangos ocupados, solicita el precio vigente al PMS y muestra total y seña antes de pedir los datos. El envío no retiene fechas, no procesa pagos y no confirma la estadía. La constancia muestra referencia, vencimiento e instrucciones de transferencia. Abrir WhatsApp es una acción posterior, no un requisito para registrar ni recuperar la referencia. Esta última constancia se conserva en la sesión de la pestaña sin guardar nombre, documento, teléfono o correo del huésped.
+
+Pruebas del adaptador: `bun test tests/public-booking.test.ts`. Para QA usá una API y un establecimiento de prueba con datos de transferencia ficticios; no envíes mensajes de WhatsApp ni hagas transferencias reales.
