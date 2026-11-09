@@ -41,3 +41,7 @@ desktop.ini
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Local checkout artifacts
+package-lock.json
+docs/

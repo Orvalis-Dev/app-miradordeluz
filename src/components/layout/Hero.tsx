@@ -355,7 +355,7 @@ const HeroMiradorDeLuz: FC<HeroMiradorDeLuzProps> = ({
             <LocationIcon />
           </span>
           <span className="font-montserrat font-semibold text-[10px] sm:text-xs md:text-sm whitespace-nowrap">
-            Villa Santa Cruz del Lago, Córdoba
+            Villa Santa Cruz del Lago, Córdoba, Argentina
           </span>
         </div>
       </div>

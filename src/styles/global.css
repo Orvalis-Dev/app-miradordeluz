@@ -22,6 +22,7 @@ html {
 /* Estilos para ocultar el navbar globalmente (fuera del Hero Principal) */
 body.hide-navbar-global nav,
 body.hide-navbar-global header {
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);

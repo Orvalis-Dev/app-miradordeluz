@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import NavbarMiradorDeLuz from "@components/layout/Navbar";
+import NavbarVisibilityController from "@components/react/NavbarVisibilityController";
 import HeroMiradorDeLuz from "@components/layout/Hero";
 import SectionUbicacionMiradorDeLuz from "@components/sections/SectionUbicacionMiradorDeLuz";
 import SectionHeroIntermedio from "@components/sections/SectionHeroIntermedio";
@@ -35,9 +36,10 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
 ---
 
 <Layout title="Mirador de Luz - Cabañas en Carlos Paz">
-  <!-- Navbar fijo que permanece visible durante el scroll -->
+  <!-- La portada conserva el menú fijo dentro del hero principal. -->
   <NavbarMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 
+  <NavbarVisibilityController client:load />
   <ScrollAnimations client:idle />
 
   <main>

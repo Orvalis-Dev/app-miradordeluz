@@ -254,9 +254,9 @@ const SectionServicios: FC<SectionServiciosProps> = ({
 
         {/* Bloque de Servicios (selección con íconos y link a modal) */}
         <div className="mb-16 md:mb-20">
-          {/* Grilla de iconos representativos - UX mejorada: 2 columnas en mobile, 3 en desktop */}
+          {/* Grilla de iconos representativos - UX mejorada: 2 columnas en mobile, 4 en desktop */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 lg:max-w-4xl lg:mx-auto gap-y-8 md:gap-y-12 gap-x-4 py-8 px-2 justify-items-center"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:max-w-4xl lg:mx-auto gap-y-8 md:gap-y-12 gap-x-4 py-8 px-2 justify-items-center"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
@@ -270,7 +270,7 @@ const SectionServicios: FC<SectionServiciosProps> = ({
               },
             }}
           >
-            {servicios.slice(0, 6).map((servicio) => (
+            {servicios.slice(0, 8).map((servicio) => (
               <motion.div
                 key={servicio.id}
                 className="flex flex-col items-center gap-3 w-full max-w-[140px] md:max-w-[160px] text-center"

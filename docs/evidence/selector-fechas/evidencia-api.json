@@ -1,0 +1,1485 @@
+{
+  "synthetic": true,
+  "env": {
+    "browser": "Chromium real; Pixel 7 emulado",
+    "timezone": "America/Argentina/Cordoba",
+    "tenant": "smoke-sierra-clara",
+    "source": "Laravel real + SQLite sintético aislado; externas abortadas"
+  },
+  "checks": [
+    {
+      "check": "ficha, noche ocupada, consulta y solicitud real",
+      "n": 1,
+      "id": 101,
+      "blocked": [
+        17,
+        19
+      ],
+      "free": [
+        15,
+        17
+      ],
+      "name": "Algarrobo Norte QA",
+      "mobile": false,
+      "computed": {
+        "background": "oklch(0.929 0.013 255.508)",
+        "decoration": "line-through"
+      },
+      "range_api": [
+        "2026-11-17",
+        "2026-11-19"
+      ],
+      "post_quote": 200,
+      "post_request": 201,
+      "reference": "WEB-ZGRDKX9ZB2PD",
+      "status": "pending_confirmation",
+      "sqlite": {
+        "cabin_id": 101,
+        "from_date": "2026-11-15",
+        "to_date": "2026-11-17",
+        "status": "pending_confirmation",
+        "source": "web",
+        "is_blocked": 0
+      },
+      "hold": false,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-15&to=2026-11-17",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-15",
+          "check_out_date": "2026-11-17",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 480,
+          "deposit": 192
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-15&to=2026-11-17",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/requests",
+          "status": 201,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-15",
+          "check_out_date": "2026-11-17",
+          "num_guests": 2,
+          "reference": "WEB-ZGRDKX9ZB2PD",
+          "state": "pending_confirmation",
+          "total": 480,
+          "deposit": 192
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        }
+      ]
+    },
+    {
+      "check": "ficha, noche ocupada, consulta y solicitud real",
+      "n": 2,
+      "id": 102,
+      "blocked": [
+        19,
+        21
+      ],
+      "free": [
+        17,
+        19
+      ],
+      "name": "Brezal del Lago QA",
+      "mobile": true,
+      "computed": {
+        "background": "oklch(0.929 0.013 255.508)",
+        "decoration": "line-through"
+      },
+      "range_api": [
+        "2026-11-19",
+        "2026-11-21"
+      ],
+      "post_quote": 200,
+      "post_request": 201,
+      "reference": "WEB-UIPOXN9S2KBL",
+      "status": "pending_confirmation",
+      "sqlite": {
+        "cabin_id": 102,
+        "from_date": "2026-11-17",
+        "to_date": "2026-11-19",
+        "status": "pending_confirmation",
+        "source": "web",
+        "is_blocked": 0
+      },
+      "hold": false,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-17&to=2026-11-19",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 102,
+          "check_in_date": "2026-11-17",
+          "check_out_date": "2026-11-19",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 400,
+          "deposit": 160
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-17&to=2026-11-19",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/requests",
+          "status": 201,
+          "cabin_id": 102,
+          "check_in_date": "2026-11-17",
+          "check_out_date": "2026-11-19",
+          "num_guests": 2,
+          "reference": "WEB-UIPOXN9S2KBL",
+          "state": "pending_confirmation",
+          "total": 400,
+          "deposit": 160
+        }
+      ]
+    },
+    {
+      "check": "ficha, noche ocupada, consulta y solicitud real",
+      "n": 3,
+      "id": 103,
+      "blocked": [
+        20,
+        22
+      ],
+      "free": [
+        18,
+        20
+      ],
+      "name": "Sendero Azul QA",
+      "mobile": false,
+      "computed": {
+        "background": "oklch(0.929 0.013 255.508)",
+        "decoration": "line-through"
+      },
+      "range_api": [
+        "2026-11-20",
+        "2026-11-22"
+      ],
+      "post_quote": 200,
+      "post_request": 201,
+      "reference": "WEB-PDZ0R5KATLZK",
+      "status": "pending_confirmation",
+      "sqlite": {
+        "cabin_id": 103,
+        "from_date": "2026-11-18",
+        "to_date": "2026-11-20",
+        "status": "pending_confirmation",
+        "source": "web",
+        "is_blocked": 0
+      },
+      "hold": false,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-18&to=2026-11-20",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 103,
+          "check_in_date": "2026-11-18",
+          "check_out_date": "2026-11-20",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 440,
+          "deposit": 176
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-18&to=2026-11-20",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/requests",
+          "status": 201,
+          "cabin_id": 103,
+          "check_in_date": "2026-11-18",
+          "check_out_date": "2026-11-20",
+          "num_guests": 2,
+          "reference": "WEB-PDZ0R5KATLZK",
+          "state": "pending_confirmation",
+          "total": 440,
+          "deposit": 176
+        }
+      ]
+    },
+    {
+      "check": "ficha, noche ocupada, consulta y solicitud real",
+      "n": 4,
+      "id": 104,
+      "blocked": [
+        23,
+        25
+      ],
+      "free": [
+        25,
+        27
+      ],
+      "name": "Terrazas del Bosque QA",
+      "mobile": true,
+      "computed": {
+        "background": "oklch(0.929 0.013 255.508)",
+        "decoration": "line-through"
+      },
+      "range_api": [
+        "2026-11-23",
+        "2026-11-25"
+      ],
+      "post_quote": 200,
+      "post_request": 201,
+      "reference": "WEB-7H5TIP05QZNL",
+      "status": "pending_confirmation",
+      "sqlite": {
+        "cabin_id": 104,
+        "from_date": "2026-11-25",
+        "to_date": "2026-11-27",
+        "status": "pending_confirmation",
+        "source": "web",
+        "is_blocked": 0
+      },
+      "hold": false,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-25&to=2026-11-27",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 104,
+          "check_in_date": "2026-11-25",
+          "check_out_date": "2026-11-27",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 400,
+          "deposit": 160
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-25&to=2026-11-27",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/requests",
+          "status": 201,
+          "cabin_id": 104,
+          "check_in_date": "2026-11-25",
+          "check_out_date": "2026-11-27",
+          "num_guests": 2,
+          "reference": "WEB-7H5TIP05QZNL",
+          "state": "pending_confirmation",
+          "total": 400,
+          "deposit": 160
+        }
+      ]
+    },
+    {
+      "check": "navegación de mes, foco y disponibilidad pendiente",
+      "intercept": "Solo demora de GET real en diciembre",
+      "unknown_disabled": true,
+      "occupied_dec_2_disabled": true,
+      "returned_nov": true,
+      "entry_preserved_while_backtracking": true,
+      "narrow_320_no_overflow": true,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-12-01&to=2027-01-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-12-02",
+                  "to": "2026-12-04"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-06",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                },
+                {
+                  "from": "2026-12-02",
+                  "to": "2026-12-04"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-12-01&to=2027-01-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-12-02",
+                  "to": "2026-12-04"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        }
+      ]
+    },
+    {
+      "check": "renombrar unidad PMS y cambiar orden de listado",
+      "renamed": "Zeta Algarrobo Renombrada QA",
+      "quote_cabin": 101,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            },
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-19&to=2026-11-21",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            },
+            {
+              "id": 101,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-19",
+          "check_out_date": "2026-11-21",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 480,
+          "deposit": 192
+        }
+      ]
+    },
+    {
+      "check": "bloqueo posterior a selección",
+      "response_status": 200,
+      "reservation_created": false,
+      "alert": "La cabaña ya no está disponible para esas fechas y cantidad de huéspedes. Volvé a elegir la estadía.",
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-26&to=2026-11-28",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-27",
+                  "to": "2026-11-28"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "check": "bloqueo posterior a cotización",
+      "response_status": 200,
+      "reservation_created": false,
+      "alert": "Las fechas elegidas ya no están disponibles. Volvé a elegir la estadía.",
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-26&to=2026-11-28",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-26",
+          "check_out_date": "2026-11-28",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 480,
+          "deposit": 192
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-26&to=2026-11-28",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-27",
+                  "to": "2026-11-28"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "check": "bloqueo entre preflight y POST (revalidación atómica)",
+      "response_status": 422,
+      "reservation_created": false,
+      "alert": "Las fechas elegidas ya no están disponibles. Volvé a elegir la estadía.",
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-26&to=2026-11-28",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-26",
+          "check_out_date": "2026-11-28",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 480,
+          "deposit": 192
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-26&to=2026-11-28",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": []
+            },
+            {
+              "id": 103,
+              "blocked_ranges": []
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/requests",
+          "status": 422,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-26",
+          "check_out_date": "2026-11-28",
+          "num_guests": 2,
+          "error_fields": [
+            "cabin_id"
+          ]
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "check": "intento ambiguo aislado por ficha/unidad y sin PII restaurada",
+      "intercept": "Se aborta un POST sin contactar API",
+      "attempt_not_in_cabana_2": true,
+      "retry_in_cabana_1": true,
+      "no_pii_in_form": true,
+      "network": [
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-19&to=2026-11-21",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "POST",
+          "route": "/booking/quote",
+          "status": 200,
+          "cabin_id": 101,
+          "check_in_date": "2026-11-19",
+          "check_out_date": "2026-11-21",
+          "num_guests": 2,
+          "is_available": true,
+          "nights": 2,
+          "total": 480,
+          "deposit": 192
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-19&to=2026-11-21",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": []
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": []
+            }
+          ],
+          "interval_keys_ok": true
+        },
+        {
+          "method": "GET",
+          "route": "/booking?from=2026-11-09&to=2026-12-01",
+          "status": 200,
+          "ranges": [
+            {
+              "id": 101,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-17",
+                  "to": "2026-11-19"
+                }
+              ]
+            },
+            {
+              "id": 102,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-19",
+                  "to": "2026-11-21"
+                }
+              ]
+            },
+            {
+              "id": 103,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-20",
+                  "to": "2026-11-22"
+                }
+              ]
+            },
+            {
+              "id": 104,
+              "blocked_ranges": [
+                {
+                  "from": "2026-11-23",
+                  "to": "2026-11-25"
+                }
+              ]
+            }
+          ],
+          "interval_keys_ok": true
+        }
+      ]
+    }
+  ]
+}
