@@ -1,9 +1,7 @@
 ---
 description: Reglas de SEO para páginas Astro
-globs: ["src/pages/**/*.astro"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas – SEO
 
 ## Obligatorio

@@ -1,9 +1,7 @@
 ---
-description: Lista consolidada de anti-patrones prohibidos
-globs: ["src/**/*"]
-alwaysApply: true
+description: Lista Anti-Patrones Frontend
+alwaysApply: false
 ---
-
 # Anti-Patrones – PROHIBIDO
 
 ❌ Usar React cuando Astro es suficiente  

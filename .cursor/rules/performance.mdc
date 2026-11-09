@@ -1,9 +1,7 @@
 ---
 description: Reglas para mejorar Web Vitals y performance
-globs: ["src/**/*"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas – Performance
 
 ## Principios

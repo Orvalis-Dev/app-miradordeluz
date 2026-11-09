@@ -1,9 +1,7 @@
 ---
 description: Estrategias de hidratación para islas React en Astro
-globs: ["src/**/*.astro"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas – Hidratación React
 
 ## Directivas de Cliente

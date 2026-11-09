@@ -1,83 +1,56 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import NavbarMiradorDeLuz from "../components/react/NavbarMiradorDeLuz";
-import NavbarVisibilityController from "../components/react/NavbarVisibilityController";
-import UbicacionObserver from "../components/react/UbicacionObserver";
-import HeroMiradorDeLuz from "../components/react/HeroMiradorDeLuz";
-import SectionUbicacionMiradorDeLuz from "../components/react/SectionUbicacionMiradorDeLuz";
-import SectionHeroIntermedioMiradorDeLuzV2 from "../components/react/SectionHeroIntermedioMiradorDeLuzV2";
-import SectionCabanasMiradorDeLuzV3 from "../components/react/SectionCabanasMiradorDeLuzV3";
-import SectionServiciosInstalacionesMiradorDeLuz from "../components/react/SectionServiciosInstalacionesMiradorDeLuz";
-import SectionTestimoniosMiradorDeLuzV2 from "../components/react/SectionTestimoniosMiradorDeLuzV2";
-import FooterMiradorDeLuz from "../components/react/FooterMiradorDeLuz";
-import ScrollAnimations from "../components/react/ScrollAnimations";
-import { fetchGoogleReviews, fetchReviewsByPlaceName, type GoogleReview } from "../utils/googlePlaces";
-import { SITE_CONFIG } from "../constants/config";
+import NavbarMiradorDeLuz from "@components/layout/Navbar";
+import NavbarVisibilityController from "@components/react/NavbarVisibilityController";
+import HeroMiradorDeLuz from "@components/layout/Hero";
+import SectionUbicacionMiradorDeLuz from "@components/sections/SectionUbicacionMiradorDeLuz";
+import SectionHeroIntermedio from "@components/sections/SectionHeroIntermedio";
+import SectionCabanas from "@components/sections/SectionCabanas";
+import SectionServicios from "@components/sections/SectionServicios";
+import SectionTestimonios from "@components/sections/SectionTestimonios";
+import FooterMiradorDeLuz from "@components/layout/Footer";
+import ScrollAnimations from "@components/common/ScrollAnimations";
+import { SITE_CONFIG } from "@constants/config";
+import { getImage } from "astro:assets";
+import heroImage from "../assets/hero-principal.webp";
+import logoImage from "../assets/logo-mirador-luz.webp";
 
-// Obtener reseñas de Google Places en build time
-let googleReviews: GoogleReview[] = [];
-const apiKey = import.meta.env.PRIVATE_GOOGLE_PLACES_API_KEY;
-const placeIdEnv = import.meta.env.PRIVATE_GOOGLE_PLACE_ID;
-
-if (apiKey) {
-  try {
-    if (placeIdEnv) {
-      // Si tenemos el Place ID configurado, usarlo directamente
-      googleReviews = await fetchGoogleReviews(apiKey, placeIdEnv, 5);
-      console.log(`[Google Places] Se obtuvieron ${googleReviews.length} reseñas usando Place ID configurado`);
-    } else {
-      // Si no tenemos el Place ID, buscarlo por nombre y coordenadas
-      const { placeName, coordinates } = SITE_CONFIG.googleMaps;
-      const result = await fetchReviewsByPlaceName(
-        apiKey,
-        placeName,
-        coordinates.lat,
-        coordinates.lng,
-        5
-      );
-      
-      if (result) {
-        googleReviews = result.reviews;
-        console.log(`[Google Places] Se obtuvieron ${googleReviews.length} reseñas buscando por nombre`);
-        console.log(`[Google Places] Place ID encontrado: ${result.placeId}`);
-      }
-    }
-  } catch (error) {
-    console.error('[Google Places] Error al obtener reseñas:', error);
-  }
-} else {
-  console.warn('[Google Places] API Key no configurada. Se usarán testimonios de fallback.');
-}
-
-// Transformar las reseñas al formato del componente de testimonios
-const testimoniosGoogle = googleReviews.map((review) => ({
-  id: review.id,
-  name: review.name,
-  subtitle: review.subtitle || 'Google Maps',
-  text: review.text,
-  rating: review.rating,
-  avatarUrl: review.avatarUrl,
-}));
+const optimizedHeroMobile = await getImage({
+  src: heroImage,
+  format: "webp",
+  width: 768,
+});
+const optimizedHeroDesktop = await getImage({
+  src: heroImage,
+  format: "webp",
+  width: 1920,
+});
+const optimizedLogo = await getImage({
+  src: logoImage,
+  format: "webp",
+  width: 120, // Sufficient for retina
+});
 
 // URL para dejar una reseña
 const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
 ---
 
 <Layout title="Mirador de Luz - Cabañas en Carlos Paz">
-  <!-- Navbar fijo que permanece visible durante el scroll -->
-  <NavbarMiradorDeLuz client:load transparente={true} isHeroPage={true} />
+  <!-- La portada conserva el menú fijo dentro del hero principal. -->
+  <NavbarMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 
-  <!-- Controlador de visibilidad del navbar -->
   <NavbarVisibilityController client:load />
-  <UbicacionObserver client:load />
-
-  <!-- Componente de animaciones GSAP -->
-  <ScrollAnimations client:load />
+  <ScrollAnimations client:idle />
 
   <main>
     <!-- 1. Hero Principal -->
     <div id="hero-section" style="position: relative;">
-      <HeroMiradorDeLuz client:load />
+      <HeroMiradorDeLuz
+        client:load
+        imagenFondo={optimizedHeroDesktop.src}
+        imagenFondoMobile={optimizedHeroMobile.src}
+        logoSrc={optimizedLogo.src}
+      />
       <div
         class="hero-overlay"
         style="position: absolute; inset: 0; background: black; opacity: 0.5; pointer-events: none; z-index: 5;"
@@ -87,17 +60,21 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
 
     <!-- 2. Ubicación Section -->
     <div
-      id="ubicacion-section"
+      id="ubicacion"
+      class="scroll-mt-20"
       style="position: relative; z-index: 10; background: white;"
     >
-      <SectionUbicacionMiradorDeLuz client:visible />
+      <SectionUbicacionMiradorDeLuz client:load />
     </div>
 
     <!-- 3. Hero Intermedio con Video (60% → 100% con animación) -->
     <div id="hero-intermedio-section" style="position: relative; z-index: 9;">
-      <SectionHeroIntermedioMiradorDeLuzV2
-        client:visible
-        backgroundVideo="/videos/VideoCarlosPaz.mp4"
+      <SectionHeroIntermedio
+        client:load
+        videoMobile="/videos/video-mobile.mp4"
+        videoDesktop="/videos/video-desktop.mp4"
+        subheading="MIRADOR DE LUZ"
+        title="Experiencia única.\nEntre las montañas."
         overlayOpacity="dark"
         hideNavbar={false}
       />
@@ -108,27 +85,26 @@ const googleReviewUrl = SITE_CONFIG.googleMaps.reviewUrl;
       id="cabanas-section"
       style="position: relative; z-index: 11; background: white;"
     >
-      <div id="cabanas">
-        <SectionCabanasMiradorDeLuzV3 client:visible />
+      <div id="cabanas" class="scroll-mt-20">
+        <SectionCabanas client:load />
       </div>
     </div>
 
     <!-- 5. Servicios e Instalaciones Section -->
-    <div id="servicios-instalaciones">
-      <SectionServiciosInstalacionesMiradorDeLuz client:visible />
+    <div id="servicios" class="scroll-mt-20">
+      <SectionServicios client:load />
     </div>
 
     <!-- 6. Testimonios Section - Integrado con Google Maps -->
-    <div id="testimonios">
-      <SectionTestimoniosMiradorDeLuzV2 
+    <div id="testimonios" class="scroll-mt-20">
+      <SectionTestimonios 
         client:visible 
-        testimonios={testimoniosGoogle.length > 0 ? testimoniosGoogle : undefined}
-        textoBoton="Dejanos tu Opinión en Google"
+        textoBoton="Ver todas las opiniones en Google Maps"
         googleReviewUrl={googleReviewUrl}
       />
     </div>
   </main>
 
   <!-- Footer -->
-  <FooterMiradorDeLuz client:load />
+  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
 </Layout>

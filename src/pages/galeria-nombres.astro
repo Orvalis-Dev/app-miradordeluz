@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavbarMiradorDeLuz from "@components/layout/Navbar";
+import { GaleriaConNombres } from "@components/domain/gallery/GaleriaConNombres";
+import FooterMiradorDeLuz from "@components/layout/Footer";
+// Optimización de Logo
+import { getImage } from "astro:assets";
+import logoImage from "../assets/logo-mirador-luz.webp";
+
+const optimizedLogo = await getImage({
+  src: logoImage,
+  format: "webp",
+  width: 120,
+});
+---
+
+<Layout
+  title="Galería - Mirador de Luz"
+  description="Explorá nuestras cabañas, instalaciones y espacios del complejo Mirador de Luz en Villa Carlos Paz."
+>
+  <!-- Navbar -->
+  <div class="navbar-wrapper-galeria">
+    <NavbarMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
+  </div>
+
+  <main class="pt-20">
+    <!-- Header -->
+    <section class="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Galería de Imágenes</h1>
+        <p class="text-lg text-slate-300">
+          Descubre la belleza de nuestras cabañas y espacios
+        </p>
+      </div>
+    </section>
+
+    <!-- Tabs de cabañas -->
+    <section class="bg-white border-b border-slate-200 sticky top-20 z-40">
+      <div class="container mx-auto px-4">
+        <div class="flex gap-4 overflow-x-auto">
+          <a
+            href="#cabana-1"
+            class="px-6 py-4 font-semibold text-orange-500 border-b-2 border-orange-500 whitespace-nowrap hover:text-orange-700"
+          >
+            Cabaña 1
+          </a>
+          <a
+            href="#cabana-2"
+            class="px-6 py-4 font-semibold text-slate-600 border-b-2 border-transparent whitespace-nowrap hover:text-orange-500 hover:border-orange-500 transition-all"
+          >
+            Cabaña 2
+          </a>
+          <a
+            href="#cabana-3"
+            class="px-6 py-4 font-semibold text-slate-600 border-b-2 border-transparent whitespace-nowrap hover:text-orange-500 hover:border-orange-500 transition-all"
+          >
+            Cabaña 3
+          </a>
+          <a
+            href="#cabana-4"
+            class="px-6 py-4 font-semibold text-slate-600 border-b-2 border-transparent whitespace-nowrap hover:text-orange-500 hover:border-orange-500 transition-all"
+          >
+            Cabaña 4
+          </a>
+          <a
+            href="#exterior"
+            class="px-6 py-4 font-semibold text-slate-600 border-b-2 border-transparent whitespace-nowrap hover:text-orange-500 hover:border-orange-500 transition-all"
+          >
+            Exterior
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galerías -->
+    <section class="container mx-auto px-4 py-12">
+      <!-- Cabaña 1 -->
+      <div id="cabana-1" class="mb-16 scroll-mt-40">
+        <GaleriaConNombres client:load cabanaid={1} />
+      </div>
+
+      <!-- Cabaña 2 -->
+      <div id="cabana-2" class="mb-16 scroll-mt-40">
+        <GaleriaConNombres client:load cabanaid={2} />
+      </div>
+
+      <!-- Cabaña 3 -->
+      <div id="cabana-3" class="mb-16 scroll-mt-40">
+        <GaleriaConNombres client:load cabanaid={3} />
+      </div>
+
+      <!-- Cabaña 4 -->
+      <div id="cabana-4" class="mb-16 scroll-mt-40">
+        <GaleriaConNombres client:load cabanaid={4} />
+      </div>
+
+      <!-- Exterior -->
+      <div id="exterior" class="mb-16 scroll-mt-40">
+        <GaleriaConNombres client:load cabanaid="exterior" />
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <FooterMiradorDeLuz client:load logoSrc={optimizedLogo.src} />
+</Layout>
+
+<style>
+  .navbar-wrapper-galeria :global(nav.fixed) {
+    backdrop-filter: none !important;
+  }
+
+  .navbar-wrapper-galeria :global(.flex-1.overflow-y-auto) {
+    background: white !important;
+  }
+</style>
+
+
+
+
+

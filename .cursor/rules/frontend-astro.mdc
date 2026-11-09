@@ -1,9 +1,7 @@
 ---
-description: Reglas para componentes Astro (estático por defecto)
 globs: ["src/**/*.astro"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas de Desarrollo – Astro (Frontend)
 
 ## Principio Fundamental

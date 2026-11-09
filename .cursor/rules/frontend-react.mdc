@@ -1,9 +1,7 @@
 ---
-description: Reglas para componentes React dentro de Astro
 globs: ["src/**/*.tsx", "src/**/*.jsx"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas de Desarrollo – React (Islas Interactivas)
 
 ## Cuándo usar React

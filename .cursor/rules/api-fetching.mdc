@@ -1,9 +1,7 @@
 ---
 description: Fetch y comunicación con API Laravel
-globs: ["src/**/*.{astro,tsx,jsx,ts}"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas – Fetch y API
 
 ## Fetch en Astro (Build Time)

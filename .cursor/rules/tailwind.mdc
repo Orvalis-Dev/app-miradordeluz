@@ -1,9 +1,7 @@
 ---
 description: Guía de estilo usando Tailwind CSS
-globs: ["src/**/*.{astro,html,tsx,jsx}"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas – Tailwind CSS
 
 ## Principios

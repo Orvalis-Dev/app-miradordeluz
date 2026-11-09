@@ -2,26 +2,27 @@
 
 /* Configuración de fuente base */
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Scroll suave para navegación con anclas */
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-  /* Altura del navbar fijo */
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 100px;
+  /* Altura del navbar fijo + un margen extra */
 }
 
 /* Ajuste para mobile */
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: 64px;
+    scroll-padding-top: 80px;
   }
 }
 
 /* Estilos para ocultar el navbar globalmente (fuera del Hero Principal) */
 body.hide-navbar-global nav,
 body.hide-navbar-global header {
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);
@@ -45,4 +46,20 @@ body:not(.hide-navbar-global) header {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Animaciones para la Galería */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
 }

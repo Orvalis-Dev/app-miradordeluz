@@ -17,10 +17,10 @@ const NavbarVisibilityController: FC = () => {
 
     // Referencias a las secciones relevantes
     const heroSection = document.getElementById('hero-section');
-    const ubicacionSection = document.getElementById('ubicacion-section');
+    const ubicacionSection = document.getElementById('ubicacion');
     const heroIntermedioSection = document.getElementById('hero-intermedio-section');
     const cabanasSection = document.getElementById('cabanas-section');
-    const serviciosSection = document.getElementById('servicios-instalaciones');
+    const serviciosSection = document.getElementById('servicios');
     const testimoniosSection = document.getElementById('testimonios');
 
     if (!heroSection) {

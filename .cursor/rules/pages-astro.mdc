@@ -1,9 +1,7 @@
 ---
-description: Estructura y reglas para páginas Astro
 globs: ["src/pages/**/*.astro"]
-alwaysApply: true
+alwaysApply: false
 ---
-
 # Reglas – Páginas Astro
 
 ## Estructura de Página

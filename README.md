@@ -1,60 +1,62 @@
-# Astro Starter Kit: Minimal
+﻿# Mirador de Luz - Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Esta es la landing page oficial de **Mirador de Luz**, un complejo de cabañas ubicado en Villa Carlos Paz, Córdoba, con vistas privilegiadas al lago San Roque. El sitio está diseñado para ofrecer una experiencia de usuario fluida, visualmente atractiva y optimizada para conversiones a través de WhatsApp.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+##  Tecnologías Utilizadas
 
-## 🚀 Project Structure
+- **Astro**: Framework principal para un rendimiento excepcional y generación de sitios estáticos (SSG).
+- **React**: Utilizado para componentes interactivos como el sistema de reservas y galerías.
+- **Tailwind CSS**: Estilizado moderno y responsivo con la última versión (v4).
+- **Framer Motion & GSAP**: Animaciones fluidas para mejorar la experiencia visual.
+- **Sharp**: Optimización automática de imágenes.
+- **Lucide React & React Icons**: Librerías de iconos modernas.
 
-Inside of your Astro project, you'll see the following folders and files:
+##  Setup e Instalación
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Para inicializar y trabajar en este proyecto, se recomienda el uso de **pnpm**.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Requisitos Previos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- Node.js (versión 18 o superior)
+- pnpm
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Pasos para el Setup
 
-## 🧞 Commands
+1. **Clonar el repositorio:**
+   `ash
+   git clone <url-del-repositorio>
+   cd app-miradordeluz
+   `
 
-All commands are run from the root of the project, from a terminal:
+2. **Instalar dependencias:**
+   `ash
+   pnpm install
+   `
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+3. **Iniciar servidor de desarrollo:**
+   `ash
+   pnpm dev
+   `
 
-## SEO y Optimización
+4. **Construir para producción:**
+   `ash
+   pnpm build
+   `
 
-Para mantener y mejorar el posicionamiento en motores de búsqueda, consulta el checklist completo:
+5. **Previsualizar la build:**
+   `ash
+   pnpm preview
+   `
 
-📋 **[SEO_CHECKLIST.md](./SEO_CHECKLIST.md)** – Guía detallada con todos los puntos a revisar antes de cada deploy o cambio importante.
+##  Scripts de Optimización
 
-### Resumen rápido:
+El proyecto cuenta con scripts personalizados para el manejo de recursos:
 
-- Metadatos globales y por página
-- Datos estructurados (JSON-LD)
-- SEO local y consistencia NAP
-- Imágenes, multimedia y performance
-- Accesibilidad web
-- Medición y monitoreo continuo
+- \pnpm run convert:webp\: Convierte todas las imágenes de la carpeta \public/images\ a formato WebP para optimizar el rendimiento.
+- \pnpm run rename:images\: Renombra imágenes automáticamente siguiendo un patrón organizado.
+- \pnpm run generate:images\: Genera automáticamente el archivo de datos \src/data/images.ts\ basándose en el contenido de la carpeta \public\.
 
-Revisar el checklist regularmente (cada 6–12 meses) para asegurar que el sitio siga óptimo según los estándares de Google.
+##  Documentación Adicional
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Para más detalles sobre la arquitectura, consulta:
+- [ESTRUCTURA.md](./ESTRUCTURA.md) - Organización de carpetas y detalles técnicos.

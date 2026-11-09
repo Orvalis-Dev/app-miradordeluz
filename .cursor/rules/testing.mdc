@@ -1,9 +1,7 @@
 ---
-description: Reglas para testing de frontend
-globs: ["src/**/*"]
-alwaysApply: true
+description: Reglas para Testing
+alwaysApply: false
 ---
-
 # Reglas – Testing
 
 ## Visual Testing
