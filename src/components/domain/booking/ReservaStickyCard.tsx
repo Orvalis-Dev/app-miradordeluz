@@ -3,24 +3,31 @@ import { AlertCircle, ArrowRight, CalendarDays, CheckCircle2, Clipboard, LoaderC
 import { IconWhatsApp as WhatsAppIcon } from "@components/common/Icons";
 import {
   ApiError, bookingContactErrors, bookingEndpoint, bookingTimezone, bookingToday,
-  createBookingClient, createIdempotencyKey, isSavedBookingAttempt, isSavedReceipt, matchingCabinId,
-  overlapsStay, receiptWhatsappLink,
-  type BookingAvailability, type BookingContact, type BookingPayload, type BookingReview,
+  createBookingClient, createIdempotencyKey, isSavedBookingAttempt, isSavedReceipt, receiptWhatsappLink,
+  type BookingAvailability, type BookingContact, type BookingPayload, type BookingReview, type BookingStay,
   type SavedBookingAttempt, type SavedBookingReceipt,
 } from "@utils/public-booking";
 
+import {
+  bookingHorizon, calendarQuery, canCheckIn, canStay, monthStart, type CalendarSelection,
+} from "@utils/booking-calendar";
+import BookingCalendar from "./BookingCalendar";
+
 interface ReservaStickyCardProps {
-  cabanaName?: string;
+  fixedCabin?: { name: string; id: number | null };
 }
 
-type AvailabilityState = { state: "loading" } | { state: "error"; error: ApiError } | { state: "ready"; data: BookingAvailability };
+type LoadedAvailability =
+  | { key: string; state: "error"; error: ApiError }
+  | { key: string; state: "ready"; data: BookingAvailability };
 type Attempt = { payload: BookingPayload; key: string };
 type ContactErrors = Partial<Record<keyof BookingContact, string>>;
 
 const endpoint = bookingEndpoint(import.meta.env.PUBLIC_API_URL, import.meta.env.PUBLIC_BOOKING_TENANT_SLUG);
-const storageKey = endpoint ? `mirador:booking-receipt:v1:${endpoint}` : null;
-const attemptKey = endpoint ? `mirador:booking-attempt:v1:${endpoint}` : null;
+const receiptBase = endpoint ? `mirador:booking-receipt:v1:${endpoint}` : null;
+const attemptBase = endpoint ? `mirador:booking-attempt:v1:${endpoint}` : null;
 const booking = endpoint ? createBookingClient(endpoint) : null;
+const emptySelection: CalendarSelection = { from: "", to: "" };
 const blankContact: BookingContact = { name: "", dni: "", phone: "", email: "" };
 const money = new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 2 });
 const field = "min-h-12 w-full min-w-0 rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-700 disabled:bg-slate-100";
@@ -45,6 +52,20 @@ function storeSession(key: string | null, value: SavedBookingReceipt | SavedBook
   } catch {
     // The receipt and attempt still stay in memory if storage is unavailable.
   }
+}
+
+function restoreSession<T extends SavedBookingReceipt | SavedBookingAttempt>(
+  key: string | null, legacy: string | null, validate: (value: unknown) => value is T, fixedId: number | null | undefined,
+): T | null {
+  if (!key) return null;
+  const matches = (value: T) => fixedId === undefined || ("stay" in value ? value.stay : value.review.stay).cabin_id === fixedId;
+  const current = readSession(key, validate);
+  if (current && matches(current)) return current;
+  const previous = readSession(legacy, validate);
+  if (!previous || !matches(previous)) return null;
+  storeSession(key, previous);
+  if (readSession(key, validate)) storeSession(legacy, null);
+  return previous;
 }
 
 function dateLabel(value: string) {
@@ -127,13 +148,17 @@ function Receipt({ value, onNew }: { value: SavedBookingReceipt; onNew: () => vo
   );
 }
 
-export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps) {
+export default function ReservaStickyCard({ fixedCabin }: ReservaStickyCardProps) {
   const id = useId();
-  const [availability, setAvailability] = useState<AvailabilityState>({ state: "loading" });
+  const fixedId = fixedCabin?.id;
+  const scope = fixedId === undefined ? "all" : fixedId;
+  const storageKey = receiptBase && scope !== null ? `${receiptBase}:${scope}` : null;
+  const attemptKey = attemptBase && scope !== null ? `${attemptBase}:${scope}` : null;
+  const [loaded, setLoaded] = useState<LoadedAvailability | null>(null);
+  const [catalog, setCatalog] = useState<BookingAvailability["cabins"] | null>(null);
   const [refresh, setRefresh] = useState(0);
   const [cabin, setCabin] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [selected, setSelected] = useState(emptySelection);
   const [guests, setGuests] = useState("2");
   const [review, setReview] = useState<BookingReview | null>(null);
   const [contact, setContact] = useState<BookingContact>(blankContact);
@@ -147,34 +172,65 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
   const restoredKey = useRef<string | null>(null);
   const actionLock = useRef(false);
   const today = bookingToday();
-  const availableCabin = availability.state === "ready" ? availability.data.cabins.find((entry) => String(entry.id) === cabin) : null;
+  const [month, setMonth] = useState(() => monthStart(today));
+  const [months, setMonths] = useState(1);
+  const visibleMonth = month < monthStart(today) ? monthStart(today) : month;
+  const { from, to } = selected;
+  const { from: rangeFrom, to: rangeTo } = calendarQuery(today, visibleMonth, months, selected);
+  const coverage = { from: rangeFrom, to: rangeTo };
+  const chosenId = fixedId === undefined ? Number(cabin) : fixedId;
+  const configured = Boolean(booking && fixedId !== null);
+  const requestKey = `${chosenId}:${rangeFrom}:${rangeTo}:${refresh}`;
+  const availability = loaded?.key === requestKey ? loaded : null;
+  const availableCabin = availability?.state === "ready" ? availability.data.cabins.find((entry) => entry.id === chosenId) : null;
+  const catalogCabin = catalog?.find((entry) => entry.id === chosenId);
+  const rangeReady = Boolean(availableCabin && from >= today && canStay(availableCabin, coverage, selected));
 
   useEffect(() => {
-    const receipt = readSession(storageKey, isSavedReceipt);
+    const receipt = restoreSession(storageKey, receiptBase, isSavedReceipt, fixedId);
     if (receipt) { setResult(receipt); return; }
-    const pending = readSession(attemptKey, isSavedBookingAttempt);
+    const pending = restoreSession(attemptKey, attemptBase, isSavedBookingAttempt, fixedId);
     if (!pending) return;
     setReview(pending.review);
     setCabin(String(pending.review.stay.cabin_id));
-    setFrom(pending.review.stay.check_in_date);
-    setTo(pending.review.stay.check_out_date);
+    setSelected({ from: pending.review.stay.check_in_date, to: pending.review.stay.check_out_date });
     setGuests(String(pending.review.stay.num_guests));
     restoredKey.current = pending.key;
     setRecovering(true);
-  }, []);
+  }, [attemptKey, fixedId, storageKey]);
+
   useEffect(() => {
-    if (!booking || result) return;
+    if (!booking || !configured || result || review) return;
     const abort = new AbortController();
-    booking.availability(undefined, abort.signal).then((data) => {
+    booking.availability({ from: rangeFrom, to: rangeTo }, abort.signal).then((data) => {
       if (abort.signal.aborted) return;
-      setAvailability({ state: "ready", data });
-      const preferredId = matchingCabinId(data.cabins, cabanaName);
-      if (preferredId != null) setCabin((current) => current || String(preferredId));
+      setCatalog(data.cabins);
+      setLoaded({ key: requestKey, state: "ready", data });
     }).catch((failure: unknown) => {
-      if (!abort.signal.aborted) setAvailability({ state: "error", error: requestError(failure) });
+      if (!abort.signal.aborted) setLoaded({ key: requestKey, state: "error", error: requestError(failure) });
     });
     return () => abort.abort();
-  }, [cabanaName, refresh, result]);
+  }, [configured, rangeFrom, rangeTo, requestKey, result, review]);
+
+  useEffect(() => {
+    if (!configured || result || review) return;
+    const refreshVisible = () => {
+      if (!document.hidden && !actionLock.current) setRefresh((count) => count + 1);
+    };
+    document.addEventListener("visibilitychange", refreshVisible);
+    return () => document.removeEventListener("visibilitychange", refreshVisible);
+  }, [configured, result, review]);
+
+  useEffect(() => {
+    if (review || busy || !from || availability?.state !== "ready") return;
+    const covered = availableCabin && from >= today &&
+      (to ? canStay(availableCabin, { from: rangeFrom, to: rangeTo }, { from, to })
+        : canCheckIn(availableCabin, { from: rangeFrom, to: rangeTo }, from));
+    if (!covered) {
+      setSelected(emptySelection);
+      setError("Las fechas elegidas ya no están disponibles. Volvé a elegir la estadía.");
+    }
+  }, [availability, availableCabin, busy, from, rangeFrom, rangeTo, review, to, today]);
 
   function clearReview() {
     attempt.current = null;
@@ -186,11 +242,36 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
     setContactErrors({});
   }
 
+  function refreshCalendar() {
+    setRefresh((count) => count + 1);
+  }
+
+  function navigateCalendar(next: string) {
+    if (next === visibleMonth) return;
+    setMonth(next);
+    refreshCalendar();
+  }
+
+  function rejectChangedStay(message = "Las fechas elegidas ya no están disponibles. Volvé a elegir la estadía.") {
+    clearReview();
+    setSelected(emptySelection);
+    setError(message);
+    refreshCalendar();
+  }
+
+  async function findFreshCabin(stay: BookingStay) {
+    const range = { from: stay.check_in_date, to: stay.check_out_date };
+    const current = await booking!.availability(range);
+    const chosen = current.cabins.find((entry) => entry.id === stay.cabin_id);
+    return chosen && chosen.capacity >= stay.num_guests && canStay(chosen, range, range) ? chosen : null;
+  }
+
   async function checkStay(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!booking || actionLock.current || !availableCabin) return;
+    if (!booking || actionLock.current || !availableCabin || !rangeReady) return;
     const numGuests = Number(guests);
-    if (!from || !to || from < today || to <= from || !Number.isInteger(numGuests) || numGuests < 1 || numGuests > availableCabin.capacity) {
+    const currentDate = bookingToday();
+    if (from < currentDate || to > bookingHorizon(currentDate) || !Number.isInteger(numGuests) || numGuests < 1 || numGuests > availableCabin.capacity) {
       setError("Revisá las fechas y la capacidad de la cabaña.");
       return;
     }
@@ -199,20 +280,21 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
     clearReview();
     setBusy("quote");
     try {
-      const current = await booking.availability({ from, to });
-      const chosen = current.cabins.find((entry) => entry.id === stay.cabin_id);
-      if (!chosen || chosen.capacity < numGuests || overlapsStay(chosen, stay)) {
-        setError("Esta cabaña no está disponible para esas fechas y cantidad de huéspedes. Probá otras fechas o una unidad distinta.");
+      const chosen = await findFreshCabin(stay);
+      if (!chosen) {
+        rejectChangedStay("La cabaña ya no está disponible para esas fechas y cantidad de huéspedes. Volvé a elegir la estadía.");
         return;
       }
       const quote = await booking.quote(stay);
       if (!quote.is_available) {
-        setError("Las fechas dejaron de estar disponibles. Probá otras fechas o una unidad distinta.");
+        rejectChangedStay();
         return;
       }
-      setReview({ quote, stay, cabinName: chosen.name });
+      setReview({ quote, stay, cabinName: fixedCabin?.name ?? chosen.name });
     } catch (failure) {
-      setError(requestError(failure).message);
+      const apiError = requestError(failure);
+      if (apiError.fields.cabin_id || apiError.status === 404) rejectChangedStay();
+      else setError(apiError.message);
     } finally {
       actionLock.current = false;
       setBusy(null);
@@ -221,7 +303,8 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!booking || !review || actionLock.current) return;
+    if (!booking || !review || actionLock.current ||
+      (fixedId !== undefined && review.stay.cabin_id !== fixedId)) return;
     const cleaned = { name: contact.name.trim(), dni: contact.dni.trim(), phone: contact.phone.trim(), ...(contact.email?.trim() ? { email: contact.email.trim() } : {}) };
     const fields = bookingContactErrors(cleaned);
     setContactErrors(fields);
@@ -230,6 +313,14 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
     setBusy("request");
     setError("");
     try {
+      // A replay must reach the server with the original key and body even if inventory changed.
+      // The PMS resolves idempotency first; it revalidates availability atomically for new requests.
+      if (!attempt.current && !restoredKey.current) {
+        if (review.stay.check_in_date < bookingToday() || !await findFreshCabin(review.stay)) {
+          rejectChangedStay();
+          return;
+        }
+      }
       const current = attempt.current ?? { payload: { ...review.stay, price_token: review.quote.price_token, client: cleaned }, key: restoredKey.current ?? createIdempotencyKey() };
       attempt.current = current;
       // Persist the key and quote only. The guest re-enters contact data after reload.
@@ -256,9 +347,12 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
           restoredKey.current = key;
           setRecovering(true);
           setError("La solicitud ya se registró con otros datos. Ingresá exactamente el nombre, documento, teléfono y correo originales para recuperar la referencia, o contactá al alojamiento.");
-        } else if (apiError.fields.price_token || apiError.fields.cabin_id) {
+        } else if (apiError.fields.cabin_id) {
+          rejectChangedStay();
+        } else if (apiError.fields.price_token) {
           clearReview();
           setError(apiError.message);
+          refreshCalendar();
         } else {
           if (recovering || unresolved) {
             restoredKey.current = key;
@@ -268,13 +362,18 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
           setContactErrors(validationFields);
           setError(apiError.message);
         }
+      } else if (!attempt.current && !restoredKey.current) {
+        setError(apiError.message);
       } else if (apiError.status === 0 || apiError.status >= 500 || apiError.status === 429 || apiError.status < 400 || unresolved) {
         setUnresolved(true);
         setError(`${apiError.message} Reintentá desde este paso: usaremos la misma referencia de envío para no duplicar la solicitud.`);
       } else {
         attempt.current = null;
-        if (!recovering) storeSession(attemptKey, null);
-        setError(apiError.message);
+        if (apiError.status === 404 && !recovering) rejectChangedStay();
+        else {
+          if (!recovering) storeSession(attemptKey, null);
+          setError(apiError.message);
+        }
       }
     } finally {
       actionLock.current = false;
@@ -284,7 +383,9 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
 
   if (result) return <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm lg:p-6"><Receipt value={result} onNew={() => {
     storeSession(storageKey, null);
-    setAvailability({ state: "loading" });
+    setSelected(emptySelection);
+    setMonth(monthStart(today));
+    refreshCalendar();
     setResult(null);
   }} /></section>;
 
@@ -293,38 +394,46 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
       <div className="space-y-2">
         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-orange-900"><CalendarDays className="size-4" aria-hidden /> Estadías</p>
         <h2 id={`${id}-title`} className="text-xl font-bold tracking-tight text-slate-900">Consultá fechas y precio</h2>
-        <p className="text-sm leading-relaxed text-slate-600">Elegí la unidad y las noches. Si hay disponibilidad, podés enviar una solicitud al alojamiento.</p>
+        <p className="text-sm leading-relaxed text-slate-600">{fixedCabin ? "Elegí las noches de tu estadía." : "Elegí la cabaña y las noches de tu estadía."} Si hay disponibilidad, podés enviar una solicitud al alojamiento.</p>
       </div>
-      {!booking ? <><p className="text-sm text-slate-700">La solicitud en línea no está disponible.</p><ContactLink /></> :
-        availability.state === "loading" ? <p role="status" className="flex items-center gap-2 py-3 text-sm text-slate-600"><LoaderCircle className="size-4 animate-spin" aria-hidden />Cargando cabañas…</p> :
-        availability.state === "error" ? <div className="space-y-3">
-          <FormNotice>{availability.error.message}</FormNotice>
-          {availability.error.status !== 404 && availability.error.status !== 403 ? <button className={secondaryLink} type="button" onClick={() => { setAvailability({ state: "loading" }); setRefresh((count) => count + 1); }}>Reintentar consulta</button> : null}
-          <div><ContactLink /></div>
-        </div> : availability.data.cabins.length === 0 ? <><p className="text-sm text-slate-700">No hay cabañas habilitadas para solicitudes en línea.</p><ContactLink /></> : <>
+      {review || (configured && catalog?.length && (!fixedCabin || catalogCabin)) ? <>
           {!review ? <form className="space-y-4" onSubmit={checkStay}>
-            <div className="space-y-1">
+            {fixedCabin ? <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+              <p className="text-xs font-semibold text-slate-600">Cabaña</p>
+              <p className="text-sm font-bold text-slate-900">{fixedCabin.name} <span className="font-normal text-slate-600">· hasta {catalogCabin?.capacity} huéspedes</span></p>
+            </div> : <div className="space-y-1">
               <label htmlFor={`${id}-cabin`} className="text-sm font-semibold text-slate-800">Cabaña</label>
-              <select id={`${id}-cabin`} className={field} required value={cabin} disabled={busy != null} onChange={(event) => { setCabin(event.target.value); setError(""); }}>
+              <select id={`${id}-cabin`} className={field} required value={catalogCabin ? cabin : ""} disabled={busy != null} onChange={(event) => {
+                clearReview();
+                setCabin(event.target.value);
+                setSelected(emptySelection);
+                setMonth(monthStart(today));
+                setGuests("2");
+                refreshCalendar();
+              }}>
                 <option value="">Elegí una cabaña</option>
-                {availability.data.cabins.map((entry) => <option key={entry.id} value={entry.id}>{entry.name} · hasta {entry.capacity}</option>)}
+                {catalog?.map((entry) => <option key={entry.id} value={entry.id}>{entry.name} · hasta {entry.capacity}</option>)}
               </select>
-            </div>
-            <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-2">
-              <div className="min-w-0 space-y-1"><label htmlFor={`${id}-from`} className="text-sm font-semibold text-slate-800">Entrada</label><input id={`${id}-from`} className={field} type="date" required min={today} value={from} disabled={busy != null} onChange={(event) => { setFrom(event.target.value); setError(""); }} /></div>
-              <div className="min-w-0 space-y-1"><label htmlFor={`${id}-to`} className="text-sm font-semibold text-slate-800">Salida</label><input id={`${id}-to`} className={field} type="date" required min={from || today} value={to} disabled={busy != null} onChange={(event) => { setTo(event.target.value); setError(""); }} /></div>
-            </div>
+            </div>}
+            {catalogCabin ? <BookingCalendar today={today} month={visibleMonth} months={months} onMonthsChange={setMonths} onMonthChange={navigateCalendar}
+              selected={selected} onSelect={(value) => { setSelected(value); setError(""); }}
+              available={availableCabin ? { cabin: availableCabin, coverage } : null} loading={!availability} disabled={busy != null} />
+              : <p className="text-sm text-slate-600">Elegí una cabaña para ver sus fechas.</p>}
+            {availability?.state === "error" ? <div className="space-y-2">
+              <FormNotice>{availability.error.message}</FormNotice>
+              {availability.error.status !== 404 && availability.error.status !== 403 ? <button className={secondaryLink} type="button" onClick={refreshCalendar}>Reintentar consulta</button> : null}
+            </div> : null}
             <div className="space-y-1">
               <label htmlFor={`${id}-guests`} className="text-sm font-semibold text-slate-800">Huéspedes</label>
               <input id={`${id}-guests`} className={field} type="number" inputMode="numeric" required min="1" max={availableCabin?.capacity ?? 255} value={guests} disabled={busy != null} onChange={(event) => { setGuests(event.target.value); setError(""); }} />
             </div>
             {error ? <FormNotice>{error}</FormNotice> : null}
-            <button className={cta} type="submit" disabled={busy != null || !cabin}>{busy === "quote" ? <><LoaderCircle className="size-4 animate-spin" aria-hidden />Consultando…</> : <>Consultar disponibilidad <ArrowRight className="size-4" aria-hidden /></>}</button>
+            <button className={cta} type="submit" disabled={busy != null || !rangeReady}>{busy === "quote" ? <><LoaderCircle className="size-4 animate-spin" aria-hidden />Consultando…</> : <>Consultar disponibilidad <ArrowRight className="size-4" aria-hidden /></>}</button>
           </form> : <form className="space-y-4" onSubmit={submit}>
             <div className="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
               <div className="flex flex-wrap justify-between gap-2">
                 <p className="text-sm font-bold text-slate-900">{review.cabinName}</p>
-                {!unresolved && !recovering ? <button type="button" className={secondaryLink} disabled={busy != null} onClick={clearReview}>Cambiar fechas</button> : null}
+                {!unresolved && !recovering ? <button type="button" className={secondaryLink} disabled={busy != null} onClick={() => { clearReview(); refreshCalendar(); }}>Cambiar fechas</button> : null}
               </div>
               <p className="text-xs text-slate-600">{dateLabel(review.stay.check_in_date)} – {dateLabel(review.stay.check_out_date)} · {review.quote.nights} {review.quote.nights === 1 ? "noche" : "noches"} · {review.stay.num_guests} huéspedes</p>
               <p className="text-xs text-slate-600">Entrada {review.quote.check_in_time} · Salida {review.quote.check_out_time}</p>
@@ -359,7 +468,13 @@ export default function ReservaStickyCard({ cabanaName }: ReservaStickyCardProps
             <button className={cta} type="submit" disabled={busy != null}>{busy === "request" ? <><LoaderCircle className="size-4 animate-spin" aria-hidden />Enviando solicitud…</> : unresolved || recovering ? "Reintentar la misma solicitud" : "Enviar solicitud de reserva"}</button>
           </form>}
           <ContactLink />
-        </>}
+        </> : !configured ? <><p className="text-sm text-slate-700">La solicitud en línea no está disponible{fixedCabin ? " para esta cabaña" : ""}.</p><ContactLink /></>
+          : availability?.state === "error" ? <div className="space-y-3">
+            <FormNotice>{availability.error.message}</FormNotice>
+            {availability.error.status !== 404 && availability.error.status !== 403 ? <button className={secondaryLink} type="button" onClick={refreshCalendar}>Reintentar consulta</button> : null}
+            <div><ContactLink /></div>
+          </div> : catalog ? <><p className="text-sm text-slate-700">{fixedCabin ? "La solicitud en línea no está disponible para esta cabaña." : "No hay cabañas habilitadas para solicitudes en línea."}</p><ContactLink /></>
+          : <p role="status" className="flex items-center gap-2 py-3 text-sm text-slate-600"><LoaderCircle className="size-4 motion-safe:animate-spin" aria-hidden />Cargando cabañas…</p>}
     </section>
   );
 }

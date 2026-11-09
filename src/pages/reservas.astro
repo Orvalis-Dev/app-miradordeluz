@@ -1,11 +1,35 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import ReservaCabanaPage from "../components/astro/ReservaCabanaPage.astro";
+import NavbarMiradorDeLuz from "@components/layout/Navbar";
+import FooterMiradorDeLuz from "@components/layout/Footer";
+import ReservaStickyCard from "@components/domain/booking/ReservaStickyCard";
+import { cabanas } from "@constants/cabanas";
+import { bookingCabinId } from "@utils/booking-calendar";
+import { getImage } from "astro:assets";
+import logoImage from "../assets/logo-mirador-luz.webp";
 
 export const prerender = false;
 
-// Leer parámetro de consulta (si viene desde los botones de las cabañas)
-const url = new URL(Astro.request.url);
-const cabanaId = url.searchParams.get("cabana") ?? "1";
+const requested = Astro.url.searchParams.get("cabana");
+const cabana = cabanas.find(({ id }) => id === requested);
+if (requested !== null && !cabana) return Astro.redirect("/");
+if (cabana && bookingCabinId(import.meta.env.PUBLIC_BOOKING_CABIN_IDS, cabana.id)) {
+  return Astro.redirect(`/reserva/${cabana.id}`);
+}
+
+const logo = await getImage({ src: logoImage, format: "webp", width: 120 });
 ---
 
-<ReservaCabanaPage cabanaId={cabanaId} />
+{cabana ? <ReservaCabanaPage cabanaId={cabana.id} /> : (
+  <Layout title="Solicitudes de estadía" description="Consultá la disponibilidad y el precio de las cabañas de Mirador de Luz.">
+    <NavbarMiradorDeLuz client:load variant="solid-navy" showReservaButton={false} logoSrc={logo.src} />
+    <main class="min-h-screen bg-gray-50 px-4 pt-24 pb-16 md:px-8 md:pt-28">
+      <div class="mx-auto max-w-3xl space-y-6">
+        <h1 class="text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">Solicitudes de estadía</h1>
+        <ReservaStickyCard client:load />
+      </div>
+    </main>
+    <FooterMiradorDeLuz client:load logoSrc={logo.src} />
+  </Layout>
+)}

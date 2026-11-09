@@ -12,6 +12,7 @@ import {
   SERVICIOS,
 } from "@constants/reservasConfig";
 import { cabanas } from "@constants/cabanas";
+import { bookingCabinId } from "@utils/booking-calendar";
 // Optimización de Logo
 import { getImage } from "astro:assets";
 import logoImage from "../../assets/logo-mirador-luz.webp";
@@ -40,6 +41,7 @@ const cabana = {
 };
 
 const pageTitle = `${cabana.nombre} - Mirador de Luz`;
+const unitId = bookingCabinId(import.meta.env.PUBLIC_BOOKING_CABIN_IDS, cabanaId);
 ---
 
 <Layout
@@ -199,7 +201,7 @@ const pageTitle = `${cabana.nombre} - Mirador de Luz`;
 
         <!-- Un único formulario hidratado, debajo de los detalles en móvil. -->
         <aside class="min-w-0 lg:col-start-3 lg:row-start-1 lg:row-span-2">
-          <ReservaStickyCard client:load cabanaName={cabana.nombre} />
+          <ReservaStickyCard client:load fixedCabin={{ id: unitId, name: cabana.nombre }} />
         </aside>
 
         <!-- Ubicación -->

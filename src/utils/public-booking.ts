@@ -1,3 +1,5 @@
+import { isBookingDate, overlapsNights } from "./booking-calendar";
+
 export interface BookingCabin {
   id: number;
   name: string;
@@ -133,9 +135,9 @@ async function fetchApi<T>(fetcher: typeof fetch, url: string, init: RequestInit
 
 export function createBookingClient(endpoint: string, fetcher: typeof fetch = globalThis.fetch.bind(globalThis)) {
   return {
-    availability(range?: { from: string; to: string }, signal?: AbortSignal) {
+    async availability(range?: { from: string; to: string }, signal?: AbortSignal) {
       const query = range ? `?${new URLSearchParams(range)}` : "";
-      return fetchApi<BookingAvailability>(fetcher, `${endpoint}${query}`, { signal });
+      return decodeAvailability(await fetchApi<unknown>(fetcher, `${endpoint}${query}`, { signal }));
     },
     quote(stay: BookingStay, signal?: AbortSignal) {
       return fetchApi<BookingQuote>(fetcher, `${endpoint}/quote`, { method: "POST", body: JSON.stringify(stay), signal });
@@ -148,19 +150,37 @@ export function createBookingClient(endpoint: string, fetcher: typeof fetch = gl
   };
 }
 
-function nameKey(name: string) {
-  return name.normalize("NFKD").toLowerCase().replace(/[\u0300-\u036f]/g, "")
-    .replace(/\bn(?:[o°])?\.?\s*(?=\d)/g, "").replace(/[^a-z0-9]/g, "");
-}
+function decodeAvailability(value: unknown): BookingAvailability {
+  const invalid = () => new ApiError("No pudimos verificar la disponibilidad. Volvé a intentar.", 0);
+  if (!value || typeof value !== "object") throw invalid();
+  const { tenant_name, check_in_time, check_out_time, cabins } = value as Record<string, unknown>;
+  if (typeof tenant_name !== "string" || typeof check_in_time !== "string" ||
+    typeof check_out_time !== "string" || !Array.isArray(cabins)) throw invalid();
 
-export function matchingCabinId(cabins: BookingCabin[], preferredName: string | undefined) {
-  if (!preferredName) return null;
-  const matches = cabins.filter((cabin) => nameKey(cabin.name) === nameKey(preferredName));
-  return matches.length === 1 ? matches[0].id : null;
+  const ids = new Set<number>();
+  return {
+    tenant_name, check_in_time, check_out_time,
+    cabins: cabins.map((entry: unknown) => {
+      if (!entry || typeof entry !== "object") throw invalid();
+      const { id, name, capacity, blocked_ranges } = entry as Record<string, unknown>;
+      if (typeof id !== "number" || !Number.isSafeInteger(id) || id < 1 || ids.has(id) || typeof name !== "string" ||
+        typeof capacity !== "number" || !Number.isSafeInteger(capacity) || capacity < 1 || !Array.isArray(blocked_ranges)) throw invalid();
+      ids.add(id);
+      return {
+        id, name, capacity,
+        blocked_ranges: blocked_ranges.map((range: unknown) => {
+          if (!range || typeof range !== "object") throw invalid();
+          const { from, to } = range as Record<string, unknown>;
+          if (!isBookingDate(from) || !isBookingDate(to) || from >= to) throw invalid();
+          return { from, to };
+        }),
+      };
+    }),
+  };
 }
 
 export function overlapsStay(cabin: BookingCabin, stay: Pick<BookingStay, "check_in_date" | "check_out_date">) {
-  return cabin.blocked_ranges.some((block) => stay.check_in_date < block.to && stay.check_out_date > block.from);
+  return overlapsNights(cabin.blocked_ranges, { from: stay.check_in_date, to: stay.check_out_date });
 }
 
 export function bookingContactErrors(input: BookingContact) {
